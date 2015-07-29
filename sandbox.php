@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>Lightbox Example</title>
-  <link rel="stylesheet" href="http://localhost/dsr/include/lightbox/css/lightbox.css">
+  <link rel="stylesheet" href="http://localhost:8080/DigiSig/include/lightbox/css/lightbox.css">
  
 </head>
 <body>
@@ -12,7 +12,7 @@
   <section>
     <h3>Two Individual Images</h3>
     <div>
-      <a class="example-image-link" href="http://localhost/dsr/photograph/10000014_GB0036_MiscCh_5574_1.jpg" data-lightbox="example-1"><img class="example-image" src="http://localhost/dsr/photograph/10000014_GB0036_MiscCh_5574_1.jpg" alt="image-1" /></a>
+      <a class="example-image-link" href="http://llocalhost:8080/DigiSig/photograph/10000014_GB0036_MiscCh_5574_1.jpg" data-lightbox="example-1"><img class="example-image" src="http://localhost:8080/DigiSig/photograph/10000014_GB0036_MiscCh_5574_1.jpg" alt="image-1" /></a>
       <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-2.jpg" data-lightbox="example-2" data-title="Optional caption."><img class="example-image" src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-2.jpg" alt="image-1"/></a>
     </div>
 

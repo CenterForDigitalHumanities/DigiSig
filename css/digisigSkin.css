@@ -1,0 +1,71 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 29, 2015, 2:21:02 PM
+    Author     : bhaberbe
+*/
+
+/* navigation bar */
+.navigation{
+    border: 1px solid #000;
+    padding: 10px 0px 10px 10px;
+} 
+
+.navTitle{
+    color: #F00;
+    font-size: 20px;
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    background-color: #FFF;
+    position: relative;
+}
+.resultsTitle{
+    color: #F00;
+    font-size: 20px;
+    border: 1px solid #000;
+    background-color: #FFF;
+    position: relative;
+}
+
+/* navigation buttons */
+.navigate{
+    
+}
+/* Searching Form */
+.searchArea{
+    border: 1px solid #000;
+    background-color: #D3D3D3;
+    margin: 10px;
+    padding: 10px 0px 10px 0px;
+}
+/* Search tool areas  */
+.searchArea p, .searchArea input:last-child{
+    margin-left:10px;
+}
+/* Search Results Area */
+.searchResults{
+   padding: 0px 10px;
+}
+/* Search Results links */
+.searchResults a{
+    margin: 0px 10px;
+}
+/* Titles separating search results */
+.separator{
+    font-weight: bold;
+}
+.searchTitle{
+    color: #F00;
+    font-size: 20px;
+    border-bottom: 1px solid #000;
+    background-color: #FFF;
+    position: relative;
+    top: -10px;
+}
+form[name="navigate"]{
+    margin: 0px 10px;
+}

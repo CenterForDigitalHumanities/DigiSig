@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost/dsr/include/lightbox/css/lightbox.css">
+    <link rel="stylesheet" href="../DigiSig/include/lightbox/css/lightbox.css">
     <?php echo "<title>" . $title . "</title>" ?>
 </head>
 
@@ -11,12 +11,14 @@
 <p>DigiSig</p>
 <p>Digital Sigillography Resource</p>
 <p>version: Alpha</p>
+
 <form name ="navigate" action="<?php $_server['PHP_SElF'] ?>" method="post">
-    <p>
-        <input type="submit" name ="submit" value ="HOME"/>
-        <input type="submit" name ="submit" value ="ABOUT"/>
-        <input type="submit" name ="submit" value ="ADVANCED SEARCH"/>
-        <input type="submit" name ="submit" value ="CONTACT"/>
+    <div class="navTitle">Navigation</div>
+    <p class="navigation">
+        <input class="navigate" type="submit" name ="submit" value ="HOME"/>
+        <input class="navigate" type="submit" name ="submit" value ="ABOUT"/>
+        <input class="navigate" type="submit" name ="submit" value ="ADVANCED SEARCH"/>
+        <input class="navigate" type="submit" name ="submit" value ="CONTACT"/>
     </p>
 </form>
 
@@ -31,7 +33,8 @@ Based at the centre for Digital Humanities at St Louis University, Missouri,
 it aims to foster sigillographic research by linking and matching sigillographic 
 datasets and making that information available.
 
-<form name = "search" action="<?php $_SERVER['PHP_SELF'] ?>" method="post" onsubmit="submitFormSearch()">
+<form class="searchArea" name = "search" action="<?php $_SERVER['PHP_SELF'] ?>" method="post" onsubmit="submitFormSearch()">
+    <div class="searchTitle">Search</div>
     <p>Select Field:<br/>
         <select name="field"/>
         <?php

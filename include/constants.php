@@ -3,7 +3,7 @@
 // Constants
 
 # URL Root
-$address = "http://localhost/dsr";
+$address = "http://localhost:8080/DigiSig";
 
 # Location of manifestation photographs
 $manifestation = $address . "/images/manifestations/";
