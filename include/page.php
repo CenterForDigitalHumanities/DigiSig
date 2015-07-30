@@ -22,19 +22,18 @@
     </p>
     <form class="searchArea" name = "search" action="<?php $_SERVER['PHP_SELF'] ?>" method="post" onsubmit="submitFormSearch()">
         <div class="searchTitle">Search</div>
-        <p style="color: white;">Select Field:<br/>
-            <select name="field"/>
-            <?php
-                $query = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
-                $searchfields = pg_query($query);
-                while ($row = pg_fetch_assoc($searchfields)){
-                    echo "<option value=". $row[field_url] . ">" . $row[field_title] . "</option>"; 
-                }
-            ?>
-            </select>
-            </p>
-        <p style="color: white;">Select Index:<br/>
-            <select name="index"/>
+        <p style="color: white;">Select Field:<br/></p>
+        <select name="field"/>
+        <?php
+            $query = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
+            $searchfields = pg_query($query);
+            while ($row = pg_fetch_assoc($searchfields)){
+                echo "<option value=". $row[field_url] . ">" . $row[field_title] . "</option>"; 
+            }
+        ?>
+        </select>
+        <p style="color: white;">Select Index:<br/></p>
+        <select name="index"/>
             <?php
                 $query2 = "SELECT pk_index, index, index_order, index_url FROM index ORDER BY index_order";
                 $searchindex = pg_query($query2);
@@ -42,19 +41,13 @@
                     echo "<option value=".$row[index_url] . ">" . $row[index] . "</option>";               
                     }
             ?>
-            </select>
-            </p>
-        <p style="color: white;">Search Terms:<br />
-            <input id="search_term_" type='text' size ="20" maxlength="40" value="<?php echo str_replace("_", "/", $term); ?>"/>
-
-            <input type="hidden" id="search_term" name="term" />
-
+        </select>
+        <p style="color: white;">Search Terms:</p>
+        <input id="search_term_" type='text' size ="20" maxlength="40" value="<?php echo str_replace("_", "/", $term); ?>"/>
+        <input type="hidden" id="search_term" name="term" />
         <p style="display: inline-block; color: white;">Exact Match?</p>
-            <input type="checkbox" title="Please note that this method is case sensitive." name="exact"/></p> 
-
-            <input style="margin-left: 10px;" type="submit" name ="submit" value ="SEARCH"/>
-
-        </p>
+        <input type="checkbox" title="Please note that this method is case sensitive." name="exact"/><br>
+        <input style="margin-left: 10px;" type="submit" name ="submit" value ="SEARCH"/>
     </form>
     
 <script>

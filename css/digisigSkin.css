@@ -31,7 +31,8 @@
 .resultsTitle{
     color: #F00;
     font-size: 20px;
-    border: 1px solid #000;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
     background-color: #FFF;
     position: relative;
 }
@@ -52,10 +53,9 @@
     border: 1px solid #000;
     background-color: #007799;
     padding: 10px 0px 10px 0px;
-    color: white;
 }
 /* Search tool areas  */
-.searchArea p, .searchArea input:last-child{
+.searchArea p, .searchArea input, .searchArea select{
     margin-left:10px;
 }
 /* Search Results Area */
