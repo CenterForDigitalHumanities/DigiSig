@@ -26,25 +26,7 @@ include "include/constants.php";
 session_start();
 include "header.php";
 //user login
-if(isset($_POST['user_email']) && isset($_POST['password']))
-{
-    $email = $_POST['user_email'];
-    $pwd = $_POST['password'];
-    $login = "select * from user_digisig where user_email = '".$email."' and password='".$pwd."'";
-    
-    $queryresults = pg_query($login);
-    $count = pg_num_rows($queryresults);
-    if($count > 0){
-        $row = pg_fetch_array($queryresults);
-        $_SESSION['userID'] = $row['pk_user'];
-        $_SESSION['user_email'] = $row['user_email'];
-        $_SESSION['fk_access'] = $row['fk_access'];
-        $_SESSION['fk_repository'] = $row['fk_repository'];
-    }
-    else{
-        echo 'User email or password error, cannot log in. ';
-    }
-}
+
 
 //if user doesn't log in, show the log in part. 
 //if(!isset($_SESSION['userID']))
@@ -398,16 +380,13 @@ if(isset($_POST['user_email']) && isset($_POST['password']))
        echo "<br>Text about the project";}
        break;
 
-
        case 'advanced search': {
        echo "<br>Text about forthcoming search options";}
        break;
 
-
        case 'contact': {
        echo "<br>Where to contact us";}
        break;
-
 
        default:
                echo "<div class='searchResults'>";
@@ -430,8 +409,6 @@ if(isset($_POST['user_email']) && isset($_POST['password']))
                }
                echo "</div>";
        }    
-
-
 
     include "include/footer.php";
     

@@ -11,7 +11,7 @@ $action = $_server['PHP_SElF'];
     $_SESSION['fk_repository'] = 0;
 }
 else{
-    $logBtn = $_SESSION['user_email']."&nbsp;&nbsp;&nbsp;<input class='login' type='button' value='log out' onclick='window.location=\"include/logout.php\"' />";
+    $logBtn = "<span class='login'>".$_SESSION['user_email']."</span>&nbsp;&nbsp;&nbsp;<input class='login' type='button' value='log out' onclick='window.location=\"logout.php\"' />";
 }
 echo '<form name ="navigate" action="'.$action.'" method="post" class="header">
         <!--<div class="navTitle">Navigation</div>-->

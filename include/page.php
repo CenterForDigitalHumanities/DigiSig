@@ -22,7 +22,7 @@
     </p>
     <form class="searchArea" name = "search" action="<?php $_SERVER['PHP_SELF'] ?>" method="post" onsubmit="submitFormSearch()">
         <div class="searchTitle">Search</div>
-        <p>Select Field:<br/>
+        <p style="color: white;">Select Field:<br/>
             <select name="field"/>
             <?php
                 $query = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
@@ -33,7 +33,7 @@
             ?>
             </select>
             </p>
-        <p>Select Index:<br/>
+        <p style="color: white;">Select Index:<br/>
             <select name="index"/>
             <?php
                 $query2 = "SELECT pk_index, index, index_order, index_url FROM index ORDER BY index_order";
@@ -44,15 +44,15 @@
             ?>
             </select>
             </p>
-        <p>Search Terms:<br />
+        <p style="color: white;">Search Terms:<br />
             <input id="search_term_" type='text' size ="20" maxlength="40" value="<?php echo str_replace("_", "/", $term); ?>"/>
 
             <input type="hidden" id="search_term" name="term" />
 
-        Exact Match?
+        <p style="display: inline-block; color: white;">Exact Match?</p>
             <input type="checkbox" title="Please note that this method is case sensitive." name="exact"/></p> 
 
-        <input type="submit" name ="submit" value ="SEARCH"/>
+            <input style="margin-left: 10px;" type="submit" name ="submit" value ="SEARCH"/>
 
         </p>
     </form>

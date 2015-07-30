@@ -1,6 +1,39 @@
 <?php
     #connection details
-    include ("config/config.php");
+    # Database Name
+    $db_name = "postgres";
+    # Database
+    $db_host = "localhost";
+    # DB port
+    $db_port = "5432";
+    # Database User
+    $db_user = "admin";
+
+    # Database password
+    $db_pswd = "123psqluser";
+
+    # Connection
+    $pg = pg_connect("host=$db_host port=$db_port user=$db_user password=$db_pswd dbname=$db_name")
+            or die ("Where-o-where has the database gone?");
+    
+    if(isset($_POST['user_email']) && isset($_POST['password'])){
+        $email = $_POST['user_email'];
+        $pwd = $_POST['password'];
+        $login = "select * from user_digisig where user_email = '".$email."' and password='".$pwd."'";
+
+        $queryresults = pg_query($login);
+        $count = pg_num_rows($queryresults);
+        if($count > 0){
+            $row = pg_fetch_array($queryresults);
+            $_SESSION['userID'] = $row['pk_user'];
+            $_SESSION['user_email'] = $row['user_email'];
+            $_SESSION['fk_access'] = $row['fk_access'];
+            $_SESSION['fk_repository'] = $row['fk_repository'];
+        }
+        else{
+            echo 'User email or password error, cannot log in. ';
+        }
+    }
 ?>
 
 <html>
