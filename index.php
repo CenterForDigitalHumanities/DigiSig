@@ -1,8 +1,17 @@
+<html>
+    <head>
+        <script src="http://localhost:8080/DigiSig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
+        <link rel="stylesheet" href="http://localhost:8080/DigiSig/css/digisigSkin.css">	
+        
+    </head>
+    <body>
+      
 <?php
 // ALPHA version: July 2015
 
 
 #functions
+
 //my functions
 include "include/function.php";
 //functions copied from other people
@@ -15,7 +24,7 @@ require_once("config/config.php");
 include "include/constants.php";
 
 session_start();
-
+include "header.php";
 //user login
 if(isset($_POST['user_email']) && isset($_POST['password']))
 {
@@ -37,15 +46,15 @@ if(isset($_POST['user_email']) && isset($_POST['password']))
 }
 
 //if user doesn't log in, show the log in part. 
-if(!isset($_SESSION['userID']))
-{
-    echo "<input type='button' value='log in' onclick='window.location=\"include/login.php\"' />";
-    $_SESSION['userID'] = 1;
-    $_SESSION['fk_access'] = 1;
-    $_SESSION['fk_repository'] = 0;
-}else{
-    echo 'Hi, '.$_SESSION['user_email'];
-}
+//if(!isset($_SESSION['userID']))
+//{
+//    echo "<input type='button' value='log in' onclick='window.location=\"include/login.php\"' />";
+//    $_SESSION['userID'] = 1;
+//    $_SESSION['fk_access'] = 1;
+//    $_SESSION['fk_repository'] = 0;
+//}else{
+//    echo 'Hi, '.$_SESSION['user_email'];
+//}
     /* If the page has received instructions via the 'post' method this 
     * code captures the 'post' and interprets it as a new header.*/
 
@@ -427,8 +436,7 @@ if(!isset($_SESSION['userID']))
     
 ?>
 
-<script src="../DigiSig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
-<link rel="stylesheet" href="../DigiSig/css/digisigSkin.css">	
+
 </body></html>
 
 

@@ -8,6 +8,15 @@ and open the template in the editor.
     Author     : bhaberbe
 */
 
+.digisigHeader{
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+.digisigImg{
+    max-width:100%;
+    height:auto;
+}
 /* navigation bar */
 .navigation{
     border: 1px solid #000;
@@ -39,7 +48,6 @@ and open the template in the editor.
 .searchArea{
     border: 1px solid #000;
     background-color: #D3D3D3;
-    margin: 10px;
     padding: 10px 0px 10px 0px;
 }
 /* Search tool areas  */
@@ -48,7 +56,6 @@ and open the template in the editor.
 }
 /* Search Results Area */
 .searchResults{
-   padding: 0px 10px;
 }
 /* Search Results links */
 .searchResults a{
@@ -67,5 +74,8 @@ and open the template in the editor.
     top: -10px;
 }
 form[name="navigate"]{
-    margin: 0px 10px;
+    
+}
+body{
+    margin: 0px 10px !important;
 }
