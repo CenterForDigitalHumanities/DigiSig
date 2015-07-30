@@ -1,5 +1,5 @@
 <?php
-echo "<div class='digisigHeader'>
+echo "<div class='header digisigHeader'>
         <img class='digisigImg' src='http://localhost:8080/DigiSig/images/digsig.jpg'/>
     </div> ";
 $logBtn = "";
@@ -11,9 +11,9 @@ $action = $_server['PHP_SElF'];
     $_SESSION['fk_repository'] = 0;
 }
 else{
-    $logBtn = "<input class='login' type='button' value='log out' onclick='' />";
+    $logBtn = $_SESSION['user_email']."&nbsp;&nbsp;&nbsp;<input class='login' type='button' value='log out' onclick='window.location=\"include/logout.php\"' />";
 }
-echo '<form name ="navigate" action="'.$action.'" method="post">
+echo '<form name ="navigate" action="'.$action.'" method="post" class="header">
         <!--<div class="navTitle">Navigation</div>-->
         <p class="navigation">
             <input class="navigate" type="submit" name ="submit" value ="HOME"/>

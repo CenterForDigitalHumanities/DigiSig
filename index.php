@@ -40,7 +40,8 @@ if(isset($_POST['user_email']) && isset($_POST['password']))
         $_SESSION['user_email'] = $row['user_email'];
         $_SESSION['fk_access'] = $row['fk_access'];
         $_SESSION['fk_repository'] = $row['fk_repository'];
-    }else{
+    }
+    else{
         echo 'User email or password error, cannot log in. ';
     }
 }

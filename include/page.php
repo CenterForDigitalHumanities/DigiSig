@@ -7,27 +7,6 @@
 </head>
 
 <body>
-    
-<!--    <form name ="navigate" action=" $_server['PHP_SElF'] " method="post">
-        <div class="navTitle">Navigation</div>
-        <p class="navigation">
-            <input class="navigate" type="submit" name ="submit" value ="HOME"/>
-            <input class="navigate" type="submit" name ="submit" value ="ABOUT"/>
-            <input class="navigate" type="submit" name ="submit" value ="ADVANCED SEARCH"/>
-            <input class="navigate" type="submit" name ="submit" value ="CONTACT"/>
-            
-            if(!isset($_SESSION['userID']))
-            {
-                echo "<input class='login' type='button' value='log in' onclick='window.location=\"include/login.php\"' />";
-                $_SESSION['userID'] = 1;
-                $_SESSION['fk_access'] = 1;
-                $_SESSION['fk_repository'] = 0;
-            }else{
-                echo "<input class='login' type='button' value='log out' onclick='' />";
-            }
-            
-        </p>
-    </form>-->
     <p>
         DigiSig is a new resource for the study of sigillography, particularly medieval 
         seals from the British Isles.

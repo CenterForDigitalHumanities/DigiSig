@@ -1,8 +1,4 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
+
 /* 
     Created on : Jul 29, 2015, 2:21:02 PM
     Author     : bhaberbe
@@ -40,9 +36,15 @@ and open the template in the editor.
     position: relative;
 }
 
-/* navigation buttons */
+/* Header navigation buttons */
+/* The header buttons need to look like links */
 .navigate{
-    
+    background:none!important;
+    border:none; 
+    padding:0!important;
+    font: inherit;
+    cursor: pointer;
+    color: red;
 }
 /* Searching Form */
 .searchArea{
@@ -78,4 +80,37 @@ form[name="navigate"]{
 }
 body{
     margin: 0px 10px !important;
+    color: #007799;
+}
+/* This is the image logo and the navigation */
+.header{
+    background-color: #00485E;
+}
+
+/* This is the footer navigation */
+.footer{
+    background-color: #00485E;
+    margin-bottom: 20px;
+}
+
+
+/* Footer buttons need to look like links */
+.footNav{
+    background:none!important;
+    border:none; 
+    padding:0!important;
+    font: inherit;
+    cursor: pointer;    
+    color: red;
+}
+/* Login as part of the nav.  Needs to look like a link. */
+.login{
+    position: absolute;
+    right: 10px;
+    background:none!important;
+    border:none; 
+    padding:0!important;
+    font: inherit;
+    cursor: pointer;    
+    color: red;
 }
