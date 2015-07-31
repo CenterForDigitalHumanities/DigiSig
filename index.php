@@ -41,6 +41,7 @@ include "header.php";
     /* If the page has received instructions via the 'post' method this 
     * code captures the 'post' and interprets it as a new header.*/
 
+
    if ($_POST['submit']) {
 
        $page = "/" . strtolower($_POST['submit']);
