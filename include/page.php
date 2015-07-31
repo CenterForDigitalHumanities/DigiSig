@@ -35,10 +35,25 @@
         <p style="color: white;">Select Index:<br/></p>
         <select name="index"/>
             <?php
-                $query2 = "SELECT pk_index, index, index_order, index_url FROM index ORDER BY index_order";
+                $query1 = "SELECT pk_index, index, index_order, index_url FROM index ORDER BY index_order";
+                $searchindex = pg_query($query1);
+                while ($row = pg_fetch_assoc($searchindex)){
+                    echo "<option value=".$row[index_url] . ">" . $row[index] . "</option>";               
+                    }
+                    echo '<option value= "catalogue" disabled>Catalogue</option>';    
+                
+                $query2 = "SELECT pk_index, index, index_order, index_url, fk_catalogue FROM index WHERE fk_catalogue > 0 ORDER BY index_order";
                 $searchindex = pg_query($query2);
                 while ($row = pg_fetch_assoc($searchindex)){
                     echo "<option value=".$row[index_url] . ">" . $row[index] . "</option>";               
+                    }
+
+                echo '<option value= "repository" disabled>Repository</option>';
+
+                $query3 = "SELECT pk_index, index, index_order, index_url, fk_repository FROM index WHERE fk_repository > 0 ORDER BY index_order";
+                $searchindex = pg_query($query3);
+                while ($row = pg_fetch_assoc($searchindex)){
+                    echo "<option value=".$row[index_url] . ">" . $row[index] . "</option>";
                     }
             ?>
         </select>
