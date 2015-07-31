@@ -61,7 +61,7 @@ include "header.php";
 
        // reload the page with the new header
        header ( 'Location:' .$url);       
-   }
+    }
 
    // reset the post array to clear any lingering data
    $_POST = array();
