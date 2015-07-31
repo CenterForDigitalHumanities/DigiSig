@@ -41,6 +41,7 @@ include "header.php";
     /* If the page has received instructions via the 'post' method this 
     * code captures the 'post' and interprets it as a new header.*/
 
+
    if ($_POST['submit']) {
 
        $page = "/" . strtolower($_POST['submit']);
@@ -61,7 +62,7 @@ include "header.php";
 
        // reload the page with the new header
        header ( 'Location:' .$url);       
-   }
+    }
 
    // reset the post array to clear any lingering data
    $_POST = array();
@@ -89,7 +90,7 @@ include "header.php";
 
    //Dataset statistics
 
-   $query = "SELECT COUNT (*) FROM seal";
+   $query = "SELECT COUNT (DISTINCT id_seal) FROM sealdescription_view";
                $queryresults = pg_query($query);
                $row = pg_fetch_assoc($queryresults);
                $sealcount = $row[count];
