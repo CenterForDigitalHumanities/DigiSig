@@ -13,7 +13,7 @@
 
         It currently contains:
         <?php echo "<u><b>$sealcount</b></u>" ?> seal records
-        0 images 
+        <?php echo $imagecount ?> images.
     </p>
     <p>
         Based at the centre for Digital Humanities at St Louis University, Missouri, 
