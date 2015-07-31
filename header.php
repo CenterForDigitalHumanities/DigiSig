@@ -4,7 +4,7 @@ echo "<div class='header digisigHeader'>
     </div> ";
 $logBtn = "";
 $action = $_server['PHP_SElF'];
- if(!isset($_SESSION['userID'])){
+ if(!isset($_SESSION['userID']) || $_SESSION['userID']===1 ){
     $logBtn = "<input class='login' type='button' value='log in' onclick='window.location=\"include/login.php\"' />";
     $_SESSION['userID'] = 1;
     $_SESSION['fk_access'] = 1;
@@ -23,4 +23,8 @@ echo '<form name ="navigate" action="'.$action.'" method="post" class="header">
             '.$logBtn.'
         </p>
     </form>';
+//echo "<div class='userInfo'>User Information:<br>
+//      userID: ".$_SESSION['userID']."<br>
+//      username: ".$_SESSION['user_email']."
+//      </div>";
 ?>

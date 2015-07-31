@@ -2,7 +2,7 @@
 
 // Database constants
 # Database Name
-$db_name = "digitalsigillographyresource";
+$db_name = "postgres";
 # Database
 $db_host = "localhost";
 # DB port
@@ -11,7 +11,7 @@ $db_port = "5432";
 $db_user = "postgres";
 
 # Database password
-$db_pswd = "letmein";
+$db_pswd = "123psqluser";
 
 # Connection
 //$pg = pg_connect("host=$db_host port=$db_port user=$db_user password=$db_pswd dbname=$db_name")

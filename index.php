@@ -42,7 +42,7 @@ include "header.php";
     * code captures the 'post' and interprets it as a new header.*/
 
 
-   if ($_POST['submit']) {
+    if ($_POST['submit']) {
 
        $page = "/" . strtolower($_POST['submit']);
 
@@ -59,9 +59,8 @@ include "header.php";
            $exact = "/e";}
 
        $url = ($address . $page . $field . $index . $term . $exact);
-
        // reload the page with the new header
-       header ( 'Location:' .$url);       
+       header( 'Location:' .$url);       
     }
 
    // reset the post array to clear any lingering data
@@ -273,9 +272,8 @@ include "header.php";
        echo "<br> DIGISIG ID: " . $id;
        echo "<br> Permalink: http://digisig.org/entity/" . $id . "<br>";
 
-
        // title
-        echo $value1 .":".$value4;
+       echo $value1 .":".$value4;
             if (isset($value2)) {
                 echo ", vol." . $value2;
             }

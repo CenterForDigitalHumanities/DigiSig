@@ -10,15 +10,9 @@
     <p>
         DigiSig is a new resource for the study of sigillography, particularly medieval 
         seals from the British Isles.
-
         It currently contains:
-<<<<<<< HEAD
         <?php echo "<u><b>$sealcount</b></u>" ?> seal records
         <?php echo $imagecount ?> images.
-=======
-        <?php echo "<u><b>$sealcount</b></u>" ?> seal records and
-        <?php echo "<u><b>$imagecount</b></u>" ?> images 
->>>>>>> 549f6abb5d0873faaefca53c035294e3031bc303
     </p>
     <p>
         Based at the centre for Digital Humanities at St Louis University, Missouri, 
