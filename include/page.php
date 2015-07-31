@@ -12,8 +12,8 @@
         seals from the British Isles.
 
         It currently contains:
-        <?php echo "<u><b>$sealcount</b></u>" ?> seal records
-        0 images 
+        <?php echo "<u><b>$sealcount</b></u>" ?> seal records and
+        <?php echo "<u><b>$imagecount</b></u>" ?> images 
     </p>
     <p>
         Based at the centre for Digital Humanities at St Louis University, Missouri, 

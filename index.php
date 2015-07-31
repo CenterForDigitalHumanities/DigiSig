@@ -90,7 +90,7 @@ include "header.php";
 
    //Dataset statistics
 
-   $query = "SELECT COUNT (*) FROM seal";
+   $query = "SELECT COUNT (DISTINCT id_seal) FROM sealdescription_view";
                $queryresults = pg_query($query);
                $row = pg_fetch_assoc($queryresults);
                $sealcount = $row[count];
