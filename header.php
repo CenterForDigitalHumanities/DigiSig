@@ -3,8 +3,6 @@ echo "<div class='header digisigHeader'>
         <img class='digisigImg' src='http://localhost:8080/DigiSig/images/digsig.jpg'/>
     </div> ";
 $logBtn = "";
-$action = $_server['PHP_SElF'];
- if(!isset($_SESSION['userID']) || $_SESSION['userID']===1 ){
 $action = $_SERVER['PHP_SELF'];
 if(!isset($_SESSION['userID'])){
     $logBtn = "<input class='login' type='button' value='log in' onclick='window.location=\"include/login.php\"' />";
@@ -31,8 +29,8 @@ echo '<form name ="navigate" action="'.$action.'" method="post" class="header">
             '.$logBtn.'
         </p>
     </form>';
-//echo "<div class='userInfo'>User Information:<br>
-//      userID: ".$_SESSION['userID']."<br>
-//      username: ".$_SESSION['user_email']."
-//      </div>";
+echo "<div class='userInfo'>User Information:<br>
+      userID: ".$_SESSION['userID']."<br>
+      username: ".$_SESSION['user_email']."
+      </div>";
 ?>
