@@ -4,16 +4,16 @@
 function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
     $pagination_part = ' limit ' . $limit . ' offset ' . $offset;
     // search 'what' and 'from'? 
-    $query3 = "SELECT field_title, field_url, field_column, field_returnedvariables FROM field WHERE field_url ILIKE '$field'";
-    $query3result = pg_query($query3);
-    $row = pg_fetch_object($query3result);
+    $query3 = "SELECT field_title, field_url, field_column, field_returnedvariables FROM field WHERE field_url = '$field'";
+    $query3result = mysqli_query($query3);
+    $row = mysqli_fetch_object($query3result);
     $column = $row->field_column;
     $variables = $row->field_returnedvariables;
 
     // search 'where'?
-    $query4 = "SELECT index, fk_catalogue, fk_repository FROM index WHERE index_url ILIKE '$index'";    
-    $query4result = pg_query($query4);
-    $row = pg_fetch_object($query4result);
+    $query4 = "SELECT index, fk_catalogue, fk_repository FROM index WHERE index_url = '$index'";    
+    $query4result = mysqli_query($query4);
+    $row = mysqli_fetch_object($query4result);
     $repository = $row->fk_repository;
     $catalogue = $row->fk_catalogue;
 
@@ -42,10 +42,10 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
     $query5 = $query5 . " ORDER BY $column" . $pagination_part;
 
     // the full search string applied
-    $query5result = pg_query($query5);
+    $query5result = mysqli_query($query5);
 
     //test to see how many rows the query returned
-    $numberofresults = pg_num_rows($query5result);
+    $numberofresults = mysqli_num_rows($query5result);
 
     //if there are returned rows (except from all_fields) then present output
 
@@ -63,7 +63,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
     //drawing the results in a tabular form
     echo '<table><table border = 1><tr><td></td><td>Heading</td>';
     $rowcount = 1;
-    while ($row = pg_fetch_array($query5result, NULL, PGSQL_NUM)) {
+    while ($row = mysqli_fetch_array($query5result, NULL, PGSQL_NUM)) {
         $value1 = $row[0];
         $value2 = $row[1];
         $value3 = $row[2];
@@ -88,9 +88,9 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
 
 function queryview($entity, $id) {
  //convert view number to view text string and find out what variables to return
-$query6 = "SELECT entity_view_short, entity_column_short, entity_returnedvariables_short, entity_url FROM entity WHERE entity_url ILIKE '$entity'";
-$query6result = pg_query($query6);
-$row = pg_fetch_object($query6result);
+$query6 = "SELECT entity_view_short, entity_column_short, entity_returnedvariables_short, entity_url FROM entity WHERE entity_url = '$entity'";
+$query6result = mysqli_query($query6);
+$row = mysqli_fetch_object($query6result);
 $column = $row->entity_column_short;
 $view = $row->entity_view_short;
 $variables = $row->entity_returnedvariables_short;
@@ -98,7 +98,7 @@ $variables = $row->entity_returnedvariables_short;
 // the basic search string
 $query7 = "SELECT $variables FROM $view WHERE $column = $id";
 
-$queryviewresult = pg_query($query7);
+$queryviewresult = mysqli_query($link, $query7);
 return $query7;
 }
 
@@ -112,7 +112,7 @@ Function sealdescription ($query12result, $address, $duplicate) {
     echo '<table border = 1><tr><td></td><td>Name</td><td></td><td>Reference</td>';
     $rowcount = 1;
 
-while ($row = pg_fetch_array($query12result)) {
+while ($row = mysqli_fetch_array($query12result)) {
     $value1 = $row[index];
     $value2 = $row[sealdescription_identifier];
     $value3 = $row[id_sealdescription];
