@@ -15,12 +15,14 @@ function parse_path() {
     }
     $path['call_parts'] = explode('/', $path['call']);
 
-    $path['query_utf8'] = urldecode($request_path[1]);
-    $path['query'] = utf8_decode(urldecode($request_path[1]));
-    $vars = explode('&', $path['query']);
-    foreach ($vars as $var) {
-      $t = explode('=', $var);
-      $path['query_vars'][$t[0]] = $t[1];
+    if(count($request_path) > 1){
+        $path['query_utf8'] = urldecode($request_path[1]);
+        $path['query'] = utf8_decode(urldecode($request_path[1]));
+        $vars = explode('&', $path['query']);
+        foreach ($vars as $var) {
+          $t = explode('=', $var);
+          $path['query_vars'][$t[0]] = $t[1];
+        }
     }
   }
 return $path;

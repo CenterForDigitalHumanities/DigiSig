@@ -42,21 +42,26 @@ include "header.php";
     * code captures the 'post' and interprets it as a new header.*/
 
 
-    if ($_POST['submit']) {
+
+   if (isset($_POST['submit'])) {
 
        $page = "/" . strtolower($_POST['submit']);
 
-           IF ($_POST['field']) {
-           $field = "/" . strtolower($_POST['field']);}
+           if (isset($_POST['field'])) {
+               $field = "/" . strtolower($_POST['field']);
+           }
 
-           If ($_POST['index']) {
-           $index = "/" . strtolower($_POST['index']);}
+           if (isset($_POST['index'])) {
+               $index = "/" . strtolower($_POST['index']);
+           }
 
-           If ($_POST['term']) {
-           $term = "/" . ($_POST['term']);}
+           if (isset($_POST['term'])) {
+               $term = "/" . ($_POST['term']);
+           }
 
-           If ($_POST['exact']) {
-           $exact = "/e";}
+           if (isset($_POST['exact'])) {
+                $exact = "/e";
+           }
 
        $url = ($address . $page . $field . $index . $term . $exact);
        // reload the page with the new header
@@ -72,15 +77,15 @@ include "header.php";
 
    $path_info = parse_path();
 
-   if ($path_info[call_parts][0] == "search") {
-       $field = ($path_info[call_parts][1]);
-       $index = ($path_info[call_parts][2]);
-       $term = ($path_info [call_parts][3]);
-       $exact = ($path_info [call_parts][4]);
+   if ($path_info['call_parts'][0] == "search") {
+       $field = ($path_info['call_parts'][1]);
+       $index = ($path_info['call_parts'][2]);
+       $term = ($path_info ['call_parts'][3]);
+       $exact = ($path_info ['call_parts'][4]);
        $title = "RESULTS";   
    }
 
-   if ($path_info[call_parts][0] == "entity") {
+   if ($path_info['call_parts'][0] == "entity") {
        $id= ($path_info[call_parts][1]);
        //find the last digit in the id number because it indicates the type of entity
        $entity = substr($id, -1);
@@ -89,15 +94,15 @@ include "header.php";
 
    //Dataset statistics
 
-   $query = "SELECT COUNT (DISTINCT id_seal) FROM sealdescription_view";
-               $queryresults = pg_query($query);
-               $row = pg_fetch_assoc($queryresults);
-               $sealcount = $row[count];
+   $query = "SELECT COUNT(DISTINCT id_seal) FROM sealdescription_view";
+               $queryresults = mysqli_query($link, $query);
+               $row = mysqli_fetch_assoc($queryresults);
+               $sealcount = mysqli_num_rows($queryresults);
                
-   $query = "Select COUNT (DISTINCT representation_filename) from shelfmark_view";
-               $queryresults = pg_query($query);
-               $row = pg_fetch_assoc($queryresults);
-               $imagecount = $row[count];
+   $query = "Select COUNT(DISTINCT representation_filename) from shelfmark_view";
+               $queryresults = mysqli_query($link, $query);
+               $row = mysqli_fetch_assoc($queryresults);
+               $imagecount = mysqli_num_rows($queryresults);
 
 
    /* this file loads the header which is consistent on on all pages
@@ -123,9 +128,9 @@ include "header.php";
        // otherwise, just run the query on the specified field
        if ($field == "all_fields") {
            $query12 = "SELECT field_url FROM field";
-           $query12result = pg_query($query12);
-           while ($row = pg_fetch_array($query12result)) {
-               $searchfield = $row[field_url];    
+           $query12result = mysqli_query($link, $query12);
+           while ($row = mysqli_fetch_array($query12result)) {
+               $searchfield = $row['field_url'];    
                queryResult($searchfield, $index, $term, $address, $exact, 0, $num_result_per_page);
                }
        } else {
@@ -143,14 +148,14 @@ include "header.php";
 
    # 1) determine what view to query using the entity number
    $query6 = "SELECT * FROM entity WHERE entity_code = $entity";
-   $query6result = pg_query($query6);
-   $row = pg_fetch_object($query6result);
+   $query6result = mysqli_query($link, $query6);
+   $row = mysqli_fetch_object($query6result);
    $column = $row->entity_column;
    $view = $row->entity_view;
 
    # 2) formulate and return the basic search string
    $query8 = "SELECT * FROM $view WHERE $column = $id";
-   $query8result = pg_query($query8);
+   $query8result = mysqli_query($link, $query8);
 
    //start rowcounter for table output
    $rowcount = 1;
@@ -159,15 +164,15 @@ include "header.php";
 
    //for shelfmarks 
        If ($entity == 0) {
-       $row = pg_fetch_array($query8result);
-       $value1 = $row[repository_fulltitle];
-       $value2 = $row[shelfmark];
-       $value10 = $row[repository_startdate];
-       $value11 = $row[repository_enddate];
-       $value12 = $row[repository_location];
-       $value13 = $row[repository_description];
-       $value14 = $row[connection];
-       $value15 = $row[ui_event_repository];
+       $row = mysqli_fetch_array($query8result);
+       $value1 = $row['repository_fulltitle'];
+       $value2 = $row['shelfmark'];
+       $value10 = $row['repository_startdate'];
+       $value11 = $row['repository_enddate'];
+       $value12 = $row['repository_location'];
+       $value13 = $row['repository_description'];
+       $value14 = $row['connection'];
+       $value15 = $row['ui_event_repository'];
 
        echo "ITEM";
        echo "<br> DIGISIG ID:" . $id;
@@ -197,11 +202,11 @@ include "header.php";
 
         //show table of associated impressions
        $query12 = "SELECT * FROM shelfmark_view WHERE id_item = $id ORDER BY position_latin";
-       $query12result = pg_query($query12);
+       $query12result = mysqli_query($link, $query12);
 
        // table detailing which seal impressions are associated with this item
        echo '<table border = 1><tr><td></td><td>Examples</td></tr><tr><td></td><td>nature</td><td>number</td><td>position</td><td>shape</td></tr>';
-       while ($row = pg_fetch_array($query12result)) {      
+       while ($row = mysqli_fetch_array($query12result)) {      
        $value3 = $row[nature];
        $value4 = $row[number];
        $value5 = $row[position_latin];
@@ -242,7 +247,7 @@ include "header.php";
 
    //for seal descriptions
    If ($entity == 3) {
-       $row = pg_fetch_array($query8result);
+       $row = mysqli_fetch_array($query8result);
 
        //assign variables
        $value1 = $row[index];
@@ -330,9 +335,9 @@ include "header.php";
        //check for other seal descriptions
 
        $query12 = "SELECT * FROM sealdescription_view WHERE id_seal = $value11";
-       $query12result = pg_query($query12);
+       $query12result = mysqli_query($link, $query12);
 
-       $count = pg_num_rows($query12result);
+       $count = mysqli_num_rows($query12result);
        if ($count > 1) {
            echo "other descriptions";
            $duplicate = $id;
@@ -350,7 +355,7 @@ include "header.php";
        echo '<table border = 1><tr><td>Shape</td><td>Height</td><td>Width</td></tr>';
 
        // note that a seal can have two faces but I am going to assume that the double side ones are the same
-       $row = pg_fetch_array($query8result);
+       $row = mysqli_fetch_array($query8result);
        $value3 = $row[shape];
        $value4 = $row[face_vertical];
        $value5 = $row[face_horizontal];
@@ -365,18 +370,18 @@ include "header.php";
        // call seal description function to make list of associated seal descriptions 
 
        $query12 = "SELECT * FROM sealdescription_view WHERE id_seal = $id";
-       $query12result = pg_query($query12);
+       $query12result = mysqli_query($link, $query12);
        sealdescription($query12result, $address);
 
 
    // list of associated seal impressions 
    $query10 = "SELECT * FROM shelfmark_view WHERE id_seal = $id";
-   $query10result = pg_query($query10);
+   $query10result = mysqli_query($link, $query10);
 
    echo '<table border = 1><tr><td>Examples</td></tr><tr><td></td><td>';
    $rowcount = 1;
 
-   while ($row = pg_fetch_array($query10result)) {
+   while ($row = mysqli_fetch_array($query10result)) {
 
        $value1 = $row[nature];
        $value2 = $row[number];
@@ -442,17 +447,17 @@ include "header.php";
                echo "<span class='separator'>publications and projects</span><br>";
                
                $query = "SELECT DISTINCT title, uri_catalogue FROM search_view WHERE title NOT IN ('Public Index') ORDER BY title";
-               $queryresults = pg_query($query);
-               while ($row = pg_fetch_assoc($queryresults)){
-                   echo '<a href="' . $row[uri_catalogue] . '" target="_blank">' . $row[title] . '</a>';
+               $queryresults = mysqli_query($link, $query);
+               while ($row = mysqli_fetch_assoc($queryresults)){
+                   echo '<a href="' . $row['uri_catalogue'] . '" target="_blank">' . $row['title'] . '</a>';
                   echo "<br>";
                }
 
                echo "<span class='separator'>repositories</span><br>";
                $query = "SELECT DISTINCT repository_fulltitle, id_archoncode FROM shelfmark_view ORDER BY repository_fulltitle";
-               $queryresults = pg_query($query);
-               while ($row = pg_fetch_assoc($queryresults)){
-                   echo '<a href="'. $archonsearch . "?_ref=" . $row[id_archoncode] . '" target="_blank">' . $row[repository_fulltitle] . '</a>';
+               $queryresults = mysqli_query($link, $query);
+               while ($row = mysqli_fetch_assoc($queryresults)){
+                   echo '<a href="'. $archonsearch . "?_ref=" . $row['id_archoncode'] . '" target="_blank">' . $row['repository_fulltitle'] . '</a>';
                    echo "<br>";
                }
                echo "</div>";
