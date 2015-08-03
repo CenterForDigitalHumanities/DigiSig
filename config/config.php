@@ -17,7 +17,7 @@ $db_pswd = "123psqluser";
 //$pg = pg_connect("host=$db_host port=$db_port user=$db_user password=$db_pswd dbname=$db_name")
 //        or die ("Where-o-where has the database gone?");
 
-$pg = pg_connect("host=$db_host user=$db_user password=$db_pswd dbname=$db_name")
+$conn = pg_connect("host=$db_host user=$db_user password=$db_pswd dbname=$db_name")
         or die ("Where-o-where has the database gone?");
         
 ?>
