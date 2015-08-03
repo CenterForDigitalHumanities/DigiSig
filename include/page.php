@@ -12,13 +12,10 @@
         seals from the British Isles.
 
         It currently contains:
-<<<<<<< HEAD
         <?php echo "<u><b>$sealcount</b></u>" ?> seal records
         <?php echo $imagecount ?> images.
-=======
         <?php echo "<u><b>$sealcount</b></u>" ?> seal records and
         <?php echo "<u><b>$imagecount</b></u>" ?> images 
->>>>>>> 549f6abb5d0873faaefca53c035294e3031bc303
     </p>
     <p>
         Based at the centre for Digital Humanities at St Louis University, Missouri, 
@@ -31,8 +28,8 @@
         <select name="field"/>
         <?php
             $query = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
-            $searchfields = pg_query($query);
-            while ($row = pg_fetch_assoc($searchfields)){
+            $searchfields = mysqli_query($link, $query);
+            while ($row = mysqli_fetch_assoc($searchfields)){
                 echo "<option value=". $row[field_url] . ">" . $row[field_title] . "</option>"; 
             }
         ?>
@@ -41,29 +38,29 @@
         <select name="index"/>
             <?php
                 $query1 = "SELECT pk_index, index, index_order, index_url FROM index ORDER BY index_order";
-                $searchindex = pg_query($query1);
-                while ($row = pg_fetch_assoc($searchindex)){
+                $searchindex = mysqli_query($link, $query1);
+                while ($row = mysqli_fetch_assoc($searchindex)){
                     echo "<option value=".$row[index_url] . ">" . $row[index] . "</option>";               
                     }
                     echo '<option value= "catalogue" disabled>Catalogue</option>';    
                 
                 $query2 = "SELECT pk_index, index, index_order, index_url, fk_catalogue FROM index WHERE fk_catalogue > 0 ORDER BY index_order";
-                $searchindex = pg_query($query2);
-                while ($row = pg_fetch_assoc($searchindex)){
+                $searchindex = mysqli_query($link, $query2);
+                while ($row = mysqli_fetch_assoc($searchindex)){
                     echo "<option value=".$row[index_url] . ">" . $row[index] . "</option>";               
                     }
 
                 echo '<option value= "repository" disabled>Repository</option>';
 
                 $query3 = "SELECT pk_index, index, index_order, index_url, fk_repository FROM index WHERE fk_repository > 0 ORDER BY index_order";
-                $searchindex = pg_query($query3);
-                while ($row = pg_fetch_assoc($searchindex)){
+                $searchindex = mysqli_query($link, $query3);
+                while ($row = mysqli_fetch_assoc($searchindex)){
                     echo "<option value=".$row[index_url] . ">" . $row[index] . "</option>";
                     }
             ?>
         </select>
         <p style="color: white;">Search Terms:</p>
-        <input id="search_term_" type='text' size ="20" maxlength="40" value="<?php echo str_replace("_", "/", $term); ?>"/>
+        <input id="search_term_" type='text' size ="20" maxlength="40" value="<?php if(isset($term)){echo str_replace("_", "/", $term);} ?>"/>
         <input type="hidden" id="search_term" name="term" />
         <p style="display: inline-block; color: white;">Exact Match?</p>
         <input type="checkbox" title="Please note that this method is case sensitive." name="exact"/><br>
