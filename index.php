@@ -96,15 +96,15 @@ $exact = "";
 
    //Dataset statistics
 
-   $query = "SELECT COUNT(DISTINCT id_seal) FROM sealdescription_view";
+   $query = "SELECT count(DISTINCT id_seal) as sealcount FROM sealdescription_view";
                $queryresults = mysqli_query($link, $query);
                $row = mysqli_fetch_assoc($queryresults);
-               $sealcount = mysqli_num_rows($queryresults);
+               $sealcount = $row['sealcount'];
                
-   $query = "Select COUNT(DISTINCT representation_filename) from shelfmark_view";
+   $query = "Select COUNT(DISTINCT representation_filename) as imagecount from shelfmark_view";
                $queryresults = mysqli_query($link, $query);
                $row = mysqli_fetch_assoc($queryresults);
-               $imagecount = mysqli_num_rows($queryresults);
+               $imagecount = $row['imagecount'];
 
 
    /* this file loads the header which is consistent on on all pages
