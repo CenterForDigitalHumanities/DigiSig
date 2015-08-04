@@ -36,6 +36,8 @@
             <?php
                 $query1 = "SELECT pk_index, a_index, index_order, index_url FROM tb_index ORDER BY index_order";
                 $searchindex = mysqli_query($link, $query1);
+                //This query returns a blank, which is where the errors for this page are coming from
+                echo "Trying to get the SEARCH INDEX ======================== ".$searchindex." !!!!! ";
                 while ($row = mysqli_fetch_array($searchindex)){
                     echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";               
                     }
