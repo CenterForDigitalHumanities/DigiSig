@@ -34,31 +34,31 @@
         <p style="color: white;">Select Index:<br/></p>
         <select name="index"/>
             <?php
-                $query1 = "SELECT pk_index, index, index_order, index_url FROM index ORDER BY index_order";
+                $query1 = "SELECT pk_index, a_index, index_order, index_url FROM tb_index ORDER BY index_order";
                 $searchindex = mysqli_query($link, $query1);
                 //This query returns a blank, which is where the errors for this page are coming from
-                echo "<option>Index Check1  ".$searchindex."  !!!</option>";
+                echo "<option> Dearch index check1 ".$searchindex." !!!!!</option>";
                 while ($row = mysqli_fetch_array($searchindex)){
-                    echo "<option value=".$row['index_url'] . ">" . $row['index'] . "</option>";               
+                    echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";               
                     }
                     echo '<option value= "catalogue" disabled>Catalogue</option>';    
                 
-                $query2 = "SELECT pk_index, index, index_order, index_url, fk_catalogue FROM index WHERE fk_catalogue > 0 ORDER BY index_order";
+                $query2 = "SELECT pk_index, a_index, index_order, index_url, fk_catalogue FROM tb_index WHERE fk_catalogue > 0 ORDER BY index_order";
                 $searchindex = mysqli_query($link, $query2);
+                echo "<option> Dearch index check2 ".$searchindex." !!!!!</option>";
                 //This query returns a blank, which is where the errors for this page are coming from
-                echo "<option>Index Check2  ".$searchindex."  !!!</option>";
                 while ($row = mysqli_fetch_array($searchindex)){
-                    echo "<option value=".$row['index_url'] . ">" . $row['index'] . "</option>";               
+                    echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";               
                     }
 
                 echo '<option value= "repository" disabled>Repository</option>';
 
-                $query3 = "SELECT pk_index, index, index_order, index_url, fk_repository FROM index WHERE fk_repository > 0 ORDER BY index_order";
+                $query3 = "SELECT pk_index, a_index, index_order, index_url, fk_repository FROM tb_index WHERE fk_repository > 0 ORDER BY index_order";
                 $searchindex = mysqli_query($link, $query3);
-                 echo "<option>Index Check3  ".$searchindex."  !!!</option>";
+                echo "<option> Dearch index check3 ".$searchindex." !!!!!</option>";
                 //This query returns a blank, which is where the errors for this page are coming from
                 while ($row = mysqli_fetch_array($searchindex)){
-                    echo "<option value=".$row['index_url'] . ">" . $row['index'] . "</option>";
+                    echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";
                     }
             ?>
         </select>
