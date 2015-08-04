@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost:8080/DigiSig/include/lightbox/css/lightbox.css">
+    <link rel="stylesheet" href="http://localhost/DigiSig/include/lightbox/css/lightbox.css">
     <?php echo "<title>" . $title . "</title>" ?>
 </head>
 

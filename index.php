@@ -1,7 +1,7 @@
 <html>
     <head>
-        <script src="http://localhost:8080/DigiSig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
-        <link rel="stylesheet" href="http://localhost:8080/DigiSig/css/digisigSkin.css">	
+        <script src="http://localhost/DigiSig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
+        <link rel="stylesheet" href="http://localhost/DigiSig/css/digisigSkin.css">	
         
     </head>
     <body>
