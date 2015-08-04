@@ -22,6 +22,21 @@
     <form class="searchArea" name = "search" action="<?php $_SERVER['PHP_SELF'] ?>" method="post" onsubmit="submitFormSearch()">
         <div class="searchTitle">Search</div>
         <p style="color: white;">Select Field:<br/></p>
+        <?php
+            $query12 = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
+            $searchfields1 = mysqli_query($link, $query12);
+            $array1 = array();
+            $all = [];
+            while ($row = mysqli_fetch_array($searchfields1)){
+                $array1[] = $row;
+            }
+            for ($i = 0; $i < count($array1); $i++) {
+                $all[] = implode(',', $array1[$i]);
+              }
+            foreach ($all as $aa) {
+                print "A Field: ".$aa . " !<br/>\n";
+            }
+        ?>
         <select name="field"/>
         <?php
             $query = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
@@ -32,6 +47,21 @@
         ?>
         </select>
         <p style="color: white;">Select Index:<br/></p>
+        <?php
+            $query13 = "SELECT pk_index, a_index, index_order, index_url FROM tb_index ORDER BY index_order";
+            $searchindex = mysqli_query($link, $query13);
+            $array = array();
+            $all2 = [];
+            while ($row = mysqli_fetch_array($searchindex)){
+                $array[] = $row;
+            }
+            for ($i = 0; $i < count($array); $i++) {
+                $all2[] = implode(',', $array[$i]);
+              }
+            foreach ($all2 as $aa) {
+                print "an index:  ".$aa . " !<br/>\n";
+            }
+        ?>
         <select name="index"/>
             <?php
                 $query1 = "SELECT pk_index, a_index, index_order, index_url FROM tb_index ORDER BY index_order";
