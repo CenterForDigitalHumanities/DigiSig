@@ -12,15 +12,16 @@ require_once("../config/config.php");
     // search 'what' and 'from'? 
     $query3 = "SELECT field_title, field_url, field_column, field_returnedvariables FROM field WHERE field_url = '$field'";
 //    echo $query3;
-    $query3result = mysqli_query($query3);
+    $query3result = mysqli_query($link, $query3);
     $row = mysqli_fetch_object($query3result);
     $column = $row->field_column;
 //    echo $column;
     $variables = $row->field_returnedvariables;
 
     // search 'where'?
-    $query4 = "SELECT index, fk_catalogue, fk_repository FROM index WHERE index_url = '$index'";    
-    $query4result = mysqli_query($query4);
+    $query4 = "SELECT a_index, fk_catalogue, fk_repository FROM tb_index WHERE index_url = '$index'";
+    echo "===============$query4";
+    $query4result = mysqli_query($link, $query4);
     $row = mysqli_fetch_object($query4result);
     $repository = $row->fk_repository;
     $catalogue = $row->fk_catalogue;
@@ -29,7 +30,7 @@ require_once("../config/config.php");
     if ($exact == "e") {
         $search = "= '$term'";
     } else {
-        $search = "ILIKE '%$term%'";
+        $search = "LIKE '%$term%'";
     }
 
     // make the SQL search string
@@ -60,7 +61,7 @@ require_once("../config/config.php");
         if ($numberofresults > 0) 
         {
             $return_value = array();
-            while ($row = mysqli_fetch_array($query5result, NULL, PGSQL_NUM)) {
+            while ($row = mysqli_fetch_array($query5result) {
                 $return_value[] = $row;
             }
             echo json_encode($return_value);

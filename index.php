@@ -12,16 +12,16 @@
 
 #functions
 
+#connection details
+include "config/config.php";
+
+#constants and default values
+include "include/constants.php";
+
 //my functions
 include "include/function.php";
 //functions copied from other people
 include "include/function_parsepath.php";
-
-#connection details
-require_once("config/config.php");
-
-#constants and default values
-include "include/constants.php";
 
 session_start();
 include "header.php";
@@ -42,7 +42,7 @@ include "header.php";
     * code captures the 'post' and interprets it as a new header.*/
 
 
-
+$exact = "";
    if (isset($_POST['submit'])) {
 
        $page = "/" . strtolower($_POST['submit']);
@@ -62,7 +62,7 @@ include "header.php";
            if (isset($_POST['exact'])) {
                 $exact = "/e";
            }
-
+           
        $url = ($address . $page . $field . $index . $term . $exact);
        // reload the page with the new header
        header( 'Location:' .$url);       
@@ -80,8 +80,10 @@ include "header.php";
    if ($path_info['call_parts'][0] == "search") {
        $field = ($path_info['call_parts'][1]);
        $index = ($path_info['call_parts'][2]);
-       $term = ($path_info ['call_parts'][3]);
-       $exact = ($path_info ['call_parts'][4]);
+       $term = ($path_info['call_parts'][3]);
+       if(count($path_info['call_parts']) > 4){
+           $exact = ($path_info['call_parts'][4]);
+       }
        $title = "RESULTS";   
    }
 
@@ -250,28 +252,28 @@ include "header.php";
        $row = mysqli_fetch_array($query8result);
 
        //assign variables
-       $value1 = $row[index];
-       $value2 = $row[catalogue_volume];
-       $value3 = $row[catalogue_pagenumber];
-       $value4 = $row[sealdescription_identifier];
-       $value5 = $row[realizer];
-       $value6 = $row[motif_obverse];        
-       if (isset($row[motif_reverse])) {
-           $value6 = "obverse: ". $value6 . "<br>reverse: " . $row[motif_reverse];
+       $value1 = $row['a_index'];
+       $value2 = $row['catalogue_volume'];
+       $value3 = $row['catalogue_pagenumber'];
+       $value4 = $row['sealdescription_identifier'];
+       $value5 = $row['realizer'];
+       $value6 = $row['motif_obverse'];        
+       if (isset($row['motif_reverse'])) {
+           $value6 = "obverse: ". $value6 . "<br>reverse: " . $row['motif_reverse'];
        }
 
        $value7 = $row[legend_obverse];
        if (isset($row[legend_reverse])) {
-           $value6 = "obverse: ". $value6 . "<br>reverse: " . $row[legend_reverse];
+           $value6 = "obverse: ". $value6 . "<br>reverse: " . $row['legend_reverse'];
        }
 
-       $value8 = $row[shape];
-       $value9 = $row[sesalsize_vertical];
-       $value10 = $row[sealsize_horizontal];
-       $value11 = $row[id_seal];
-       $value12 = $row[representation_filename];
-       $value13 = $row[ui_catalogue];
-       $value14 = $row[connection];
+       $value8 = $row['shape'];
+       $value9 = $row['sesalsize_vertical'];
+       $value10 = $row['sealsize_horizontal'];
+       $value11 = $row['id_seal'];
+       $value12 = $row['representation_filename'];
+       $value13 = $row['ui_catalogue'];
+       $value14 = $row['connection'];
        //formulate header
        echo "SEAL DESCRIPTION";
        echo "<br> DIGISIG ID: " . $id;
@@ -484,7 +486,7 @@ function getFullText(id){
 function getNextData(field, index, term, address, exact, limit){
     $('#load_next_pending_'+field).show();
     var offset = parseInt($('#show_more_btn_'+field).attr('offset'));
-    $.post(basePath + 'dsr/include/loadNextData.php', 
+    $.post(basePath + 'DigiSig/include/loadNextData.php', 
     {
         'field': field, 
         'index': index, 

@@ -26,33 +26,33 @@
         <?php
             $query = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
             $searchfields = mysqli_query($link, $query);
-            while ($row = mysqli_fetch_assoc($searchfields)){
-                echo "<option value=". $row[field_url] . ">" . $row[field_title] . "</option>"; 
+            while ($row = mysqli_fetch_array($searchfields)){
+                echo "<option value=". $row['field_url'] . ">" . $row['field_title'] . "</option>"; 
             }
         ?>
         </select>
         <p style="color: white;">Select Index:<br/></p>
         <select name="index"/>
             <?php
-                $query1 = "SELECT pk_index, index, index_order, index_url FROM index ORDER BY index_order";
+                $query1 = "SELECT pk_index, a_index, index_order, index_url FROM tb_index ORDER BY index_order";
                 $searchindex = mysqli_query($link, $query1);
-                while ($row = mysqli_fetch_assoc($searchindex)){
-                    echo "<option value=".$row[index_url] . ">" . $row[index] . "</option>";               
+                while ($row = mysqli_fetch_array($searchindex)){
+                    echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";               
                     }
                     echo '<option value= "catalogue" disabled>Catalogue</option>';    
                 
-                $query2 = "SELECT pk_index, index, index_order, index_url, fk_catalogue FROM index WHERE fk_catalogue > 0 ORDER BY index_order";
+                $query2 = "SELECT pk_index, a_index, index_order, index_url, fk_catalogue FROM tb_index WHERE fk_catalogue > 0 ORDER BY index_order";
                 $searchindex = mysqli_query($link, $query2);
-                while ($row = mysqli_fetch_assoc($searchindex)){
-                    echo "<option value=".$row[index_url] . ">" . $row[index] . "</option>";               
+                while ($row = mysqli_fetch_array($searchindex)){
+                    echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";               
                     }
 
                 echo '<option value= "repository" disabled>Repository</option>';
 
-                $query3 = "SELECT pk_index, index, index_order, index_url, fk_repository FROM index WHERE fk_repository > 0 ORDER BY index_order";
+                $query3 = "SELECT pk_index, a_index, index_order, index_url, fk_repository FROM tb_index WHERE fk_repository > 0 ORDER BY index_order";
                 $searchindex = mysqli_query($link, $query3);
-                while ($row = mysqli_fetch_assoc($searchindex)){
-                    echo "<option value=".$row[index_url] . ">" . $row[index] . "</option>";
+                while ($row = mysqli_fetch_array($searchindex)){
+                    echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";
                     }
             ?>
         </select>
