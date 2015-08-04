@@ -13,6 +13,9 @@
 // # Database password
 // $db_pswd = "123psqluser";
 
+//Sync with a master with the upstream fork
+// https://help.github.com/articles/syncing-a-fork/
+
 # Connection
     $link = mysqli_connect('localhost:3306', 'root', '1229@Oxford', 'digisigres');
     if(!$link){

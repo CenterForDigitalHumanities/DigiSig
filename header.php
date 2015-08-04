@@ -29,8 +29,8 @@ echo '<form name ="navigate" action="'.$action.'" method="post" class="header">
             '.$logBtn.'
         </p>
     </form>';
-echo "<div class='userInfo'>User Information:<br>
-      userID: ".$_SESSION['userID']."<br>
-      username: ".$_SESSION['user_email']."
-      </div>";
+//echo "<div class='userInfo'>User Information:<br>
+//      userID: ".$_SESSION['userID']."<br>
+//      username: ".$_SESSION['user_email']."
+//      </div>";
 ?>
