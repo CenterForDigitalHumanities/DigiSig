@@ -20,7 +20,6 @@ require_once("../config/config.php");
 
     // search 'where'?
     $query4 = "SELECT a_index, fk_catalogue, fk_repository FROM tb_index WHERE index_url = '$index'";
-    echo "===============$query4";
     $query4result = mysqli_query($link, $query4);
     $row = mysqli_fetch_object($query4result);
     $repository = $row->fk_repository;
@@ -61,7 +60,7 @@ require_once("../config/config.php");
         if ($numberofresults > 0) 
         {
             $return_value = array();
-            while ($row = mysqli_fetch_array($query5result) {
+            while ($row = mysqli_fetch_array($query5result)) {
                 $return_value[] = $row;
             }
             echo json_encode($return_value);

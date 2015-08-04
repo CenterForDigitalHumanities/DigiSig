@@ -123,3 +123,6 @@ body{
     cursor: pointer;    
     color: red;
 }
+a:hover{
+	cursor: pointer
+}

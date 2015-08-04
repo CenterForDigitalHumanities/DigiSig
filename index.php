@@ -88,7 +88,7 @@ $exact = "";
    }
 
    if ($path_info['call_parts'][0] == "entity") {
-       $id= ($path_info[call_parts][1]);
+       $id= ($path_info['call_parts'][1]);
        //find the last digit in the id number because it indicates the type of entity
        $entity = substr($id, -1);
        $title = $id;
@@ -96,15 +96,15 @@ $exact = "";
 
    //Dataset statistics
 
-   $query = "SELECT COUNT(DISTINCT id_seal) FROM sealdescription_view";
+   $query = "SELECT count(DISTINCT id_seal) as sealcount FROM sealdescription_view";
                $queryresults = mysqli_query($link, $query);
                $row = mysqli_fetch_assoc($queryresults);
-               $sealcount = mysqli_num_rows($queryresults);
+               $sealcount = $row['sealcount'];
                
-   $query = "Select COUNT(DISTINCT representation_filename) from shelfmark_view";
+   $query = "Select COUNT(DISTINCT representation_filename) as imagecount from shelfmark_view";
                $queryresults = mysqli_query($link, $query);
                $row = mysqli_fetch_assoc($queryresults);
-               $imagecount = mysqli_num_rows($queryresults);
+               $imagecount = $row['imagecount'];
 
 
    /* this file loads the header which is consistent on on all pages
@@ -252,7 +252,7 @@ $exact = "";
        $row = mysqli_fetch_array($query8result);
 
        //assign variables
-       $value1 = $row['a_index'];
+       $value1 = $row['sdv_index'];
        $value2 = $row['catalogue_volume'];
        $value3 = $row['catalogue_pagenumber'];
        $value4 = $row['sealdescription_identifier'];
@@ -262,13 +262,13 @@ $exact = "";
            $value6 = "obverse: ". $value6 . "<br>reverse: " . $row['motif_reverse'];
        }
 
-       $value7 = $row[legend_obverse];
-       if (isset($row[legend_reverse])) {
+       $value7 = $row['legend_obverse'];
+       if (isset($row['legend_reverse'])) {
            $value6 = "obverse: ". $value6 . "<br>reverse: " . $row['legend_reverse'];
        }
 
        $value8 = $row['shape'];
-       $value9 = $row['sesalsize_vertical'];
+       $value9 = $row['sealsize_vertical'];
        $value10 = $row['sealsize_horizontal'];
        $value11 = $row['id_seal'];
        $value12 = $row['representation_filename'];
@@ -479,7 +479,7 @@ function getFullText(id){
     $('#a_'+id).html($('#full_'+id).val());
     $('#get_'+id).html('Less').click(function(){
         $('#a_'+id).html($('#short_'+id).val() + '...');
-        $('#get_'+id).html('More');
+        $('#get_'+id).html('(More)');
     });
 }
 
