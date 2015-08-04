@@ -1,6 +1,6 @@
 <?php
 echo "<div class='header digisigHeader'>
-        <img class='digisigImg' src='http://localhost:8080/DigiSig/images/digsig.jpg'/>
+        <img class='digisigImg' src='http://localhost/DigiSig/images/digsig.jpg'/>
     </div> ";
 $logBtn = "";
 $action = $_SERVER['PHP_SELF'];
