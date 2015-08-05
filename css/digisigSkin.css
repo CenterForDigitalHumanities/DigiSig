@@ -15,7 +15,9 @@
 }
 /* navigation bar */
 .navigation{
-    border: 1px solid #000;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
     padding: 10px 0px 10px 10px;
 } 
 
@@ -86,7 +88,8 @@
     top: -10px;
 }
 form[name="navigate"]{
-    
+    position: relative;
+    top: -2px;
 }
 .pageWrap{
     margin: 0px 10px !important;

@@ -1,7 +1,7 @@
 <html>
     <head>
-        <script src="http://localhost/DigiSig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
-        <link rel="stylesheet" href="http://localhost/DigiSig/css/digisigSkin.css">	
+        <script src="/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
+        <link rel="stylesheet" href="../DigiSig/css/digisigSkin.css">	
         
     </head>
     <body>
@@ -472,7 +472,7 @@ $exact = "";
 
 
 </body>
-<script src="http://localhost/dsr/include/lightbox//js/lightbox-plus-jquery.min.js"></script>
+<script src="../DigiSig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
 <script>
     var basePath = '<?php echo 'http://'.$_SERVER['HTTP_HOST'].substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], '/')+1); ?>';
     var num_result_per_page = <?php echo $num_result_per_page ?>;

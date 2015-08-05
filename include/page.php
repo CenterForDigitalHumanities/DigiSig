@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost/DigiSig/include/lightbox/css/lightbox.css">
+    <link rel="stylesheet" href="../DigiSig/include/lightbox/css/lightbox.css">
     <?php echo "<title>" . $title . "</title>" ?>
 </head>
 
@@ -106,6 +106,14 @@
             <input style="margin-left: 10px;" type="submit" name ="submit" value ="GO"/>
         </div>
     </form>
+    
+    <div class="resultTemplate">
+        <div class="sealTitle sealPiece"></div>
+        <div class="sealMetadata sealPiece"></div>
+        <div class="sealMetaseal sealPiece"></div>
+        <div class="sealEntry sealPiece"></div>
+        <div class="sealExample sealPiece"></div>      
+    </div>
     
 <script>
     function submitFormSearch(){

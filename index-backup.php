@@ -371,7 +371,7 @@ while ($row = pg_fetch_array($query10result)) {
     
 ?>
 
-<script src="http://localhost:8080/DigiSig/include/lightbox//js/lightbox-plus-jquery.min.js"></script>
+<script src="../DigiSig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
 </body></html>
 
 
