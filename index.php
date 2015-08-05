@@ -465,9 +465,9 @@ $exact = "";
                }
                echo "</div>";
        }    
-
-    include "include/footer.php";
     echo "</div>"; //closes pageWrapper. 
+    include "include/footer.php";
+    
 ?>
 
 

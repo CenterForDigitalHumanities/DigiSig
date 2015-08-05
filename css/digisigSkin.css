@@ -45,8 +45,12 @@
     padding:0!important;
     font: inherit;
     cursor: pointer;
-    color: red;
+    color: white;
     margin: 0px 8px;
+    font-weight: bold;
+}
+.searchPiece{
+    display: inline-block;
 }
 /* Searching Form */
 .searchArea{
@@ -90,13 +94,14 @@ form[name="navigate"]{
 }
 /* This is the image logo and the navigation */
 .header{
-    background-color: #00485E;
+    background-color: #079;
+    color: white;
 }
 
 /* This is the footer navigation */
 .footer{
     background-color: #00485E;
-    margin-bottom: 20px;
+    margin-top: 10px;
     height: 50px;
     line-height: 50px;
 }
@@ -108,7 +113,7 @@ form[name="navigate"]{
     padding:0!important;
     font: inherit;
     cursor: pointer;    
-    color: red;
+    color: white;
     margin: 0px 8px;
     font-weight: bold;
 }
