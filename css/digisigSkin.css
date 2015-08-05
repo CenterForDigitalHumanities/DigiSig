@@ -36,7 +36,14 @@
     background-color: #FFF;
     position: relative;
 }
-
+.resultTemplate{
+    margin: 10px 0px;
+}
+.metaTable_offset{
+    display: block;
+    left:5%;
+    position: relative;
+}
 /* Header navigation buttons */
 /* The header buttons need to look like links */
 .navigate{
@@ -67,7 +74,6 @@
     border-left: 1px solid black;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
-    background-color: rgba(0,119,153,.6);
 }
 /* Search Results links */
 .searchResults a{

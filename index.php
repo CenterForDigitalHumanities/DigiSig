@@ -510,7 +510,7 @@ $exact = "";
                     </tr>
                 </tbody>
             </table>
-            <table class="metaTable">
+            <table class="metaTable_offset">
                 <thead>
                     <th>Name</th>
                     <th>Motif</th>
