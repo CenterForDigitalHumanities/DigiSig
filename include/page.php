@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost/DigiSig/include/lightbox/css/lightbox.css">
+    <link rel="stylesheet" href="<?php echo $basePath; ?>digisig/include/lightbox/css/lightbox.css">
     <?php echo "<title>" . $title . "</title>" ?>
 </head>
 
@@ -19,7 +19,7 @@
         it aims to foster sigillographic research by linking and matching sigillographic 
         datasets and making that information available.
     </p>
-    <form class="searchArea" name = "search" action="<?php $_SERVER['PHP_SELF'] ?>" method="post" onsubmit="submitFormSearch()">
+    <form class="searchArea" name = "search" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" onsubmit="submitFormSearch()">
         <div class="searchTitle">Search</div>
         <p style="color: white;">Select Field:<br/></p>
         <select name="field"/>

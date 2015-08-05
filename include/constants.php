@@ -3,7 +3,7 @@
 // Constants
 
 # URL Root
-$address = "http://localhost/DigiSig";
+$address = 'http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], '/') + 1)."digisig";
 
 # Location of medium manifestation photographs
 $medium = $address . "/images/medium/";
