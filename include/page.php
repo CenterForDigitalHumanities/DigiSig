@@ -107,14 +107,9 @@
         </div>
     </form>
     
-    <div class="resultTemplate">
-        <div class="sealTitle sealPiece"></div>
-        <div class="sealMetadata sealPiece"></div>
-        <div class="sealMetaseal sealPiece"></div>
-        <div class="sealEntry sealPiece"></div>
-        <div class="sealExample sealPiece"></div>      
-    </div>
     
+</body>
+</html>
 <script>
     function submitFormSearch(){
         document.getElementById('search_term').value = document.getElementById('search_term_').value;
