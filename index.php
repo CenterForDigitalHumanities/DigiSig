@@ -5,7 +5,7 @@
         
     </head>
     <body>
-      
+        
 <?php
 // ALPHA version: July 2015
 
@@ -25,6 +25,7 @@ include "include/function_parsepath.php";
 
 session_start();
 include "header.php";
+echo '<div class="pageWrap">';
 //user login
 
 
@@ -466,7 +467,7 @@ $exact = "";
        }    
 
     include "include/footer.php";
-    
+    echo "</div>"; //closes pageWrapper. 
 ?>
 
 

@@ -84,7 +84,7 @@
 form[name="navigate"]{
     
 }
-body{
+.pageWrap{
     margin: 0px 10px !important;
     color: #007799;
 }

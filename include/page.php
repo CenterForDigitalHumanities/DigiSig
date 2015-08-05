@@ -23,19 +23,19 @@
         <div class="searchTitle">Search</div>
         <p style="color: white;">Select Field:<br/></p>
         <?php
-            $query12 = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
-            $searchfields1 = mysqli_query($link, $query12);
-            $array1 = array();
-            $all = [];
-            while ($row = mysqli_fetch_array($searchfields1)){
-                $array1[] = $row;
-            }
-            for ($i = 0; $i < count($array1); $i++) {
-                $all[] = implode(',', $array1[$i]);
-              }
-            foreach ($all as $aa) {
-                print "A Field: ".$aa . " !<br/>\n";
-            }
+//            $query12 = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
+//            $searchfields1 = mysqli_query($link, $query12);
+//            $array1 = array();
+//            $all = [];
+//            while ($row = mysqli_fetch_array($searchfields1)){
+//                $array1[] = $row;
+//            }
+//            for ($i = 0; $i < count($array1); $i++) {
+//                $all[] = implode(',', $array1[$i]);
+//              }
+//            foreach ($all as $aa) {
+//                print "A Field: ".$aa . " !<br/>\n";
+//            }
         ?>
         <select name="field"/>
         <?php
@@ -48,26 +48,25 @@
         </select>
         <p style="color: white;">Select Index:<br/></p>
         <?php
-            $query13 = "SELECT pk_index, a_index, index_order, index_url FROM tb_index ORDER BY index_order";
-            $searchindex = mysqli_query($link, $query13);
-            $array = array();
-            $all2 = [];
-            while ($row = mysqli_fetch_array($searchindex)){
-                $array[] = $row;
-            }
-            for ($i = 0; $i < count($array); $i++) {
-                $all2[] = implode(',', $array[$i]);
-              }
-            foreach ($all2 as $aa) {
-                print "an index:  ".$aa . " !<br/>\n";
-            }
+//            $query13 = "SELECT pk_index, a_index, index_order, index_url FROM tb_index ORDER BY index_order";
+//            $searchindex = mysqli_query($link, $query13);
+//            $array = array();
+//            $all2 = [];
+//            while ($row = mysqli_fetch_array($searchindex)){
+//                $array[] = $row;
+//            }
+//            for ($i = 0; $i < count($array); $i++) {
+//                $all2[] = implode(',', $array[$i]);
+//              }
+//            foreach ($all2 as $aa) {
+//                print "an index:  ".$aa . " !<br/>\n";
+//            }
         ?>
         <select name="index"/>
             <?php
                 $query1 = "SELECT pk_index, a_index, index_order, index_url FROM tb_index ORDER BY index_order";
                 $searchindex = mysqli_query($link, $query1);
                 //This query returns a blank, which is where the errors for this page are coming from
-                echo "<option> Dearch index check1 ".$searchindex." !!!!!</option>";
                 while ($row = mysqli_fetch_array($searchindex)){
                     echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";               
                     }
@@ -75,7 +74,6 @@
                 
                 $query2 = "SELECT pk_index, a_index, index_order, index_url, fk_catalogue FROM tb_index WHERE fk_catalogue > 0 ORDER BY index_order";
                 $searchindex = mysqli_query($link, $query2);
-                echo "<option> Dearch index check2 ".$searchindex." !!!!!</option>";
                 //This query returns a blank, which is where the errors for this page are coming from
                 while ($row = mysqli_fetch_array($searchindex)){
                     echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";               
@@ -85,7 +83,6 @@
 
                 $query3 = "SELECT pk_index, a_index, index_order, index_url, fk_repository FROM tb_index WHERE fk_repository > 0 ORDER BY index_order";
                 $searchindex = mysqli_query($link, $query3);
-                echo "<option> Dearch index check3 ".$searchindex." !!!!!</option>";
                 //This query returns a blank, which is where the errors for this page are coming from
                 while ($row = mysqli_fetch_array($searchindex)){
                     echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";
