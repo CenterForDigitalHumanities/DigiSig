@@ -467,8 +467,9 @@ $exact = "";
                
                echo'<div class="resultTemplate">
         <div class="seal sealPiece">SEAL</div>
-        <div class="sealMetadata sealPiece"><span class="sealLabel">Digisig ID: </span><span id="digisgID">12345ID</span>
+        <div class="sealMetadata sealPiece"><span class="sealLabel">Digisig ID: </span><span id="digisigID">12345ID</span>
             <span clss="sealLabel">Permalink: </span><span id="permalink">http://www.digisig.org/entity/0123456</span>
+            <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
         </div>
         <div class="sealMetaseal sealPiece">
             <div class="sealTitle">Metaseal</div>
@@ -551,7 +552,7 @@ $exact = "";
                 </tbody>              
             </table>
             <img class="sealThumbnail" src="../DigiSig/images/seal.jpg"/>
-            <input class="viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/>
+            <input class="digiBtn viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/>
         </div>      
     </div>';
        }    

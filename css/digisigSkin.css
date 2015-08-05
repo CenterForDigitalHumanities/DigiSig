@@ -168,10 +168,32 @@ table{
 }
 .viewImgBtn{
     position: relative;
-    display: inline-block;
     top: -11px;
+    border: none;
+    background: none;
+    color: white;
+    background-color: #00485E;
+}
+.digiBtn{
+    border: none;
+    background: none;
+    color: white;
+    background-color: #00485E;
+    position: relative;
+    display: inline-block;
+    margin-left: 8px;
 }
 .metaTable{
     display: inline-block;
-   
+}
+
+#digisigID{
+    margin-right:15px;
+    color:black;
+}
+#permalink{
+    color: black;
+}
+.sealMetadata{
+    padding: 5px 0px;
 }
