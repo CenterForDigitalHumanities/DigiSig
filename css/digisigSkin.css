@@ -149,7 +149,29 @@ th{
     border-left: 1px solid black;
     border-right: 1px solid black;
     border-top: 1px solid black;
+    padding: 5px !important;
 }
 td{
     border:1px solid black;
+    padding: 5px !important;
+}
+
+table{
+    margin: 3px 0px;
+}
+.sealThumbnail{
+    display: inline-block;
+    height:80px;
+    width: 80px;
+    position: relative;
+    top: -30px;
+}
+.viewImgBtn{
+    position: relative;
+    display: inline-block;
+    top: -11px;
+}
+.metaTable{
+    display: inline-block;
+   
 }

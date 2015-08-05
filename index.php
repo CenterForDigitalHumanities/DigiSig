@@ -550,8 +550,8 @@ $exact = "";
                     </tr>
                 </tbody>              
             </table>
-            <img class="sealThumbnail" src=""/>
-            <input type="button" value="View Image" onclick="viewFullImage($(this));"/>
+            <img class="sealThumbnail" src="../DigiSig/images/seal.jpg"/>
+            <input class="viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/>
         </div>      
     </div>';
        }    
