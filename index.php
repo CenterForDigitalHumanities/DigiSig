@@ -466,7 +466,7 @@ $exact = "";
                echo "</div>";
                
                echo'<div class="resultTemplate">
-        <div class="sealTitle sealPiece">SEAL</div>
+        <div class="seal sealPiece">SEAL</div>
         <div class="sealMetadata sealPiece"><span class="sealLabel">Digisig ID: </span><span id="digisgID">12345ID</span>
             <span clss="sealLabel">Permalink: </span><span id="permalink">http://www.digisig.org/entity/0123456</span>
         </div>

@@ -129,6 +129,27 @@ form[name="navigate"]{
     cursor: pointer;    
     color: red;
 }
+.seal, .sealMetadata{
+    border-bottom: 1px solid rgb(0, 119, 153);
+}
 a:hover{
 	cursor: pointer
+}
+.sealEntry{
+    background-color: rgba(0, 119, 153, 0.3);
+}
+/* Table CSS */
+thead{
+    background-color: #00485E;
+    color: white;
+    font-weight: bold;
+}
+th{
+    text-align: center;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+}
+td{
+    border:1px solid black;
 }
