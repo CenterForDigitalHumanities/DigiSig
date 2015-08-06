@@ -479,7 +479,7 @@ echo '<div class="pageWrap">';
                 }
                 echo "</div>";
         }
-
+        echo "</div>"; //close page wrap
         include "include/footer.php";
     ?>
 

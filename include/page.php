@@ -36,18 +36,6 @@
         </div>
         <!--<p style="color: white;">Select Index:<br/></p>-->
         <div class="searchPiece">
-        <select name="index"/>
-            <?php
-                $query = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
-                $searchfields = mysqli_query($link, $query);
-                echo "<option value='holder'>Select Index</option>"; 
-                while ($row = mysqli_fetch_array($searchfields)){
-                    echo "<option value=". $row['field_url'] . ">" . $row['field_title'] . "</option>"; 
-                }
-            ?>
-            </select>
-        </div>
-        <div class="searchPiece">
             <!--<p style="color: white;">Select Index:<br/></p>-->
             <?php
     //            $query13 = "SELECT pk_index, a_index, index_order, index_url FROM tb_index ORDER BY index_order";
@@ -99,7 +87,7 @@
             <input type="checkbox" title="Please note that this method is case sensitive." name="exact"/>
         </div>
         <div class="searchPiece">
-            <input style="margin-left: 10px;" type="submit" name ="submit" value ="GO"/>
+            <input style="margin-left: 10px;" type="submit" name ="submit" value ="SEARCH"/>
         </div>
     </form>
     
