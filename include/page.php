@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../DigiSig/include/lightbox/css/lightbox.css">
+    <link rel="stylesheet" href="<?php echo $basePath; ?>digisig/include/lightbox/css/lightbox.css">
     <?php echo "<title>" . $title . "</title>" ?>
 </head>
 
@@ -19,27 +19,20 @@
         it aims to foster sigillographic research by linking and matching sigillographic 
         datasets and making that information available.
     </p>
-    <form class="searchArea" name = "search" action="<?php $_SERVER['PHP_SELF'] ?>" method="post" onsubmit="submitFormSearch()">
-        <div class="searchPiece">
-                       <?php
-    //            $query12 = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
-    //            $searchindex = mysqli_query($link, $query12);
-    //            $array = array();
-    //            $all = [];
-    //            while ($row = mysqli_fetch_array($searchindex)){
-    //                $array[] = $row;
-    //            }
-    //            for ($i = 0; $i < count($array); $i++) {
-    //                $all[] = implode(',', $array[$i]);
-    //              }
-    //            foreach ($all as $aa) {
-    //                print "A field:  ".$aa . " !<br/>\n";
-    //            }
-            ?>
-            <div class="searchTitle">Search</div>
-            <!--<p style="color: white;">Select Field:<br/></p>-->
-            <select name="field"/>
-            <option value="holder">Select Fields</option>
+    <form class="searchArea" name = "search" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" onsubmit="submitFormSearch()">
+        <div class="searchTitle">Search</div>
+        <p style="color: white;">Select Field:<br/></p>
+        <select name="field"/>
+        <?php
+            $query = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
+            $searchfields = mysqli_query($link, $query);
+            while ($row = mysqli_fetch_array($searchfields)){
+                echo "<option value=". $row['field_url'] . ">" . $row['field_title'] . "</option>"; 
+            }
+        ?>
+        </select>
+        <p style="color: white;">Select Index:<br/></p>
+        <select name="index"/>
             <?php
                 $query = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
                 $searchfields = mysqli_query($link, $query);

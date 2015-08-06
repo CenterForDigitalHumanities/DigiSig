@@ -1,3 +1,6 @@
+<div class='header digisigHeader'>
+    <img class='digisigImg' src='<?php echo $basePath; ?>digisig/images/digsig.jpg'/>
+</div>
 <?php
 echo "<div class='header digisigHeader'>
         <img class='digisigImg' src='../DigiSig/images/digsig.jpg'/>
@@ -9,14 +12,17 @@ if(!isset($_SESSION['userID'])){
     $_SESSION['userID'] = 1;
     $_SESSION['fk_access'] = 1;
     $_SESSION['fk_repository'] = 0;
+    $_SESSION['user_email'] = "DigiSig";
 }
 else if(isset($_SESSION['userID']) && $_SESSION['userID'] == 1)
 {
     $logBtn = "<input class='login' type='button' value='log in' onclick='window.location=\"include/login.php\"' />";
+    $_SESSION['fk_access'] = 1;
+    $_SESSION['fk_repository'] = 0;
+    $_SESSION['user_email'] = "DigiSig";
 }
 else
 {
-    $_SESSION['user_email'] = "DigiSig";
     $logBtn = "<span class='login'>".$_SESSION['user_email']."</span>&nbsp;&nbsp;&nbsp;<input class='login' type='button' value='log out' onclick='window.location=\"logout.php\"' />";
 }
 echo '<form name ="navigate" action="'.$action.'" method="post" class="header">

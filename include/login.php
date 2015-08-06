@@ -1,5 +1,5 @@
 <?php
-    include "config.php";
+    include "../config/config.php";
     
     if(isset($_POST['user_email']) && isset($_POST['password'])){
         $email = $_POST['user_email'];

@@ -118,11 +118,11 @@ function sealdescription ($query12result, $address, $duplicate) {
     $rowcount = 1;
 
 while ($row = mysqli_fetch_array($query12result)) {
-    $value1 = $row['a_index'];
+    $value1 = $row['sdv_index'];
     $value2 = $row['sealdescription_identifier'];
     $value3 = $row['id_sealdescription'];
     $value4 = $row['realizer'];
-        if ($value3 != $duplicate) { 
+        if (isset($duplicate) && $value3 != $duplicate) { 
     echo '<tr><td>' . $rowcount . '</td>';
     echo '<td>' . $value4 . '</td>';
     echo '<td>' . $value1 . '</td>';

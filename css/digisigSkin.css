@@ -29,12 +29,13 @@
     position: relative;
 }
 .resultsTitle{
-    color: #F00;
+    color: #079;
     font-size: 20px;
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;
     background-color: #FFF;
     position: relative;
+    padding-left: 10px;
 }
 .resultTemplate{
     margin: 10px 0px;
@@ -78,18 +79,20 @@
 /* Search Results links */
 .searchResults a{
     margin: 0px 10px;
+    padding-left: 10px;
 }
 /* Titles separating search results */
 .separator{
     font-weight: bold;
+    padding-left: 10px;
 }
 .searchTitle{
-    color: #F00;
+    color: #FFF;
     font-size: 20px;
-    border-bottom: 1px solid #000;
-    background-color: #FFF;
     position: relative;
-    top: -10px;
+    top: 2px;
+    display: inline-block;
+    margin-left: 15px;
 }
 form[name="navigate"]{
     position: relative;
