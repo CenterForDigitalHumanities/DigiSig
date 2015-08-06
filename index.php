@@ -1,11 +1,11 @@
 <html>
     <head>
-        <script src="http://localhost/DigiSig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
-        <link rel="stylesheet" href="http://localhost/DigiSig/css/digisigSkin.css">	
+        <script src="/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
+        <link rel="stylesheet" href="../DigiSig/css/digisigSkin.css">	
         
     </head>
     <body>
-      
+        
 <?php
 // ALPHA version: July 2015
 
@@ -25,6 +25,7 @@ include "include/function_parsepath.php";
 
 session_start();
 include "header.php";
+echo '<div class="pageWrap">';
 //user login
 
 
@@ -463,15 +464,106 @@ $exact = "";
                    echo "<br>";
                }
                echo "</div>";
+               
+               echo'<div class="resultTemplate">
+        <div class="seal sealPiece">SEAL</div>
+        <div class="sealMetadata sealPiece"><span class="sealLabel">Digisig ID: </span><span id="digisigID">12345ID</span>
+            <span clss="sealLabel">Permalink: </span><span id="permalink">http://www.digisig.org/entity/0123456</span>
+            <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
+        </div>
+        <div class="sealMetaseal sealPiece">
+            <div class="sealTitle">Metaseal</div>
+            <table class="metaTable">
+                <thead>
+                    <th>Face</th>
+                    <th>Shape</th>
+                    <th>Size X</th>
+                    <th>Size Y</th>
+                    <th>Other</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Obverse</td>
+                        <td>Oval</td>
+                        <td>70</td>
+                        <td>120</td>
+                        <td>Stuff</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="sealEntry sealPiece">
+            <div class="sealTitle">Entry</div>
+            <table class="metaTable">
+                <thead>
+                    <th>#</th>
+                    <th>Location</th>
+                    <th>Reference</th>
+                    <th>Description</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Stuffed Armadillo</td>
+                        <td>2859</td>
+                        <td>View</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="metaTable_offset">
+                <thead>
+                    <th>Name</th>
+                    <th>Motif</th>
+                    <th>Legend</th>
+                    <th>Shape</th>
+                    <th>Size H</th>
+                    <th>Size V</th>
+                    <th>Thumbnail</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a>The Seal</a></td>
+                        <td>Stuffed Armadillo</td>
+                        <td>Legend Thing</td>
+                        <td>oval</td>
+                        <td>70</td>
+                        <td>120</td>
+                        <td><a>View</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="sealExample sealPiece">
+            <div class="sealTitle">Examples</div>
+            <table class="metaTable">
+                <thead>
+                    <th>#</th>
+                    <th>Form</th>
+                    <th>Face</th>
+                    <th>Shelfmark</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Impression</td>
+                        <td>Recto</td>
+                        <td>DL25/345</td>
+                    </tr>
+                </tbody>              
+            </table>
+            <img class="sealThumbnail" src="../DigiSig/images/seal.jpg"/>
+            <input class="digiBtn viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/>
+        </div>      
+    </div>';
        }    
-
+    echo "</div>"; //closes pageWrapper. 
     include "include/footer.php";
     
 ?>
 
 
 </body>
-<script src="http://localhost/dsr/include/lightbox//js/lightbox-plus-jquery.min.js"></script>
+<script src="../DigiSig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
 <script>
     var basePath = '<?php echo 'http://'.$_SERVER['HTTP_HOST'].substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], '/')+1); ?>';
     var num_result_per_page = <?php echo $num_result_per_page ?>;

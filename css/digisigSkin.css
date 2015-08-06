@@ -15,7 +15,7 @@
 }
 /* navigation bar */
 .navigation{
-    border: 1px solid #000;
+    border-bottom: 1px solid #000;
     padding: 10px 0px 10px 10px;
 } 
 
@@ -36,7 +36,14 @@
     background-color: #FFF;
     position: relative;
 }
-
+.resultTemplate{
+    margin: 10px 0px;
+}
+.metaTable_offset{
+    display: block;
+    left:5%;
+    position: relative;
+}
 /* Header navigation buttons */
 /* The header buttons need to look like links */
 .navigate{
@@ -45,8 +52,12 @@
     padding:0!important;
     font: inherit;
     cursor: pointer;
-    color: red;
+    color: white;
     margin: 0px 8px;
+    font-weight: bold;
+}
+.searchPiece{
+    display: inline-block;
 }
 /* Searching Form */
 .searchArea{
@@ -63,7 +74,6 @@
     border-left: 1px solid black;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
-    background-color: rgba(0,119,153,.6);
 }
 /* Search Results links */
 .searchResults a{
@@ -82,21 +92,23 @@
     top: -10px;
 }
 form[name="navigate"]{
-    
+    position: relative;
+    top: -2px;
 }
-body{
+.pageWrap{
     margin: 0px 10px !important;
     color: #007799;
 }
 /* This is the image logo and the navigation */
 .header{
-    background-color: #00485E;
+    background-color: #079;
+    color: white;
 }
 
 /* This is the footer navigation */
 .footer{
     background-color: #00485E;
-    margin-bottom: 20px;
+    margin-top: 10px;
     height: 50px;
     line-height: 50px;
 }
@@ -108,7 +120,7 @@ body{
     padding:0!important;
     font: inherit;
     cursor: pointer;    
-    color: red;
+    color: white;
     margin: 0px 8px;
     font-weight: bold;
 }
@@ -123,6 +135,71 @@ body{
     cursor: pointer;    
     color: red;
 }
+.seal, .sealMetadata{
+    border-bottom: 1px solid rgb(0, 119, 153);
+}
 a:hover{
 	cursor: pointer
+}
+.sealEntry{
+    background-color: rgba(0, 119, 153, 0.3);
+}
+/* Table CSS */
+thead{
+    background-color: #00485E;
+    color: white;
+    font-weight: bold;
+}
+th{
+    text-align: center;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    padding: 5px !important;
+}
+td{
+    border:1px solid black;
+    padding: 5px !important;
+}
+
+table{
+    margin: 3px 0px;
+}
+.sealThumbnail{
+    display: inline-block;
+    height:80px;
+    width: 80px;
+    position: relative;
+    top: -30px;
+}
+.viewImgBtn{
+    position: relative;
+    top: -11px;
+    border: none;
+    background: none;
+    color: white;
+    background-color: #00485E;
+}
+.digiBtn{
+    border: none;
+    background: none;
+    color: white;
+    background-color: #00485E;
+    position: relative;
+    display: inline-block;
+    margin-left: 8px;
+}
+.metaTable{
+    display: inline-block;
+}
+
+#digisigID{
+    margin-right:15px;
+    color:black;
+}
+#permalink{
+    color: black;
+}
+.sealMetadata{
+    padding: 5px 0px;
 }

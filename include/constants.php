@@ -3,7 +3,7 @@
 // Constants
 
 # URL Root
-$address = "http://localhost/DigiSig";
+$address = "http://localhost/DigiSig"; //This needs to be set for the server it is on.
 
 # Location of medium manifestation photographs
 $medium = $address . "/images/medium/";
