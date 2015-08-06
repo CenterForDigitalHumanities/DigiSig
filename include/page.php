@@ -21,49 +21,91 @@
     </p>
     <form class="searchArea" name = "search" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" onsubmit="submitFormSearch()">
         <div class="searchTitle">Search</div>
-        <p style="color: white;">Select Field:<br/></p>
+        <div class="searchPiece">
+        <!--<p style="color: white;">Select Field:<br/></p>-->
         <select name="field"/>
-        <?php
-            $query = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
-            $searchfields = mysqli_query($link, $query);
-            while ($row = mysqli_fetch_array($searchfields)){
-                echo "<option value=". $row['field_url'] . ">" . $row['field_title'] . "</option>"; 
-            }
-        ?>
-        </select>
-        <p style="color: white;">Select Index:<br/></p>
+            <?php
+                $query = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
+                $searchfields = mysqli_query($link, $query);
+                echo "<option value='holder'>Select Field</option>"; 
+                while ($row = mysqli_fetch_array($searchfields)){
+                    echo "<option value=". $row['field_url'] . ">" . $row['field_title'] . "</option>"; 
+                }
+            ?>
+            </select>
+        </div>
+        <!--<p style="color: white;">Select Index:<br/></p>-->
+        <div class="searchPiece">
         <select name="index"/>
             <?php
-                $query1 = "SELECT pk_index, a_index, index_order, index_url FROM tb_index ORDER BY index_order";
-                $searchindex = mysqli_query($link, $query1);
-                while ($row = mysqli_fetch_array($searchindex)){
-                    echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";               
-                    }
-                    echo '<option value= "catalogue" disabled>Catalogue</option>';    
-                
-                $query2 = "SELECT pk_index, a_index, index_order, index_url, fk_catalogue FROM tb_index WHERE fk_catalogue > 0 ORDER BY index_order";
-                $searchindex = mysqli_query($link, $query2);
-                while ($row = mysqli_fetch_array($searchindex)){
-                    echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";               
-                    }
+                $query = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
+                $searchfields = mysqli_query($link, $query);
+                echo "<option value='holder'>Select Index</option>"; 
+                while ($row = mysqli_fetch_array($searchfields)){
+                    echo "<option value=". $row['field_url'] . ">" . $row['field_title'] . "</option>"; 
+                }
+            ?>
+            </select>
+        </div>
+        <div class="searchPiece">
+            <!--<p style="color: white;">Select Index:<br/></p>-->
+            <?php
+    //            $query13 = "SELECT pk_index, a_index, index_order, index_url FROM tb_index ORDER BY index_order";
+    //            $searchindex = mysqli_query($link, $query13);
+    //            $array = array();
+    //            $all2 = [];
+    //            while ($row = mysqli_fetch_array($searchindex)){
+    //                $array[] = $row;
+    //            }
+    //            for ($i = 0; $i < count($array); $i++) {
+    //                $all2[] = implode(',', $array[$i]);
+    //              }
+    //            foreach ($all2 as $aa) {
+    //                print "an index:  ".$aa . " !<br/>\n";
+    //            }
+            ?>
+            <select name="index"/>
+                <option value="holder">Select Index</option>
+                <?php
+                    $query1 = "SELECT pk_index, a_index, index_order, index_url FROM tb_index ORDER BY index_order";
+                    $searchindex = mysqli_query($link, $query1);
+                    //This query returns a blank, which is where the errors for this page are coming from
+                    while ($row = mysqli_fetch_array($searchindex)){
+                        echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";               
+                        }
+                        echo '<option value= "catalogue" disabled>Catalogue</option>';    
 
-                echo '<option value= "repository" disabled>Repository</option>';
+                    $query2 = "SELECT pk_index, a_index, index_order, index_url, fk_catalogue FROM tb_index WHERE fk_catalogue > 0 ORDER BY index_order";
+                    $searchindex = mysqli_query($link, $query2);
+                    //This query returns a blank, which is where the errors for this page are coming from
+                    while ($row = mysqli_fetch_array($searchindex)){
+                        echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";               
+                        }
 
                 $query3 = "SELECT pk_index, a_index, index_order, index_url, fk_repository FROM tb_index WHERE fk_repository > 0 ORDER BY index_order";
                 $searchindex = mysqli_query($link, $query3);
+                //This query returns a blank, which is where the errors for this page are coming from
                 while ($row = mysqli_fetch_array($searchindex)){
                     echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";
                     }
             ?>
         </select>
-        <p style="color: white;">Search Terms:</p>
-        <input id="search_term_" type='text' size ="20" maxlength="40" value="<?php if(isset($term)){echo str_replace("_", "/", $term);} ?>"/>
-        <input type="hidden" id="search_term" name="term" />
-        <p style="display: inline-block; color: white;">Exact Match?</p>
-        <input type="checkbox" title="Please note that this method is case sensitive." name="exact"/><br>
-        <input style="margin-left: 10px;" type="submit" name ="submit" value ="SEARCH"/>
+        </div>
+        <div class="searchPiece">
+            <span style="color: white;">Search Terms:</span>
+            <input id="search_term_" type='text' size ="20" maxlength="40" value="<?php if(isset($term)){echo str_replace("_", "/", $term);} ?>"/>
+            <input type="hidden" id="search_term" name="term" />
+            <p style="display: inline-block; color: white;">Exact Match?</p>
+            <input type="checkbox" title="Please note that this method is case sensitive." name="exact"/>
+        </div>
+        <div class="searchPiece">
+            <input style="margin-left: 10px;" type="submit" name ="submit" value ="GO"/>
+        </div>
     </form>
     
+    
+</body>
+</html>
 <script>
     function submitFormSearch(){
         document.getElementById('search_term').value = document.getElementById('search_term_').value;

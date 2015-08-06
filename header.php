@@ -2,7 +2,6 @@
     <img class='digisigImg' src='<?php echo $basePath; ?>digisig/images/digsig.jpg'/>
 </div>
 <?php
-echo "";
 $logBtn = "";
 $action = $_SERVER['PHP_SELF'];
 if(!isset($_SESSION['userID'])){
@@ -33,8 +32,8 @@ echo '<form name ="navigate" action="'.$action.'" method="post" class="header">
             '.$logBtn.'
         </p>
     </form>';
-echo "<div class='userInfo'>User Information:<br>
-      userID: ".$_SESSION['userID']."<br>
-      username: ".$_SESSION['user_email']."
-      </div>";
+//echo "<div class='userInfo'>User Information:<br>
+//      userID: ".$_SESSION['userID']."<br>
+//      username: ".$_SESSION['user_email']."
+//      </div>";
 ?>

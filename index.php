@@ -1,5 +1,6 @@
 <?php $basePath = 'http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], '/') + 1); ?>
 <html>
+
 	<head>
 		<script src="<?php echo $basePath; ?>digisig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
 		<link rel="stylesheet" href="<?php echo $basePath; ?>digisig/css/digisigSkin.css" />
@@ -17,17 +18,19 @@
         #constants and default values
         include "include/constants.php";
 
+
+session_start();
+include "header.php";
+echo '<div class="pageWrap">';
+//user login
+
+        #constants and default values
+        include "include/constants.php";
+
         //my functions
         include "include/function.php";
         //functions copied from other people
         include "include/function_parsepath.php";
-
-        session_start();
-        include "header.php";
-        //user login
-
-        /* If the page has received instructions via the 'post' method this
-         * code captures the 'post' and interprets it as a new header.*/
 
         $exact = "";
         if (isset($_POST['submit'])) {
