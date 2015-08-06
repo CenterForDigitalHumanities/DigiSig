@@ -27,9 +27,16 @@
             <?php
                 $query = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
                 $searchfields = mysqli_query($link, $query);
+                $default_select = "";
                 echo "<option value='holder'>Select Field</option>"; 
                 while ($row = mysqli_fetch_array($searchfields)){
-                    echo "<option value=". $row['field_url'] . ">" . $row['field_title'] . "</option>"; 
+                    if($row['field_url'] === "all_fields"){
+                        $default_selected = "selected";
+                    }
+                    else{
+                        $default_selected = "";
+                    }
+                    echo "<option value=". $row['field_url'] . " ".$default_selected.">" . $row['field_title'] . "</option>"; 
                 }
             ?>
             </select>
@@ -61,11 +68,11 @@
                     
                     //This query returns a blank, which is where the errors for this page are coming from
                     while ($row = mysqli_fetch_array($searchindex)){
-                        if($row['index_order'] ===1){
+                        if($row['index_url'] === "all"){
                             $default_selected = "selected";
                         }
                         else{
-                            $default_Selected = "";
+                            $default_selected = "";
                         }
                         echo "<option value=".$row['index_url'] . " ".$default_selected.">" . $row['a_index'] . "</option>";               
                         }
