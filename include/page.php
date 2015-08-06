@@ -57,21 +57,30 @@
                 <?php
                     $query1 = "SELECT pk_index, a_index, index_order, index_url FROM tb_index ORDER BY index_order";
                     $searchindex = mysqli_query($link, $query1);
+                    $default_selected = "";
+                    
                     //This query returns a blank, which is where the errors for this page are coming from
                     while ($row = mysqli_fetch_array($searchindex)){
-                        echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";               
+                        if($row['index_order'] ===1){
+                            $default_selected = "selected";
                         }
-                        echo '<option value= "catalogue" disabled>Catalogue</option>';    
-
+                        else{
+                            $default_Selected = "";
+                        }
+                        echo "<option value=".$row['index_url'] . " ".$default_selected.">" . $row['a_index'] . "</option>";               
+                        }
+                            
                     $query2 = "SELECT pk_index, a_index, index_order, index_url, fk_catalogue FROM tb_index WHERE fk_catalogue > 0 ORDER BY index_order";
                     $searchindex = mysqli_query($link, $query2);
                     //This query returns a blank, which is where the errors for this page are coming from
+                    echo '<option value= "catalogue" disabled>Catalogue</option>';
                     while ($row = mysqli_fetch_array($searchindex)){
                         echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";               
                         }
 
                 $query3 = "SELECT pk_index, a_index, index_order, index_url, fk_repository FROM tb_index WHERE fk_repository > 0 ORDER BY index_order";
                 $searchindex = mysqli_query($link, $query3);
+                echo '<option value= "catalogue" disabled>Repository</option>';
                 //This query returns a blank, which is where the errors for this page are coming from
                 while ($row = mysqli_fetch_array($searchindex)){
                     echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";

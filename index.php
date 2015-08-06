@@ -196,7 +196,11 @@ echo '<div class="pageWrap">';
                             $query12result = mysqli_query($link, $query12);
 
                             // table detailing which seal impressions are associated with this item
-                            echo '<table border = 1><tr><td></td><td>Examples</td></tr><tr><td></td><td>nature</td><td>number</td><td>position</td><td>shape</td></tr>';
+                            echo '<table class="metaTable">'
+                            . '<thead><th>1</th><th>2</th><th>3</th><th>4</th><th5></th><th>6</th><th>7</th><thead>'
+                            . '<tbody><tr><td></td><td>Examples</td></tr>'
+                            . '<tr><td></td><td>nature</td><td>number</td><td>position</td><td>shape</td></tr>';
+                            
                             while ($row = mysqli_fetch_array($query12result)) {
                                 $value3 = $row['nature'];
                                 $value4 = "";
@@ -239,7 +243,7 @@ echo '<div class="pageWrap">';
 
                                 $rowcount++;
                             }
-                            echo '</table>';
+                            echo '</tbody></table>';
                         }
 
                         //for seal descriptions
@@ -349,7 +353,9 @@ echo '<div class="pageWrap">';
                             echo "<br> DIGISIG ID:" . $id;
                             echo "<br> Permalink: http://digisig.org/entity/" . $id;
 
-                            echo '<table border = 1><tr><td>Shape</td><td>Height</td><td>Width</td></tr>';
+                            echo '<table class="metaTable">'
+                            . '<thead><th>Shape</th><th>Height</th><th>Width</th></thead>'
+                            . '<tbody><tr>';
 
                             // note that a seal can have two faces but I am going to assume that the double side ones are the same
                             $row = mysqli_fetch_array($query8result);
@@ -362,7 +368,7 @@ echo '<div class="pageWrap">';
                             echo '<td>' . $value5 . '</td></tr>';
                             $id_seal = $row['id_seal'];
 
-                            echo "</table><br>";
+                            echo "</tbody></table><br>";
 
                             // call seal description function to make list of associated seal descriptions
 
@@ -379,7 +385,8 @@ echo '<div class="pageWrap">';
                             $query10 = "SELECT * FROM shelfmark_view WHERE id_seal = $id";
                             $query10result = mysqli_query($link, $query10);
 
-                            echo '<table border = 1><tr><td>Examples</td></tr><tr><td></td><td>';
+                            echo '<table class="metaTable"><thead><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></thead>'
+                            . '<tbody><tr><td>EXAMPLES</td></tr>';
                             $rowcount = 1;
 
                             while ($row = mysqli_fetch_array($query10result)) {
@@ -431,7 +438,7 @@ echo '<div class="pageWrap">';
                                 echo '</tr>';
                                 $rowcount++;
                             }
-                            echo "</table><br>";
+                            echo "</tbody></table><br>";
                         }
                     }else{
                         echo "No Data Found...";
@@ -478,6 +485,96 @@ echo '<div class="pageWrap">';
                     echo "<br>";
                 }
                 echo "</div>";
+                 echo'<div class="resultTemplate">
+<div class="seal sealPiece">SEAL</div>
+<div class="sealMetadata sealPiece"><span class="sealLabel">Digisig ID: </span><span id="digisigID">12345ID</span>
+<span clss="sealLabel">Permalink: </span><span id="permalink">http://www.digisig.org/entity/0123456</span>
+<input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
+</div>
+<div class="sealMetaseal sealPiece">
+<div class="sealTitle">Metaseal</div>
+<table class="metaTable">
+<thead>
+<th>Face</th>
+<th>Shape</th>
+<th>Size X</th>
+<th>Size Y</th>
+<th>Other</th>
+</thead>
+<tbody>
+<tr>
+<td>Obverse</td>
+<td>Oval</td>
+<td>70</td>
+<td>120</td>
+<td>Stuff</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sealEntry sealPiece">
+<div class="sealTitle">Entry</div>
+<table class="metaTable">
+<thead>
+<th>#</th>
+<th>Location</th>
+<th>Reference</th>
+<th>Description</th>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Stuffed Armadillo</td>
+<td>2859</td>
+<td>View</td>
+</tr>
+</tbody>
+</table>
+<table class="metaTable_offset">
+<thead>
+<th>Name</th>
+<th>Motif</th>
+<th>Legend</th>
+<th>Shape</th>
+<th>Size H</th>
+<th>Size V</th>
+<th>Thumbnail</th>
+</thead>
+<tbody>
+<tr>
+<td><a>The Seal</a></td>
+<td>Stuffed Armadillo</td>
+<td>Legend Thing</td>
+<td>oval</td>
+<td>70</td>
+<td>120</td>
+<td><a>View</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sealExample sealPiece">
+<div class="sealTitle">Examples</div>
+<table class="metaTable" style="display: inline-block">
+<thead>
+<th>#</th>
+<th>Form</th>
+<th>Face</th>
+<th>Shelfmark</th>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Impression</td>
+<td>Recto</td>
+<td>DL25/345</td>
+</tr>
+</tbody>
+</table>
+<img class="sealThumbnail" src="../DigiSig/images/seal.jpg"/>
+<input class="digiBtn viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/>
+</div>
+</div>';
         }
         echo "</div>"; //close page wrap
         include "include/footer.php";
