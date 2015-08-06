@@ -2,9 +2,6 @@
     <img class='digisigImg' src='<?php echo $basePath; ?>digisig/images/digsig.jpg'/>
 </div>
 <?php
-echo "<div class='header digisigHeader'>
-        <img class='digisigImg' src='../DigiSig/images/digsig.jpg'/>
-    </div> ";
 $logBtn = "";
 $action = $_SERVER['PHP_SELF'];
 if(!isset($_SESSION['userID'])){

@@ -2,8 +2,9 @@
 <html>
 
 	<head>
-		<script src="include/lightbox/js/lightbox-plus-jquery.min.js"></script>
-		<link rel="stylesheet" href="<?php echo $basePath; ?>digisig/css/digisigSkin.css" />
+		<script src="<?php echo $basePath; ?>DigiSig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
+		<link rel="stylesheet" href="<?php echo $basePath; ?>DigiSig/css/digisigSkin.css" />
+
 	</head>
 	<body>
 
@@ -13,6 +14,7 @@
 
         #connection details
         include "config/config.php";
+<<<<<<< HEAD
 
         #constants and default values
         include "include/constants.php";
@@ -22,6 +24,10 @@ session_start();
 include "header.php";
 echo '<div class="pageWrap">';
 //user login
+
+        #constants and default values
+        include "include/constants.php";
+
         //my functions
         include "include/function.php";
         //functions copied from other people
