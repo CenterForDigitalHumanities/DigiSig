@@ -21,21 +21,26 @@
     </p>
     <form class="searchArea" name = "search" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" onsubmit="submitFormSearch()">
         <div class="searchTitle">Search</div>
-        <p style="color: white;">Select Field:<br/></p>
+        <div class="searchPiece">
+        <!--<p style="color: white;">Select Field:<br/></p>-->
         <select name="field"/>
-        <?php
-            $query = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
-            $searchfields = mysqli_query($link, $query);
-            while ($row = mysqli_fetch_array($searchfields)){
-                echo "<option value=". $row['field_url'] . ">" . $row['field_title'] . "</option>"; 
-            }
-        ?>
-        </select>
-        <p style="color: white;">Select Index:<br/></p>
+            <?php
+                $query = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
+                $searchfields = mysqli_query($link, $query);
+                echo "<option value='holder'>Select Field</option>"; 
+                while ($row = mysqli_fetch_array($searchfields)){
+                    echo "<option value=". $row['field_url'] . ">" . $row['field_title'] . "</option>"; 
+                }
+            ?>
+            </select>
+        </div>
+        <!--<p style="color: white;">Select Index:<br/></p>-->
+        <div class="searchPiece">
         <select name="index"/>
             <?php
                 $query = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
                 $searchfields = mysqli_query($link, $query);
+                echo "<option value='holder'>Select Index</option>"; 
                 while ($row = mysqli_fetch_array($searchfields)){
                     echo "<option value=". $row['field_url'] . ">" . $row['field_title'] . "</option>"; 
                 }
