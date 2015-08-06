@@ -13,7 +13,7 @@
 // # Database password
 // $db_pswd = "123psqluser";
 
-# Connection
+// Connection
     $link = mysqli_connect('localhost:3306', 'root', '1229@Oxford', 'digisigres');
     if(!$link){
         die('Could not connect: ' . mysqli_error($link));

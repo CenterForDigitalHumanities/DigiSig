@@ -2,7 +2,9 @@
 
 //Tabulate query result
 function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
+    $num_result_per_page = 100;
     $link = mysqli_connect('localhost:3306', 'root', '1229@Oxford', 'digisigres');
+    // $link = mysqli_connect('localhost:3306', 'digisig', '1EMeeIIINnn', 'digisigres');
     $pagination_part = ' limit ' . $limit . ' offset ' . $offset;
     // search 'what' and 'from'? 
     $query3 = "SELECT field_title, field_url, field_column, field_returnedvariables FROM field WHERE field_url = '$field'";
@@ -80,7 +82,12 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
             
                     $rowcount++;
                 }
-                echo '<tr id="show_more_tr_'.$field.'" last_row_num='.$rowcount--.'><td colspan="3"><input type="button" id="show_more_btn_'.$field.'" value="Show More" offset=5 onclick=\'getNextData("'.$field.'", "'.$index.'", "'.$term.'", "'.$address.'", "'.$exact.'", '.$limit.')\' /><span id="load_next_pending_'.$field.'" style="display:none">Loading...</span></td></tr></table>';
+                if($numberofresults < 100){
+                    echo '<tr id="show_more_tr_'.$field.'" last_row_num='.$rowcount--.'><td colspan="3"><input type="button" id="show_more_btn_'.$field.'" value="Show More" offset='.($numberofresults+1).' onclick=\'getNextData("'.$field.'", "'.$index.'", "'.$term.'", "'.$address.'", "'.$exact.'", '.$limit.')\' /><span id="load_next_pending_'.$field.'" style="display:none">Loading...</span></td></tr></table>';    
+                }else{
+                    echo '<tr id="show_more_tr_'.$field.'" last_row_num='.$rowcount--.'><td colspan="3"><input type="button" id="show_more_btn_'.$field.'" value="Show More" offset='.($num_result_per_page+1).' onclick=\'getNextData("'.$field.'", "'.$index.'", "'.$term.'", "'.$address.'", "'.$exact.'", '.$limit.')\' /><span id="load_next_pending_'.$field.'" style="display:none">Loading...</span></td></tr></table>';
+                }
+                
             
             }
             Else {echo "<p>no results in " . $field . "</p>";}
@@ -92,6 +99,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
 
 function queryview($entity, $id) {
     $link = mysqli_connect('localhost:3306', 'root', '1229@Oxford', 'digisigres');
+    // $link = mysqli_connect('localhost:3306', 'digisig', '1EMeeIIINnn', 'digisigres');
      //convert view number to view text string and find out what variables to return
     $query6 = "SELECT entity_view_short, entity_column_short, entity_returnedvariables_short, entity_url FROM entity WHERE entity_url = '$entity'";
     $query6result = mysqli_query($link, $query6);

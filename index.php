@@ -1,7 +1,7 @@
 <?php $basePath = 'http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], '/') + 1); ?>
 <html>
 	<head>
-		<script src="include/lightbox/js/lightbox-plus-jquery.min.js"></script>
+		<script src="<?php echo $basePath; ?>digisig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
 		<link rel="stylesheet" href="<?php echo $basePath; ?>digisig/css/digisigSkin.css" />
 
 	</head>
@@ -481,12 +481,11 @@
     ?>
 
 		</body>
-		<script src="include/lightbox/js/lightbox-plus-jquery.min.js"></script>
-		<script>var basePath =  '<?php echo 'http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], '/') + 1); ?>
-			';
-			var num_result_per_page = 
- <?php echo $num_result_per_page ?>
-			;
+		<script src="<?php echo $basePath; ?>digisig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
+		<script>
+		    var basePath = '<?php echo 'http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], '/') + 1); ?>';
+			var num_result_per_page = <?php echo $num_result_per_page ?>;
+			
 			function getFullText(id) {
 				$('#a_' + id).html($('#full_' + id).val());
 				$('#get_' + id).html('(Less)').click(function() {
@@ -498,7 +497,7 @@
 			function getNextData(field, index, term, address, exact, limit) {
 				$('#load_next_pending_' + field).show();
 				var offset = parseInt($('#show_more_btn_' + field).attr('offset'));
-				$.post(basePath + 'DigiSig/include/loadNextData.php', {
+				$.post(basePath + 'digisig/include/loadNextData.php', {
 					'field' : field,
 					'index' : index,
 					'term' : term,
@@ -507,7 +506,7 @@
 					'offset' : offset,
 					'limit' : limit
 				}).done(function(data) {
-					if (data != '00000') {
+					if (data != '00000' && '' != data) {
 						data = JSON.parse(data);
 						for (d in data) {
 							var v1 = data[d][0];
