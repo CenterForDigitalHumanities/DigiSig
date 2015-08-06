@@ -1,6 +1,6 @@
 <html>
     <head>
-        <script src="/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
+        <script src="../include/lightbox/js/lightbox-plus-jquery.min.js"></script>
         <link rel="stylesheet" href="../DigiSig/css/digisigSkin.css">	
         
     </head>

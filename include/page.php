@@ -21,39 +21,23 @@
     </p>
     <form class="searchArea" name = "search" action="<?php $_SERVER['PHP_SELF'] ?>" method="post" onsubmit="submitFormSearch()">
         <div class="searchPiece">
-            <div class="searchTitle">Search</div>
-            <!--<p style="color: white;">Select Field:<br/></p>-->
-            <?php
-
-                $query1 = "SELECT pk_index, a_index, index_order, index_url FROM tb_index ORDER BY index_order";
-                $searchindex = mysqli_query($link, $query1);
-                //This query returns a blank, which is where the errors for this page are coming from
-                while ($row = mysqli_fetch_array($searchindex)){
-                    echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";               
-                    }
-                    echo '<option value= "catalogue" disabled>Catalogue</option>';    
-                
-                $query2 = "SELECT pk_index, a_index, index_order, index_url, fk_catalogue FROM tb_index WHERE fk_catalogue > 0 ORDER BY index_order";
-                $searchindex = mysqli_query($link, $query2);
-                //This query returns a blank, which is where the errors for this page are coming from
-                while ($row = mysqli_fetch_array($searchindex)){
-                    echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";               
-                    }
-
+                       <?php
     //            $query12 = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
-    //            $searchfields1 = mysqli_query($link, $query12);
-    //            $array1 = array();
+    //            $searchindex = mysqli_query($link, $query12);
+    //            $array = array();
     //            $all = [];
-    //            while ($row = mysqli_fetch_array($searchfields1)){
-    //                $array1[] = $row;
+    //            while ($row = mysqli_fetch_array($searchindex)){
+    //                $array[] = $row;
     //            }
-    //            for ($i = 0; $i < count($array1); $i++) {
-    //                $all[] = implode(',', $array1[$i]);
+    //            for ($i = 0; $i < count($array); $i++) {
+    //                $all[] = implode(',', $array[$i]);
     //              }
     //            foreach ($all as $aa) {
-    //                print "A Field: ".$aa . " !<br/>\n";
+    //                print "A field:  ".$aa . " !<br/>\n";
     //            }
             ?>
+            <div class="searchTitle">Search</div>
+            <!--<p style="color: white;">Select Field:<br/></p>-->
             <select name="field"/>
             <option value="holder">Select Fields</option>
             <?php
@@ -108,12 +92,6 @@
                     }
             ?>
         </select>
-        <p style="color: white;">Search Terms:</p>
-        <input id="search_term_" type='text' size ="20" maxlength="40" value="<?php if(isset($term)){echo str_replace("_", "/", $term);} ?>"/>
-        <input type="hidden" id="search_term" name="term" />
-        <p style="display: inline-block; color: white;">Exact Match?</p>
-        <input type="checkbox" title="Please note that this method is case sensitive." name="exact"/><br>
-        <input style="margin-left: 10px;" type="submit" name ="submit" value ="SEARCH"/>
         </div>
         <div class="searchPiece">
             <span style="color: white;">Search Terms:</span>
