@@ -14,7 +14,6 @@
 
         #connection details
         include "config/config.php";
-<<<<<<< HEAD
 
         #constants and default values
         include "include/constants.php";
