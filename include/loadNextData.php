@@ -46,7 +46,7 @@ require_once("../config/config.php");
 
     //and the ordering variable
     $query5 = $query5 . " ORDER BY $column";
-
+//echo $query5;
     // the full search string applied
     $query5result = mysqli_query($link, $query5 . $pagination_part);
 

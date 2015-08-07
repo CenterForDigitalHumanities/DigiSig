@@ -60,7 +60,6 @@
     //            }
             ?>
             <select name="index"/>
-                <option value="holder">Select Index</option>
                 <?php
                     $query1 = "SELECT pk_index, a_index, index_order, index_url FROM tb_index ORDER BY index_order";
                     $searchindex = mysqli_query($link, $query1);

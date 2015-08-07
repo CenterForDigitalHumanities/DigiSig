@@ -2,8 +2,8 @@
 <html>
 
 	<head>
-		<script src="<?php echo $basePath; ?>DigiSig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
-		<link rel="stylesheet" href="<?php echo $basePath; ?>DigiSig/css/digisigSkin.css" />
+		<script src="<?php echo $basePath; ?>digisig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
+		<link rel="stylesheet" href="<?php echo $basePath; ?>digisig/css/digisigSkin.css" />
 
 	</head>
 	<body>
@@ -378,16 +378,16 @@ echo '<div class="pageWrap">';
 
                             //check for other seal descriptions
 
-                            $query12 = "SELECT * FROM sealdescription_view WHERE id_seal = $value11";
-                            $query12result = mysqli_query($link, $query12);
-
-                            $count = mysqli_num_rows($query12result);
-                            echo "<table>".$tableHeader.$tableBody."</table>";
-                            if ($count > 1) {
-                                //echo "<div class='_separator_2'>Other Descriptions</div>";
-                                echo "<div class='separator_2'>Similar Entries</div>";
-                                $duplicate = $id;
-                                sealdescription($query12result, $address, $duplicate);
+                            if(isset($value11) && '' != $value11){
+                                $query12 = "SELECT * FROM sealdescription_view WHERE id_seal = $value11";
+                                $query12result = mysqli_query($link, $query12);
+    
+                                $count = mysqli_num_rows($query12result);
+                                if ($count > 1) {
+                                    echo "other descriptions";
+                                    $duplicate = $id;
+                                    sealdescription($query12result, $address, $duplicate);
+                                }
                             }
                         }
 
@@ -629,12 +629,11 @@ echo '<div class="pageWrap">';
     ?>
 
 		</body>
-		<script src="include/lightbox/js/lightbox-plus-jquery.min.js"></script>
-		<script>var basePath =  '<?php echo 'http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], '/') + 1); ?>
-			';
-			var num_result_per_page = 
- <?php echo $num_result_per_page ?>
-			;
+		<script src="<?php echo $basePath; ?>digisig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
+		<script>
+		    var basePath = '<?php echo 'http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], '/') + 1); ?>';
+			var num_result_per_page = <?php echo $num_result_per_page ?>;
+			
 			function getFullText(id) {
 				$('#a_' + id).html($('#full_' + id).val());
 				$('#get_' + id).html('(Less)').click(function() {
@@ -646,7 +645,7 @@ echo '<div class="pageWrap">';
 			function getNextData(field, index, term, address, exact, limit) {
 				$('#load_next_pending_' + field).show();
 				var offset = parseInt($('#show_more_btn_' + field).attr('offset'));
-				$.post(basePath + 'DigiSig/include/loadNextData.php', {
+				$.post(basePath + 'digisig/include/loadNextData.php', {
 					'field' : field,
 					'index' : index,
 					'term' : term,
@@ -655,7 +654,7 @@ echo '<div class="pageWrap">';
 					'offset' : offset,
 					'limit' : limit
 				}).done(function(data) {
-					if (data != '00000') {
+					if (data != '00000' && '' != data) {
 						data = JSON.parse(data);
 						for (d in data) {
 							var v1 = data[d][0];

@@ -20,7 +20,7 @@ $default = $address . "/images/default/";
 # Default page title
 $title = "DIGISIG";
 
-# Number of search results to display
+# Number of search results to display, there is a same one in function.php. When you change this value, please change the one in function.php as well. 
 $num_result_per_page = 100;
 
 # National Archives page to search archon codes
