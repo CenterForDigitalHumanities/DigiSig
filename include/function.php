@@ -64,7 +64,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                 echo " in " . $field;
             
                 //drawing the results in a tabular form
-                echo '<table class="metaTable maxmin"><thead><th>Description</th><th>Reference</th></thead><tbody>';
+                echo '<table class="metaTable maxmin"><thead><th>#</th><th>Description</th><th>Reference</th></thead><tbody>';
                 $rowcount = 1;
                 while ($row = mysqli_fetch_array($query5result)) {
                     $value1 = $row[0];
@@ -80,7 +80,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                     if($value3 == ""){
                         $value3 = "empty";
                     }
-                    echo '<tr>'; //<td>' . $rowcount . '</td>
+                    echo '<tr><td>' . $rowcount . '</td>'; //
                     if(strlen($value2) >= 50){
                         $short_value2 = substr($value2, 0, 50);
                         echo '<td><a id="a_'.$value1.'" href=' . $address . '/entity/'.$value1.'>'. $short_value2 . '...</a> <a id="get_'.$value1.'" onclick="getFullText('.$value1.')">(More)</a><input type="hidden" id="full_'.$value1.'" value="'.$value2.'" /><input type="hidden" id="short_'.$value1.'" value="'.$short_value2.'" /></td><td>'. $value3. '</td></tr>';
@@ -124,7 +124,7 @@ function queryview($entity, $id) {
 
 function sealdescription ($query12result, $address, $duplicate) {
     
-    echo '<table class="metaTable"><thead><th>Name</th><th>Reference</th><th>External Link</th></thead><tbody>';
+    echo '<table class="metaTable"><thead><th>#</th><th>Name</th><th>Reference</th><th>External Link</th></thead><tbody>';
     $rowcount = 1;
 
 while ($row = mysqli_fetch_array($query12result)) {
@@ -133,7 +133,7 @@ while ($row = mysqli_fetch_array($query12result)) {
     $value3 = $row['id_sealdescription'];
     $value4 = $row['realizer'];
     if (isset($duplicate) && $value3 != $duplicate) { 
-        echo '<tr>'; //<td> . $rowcount . '</td>'
+        echo '<tr><td> '. $rowcount . '</td>';
         echo '<td>' . $value4 . '</td>';
         echo '<td>' . $value1 . '</td>';
         echo '<td><a href=' . $address . '/entity/' . $value3. '>' . $value2 . '</a></td></tr>';

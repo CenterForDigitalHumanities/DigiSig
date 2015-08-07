@@ -166,8 +166,8 @@ echo '<div class="pageWrap">';
                             $value15 = $row['ui_event_repository'];
                             
                             
-                            echo "ITEM";
-                             echo '<div class="seal sealPiece">SEAL</div>
+                            //echo "ITEM";
+                            echo '<div class="seal sealPiece">ITEM</div>
                             <div class="sealMetadata sealPiece"><span class="sealLabel">Digisig ID: </span><span id="digisigID">DIGISIG ID: ' .$id.'</span>
                             <span clss="sealLabel">Permalink: </span><span id="permalink">http://digisig.org/entity/'. $id .'</span>
                             <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
@@ -204,7 +204,7 @@ echo '<div class="pageWrap">';
 
                             // table detailing which seal impressions are associated with this item
                             echo '<table class="metaTable">'
-                            . '<thead><th>1</th><th>2</th><th>3</th><th>4</th><th5></th><th>6</th><th>7</th><thead>'
+                            . '<thead><th>#</th><th>2</th><th>3</th><th>4</th><th5></th><th>6</th><th>7</th><thead>'
                             . '<tbody><tr><td></td><td>Examples</td></tr>'
                             . '<tr><td></td><td>nature</td><td>number</td><td>position</td><td>shape</td></tr>';
                             
@@ -384,7 +384,8 @@ echo '<div class="pageWrap">';
                             $count = mysqli_num_rows($query12result);
                             echo "<table>".$tableHeader.$tableBody."</table>";
                             if ($count > 1) {
-                                echo "other descriptions";
+                                //echo "<div class='_separator_2'>Other Descriptions</div>";
+                                echo "<div class='separator_2'>Similar Entries</div>";
                                 $duplicate = $id;
                                 sealdescription($query12result, $address, $duplicate);
                             }
@@ -422,7 +423,8 @@ echo '<div class="pageWrap">';
                             $query12result = mysqli_query($link, $query12);
                             $count = mysqli_num_rows($query12result);
                             if ($count > 1) {
-                                echo "other descriptions";
+                                //echo "<div class='separator_2'>Other Descriptions</div>";
+                                echo "<div class='separator_2'>Similar Entries</div>";
                                 $duplicate = $id;
                                 sealdescription($query12result, $address, $duplicate);
                             }
@@ -430,7 +432,7 @@ echo '<div class="pageWrap">';
                             // list of associated seal impressions
                             $query10 = "SELECT * FROM shelfmark_view WHERE id_seal = $id";
                             $query10result = mysqli_query($link, $query10);
-                            echo '<div class="separator">Examples</div>';
+                            echo '<div class="separator_2">Examples</div>';
                             echo '<table class="metaTable"><thead><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></thead>'
                             . '<tbody>';
                             $rowcount = 1;
