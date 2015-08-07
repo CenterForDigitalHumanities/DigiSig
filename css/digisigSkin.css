@@ -78,6 +78,7 @@
     margin-left: 10px;
     background-color: white;
     border: medium double;
+    margin-left: 40px;
 }
 /* Search Results Area */
 .searchResults{
@@ -94,6 +95,12 @@
     padding-left: 10px;
     text-decoration: underline;
     font-size: 17px;
+}
+.separator_2{
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 17px;
+    margin-top:10px;
 }
 .searchTitle{
     color: #FFF;
@@ -230,7 +237,7 @@ table.maxmin th, table.maxmin td{
     display: inline-block;
 }
 select{
-    background: #079 url(site_media/img/down.png) no-repeat 90% center;
+    background: #079 no-repeat 90% center;
     font-size: 16px;
     line-height: 1;
     border: 1px solid white;

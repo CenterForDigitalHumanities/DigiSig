@@ -95,7 +95,7 @@
         </select>
         </div>
         <div class="searchPiece">
-            <span style="color: white;">Search Terms:</span>
+            <span style="color: white; margin-left: 10px; display: inline-block;">Search Terms:</span>
             <input id="search_term_" type='text' size ="20" maxlength="40" value="<?php if(isset($term)){echo str_replace("_", "/", $term);} ?>"/>
             <input type="hidden" id="search_term" name="term" />
             <p style="display: inline-block; color: white;">Exact Match?</p>
