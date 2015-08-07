@@ -331,14 +331,16 @@ echo '<div class="pageWrap">';
 
                             //check for other seal descriptions
 
-                            $query12 = "SELECT * FROM sealdescription_view WHERE id_seal = $value11";
-                            $query12result = mysqli_query($link, $query12);
-
-                            $count = mysqli_num_rows($query12result);
-                            if ($count > 1) {
-                                echo "other descriptions";
-                                $duplicate = $id;
-                                sealdescription($query12result, $address, $duplicate);
+                            if(isset($value11) && '' != $value11){
+                                $query12 = "SELECT * FROM sealdescription_view WHERE id_seal = $value11";
+                                $query12result = mysqli_query($link, $query12);
+    
+                                $count = mysqli_num_rows($query12result);
+                                if ($count > 1) {
+                                    echo "other descriptions";
+                                    $duplicate = $id;
+                                    sealdescription($query12result, $address, $duplicate);
+                                }
                             }
                         }
 
