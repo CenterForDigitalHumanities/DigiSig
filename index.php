@@ -175,7 +175,7 @@ echo '<div class="pageWrap">';
 
                             //echo "<br><br>" . $value1 . ": " . $value2;
                             //all the other values listed under shelfmark are optional
-                            echo '<table class="metaTable"><thead><th>Title</th><th>Location</th>th>Description</th><th>Dated</th><th>External Link</th></thead>'
+                            echo '<table class="metaTable"><thead><th>Title</th><th>Location</th><th>Description</th><th>Dated</th><th>External Link</th></thead>'
                             . '<tbody><tr><td>'.$value1.':'.$value2.'</td><td>'.$value12.'</td><td>'.$value13.'</td><td>'.$value10.'</td><td>'.$value14.$value15.'</td></tr></tbody></table>';
 //                            if (isset($value15)) {
 //                                echo '<a href="' . $value14 . $value15 . '" target="_blank">external link</a>';
@@ -203,10 +203,10 @@ echo '<div class="pageWrap">';
                             $query12result = mysqli_query($link, $query12);
 
                             // table detailing which seal impressions are associated with this item
+                            echo "<div class='separator_2'>Examples</div>";
                             echo '<table class="metaTable">'
-                            . '<thead><th>#</th><th>2</th><th>3</th><th>4</th><th5></th><th>6</th><th>7</th><thead>'
-                            . '<tbody><tr><td></td><td>Examples</td></tr>'
-                            . '<tr><td></td><td>nature</td><td>number</td><td>position</td><td>shape</td></tr>';
+                            . '<thead><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>Shape</th><th>Seal Link</th><th>Thumbnail</th></thead>'
+                            . '<tbody>'; //'<tr><td></td><td>nature</td><td>number</td><td>position</td><td>shape</td></tr>'
                             
                             while ($row = mysqli_fetch_array($query12result)) {
                                 $value3 = $row['nature'];

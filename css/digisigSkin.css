@@ -199,11 +199,9 @@ table.maxmin th, table.maxmin td{
     height:80px;
     width: 80px;
     position: relative;
-    top: -30px;
 }
 .viewImgBtn{
     position: relative;
-    top: -11px;
     border: none;
     background: none;
     color: white;
