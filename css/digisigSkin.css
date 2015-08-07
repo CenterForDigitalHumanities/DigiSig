@@ -54,8 +54,11 @@
     font: inherit;
     cursor: pointer;
     color: white;
-    margin: 0px 8px;
+    margin: 0px 20px;
     font-weight: bold;
+}
+.navigate:hover{
+    border: 1px solid white;
 }
 .searchPiece{
     display: inline-block;
@@ -69,6 +72,12 @@
 /* Search tool areas  */
 .searchArea p, .searchArea input, .searchArea select{
     margin-left:10px;
+}
+
+.searchBtn{
+    margin-left: 10px;
+    background-color: white;
+    border: medium double;
 }
 /* Search Results Area */
 .searchResults{
@@ -124,8 +133,11 @@ form[name="navigate"]{
     font: inherit;
     cursor: pointer;    
     color: white;
-    margin: 0px 8px;
+    margin: 0px 20px;
     font-weight: bold;
+}
+.footNav:hover{
+    border: 1px solid white;
 }
 /* Login as part of the nav.  Needs to look like a link. */
 .login{
@@ -136,7 +148,8 @@ form[name="navigate"]{
     padding:0!important;
     font: inherit;
     cursor: pointer;    
-    color: red;
+    color: white;
+    font-weight: bold;
 }
 .seal, .sealMetadata{
     border-bottom: 1px solid rgb(0, 119, 153);
