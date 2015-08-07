@@ -55,6 +55,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
         //if there are returned rows (except from all_fields) then present output
     
         If ($field != "all_fields") {
+            $field_str = ucfirst($field);
             If ($numberofresults > 0) {
                 echo $numberofresults;
                 if ($numberofresults > 1) {
@@ -63,10 +64,10 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                 else {
                     echo " result found for " . $term;
                 }
-                echo " in " . $field;
+                echo " in " . $field_str;
             
                 //drawing the results in a tabular form
-                echo '<table class="metaTable maxmin"><thead><th>#</th><th>Description</th><th>Reference</th></thead><tbody>';
+                echo '<table class="metaTable maxmin"><thead><th>#</th><th>'.$field_str.'</th><th>Reference</th></thead><tbody>';
                 $rowcount = 1;
                 while ($row = mysqli_fetch_array($query5result)) {
                     $value1 = $row[0];
@@ -98,7 +99,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                     echo '<tr id="show_more_tr_'.$field.'" last_row_num='.$rowcount--.'><td colspan="3"><input type="button" id="show_more_btn_'.$field.'" value="Show More" offset='.($num_result_per_page+1).' onclick=\'getNextData("'.$field.'", "'.$index.'", "'.$term.'", "'.$address.'", "'.$exact.'", '.$limit.')\' /><span id="load_next_pending_'.$field.'" style="display:none">Loading...</span></td></tr></table>';
                 }
             }
-            Else {echo "<p>no results in " . $field . "</p>";}
+            Else {echo "<p>no results in " . $field_str . "</p>";}
         }
     }
 }
