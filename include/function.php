@@ -143,7 +143,7 @@ while ($row = mysqli_fetch_array($query12result)) {
         echo '<tr><td> '. $rowcount . '</td>';
         echo '<td>' . $value4 . '</td>';
         echo '<td>' . $value1 . '</td>';
-        echo '<td><a href=' . $address . '/entity/' . $value3. '>' . $value2 . '</a></td></tr>';
+        echo '<td><a href="' . $address . '/entity/' . $value3. '">' . $value2 . '</a></td></tr>';
         $rowcount++;
     }
 }

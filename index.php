@@ -374,6 +374,7 @@ echo '<div class="pageWrap">';
                             //link to seal page
                             $tableHeader .= "<th>Seal Link</th></thead>";
                             $tableBody .= "<td><a href='". $address ."/entity/". $value11."'>view seal</a></td></tr></tbody>";
+                            echo "<table>".$tableHeader.$tableBody."</table>";
                             //echo '<br><a href=' . $address . '/entity/' . $value11 . '>view seal</a><br>';
 
                             //check for other seal descriptions
@@ -384,7 +385,8 @@ echo '<div class="pageWrap">';
     
                                 $count = mysqli_num_rows($query12result);
                                 if ($count > 1) {
-                                    echo "other descriptions";
+                                    //echo "other descriptions";
+                                    echo "<div class='separator_2'>Similar Entries</div>";
                                     $duplicate = $id;
                                     sealdescription($query12result, $address, $duplicate);
                                 }
