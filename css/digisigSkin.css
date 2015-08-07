@@ -243,9 +243,9 @@ select{
     border: 1px solid white;
     border-radius: 0;
     color: white !important;
-    -webkit-appearance: none;
+/*    -webkit-appearance: none;
     -moz-appearance: none;
-    appearance: none;
+    appearance: none;*/
     text-indent: 1px;
     text-overflow: '';
 }
