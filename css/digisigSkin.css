@@ -57,9 +57,9 @@
     margin: 0px 20px;
     font-weight: bold;
 }
-.navigate:hover{
+/*.navigate:hover{
     border: 1px solid white;
-}
+}*/
 .searchPiece{
     display: inline-block;
 }
@@ -143,9 +143,9 @@ form[name="navigate"]{
     margin: 0px 20px;
     font-weight: bold;
 }
-.footNav:hover{
+/*.footNav:hover{
     border: 1px solid white;
-}
+}*/
 /* Login as part of the nav.  Needs to look like a link. */
 .login{
     position: absolute;
