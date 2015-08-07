@@ -435,7 +435,7 @@ echo '<div class="pageWrap">';
                             $query10 = "SELECT * FROM shelfmark_view WHERE id_seal = $id";
                             $query10result = mysqli_query($link, $query10);
                             echo '<div class="separator_2">Examples</div>';
-                            echo '<table class="metaTable"><thead><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></thead>'
+                            echo '<table class="metaTable"><thead><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>Shape</th><th>Dated</th><th>External Link</th><th>Thumbnail</th></thead>'
                             . '<tbody>';
                             $rowcount = 1;
 
@@ -488,7 +488,7 @@ echo '<div class="pageWrap">';
                                 echo '</tr>';
                                 $rowcount++;
                             }
-                            echo "</tbody></table><br>";
+                            echo "</tbody></table>";
                         }
                     }else{
                         echo "No Data Found...";
