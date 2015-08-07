@@ -102,11 +102,7 @@
             <input type="checkbox" title="Please note that this method is case sensitive." name="exact"/>
         </div>
         <div class="searchPiece">
-<<<<<<< HEAD
-            <input style="margin-left: 10px;" type="submit" name ="submit" value ="SEARCH"/>
-=======
             <input class="searchBtn" type="submit" name ="submit" value ="SEARCH"/>
->>>>>>> upstream/master
         </div>
     </form>
     
