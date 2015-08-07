@@ -10,11 +10,14 @@
 //else{
 //    $logBtn = "<input class='login' type='button' value='log out' onclick='' />";
 //}
+$action = $_SERVER['PHP_SELF'];
 echo '<div class="footer">
+        <form name ="navigate" action="'.$action.'" method="post">
             <input class="footNav" type="submit" name ="submit" value ="HOME"/>
             <input class="footNav" type="submit" name ="submit" value ="ABOUT"/>
             <input class="footNav" type="submit" name ="submit" value ="ADVANCED SEARCH"/>
             <input class="footNav" type="submit" name ="submit" value ="CONTACT"/>
+        </form>
       </div>';
 ?>
 

@@ -27,8 +27,16 @@
             <?php
                 $query = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
                 $searchfields = mysqli_query($link, $query);
+                $default_select = "";
+                echo "<option value='holder'>Select Field</option>"; 
                 while ($row = mysqli_fetch_array($searchfields)){
-                    echo "<option value=". $row['field_url'] . ">" . $row['field_title'] . "</option>"; 
+                    if($row['field_url'] === "all_fields"){
+                        $default_selected = "selected";
+                    }
+                    else{
+                        $default_selected = "";
+                    }
+                    echo "<option value=". $row['field_url'] . " ".$default_selected.">" . $row['field_title'] . "</option>"; 
                 }
             ?>
             </select>
@@ -55,21 +63,30 @@
                 <?php
                     $query1 = "SELECT pk_index, a_index, index_order, index_url FROM tb_index ORDER BY index_order";
                     $searchindex = mysqli_query($link, $query1);
+                    $default_selected = "";
+                    
                     //This query returns a blank, which is where the errors for this page are coming from
                     while ($row = mysqli_fetch_array($searchindex)){
-                        echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";               
+                        if($row['index_url'] === "all"){
+                            $default_selected = "selected";
                         }
-                        echo '<option value= "catalogue" disabled>Catalogue</option>';    
-
+                        else{
+                            $default_selected = "";
+                        }
+                        echo "<option value=".$row['index_url'] . " ".$default_selected.">" . $row['a_index'] . "</option>";               
+                        }
+                            
                     $query2 = "SELECT pk_index, a_index, index_order, index_url, fk_catalogue FROM tb_index WHERE fk_catalogue > 0 ORDER BY index_order";
                     $searchindex = mysqli_query($link, $query2);
                     //This query returns a blank, which is where the errors for this page are coming from
+                    echo '<option value= "catalogue" disabled>Catalogue</option>';
                     while ($row = mysqli_fetch_array($searchindex)){
                         echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";               
                         }
 
                 $query3 = "SELECT pk_index, a_index, index_order, index_url, fk_repository FROM tb_index WHERE fk_repository > 0 ORDER BY index_order";
                 $searchindex = mysqli_query($link, $query3);
+                echo '<option value= "catalogue" disabled>Repository</option>';
                 //This query returns a blank, which is where the errors for this page are coming from
                 while ($row = mysqli_fetch_array($searchindex)){
                     echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";
@@ -85,7 +102,11 @@
             <input type="checkbox" title="Please note that this method is case sensitive." name="exact"/>
         </div>
         <div class="searchPiece">
+<<<<<<< HEAD
             <input style="margin-left: 10px;" type="submit" name ="submit" value ="SEARCH"/>
+=======
+            <input class="searchBtn" type="submit" name ="submit" value ="SEARCH"/>
+>>>>>>> upstream/master
         </div>
     </form>
     
