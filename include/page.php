@@ -64,7 +64,7 @@
                     $query1 = "SELECT pk_index, a_index, index_order, index_url FROM tb_index ORDER BY index_order";
                     $searchindex = mysqli_query($link, $query1);
                     $default_selected = "";
-                    
+                    echo "<option value='holder'>Select Index</option>";
                     //This query returns a blank, which is where the errors for this page are coming from
                     while ($row = mysqli_fetch_array($searchindex)){
                         if($row['index_url'] === "all"){

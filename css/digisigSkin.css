@@ -66,7 +66,7 @@
 /* Searching Form */
 .searchArea{
     border: 1px solid #000;
-    background-color: #007799;
+    background-color: #00485E;
     padding: 10px 0px 10px 0px;
 }
 /* Search tool areas  */
@@ -169,7 +169,7 @@ a:hover{
 }
 /* Table CSS */
 thead{
-    background-color: #00485E;
+    background-color: #007799;
     color: white;
     font-weight: bold;
 }
