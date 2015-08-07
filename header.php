@@ -23,7 +23,6 @@ else
     $logBtn = "<span class='login'>".$_SESSION['user_email']."</span>&nbsp;&nbsp;&nbsp;<input class='login' type='button' value='log out' onclick='window.location=\"logout.php\"' />";
 }
 echo '<form name ="navigate" action="'.$action.'" method="post" class="header">
-        <!--<div class="navTitle">Navigation</div>-->
         <p class="navigation">
             <input class="navigate" type="submit" name ="submit" value ="HOME"/>
             <input class="navigate" type="submit" name ="submit" value ="ABOUT"/>

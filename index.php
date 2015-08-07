@@ -164,32 +164,39 @@ echo '<div class="pageWrap">';
                             $value13 = $row['repository_description'];
                             $value14 = $row['connection'];
                             $value15 = $row['ui_event_repository'];
-
+                            
+                            
                             echo "ITEM";
-                            echo "<br> DIGISIG ID:" . $id;
-                            echo "<br> Permalink: http://digisig.org/entity/" . $id;
+                             echo '<div class="seal sealPiece">SEAL</div>
+                            <div class="sealMetadata sealPiece"><span class="sealLabel">Digisig ID: </span><span id="digisigID">DIGISIG ID: ' .$id.'</span>
+                            <span clss="sealLabel">Permalink: </span><span id="permalink">http://digisig.org/entity/'. $id .'</span>
+                            <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
+                            </div>';
 
-                            echo "<br><br>" . $value1 . ": " . $value2;
+                            //echo "<br><br>" . $value1 . ": " . $value2;
                             //all the other values listed under shelfmark are optional
-                            if (isset($value15)) {
-                                echo '<a href="' . $value14 . $value15 . '" target="_blank">external link</a>';
-
-                            }
-
-                            if (isset($value10)) {
-                                echo "<br> dated:" . $value10;
-                                if (isset($value11)) {
-                                    echo " to " . $value11;
-                                }
-                            }
-
-                            if (isset($value12)) {
-                                echo "<br> Location:" . $value12;
-                            }
-
-                            If (isset($value13)) {
-                                echo "<br> Description:" . $value13;
-                            }
+                            echo '<table class="metaTable"><thead><th>Title</th><th>Location</th>th>Description</th><th>Dated</th><th>External Link</th></thead>'
+                            . '<tbody><tr><td>'.$value1.':'.$value2.'</td><td>'.$value12.'</td><td>'.$value13.'</td><td>'.$value10.'</td><td>'.$value14.$value15.'</td></tr></tbody></table>';
+//                            if (isset($value15)) {
+//                                echo '<a href="' . $value14 . $value15 . '" target="_blank">external link</a>';
+//
+//                            }
+//
+//                            if (isset($value10)) {
+//                                echo "<br> dated:" . $value10;
+//                                if (isset($value11)) {
+//                                    echo " to " . $value11;
+//                                }
+//                            }
+//
+//                            if (isset($value12)) {
+//                                echo "<br> Location:" ;
+//                            }
+//
+//                            If (isset($value13)) {
+//                                echo "<br> Description:" . $value13;
+//                            }
+                            
 
                             //show table of associated impressions
                             $query12 = "SELECT * FROM shelfmark_view WHERE id_item = $id ORDER BY position_latin";
@@ -230,7 +237,7 @@ echo '<div class="pageWrap">';
                                 echo '<td>' . $value4 . '</td>';
                                 echo '<td>' . $value5 . '</td>';
                                 echo '<td>' . $value6 . '</td>';
-                                echo '<td><a href=' . $address . '/entity/' . $value7 . '>view seal</a></td>';
+                                echo '<td><a href="' . $address . '/entity/' . $value7 . '">view seal</a></td>';
                                 If (isset($value18)) {
                                     if (1 == $row['fk_access']) {
                                         echo '<td><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value17 . $value18 . '" </img></a></td></tr>';
@@ -274,64 +281,100 @@ echo '<div class="pageWrap">';
                             $value13 = $row['ui_catalogue'];
                             $value14 = $row['connection'];
                             //formulate header
-                            echo "SEAL DESCRIPTION";
-                            echo "<br> DIGISIG ID: " . $id;
-                            echo "<br> Permalink: http://digisig.org/entity/" . $id . "<br>";
-
+                            echo '<div class="seal sealPiece">SEAL</div>
+                            <div class="sealMetadata sealPiece"><span class="sealLabel">Digisig ID: </span><span id="digisigID">DIGISIG ID: ' .$id.'</span>
+                            <span clss="sealLabel">Permalink: </span><span id="permalink">http://digisig.org/entity/'. $id .'</span>
+                            <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
+                            </div>';
+                            $tableHeader = "<thead><th>Title</th>";
+                            $tableBody = "<tbody><tr>";
+                            
                             // title
-                            echo $value1 . ":" . $value4;
+                            //echo $value1 . ":" . $value4;
+                            $tableBody .= "<td>".$value1.":".$value4."</td>";
                             if (isset($value2)) {
-                                echo ", vol." . $value2;
+                                $tableHeader .= "<th>Volume</th>";
+                                $tableBody .= "<td>".$value2."</td>";
+                                //echo ", vol." . $value2;
                             }
                             if (isset($value3)) {
                                 if (strpos($value3, '-') !== false) {
-                                    echo ", p." . $value3;
+                                    $tableHeader .= "<th>Page</th>";
+                                    $tableBody .= "<td>p.".$value3."</td>";
+                                    //echo ", p." . $value3;
                                 } else {
-                                    echo ", pp." . $value3;
+                                    $tableHeader .= "<th>Page</th>";
+                                    $tableBody .= "<td>pp.".$value3."</td>";
+                                    //echo ", pp." . $value3;
                                 }
                             }
                             if (isset($value13)) {
-                                echo '<a href="' . $value14 . $value13 . '" target="_blank">external link</a>';
+                                $tableHeader .= "<th>External Link</th>";
+                                $tableBody .= "<td>" . $value14 . $value13 . "</td>";
+                                //echo '<a href="' . $value14 . $value13 . '" target="_blank">external link</a>';
                             }
                             //output entry -- only output variables with values
 
                             if (isset($value5)) {
-                                echo '<br><br> Name:' . $value5 . '<br>';
+                                $tableHeader .= "<th>Name</th>";
+                                $tableBody .= "<td>".$value5."</td>";
+                                //echo '<br><br> Name:' . $value5 . '<br>';
                             }
 
                             if (isset($value6)) {
-                                echo '<br> Motif:' . $value6 . '<br>';
+                                $tableHeader .= "<th>Motif</th>";
+                                $tableBody .= "<td>".$value6."</td>";
+                                //echo '<br> Motif:' . $value6 . '<br>';
                             }
 
                             if (isset($value7)) {
-                                echo '<br> Legend:' . $value7 . '<br>';
+                                $tableHeader .= "<th>Legend</th>";
+                                $tableBody .= "<td>".$value7."</td>";
+                                //echo '<br> Legend:' . $value7 . '<br>';
                             }
 
                             if (isset($value8)) {
-                                echo '<br> Shape:' . $value8 . '<br>';
+                                $tableHeader .= "<th>Shape</th>";
+                                $tableBody .= "<td>".$value8."</td>";
+                                //echo '<br> Shape:' . $value8 . '<br>';
                             }
 
                             if (isset($value9)) {
-                                echo '<br> Size Vertical:' . $value9 . '<br>';
+                                $tableHeader .= "<th>Size Y</th>";
+                                $tableBody .= "<td>".$value9."</td>";
+                                //echo '<br> Size Vertical:' . $value9 . '<br>';
                             }
 
                             if (isset($value10)) {
-                                echo '<br> Size Horizontal:' . $value10 . '<br>';
+                                $tableHeader .= "<th>Size H</th>";
+                                $tableBody .= "<td>".$value10."</td>";
+                                //echo '<br> Size Horizontal:' . $value10 . '<br>';
                             }
 
                             //prepare the photograph -- if it is available
                             if (isset($value12)) {
+                                $tableHeader = "<th>Image</th>";
+                                
                                 if (1 == $row['fk_access']) {
-                                    echo '<a href="' . $description . $value12 . '" data-lightbox="example-1" data-title=""><img src="' . $description . $value12 . '" height=200></img></a><br>';
+                                    $tableBody .= '<td><img class="sealThumbnail" src="' . $description . $value12 . '"/>'
+                                    . '<input class="digiBtn viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/></td>';
+                                   
+                                    //echo '<a href="' . $description . $value12 . '" data-lightbox="example-1" data-title=""><img src="' . $description . $value12 . '" height=200></img></a><br>';
                                 } else if (isset($_SESSION['userID']) && ($_SESSION['fk_access'] == $row['fk_access'] || $_SESSION['fk_repository'] == $row['fk_repository'])) {
-                                    echo '<a href="' . $description . $value12 . '" data-lightbox="example-1" data-title=""><img src="' . $description . $value12 . '" height=200></img></a><br>';
+                                    $tableBody.= '<td><img class="sealThumbnail" src="' . $description . $value12 . '" height="200"/>'
+                                    . '<input class="digiBtn viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/></td>';
+                                   // echo '<a href="' . $description . $value12 . '" data-lightbox="example-1" data-title=""><img src="' . $description . $value12 . '" height=200></img></a><br>';
                                 } else {
-                                    echo '<td><a href="' . $default . 'restricted.jpg"><img src="' . $default . 'restricted_thumb.jpg" height=50></img></a></td></tr>';
+                                    echo '<td><img class="sealThumbnail" src="' . $default . 'restricted_thumb.jpg" height=50/>'
+                                    . '<input class="digiBtn viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/></td>';
+                                    //echo '<td><a href="' . $default . 'restricted.jpg"><img src="' . $default . 'restricted_thumb.jpg" height=50></img></a></td></tr>';
                                 }
                             }
 
                             //link to seal page
-                            echo '<br><a href=' . $address . '/entity/' . $value11 . '>view seal</a><br>';
+                            $tableHeader .= "<th>Seal Link</th></thead>";
+                            $tableBody .= "<td><a href='". $address ."/entity/". $value11."'>view seal</a></td></tr></tbody>";
+                            //echo '<br><a href=' . $address . '/entity/' . $value11 . '>view seal</a><br>';
 
                             //check for other seal descriptions
 
@@ -339,6 +382,7 @@ echo '<div class="pageWrap">';
                             $query12result = mysqli_query($link, $query12);
 
                             $count = mysqli_num_rows($query12result);
+                            echo "<table>".$tableHeader.$tableBody."</table>";
                             if ($count > 1) {
                                 echo "other descriptions";
                                 $duplicate = $id;
@@ -349,9 +393,11 @@ echo '<div class="pageWrap">';
                         //for a seal
                         If ($entity == 1) {
 
-                            echo "SEAL";
-                            echo "<br> DIGISIG ID:" . $id;
-                            echo "<br> Permalink: http://digisig.org/entity/" . $id;
+                            echo '<div class="seal sealPiece">SEAL</div>
+                            <div class="sealMetadata sealPiece"><span class="sealLabel">Digisig ID: </span><span id="digisigID">DIGISIG ID: ' .$id.'</span>
+                            <span clss="sealLabel">Permalink: </span><span id="permalink">http://digisig.org/entity/'. $id .'</span>
+                            <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
+                            </div>';
 
                             echo '<table class="metaTable">'
                             . '<thead><th>Shape</th><th>Height</th><th>Width</th></thead>'
@@ -368,7 +414,7 @@ echo '<div class="pageWrap">';
                             echo '<td>' . $value5 . '</td></tr>';
                             $id_seal = $row['id_seal'];
 
-                            echo "</tbody></table><br>";
+                            echo "</tbody></table>";
 
                             // call seal description function to make list of associated seal descriptions
 
@@ -384,9 +430,9 @@ echo '<div class="pageWrap">';
                             // list of associated seal impressions
                             $query10 = "SELECT * FROM shelfmark_view WHERE id_seal = $id";
                             $query10result = mysqli_query($link, $query10);
-
+                            echo '<div class="separator">Examples</div>';
                             echo '<table class="metaTable"><thead><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></thead>'
-                            . '<tbody><tr><td>EXAMPLES</td></tr>';
+                            . '<tbody>';
                             $rowcount = 1;
 
                             while ($row = mysqli_fetch_array($query10result)) {
@@ -467,8 +513,8 @@ echo '<div class="pageWrap">';
 
             default :
                 echo "<div class='searchResults'>";
-                echo "<div class='resultsTitle'>Results</div>";
-                echo "<span class='separator'>publications and projects</span><br>";
+                //echo "<div class='resultsTitle'>Results</div>";
+                echo "<span class='separator'>Publications and Projects</span><br>";
 
                 $query = "SELECT DISTINCT title, uri_catalogue FROM search_view WHERE title NOT IN ('Public Index') ORDER BY title";
                 $queryresults = mysqli_query($link, $query);
@@ -477,7 +523,7 @@ echo '<div class="pageWrap">';
                     echo "<br>";
                 }
 
-                echo "<span class='separator'>repositories</span><br>";
+                echo "<span class='separator'>Repositories</span><br>";
                 $query = "SELECT DISTINCT repository_fulltitle, id_archoncode FROM shelfmark_view ORDER BY repository_fulltitle";
                 $queryresults = mysqli_query($link, $query);
                 while ($row = mysqli_fetch_assoc($queryresults)) {
@@ -485,96 +531,96 @@ echo '<div class="pageWrap">';
                     echo "<br>";
                 }
                 echo "</div>";
-                 echo'<div class="resultTemplate">
-<div class="seal sealPiece">SEAL</div>
-<div class="sealMetadata sealPiece"><span class="sealLabel">Digisig ID: </span><span id="digisigID">12345ID</span>
-<span clss="sealLabel">Permalink: </span><span id="permalink">http://www.digisig.org/entity/0123456</span>
-<input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
-</div>
-<div class="sealMetaseal sealPiece">
-<div class="sealTitle">Metaseal</div>
-<table class="metaTable">
-<thead>
-<th>Face</th>
-<th>Shape</th>
-<th>Size X</th>
-<th>Size Y</th>
-<th>Other</th>
-</thead>
-<tbody>
-<tr>
-<td>Obverse</td>
-<td>Oval</td>
-<td>70</td>
-<td>120</td>
-<td>Stuff</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sealEntry sealPiece">
-<div class="sealTitle">Entry</div>
-<table class="metaTable">
-<thead>
-<th>#</th>
-<th>Location</th>
-<th>Reference</th>
-<th>Description</th>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Stuffed Armadillo</td>
-<td>2859</td>
-<td>View</td>
-</tr>
-</tbody>
-</table>
-<table class="metaTable_offset">
-<thead>
-<th>Name</th>
-<th>Motif</th>
-<th>Legend</th>
-<th>Shape</th>
-<th>Size H</th>
-<th>Size V</th>
-<th>Thumbnail</th>
-</thead>
-<tbody>
-<tr>
-<td><a>The Seal</a></td>
-<td>Stuffed Armadillo</td>
-<td>Legend Thing</td>
-<td>oval</td>
-<td>70</td>
-<td>120</td>
-<td><a>View</a></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sealExample sealPiece">
-<div class="sealTitle">Examples</div>
-<table class="metaTable" style="display: inline-block">
-<thead>
-<th>#</th>
-<th>Form</th>
-<th>Face</th>
-<th>Shelfmark</th>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Impression</td>
-<td>Recto</td>
-<td>DL25/345</td>
-</tr>
-</tbody>
-</table>
-<img class="sealThumbnail" src="../DigiSig/images/seal.jpg"/>
-<input class="digiBtn viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/>
-</div>
-</div>';
+//                 echo'<div class="resultTemplate">
+//<div class="seal sealPiece">SEAL</div>
+//<div class="sealMetadata sealPiece"><span class="sealLabel">Digisig ID: </span><span id="digisigID">12345ID</span>
+//<span clss="sealLabel">Permalink: </span><span id="permalink">http://www.digisig.org/entity/0123456</span>
+//<input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
+//</div>
+//<div class="sealMetaseal sealPiece">
+//<div class="sealTitle">Metaseal</div>
+//<table class="metaTable">
+//<thead>
+//<th>Face</th>
+//<th>Shape</th>
+//<th>Size X</th>
+//<th>Size Y</th>
+//<th>Other</th>
+//</thead>
+//<tbody>
+//<tr>
+//<td>Obverse</td>
+//<td>Oval</td>
+//<td>70</td>
+//<td>120</td>
+//<td>Stuff</td>
+//</tr>
+//</tbody>
+//</table>
+//</div>
+//<div class="sealEntry sealPiece">
+//<div class="sealTitle">Entry</div>
+//<table class="metaTable">
+//<thead>
+//<th>#</th>
+//<th>Location</th>
+//<th>Reference</th>
+//<th>Description</th>
+//</thead>
+//<tbody>
+//<tr>
+//<td>1</td>
+//<td>Stuffed Armadillo</td>
+//<td>2859</td>
+//<td>View</td>
+//</tr>
+//</tbody>
+//</table>
+//<table class="metaTable_offset">
+//<thead>
+//<th>Name</th>
+//<th>Motif</th>
+//<th>Legend</th>
+//<th>Shape</th>
+//<th>Size H</th>
+//<th>Size V</th>
+//<th>Thumbnail</th>
+//</thead>
+//<tbody>
+//<tr>
+//<td><a>The Seal</a></td>
+//<td>Stuffed Armadillo</td>
+//<td>Legend Thing</td>
+//<td>oval</td>
+//<td>70</td>
+//<td>120</td>
+//<td><a>View</a></td>
+//</tr>
+//</tbody>
+//</table>
+//</div>
+//<div class="sealExample sealPiece">
+//<div class="sealTitle">Examples</div>
+//<table class="metaTable" style="display: inline-block">
+//<thead>
+//<th>#</th>
+//<th>Form</th>
+//<th>Face</th>
+//<th>Shelfmark</th>
+//</thead>
+//<tbody>
+//<tr>
+//<td>1</td>
+//<td>Impression</td>
+//<td>Recto</td>
+//<td>DL25/345</td>
+//</tr>
+//</tbody>
+//</table>
+//<img class="sealThumbnail" src="../DigiSig/images/seal.jpg"/>
+//<input class="digiBtn viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/>
+//</div>
+//</div>';
         }
         echo "</div>"; //close page wrap
         include "include/footer.php";
@@ -616,9 +662,9 @@ echo '<div class="pageWrap">';
 							var short_value2 = v2.substr(0, 50);
 							var lastRowNum = $('#show_more_tr_' + field).attr('last_row_num');
 							if (v2.length > 50) {
-								$('#show_more_tr_' + field).before('<tr><td>' + lastRowNum + '</td><td><a id="a_' + v1 + '" href=' + address + '/entity/' + v1 + '>' + short_value2 + '...</a> <a id="get_' + v1 + '" onclick="getFullText(' + v1 + ')">(More)</a><input type="hidden" id="full_' + v1 + '" value="' + v2 + '" /><input type="hidden" id="short_' + v1 + '" value="' + short_value2 + '" /></td><td>' + v3 + '<td></tr>');
+								$('#show_more_tr_' + field).before('<tr><td>' + lastRowNum + '</td><td><a id="a_' + v1 + '" href=' + address + '/entity/' + v1 + '>' + short_value2 + '...</a> <a id="get_' + v1 + '" onclick="getFullText(' + v1 + ')">(More)</a><input type="hidden" id="full_' + v1 + '" value="' + v2 + '" /><input type="hidden" id="short_' + v1 + '" value="' + short_value2 + '" /></td><td>' + v3 + '</td></tr>');
 							} else {
-								$('#show_more_tr_' + field).before('<tr><td>' + lastRowNum + '</td><td><a id="a_' + v1 + '" href=' + address + '/entity/' + v1 + '>' + v2 + '</a></td><td>' + v3 + '<td></tr>');
+								$('#show_more_tr_' + field).before('<tr><td>' + lastRowNum + '</td><td><a id="a_' + v1 + '" href=' + address + '/entity/' + v1 + '>' + v2 + '</a></td><td>' + v3 + '</td></tr>');
 							}
 							lastRowNum++;
 							$('#show_more_tr_' + field).attr('last_row_num', lastRowNum);
@@ -632,6 +678,10 @@ echo '<div class="pageWrap">';
 					}
 				});
 			}
+                        function linkToClipboard(){
+                            var linkText = $("#permalink").html();
+                            window.prompt("If you would like to copy to clipboard press 'Ctrl+C' (Windows) or 'Cmd-C' (Mac), then 'Enter' to close", linkText);
+                        }
 		</script>
 </html>
 
