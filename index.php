@@ -346,7 +346,7 @@ echo '<div class="pageWrap">';
                             }
 
                             if (isset($value10)) {
-                                $tableHeader .= "<th>Size H</th>";
+                                $tableHeader .= "<th>Size X</th>";
                                 $tableBody .= "<td>".$value10."</td>";
                                 //echo '<br> Size Horizontal:' . $value10 . '<br>';
                             }
@@ -365,7 +365,7 @@ echo '<div class="pageWrap">';
                                     . '<input class="digiBtn viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/></td>';
                                    // echo '<a href="' . $description . $value12 . '" data-lightbox="example-1" data-title=""><img src="' . $description . $value12 . '" height=200></img></a><br>';
                                 } else {
-                                    echo '<td><img class="sealThumbnail" src="' . $default . 'restricted_thumb.jpg" height=50/>'
+                                    $tableBody .= '<td><img class="sealThumbnail" src="' . $default . 'restricted_thumb.jpg" height=50/>'
                                     . '<input class="digiBtn viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/></td>';
                                     //echo '<td><a href="' . $default . 'restricted.jpg"><img src="' . $default . 'restricted_thumb.jpg" height=50></img></a></td></tr>';
                                 }
