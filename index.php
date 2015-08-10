@@ -346,7 +346,7 @@ echo '<div class="pageWrap">';
                             }
 
                             if (isset($value10)) {
-                                $tableHeader .= "<th>Size H</th>";
+                                $tableHeader .= "<th>Size X</th>";
                                 $tableBody .= "<td>".$value10."</td>";
                                 //echo '<br> Size Horizontal:' . $value10 . '<br>';
                             }
