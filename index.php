@@ -237,14 +237,14 @@ echo '<div class="pageWrap">';
                                 echo '<td>' . $value4 . '</td>';
                                 echo '<td>' . $value5 . '</td>';
                                 echo '<td>' . $value6 . '</td>';
-                                echo '<td><a href="' . $address . '/entity/' . $value7 . '">view seal</a></td>';
+                                echo '<td><a href="' . $address . '/entity/' . $value7 . '">view seal entry</a></td>';
                                 If (isset($value18)) {
                                     if (1 == $row['fk_access']) {
-                                        echo '<td><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value17 . $value18 . '" </img></a></td></tr>';
+                                        echo '<td><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value17 . $value18 . '" /></a></td></tr>';
                                     } else if (isset($_SESSION['userID']) && ($_SESSION['fk_access'] == $row['fk_access'] || $_SESSION['fk_repository'] == $row['fk_repository'])) {
-                                        echo '<td><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value17 . $value18 . '" </img></a></td></tr>';
+                                        echo '<td><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value17 . $value18 . '" /></a></td></tr>';
                                     } else {
-                                        echo '<td><a href="' . $default . 'restricted.jpg" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $default . 'restricted_thumb.jpg"></img></a></td></tr>';
+                                        echo '<td><a href="' . $default . 'restricted.jpg" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $default . 'restricted_thumb.jpg"/></a></td></tr>';
                                     }
                                 }
 
@@ -281,8 +281,8 @@ echo '<div class="pageWrap">';
                             $value13 = $row['ui_catalogue'];
                             $value14 = $row['connection'];
                             //formulate header
-                            echo '<div class="seal sealPiece">SEAL</div>
-                            <div class="sealMetadata sealPiece"><span class="sealLabel">Digisig ID: </span><span id="digisigID">DIGISIG ID: ' .$id.'</span>
+                            echo '<div class="seal sealPiece">Seal Description</div>
+                            <div class="sealMetadata sealPiece"><span class="sealLabel">DigiSig ID: </span><span id="digisigID">' .$id.'</span>
                             <span clss="sealLabel">Permalink: </span><span id="permalink">http://digisig.org/entity/'. $id .'</span>
                             <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
                             </div>';
@@ -310,7 +310,7 @@ echo '<div class="pageWrap">';
                             }
                             if (isset($value13)) {
                                 $tableHeader .= "<th>External Link</th>";
-                                $tableBody .= "<td>" . $value14 . $value13 . "</td>";
+                                $tableBody .= "<td><a href='" . $value14 . $value13 . "'>" . $value14 . $value13 . "</a></td>";
                                 //echo '<a href="' . $value14 . $value13 . '" target="_blank">external link</a>';
                             }
                             //output entry -- only output variables with values
@@ -346,14 +346,14 @@ echo '<div class="pageWrap">';
                             }
 
                             if (isset($value10)) {
-                                $tableHeader .= "<th>Size H</th>";
+                                $tableHeader .= "<th>Size X</th>";
                                 $tableBody .= "<td>".$value10."</td>";
                                 //echo '<br> Size Horizontal:' . $value10 . '<br>';
                             }
 
                             //prepare the photograph -- if it is available
                             if (isset($value12)) {
-                                $tableHeader = "<th>Image</th>";
+                                $tableHeader .= "<th>Image</th>";
                                 
                                 if (1 == $row['fk_access']) {
                                     $tableBody .= '<td><img class="sealThumbnail" src="' . $description . $value12 . '"/>'
@@ -365,7 +365,7 @@ echo '<div class="pageWrap">';
                                     . '<input class="digiBtn viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/></td>';
                                    // echo '<a href="' . $description . $value12 . '" data-lightbox="example-1" data-title=""><img src="' . $description . $value12 . '" height=200></img></a><br>';
                                 } else {
-                                    echo '<td><img class="sealThumbnail" src="' . $default . 'restricted_thumb.jpg" height=50/>'
+                                    $tableBody .= '<td><img class="sealThumbnail" src="' . $default . 'restricted_thumb.jpg" height=50/>'
                                     . '<input class="digiBtn viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/></td>';
                                     //echo '<td><a href="' . $default . 'restricted.jpg"><img src="' . $default . 'restricted_thumb.jpg" height=50></img></a></td></tr>';
                                 }
@@ -373,9 +373,9 @@ echo '<div class="pageWrap">';
 
                             //link to seal page
                             $tableHeader .= "<th>Seal Link</th></thead>";
-                            $tableBody .= "<td><a href='". $address ."/entity/". $value11."'>view seal</a></td></tr></tbody>";
+                            $tableBody .= "<td><a href='". $address ."/entity/". $value11."'>view seal entry</a></td></tr></tbody>";
                             echo "<table>".$tableHeader.$tableBody."</table>";
-                            //echo '<br><a href=' . $address . '/entity/' . $value11 . '>view seal</a><br>';
+                            //echo '<br><a href=' . $address . '/entity/' . $value11 . '>view seal entry</a><br>';
 
                             //check for other seal descriptions
 
@@ -386,7 +386,7 @@ echo '<div class="pageWrap">';
                                 $count = mysqli_num_rows($query12result);
                                 if ($count > 1) {
                                     //echo "other descriptions";
-                                    echo "<div class='separator_2'>Similar Entries</div>";
+                                    echo "<div class='separator_2'>Other Descriptions</div>";
                                     $duplicate = $id;
                                     sealdescription($query12result, $address, $duplicate);
                                 }
@@ -424,9 +424,10 @@ echo '<div class="pageWrap">';
                             $query12 = "SELECT * FROM sealdescription_view WHERE id_seal = $id";
                             $query12result = mysqli_query($link, $query12);
                             $count = mysqli_num_rows($query12result);
-                            if ($count > 1) {
+                            $duplicate = $id;
+                            if ($count > 0) {
                                 //echo "<div class='separator_2'>Other Descriptions</div>";
-                                echo "<div class='separator_2'>Similar Entries</div>";
+                                echo "<br><div class='separator_2'>Other Descriptions</div>";
                                 $duplicate = $id;
                                 sealdescription($query12result, $address, $duplicate);
                             }
@@ -435,7 +436,7 @@ echo '<div class="pageWrap">';
                             $query10 = "SELECT * FROM shelfmark_view WHERE id_seal = $id";
                             $query10result = mysqli_query($link, $query10);
                             echo '<div class="separator_2">Examples</div>';
-                            echo '<table class="metaTable"><thead><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>Shape</th><th>Dated</th><th>External Link</th><th>Thumbnail</th></thead>'
+                            echo '<table class="metaTable"><thead><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>Dated</th><th>External Link</th><th>Thumbnail</th></thead>'
                             . '<tbody>';
                             $rowcount = 1;
 
@@ -471,7 +472,7 @@ echo '<div class="pageWrap">';
                                 echo '<td>' . $value1 . '</td>';
                                 echo '<td>' . $value2 . '</td>';
                                 echo '<td>' . $value3 . '</td>';
-                                echo '<td>' . $value4 . '</td>';
+//                                echo '<td>' . $value4 . '</td>';
                                 echo '<td> dated:' . $value9 . ' to ' . $value10;
                                 echo '<td><a href=' . $address . '/entity/' . $value6 . '>' . $value5 . '</a></td>';
                                 if (isset($value13)) {
@@ -499,7 +500,55 @@ echo '<div class="pageWrap">';
 
             case 'about' :
                 {
-                    echo "<br>Text about the project";
+                    echo "<br>
+                    <div class='aboutHeader'>About Digitial Sigillography</div><br>
+                    Hundreds of thousands of seals survive from medieval Europe, and they provide unique and
+
+                    important information. A seal is ‘a mark of authority or ownership, pressed in relief upon a plastic
+
+                    material by the impact of a matrix or die-engraved intaglio’. Men and women from all levels of
+
+                    society used seals to validate documents, but also to make statements about their family
+
+                    connections, social aspirations and personal values. Seals incorporate both text and images so they
+
+                    are powerful tools of expression. In a period starved of evidence concerning the individual, seals
+
+                    offer insight into identity, and expose regional and local cultural variations. The advent of digital
+
+                    technology offers an unprecedented and exciting opportunity to harness the extraordinary potential
+
+                    of this unique historical resource.
+
+
+                    Today medieval seals are preserved in archives and museums across the British Isles where they are
+
+                    often prominently and proudly displayed as iconic monuments of artistic and cultural heritage.
+
+                    However, they remain poorly understood because there is no central place where researchers and
+
+                    members of the general public can turn for information. This is partly because much of the
+
+                    information is trapped in outdated and unstandardized formats. Many institutions began
+
+                    cataloguing their collections in the nineteenth and twentieth centuries, well before the advent of
+
+                    electronic data management systems. The result is that we now have information in a wide variety
+
+                    of formats ranging from card indexes, to printed catalogues, to electronic databases.
+
+
+                    Scholars have long argued that to realize the full potential of sigillographic information, these
+
+                    datasets need to be integrated. We have now reached the point where the technology makes this
+
+                    entirely feasible, so sigillography has reached a critical juncture. The challenge is no longer
+
+                    technological, but rather conceptual. The shift to a digital format offers an opportunity to investigate
+
+                    the potential of new types of catalogues and indexes that enable novel ways of accessing the
+
+                    materials, while also facilitating access for both scholars and the public.";
                 }
                 break;
 
@@ -511,11 +560,50 @@ echo '<div class="pageWrap">';
 
             case 'contact' :
                 {
-                    echo "<br>Where to contact us";
+                    echo "<br>Center for Digital Humanities<br>
+                            Pius XII Memorial Library, 324 AB Tower<br>
+                            Saint Louis University<br>
+                            3650 Lindell Blvd<br>
+                            St. Louis, MO 63103<br>
+                            <a href='http://slu.academia.edu/JohnMcEwan'>http://slu.academia.edu/JohnMcEwan</a>";
                 }
                 break;
 
             default :
+                echo "<div class='homeCopy'>
+                    DigiSig<br><br>
+
+                    DigiSig is an experimental digital humanities project which brings together a number of major
+                    datasets, produced by the archives, museums, and the higher education sectors, that are publicly
+                    accessible and extensively used by the public and academic researchers. These datasets have been
+                    reconfigured, enhanced and integrated, so that can be searched in concert, and photographs added,
+                    where possible. The system enables users to access sigillographic information in traditional ways,
+                    but in a novel format.
+
+                    <br><br>The Author<br><br>
+
+                    John McEwan BA (University of Western Ontario), MA PhD (Royal Holloway, University of London)
+                    specializes in the political, social and cultural history of medieval Britain. His research focuses on
+                    social organization, local government, and visual culture in London, c.1100-1350. He is involved in a
+                    number of projects that investigate the application of electronic data management tools, including
+                    geographic information systems, to the analysis of medieval sources. Among his recent publications
+                    are: ‘Making a mark in medieval London: the social and economic status of seal-makers, c.1200-
+                    1350', in Seals and their Context in the Middle Ages (2015), 'The politics of financial accountability:
+                    auditing the chamberlain in London c.1298-1349', in Hiérarchie des Pouvoirs, Délégation de Pouvoir
+                    et Responsabilité des Administrateurs dans L’Antiquité et au Moyen Âge (2012), and ‘The aldermen
+                    of London, c.1200-80: Alfred Beaven revisited’, Transactions of the London and Middlesex
+                    Archaeological Society (2012). His current book project is concerned with the formation, articulation
+                    and expression of collective identities in thirteenth-century London.
+                    
+                    <br><br>Acknowledgements<br><br>
+                    This project was made possible by the generous support of a large number of scholars and
+                    repositories who have offered both guidance and advice, as well as data and special access to the
+                    historical materials. The project was carried out in 2014-15 at the Centre for Digital Humanities at St
+                    Louis University, Missouri thanks to a fellowship provided by the Wash Allen foundation. The author
+                    wishes to thank all the members the centre's web development team, as well as James Ginther and
+                    Debra Cashions, for their support throughout the year. 
+                    </div><br>";
+                
                 echo "<div class='searchResults'>";
                 //echo "<div class='resultsTitle'>Results</div>";
                 echo "<span class='separator'>Publications and Projects</span><br>";
@@ -535,96 +623,7 @@ echo '<div class="pageWrap">';
                     echo "<br>";
                 }
                 echo "</div>";
-//                 echo'<div class="resultTemplate">
-//<div class="seal sealPiece">SEAL</div>
-//<div class="sealMetadata sealPiece"><span class="sealLabel">Digisig ID: </span><span id="digisigID">12345ID</span>
-//<span clss="sealLabel">Permalink: </span><span id="permalink">http://www.digisig.org/entity/0123456</span>
-//<input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
-//</div>
-//<div class="sealMetaseal sealPiece">
-//<div class="sealTitle">Metaseal</div>
-//<table class="metaTable">
-//<thead>
-//<th>Face</th>
-//<th>Shape</th>
-//<th>Size X</th>
-//<th>Size Y</th>
-//<th>Other</th>
-//</thead>
-//<tbody>
-//<tr>
-//<td>Obverse</td>
-//<td>Oval</td>
-//<td>70</td>
-//<td>120</td>
-//<td>Stuff</td>
-//</tr>
-//</tbody>
-//</table>
-//</div>
-//<div class="sealEntry sealPiece">
-//<div class="sealTitle">Entry</div>
-//<table class="metaTable">
-//<thead>
-//<th>#</th>
-//<th>Location</th>
-//<th>Reference</th>
-//<th>Description</th>
-//</thead>
-//<tbody>
-//<tr>
-//<td>1</td>
-//<td>Stuffed Armadillo</td>
-//<td>2859</td>
-//<td>View</td>
-//</tr>
-//</tbody>
-//</table>
-//<table class="metaTable_offset">
-//<thead>
-//<th>Name</th>
-//<th>Motif</th>
-//<th>Legend</th>
-//<th>Shape</th>
-//<th>Size H</th>
-//<th>Size V</th>
-//<th>Thumbnail</th>
-//</thead>
-//<tbody>
-//<tr>
-//<td><a>The Seal</a></td>
-//<td>Stuffed Armadillo</td>
-//<td>Legend Thing</td>
-//<td>oval</td>
-//<td>70</td>
-//<td>120</td>
-//<td><a>View</a></td>
-//</tr>
-//</tbody>
-//</table>
-//</div>
-//<div class="sealExample sealPiece">
-//<div class="sealTitle">Examples</div>
-//<table class="metaTable" style="display: inline-block">
-//<thead>
-//<th>#</th>
-//<th>Form</th>
-//<th>Face</th>
-//<th>Shelfmark</th>
-//</thead>
-//<tbody>
-//<tr>
-//<td>1</td>
-//<td>Impression</td>
-//<td>Recto</td>
-//<td>DL25/345</td>
-//</tr>
-//</tbody>
-//</table>
-//<img class="sealThumbnail" src="../DigiSig/images/seal.jpg"/>
-//<input class="digiBtn viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/>
-//</div>
-//</div>';
+
         }
         echo "</div>"; //close page wrap
         include "include/footer.php";

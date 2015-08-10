@@ -82,17 +82,14 @@
 }
 /* Search Results Area */
 .searchResults{
-    border: 1px solid black;
 }
 /* Search Results links */
 .searchResults a{
     margin: 0px 10px;
-    padding-left: 10px;
 }
 /* Titles separating search results */
 .separator{
     font-weight: bold;
-    padding-left: 10px;
     text-decoration: underline;
     font-size: 17px;
 }

@@ -7,18 +7,18 @@
 </head>
 
 <body>
-    <p>
+<!--    <p>
         DigiSig is a new resource for the study of sigillography, particularly medieval 
         seals from the British Isles.
         It currently contains:
-        <?php echo "<u><b>$sealcount</b></u>" ?> seal records and
-        <?php echo "<u><b>$imagecount</b></u>" ?> images 
+        <?php //echo "<u><b>$sealcount</b></u>" ?> seal records and
+        <?php //echo "<u><b>$imagecount</b></u>" ?> images 
     </p>
     <p>
         Based at the centre for Digital Humanities at St Louis University, Missouri, 
         it aims to foster sigillographic research by linking and matching sigillographic 
         datasets and making that information available.
-    </p>
+    </p>-->
     <form class="searchArea" name = "search" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" onsubmit="submitFormSearch()">
         <div class="searchTitle">Search</div>
         <div class="searchPiece">
@@ -28,7 +28,7 @@
                 $query = "SELECT pk_field, field_url, field_title, field_order FROM field ORDER BY field_order";
                 $searchfields = mysqli_query($link, $query);
                 $default_select = "";
-                echo "<option value='holder'>Select Field</option>"; 
+                echo "<option value='holder' disabled>Select Field</option>"; 
                 while ($row = mysqli_fetch_array($searchfields)){
                     if($row['field_url'] === "all_fields"){
                         $default_selected = "selected";
@@ -64,32 +64,20 @@
                     $query1 = "SELECT pk_index, a_index, index_order, index_url FROM tb_index ORDER BY index_order";
                     $searchindex = mysqli_query($link, $query1);
                     $default_selected = "";
-                    echo "<option value='holder'>Select Index</option>";
-                    //This query returns a blank, which is where the errors for this page are coming from
-                    while ($row = mysqli_fetch_array($searchindex)){
-                        if($row['index_url'] === "all"){
-                            $default_selected = "selected";
-                        }
-                        else{
-                            $default_selected = "";
-                        }
-                        echo "<option value=".$row['index_url'] . " ".$default_selected.">" . $row['a_index'] . "</option>";               
-                        }
-                            
+                    $all_indexes = "<option value='all' selected><b>All Indexes</b></option>";
+                    echo "<option value='holder' disabled>Select Index</option>";
+                    echo $all_indexes;
                     $query2 = "SELECT pk_index, a_index, index_order, index_url, fk_catalogue FROM tb_index WHERE fk_catalogue > 0 ORDER BY index_order";
-                    $searchindex = mysqli_query($link, $query2);
-                    //This query returns a blank, which is where the errors for this page are coming from
+                    $searchindex1 = mysqli_query($link, $query2);
                     echo '<option value= "catalogue" disabled>Catalogue</option>';
-                    while ($row = mysqli_fetch_array($searchindex)){
+                    while ($row = mysqli_fetch_array($searchindex1)){
                         echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";               
                         }
-
-                $query3 = "SELECT pk_index, a_index, index_order, index_url, fk_repository FROM tb_index WHERE fk_repository > 0 ORDER BY index_order";
-                $searchindex = mysqli_query($link, $query3);
-                echo '<option value= "catalogue" disabled>Repository</option>';
-                //This query returns a blank, which is where the errors for this page are coming from
-                while ($row = mysqli_fetch_array($searchindex)){
-                    echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";
+                    $query3 = "SELECT pk_index, a_index, index_order, index_url, fk_repository FROM tb_index WHERE fk_repository > 0 ORDER BY index_order";
+                    $searchindex2 = mysqli_query($link, $query3);
+                    echo '<option value= "catalogue" disabled>Repository</option>';
+                    while ($row = mysqli_fetch_array($searchindex2)){
+                        echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";
                     }
             ?>
         </select>
