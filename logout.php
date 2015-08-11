@@ -1,4 +1,6 @@
 <?php
+    include "include/constants.php";
+    session_start();
     $_SESSION['userID'] = 1;
     $_SESSION['fk_access'] = 1;
     $_SESSION['fk_repository'] = 0;
@@ -8,6 +10,7 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="../DigiSig/include/lightbox/css/lightbox.css">
+    <link rel="stylesheet" href="../DigiSig/include/lightbox/css/digisigSkin.css.css">
     <?php echo "<title>" . $title . "</title>" ?>
 </head>
 
