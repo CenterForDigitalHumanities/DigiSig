@@ -537,74 +537,30 @@ echo '<div class="pageWrap">';
                     echo "<br>
                     <div class='aboutHeader'>About Digitial Sigillography</div><br>
                     Hundreds of thousands of seals survive from medieval Europe, and they provide unique and
-
                     important information. A seal is ‘a mark of authority or ownership, pressed in relief upon a plastic
-
                     material by the impact of a matrix or die-engraved intaglio’. Men and women from all levels of
-
                     society used seals to validate documents, but also to make statements about their family
-
                     connections, social aspirations and personal values. Seals incorporate both text and images so they
-
                     are powerful tools of expression. In a period starved of evidence concerning the individual, seals
-
                     offer insight into identity, and expose regional and local cultural variations. The advent of digital
-
                     technology offers an unprecedented and exciting opportunity to harness the extraordinary potential
-
-                    of this unique historical resource.
-
-
+                    of this unique historical resource.<br><br>
                     Today medieval seals are preserved in archives and museums across the British Isles where they are
-
                     often prominently and proudly displayed as iconic monuments of artistic and cultural heritage.
-
                     However, they remain poorly understood because there is no central place where researchers and
-
                     members of the general public can turn for information. This is partly because much of the
-
                     information is trapped in outdated and unstandardized formats. Many institutions began
-
                     cataloguing their collections in the nineteenth and twentieth centuries, well before the advent of
-
                     electronic data management systems. The result is that we now have information in a wide variety
-
                     of formats ranging from card indexes, to printed catalogues, to electronic databases.
-
-
+                    <br><br>
                     Scholars have long argued that to realize the full potential of sigillographic information, these
-
                     datasets need to be integrated. We have now reached the point where the technology makes this
-
                     entirely feasible, so sigillography has reached a critical juncture. The challenge is no longer
-
                     technological, but rather conceptual. The shift to a digital format offers an opportunity to investigate
-
                     the potential of new types of catalogues and indexes that enable novel ways of accessing the
-
-                    materials, while also facilitating access for both scholars and the public.";
-                }
-                break;
-
-            case 'advanced search' :
-                {
-                    echo "Section under construction. Please check back regularly for updates";
-                }
-                break;
-
-            case 'contact' :
-                {
-                    echo "<br>Center for Digital Humanities<br>
-                            Pius XII Memorial Library, 324 AB Tower<br>
-                            Saint Louis University<br>
-                            3650 Lindell Blvd<br>
-                            St. Louis, MO 63103<br>
-                            <a href='http://slu.academia.edu/JohnMcEwan'>http://slu.academia.edu/JohnMcEwan</a>";
-                }
-                break;
-
-            default :
-                echo "<div class='homeCopy'>
+                    materials, while also facilitating access for both scholars and the public.
+                    <br><br>
                     DigiSig<br><br>
 
                     DigiSig is an experimental digital humanities project which brings together a number of major
@@ -636,8 +592,40 @@ echo '<div class="pageWrap">';
                     Louis University, Missouri thanks to a fellowship provided by the Wash Allen foundation. The author
                     wishes to thank all the members the centre's web development team, as well as James Ginther and
                     Debra Cashions, for their support throughout the year. 
-                    </div><br>";
-                
+                    ";
+                }
+                break;
+
+            case 'advanced search' :
+                {
+                    echo "Section under construction. Please check back regularly for updates";
+                }
+                break;
+
+            case 'contact' :
+                {
+                    echo "<br>Center for Digital Humanities<br>
+                            Pius XII Memorial Library, 324 AB Tower<br>
+                            Saint Louis University<br>
+                            3650 Lindell Blvd<br>
+                            St. Louis, MO 63103<br>
+                            <a href='http://slu.academia.edu/JohnMcEwan'>http://slu.academia.edu/JohnMcEwan</a>";
+                }
+                break;
+
+            default :
+                echo "<p>
+                DigiSig is a new resource for the study of sigillography, particularly medieval 
+                seals from the British Isles.
+                It currently contains:
+                <u><b>$sealcount</b></u> seal records and
+                <u><b>$imagecount</b></u> images 
+                </p>
+                <p>
+                    Based at the centre for Digital Humanities at St Louis University, Missouri, 
+                    it aims to foster sigillographic research by linking and matching sigillographic 
+                    datasets and making that information available.
+                </p>";
                 echo "<div class='searchResults'>";
                 //echo "<div class='resultsTitle'>Results</div>";
                 echo "<span class='separator'>Publications and Projects</span><br>";
