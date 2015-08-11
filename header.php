@@ -13,7 +13,7 @@ if(!isset($_SESSION['userID']) || $_SESSION['userID'] === 1){
 }
 else
 {
-    $logBtn = "<span class='login'>User: ".$_SESSION['user_email']."   </span><input class='login' type='button' value='log out' onclick='window.location=\"$basePath/digisig/logout.php\"' />";
+    $logBtn = "<span class='login' style='margin-right: 50px;'>User: ".$_SESSION['user_email']."&nbsp;&nbsp;</span><input class='login' type='button' value='log out' onclick='window.location=\"$basePath/digisig/logout.php\"' />";
 }
 
 echo '<form name ="navigate" action="'.$action.'" method="post" class="header">
