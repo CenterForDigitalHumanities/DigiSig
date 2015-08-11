@@ -74,11 +74,17 @@
     margin-left:10px;
 }
 
-.searchBtn{
-    margin-left: 10px;
+.searchBtn_1{
     background-color: white;
     border: medium double;
-    margin-left: 40px;
+    margin-left: 40px; 
+    padding: 6px;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+}
+.searchBtn_2{
+    display: none;
 }
 /* Search Results Area */
 .searchResults{
