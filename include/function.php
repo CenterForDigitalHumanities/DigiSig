@@ -43,13 +43,8 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
         if ($catalogue > 0) {
             $query5 = $query5 . " AND (fk_catalogue = '$catalogue')";
         }
-    
-        //and the ordering variable
-        //$query5 = $query5 . " ORDER BY $column" . $pagination_part;
-        //echo $query5;
+   
         $query5 = $query5 . " ORDER BY $column";
-
-        
         // the full search string applied
         $query5result = mysqli_query($link, $query5.$pagination_part);
     
