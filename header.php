@@ -5,7 +5,7 @@
 $logBtn = "";
 $action = $_SERVER['PHP_SELF'];
 if(!isset($_SESSION['userID']) || $_SESSION['userID'] === 1){
-    $logBtn = "<input class='login' type='button' value='log in' onclick='window.location=\"$basePath/DigiSig/include/login.php\"' />";
+    $logBtn = "<input class='login' type='button' value='log in' onclick='window.location=\"".$basePath."digisig/include/login.php\"' />";
     $_SESSION['userID'] = 1;
     $_SESSION['fk_access'] = 1;
     $_SESSION['fk_repository'] = 0;
