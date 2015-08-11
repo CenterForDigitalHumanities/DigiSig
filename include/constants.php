@@ -15,7 +15,7 @@ $small = $address . "/images/small/";
 $description = $address . "/images/descriptions/";
 
 # Location of default+failure photographs
-$default = $address . "/images/default/";
+$default = $address . "/images/default/restricted_thumb.jpg";
 
 # Default page title
 $title = "DIGISIG";
