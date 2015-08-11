@@ -4,6 +4,7 @@
 <?php
 $logBtn = "";
 $action = $_SERVER['PHP_SELF'];
+<<<<<<< HEAD
 if($_SESSION['userID'] === 1){
     $logBtn = "<input class='login' type='button' value='log in' onclick='window.location=\"$basePath/DigiSig/include/login.php\"' />";
     $_SESSION['userID'] = 1;
@@ -25,8 +26,4 @@ echo '<form name ="navigate" action="'.$action.'" method="post" class="header">
             '.$logBtn.'
         </p>
     </form>';
-//echo "<div class='userInfo'>User Information:<br>
-//      userID: ".$_SESSION['userID']."<br>
-//      username: ".$_SESSION['user_email']."
-//      </div>";
 ?>

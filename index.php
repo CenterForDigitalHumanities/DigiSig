@@ -269,10 +269,10 @@ echo '<div class="pageWrap">';
                                     } else if (isset($_SESSION['userID']) && ($_SESSION['fk_access'] == $row['fk_access'] || $_SESSION['fk_repository'] == $row['fk_repository'])) {
                                         echo '<td><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value17 . $value18 . '" /></a></td></tr>';
                                     } else {
-                                        echo '<td><img src="' . $default . '"/></td></tr>';
+                                        echo '<td><img src="' . $default . 'restricted_thumb.jpg"/></td></tr>';
                                     }
                                 }else{
-                                    echo '<td><img src="' . $default . '"/></td></tr>';
+                                    echo '<td><img src="' . $default . 'not_available_thumb.jpg"/></td></tr>';
                                 }
 
                                 $rowcount++;
@@ -514,11 +514,11 @@ echo '<div class="pageWrap">';
                                     } else if (isset($_SESSION['userID']) && ($_SESSION['fk_access'] == $row['fk_access'] || $_SESSION['fk_repository'] == $row['fk_repository'])) {
                                         echo '<td><a href="' . $value12 . $value13 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value12 . $value13 . '" height=50></img></a></td>';
                                     } else {
-                                        echo '<td><img src="' . $default . '" height=50></img></td>';
+                                        echo '<td><img src="' . $default . 'restricted_thumb.jpg" height=50></img></td>';
                                     }
 
                                 }else{
-                                    echo '<td><img src="' . $default . '" height=50></img></td>';
+                                    echo '<td><img src="' . $default . 'not_available_thumb.jpg" height=50></img></td>';
                                 }
                                 echo '</tr>';
                                 $rowcount++;
