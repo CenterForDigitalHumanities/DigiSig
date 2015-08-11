@@ -42,9 +42,9 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
     
         if ($catalogue > 0) {
             $query5 = $query5 . " AND (fk_catalogue = '$catalogue')";
-        }
-   
+        }   
         $query5 = $query5 . " ORDER BY $column";
+
         // the full search string applied
         $query5result = mysqli_query($link, $query5.$pagination_part);
     
@@ -109,8 +109,9 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
 
 
 function queryview($entity, $id) {
-    $link = mysqli_connect('localhost:3306', 'root', '1229@Oxford', 'digisigres');
-    // $link = mysqli_connect('localhost:3306', 'digisig', '1EMeeIIINnn', 'digisigres');
+     $link = mysqli_connect('localhost:3306', 'root', '1229@Oxford', 'digisigres');
+    //$link = mysqli_connect('localhost:3306', 'digisig', '1EMeeIIINnn', 'digisigres');
+
      //convert view number to view text string and find out what variables to return
     $query6 = "SELECT entity_view_short, entity_column_short, entity_returnedvariables_short, entity_url FROM entity WHERE entity_url = '$entity'";
     $query6result = mysqli_query($link, $query6);
