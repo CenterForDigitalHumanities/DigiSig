@@ -687,10 +687,9 @@ echo '<div class="pageWrap">';
                         function viewFullImage($btn){
                             var $image = $btn.prev();
                             var source = $image.attr("src");
-                            $("#pageShade").show();
                             $("<div class='pageShade'></div>").appendTo("body");
                             var $fullImg = $("<div class='fullImgWrap'><div class='closeBtn' onclick='closeFullImg();'>X</div><img src='"+source+"'/></div>");
-                            $("body").append($fullImg);
+                            $(".pageShade").append($fullImg);
                         }
                         function closeFullImg(){
                             $(".fullImgWrap").remove();

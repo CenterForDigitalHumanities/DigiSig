@@ -258,20 +258,32 @@ select{
     position: absolute;
     top: 0;
     left : 0;
+    text-align: center;
 }
 
 .fullImgWrap{
-    position: fixed;
-    top: 0;
-    margin: 0 auto;
+    position: relative;
     height: 100%;
+    max-width: 85%;
     width: auto;
-    background-color: black
+    background-color: black;
+    margin: 0 auto;
 }
 
 .fullImgWrap img{
     position: relative;
-    max-height: 100%;
+    max-height: 98%;
     max-width: 100%;
+    top: 2%;
+    top: 100px;
+}
+.closeBtn{
+    border: 1px solid white;
+    padding: 4px;
+    color: white;
+    position: absolute;
+    right: 4px;
+    top: 0px;
+    cursor: pointer;
 }
 
