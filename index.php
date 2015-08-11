@@ -244,8 +244,10 @@ echo '<div class="pageWrap">';
                                     } else if (isset($_SESSION['userID']) && ($_SESSION['fk_access'] == $row['fk_access'] || $_SESSION['fk_repository'] == $row['fk_repository'])) {
                                         echo '<td><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value17 . $value18 . '" /></a></td></tr>';
                                     } else {
-                                        echo '<td><a href="' . $default . 'restricted.jpg" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $default . 'restricted_thumb.jpg"/></a></td></tr>';
+                                        echo '<td><img src="' . $default . '"/></td></tr>';
                                     }
+                                }else{
+                                    echo '<td><img src="' . $default . '"/></td></tr>';
                                 }
 
                                 $rowcount++;
@@ -436,7 +438,7 @@ echo '<div class="pageWrap">';
                             $query10 = "SELECT * FROM shelfmark_view WHERE id_seal = $id";
                             $query10result = mysqli_query($link, $query10);
                             echo '<div class="separator_2">Examples</div>';
-                            echo '<table class="metaTable"><thead><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>Dated</th><th>External Link</th><th>Thumbnail</th></thead>'
+                            echo '<table class="metaTable"><thead><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>shape</th><th>Dated</th><th>External Link</th><th>Thumbnail</th></thead>'
                             . '<tbody>';
                             $rowcount = 1;
 
@@ -472,8 +474,8 @@ echo '<div class="pageWrap">';
                                 echo '<td>' . $value1 . '</td>';
                                 echo '<td>' . $value2 . '</td>';
                                 echo '<td>' . $value3 . '</td>';
-//                                echo '<td>' . $value4 . '</td>';
-                                echo '<td> dated:' . $value9 . ' to ' . $value10;
+                                echo '<td>' . $value4 . '</td>';
+                                echo '<td> dated:' . date("Y",strtotime($value9)) . ' to ' . date("Y",strtotime($value10));
                                 echo '<td><a href=' . $address . '/entity/' . $value6 . '>' . $value5 . '</a></td>';
                                 if (isset($value13)) {
 
@@ -482,9 +484,11 @@ echo '<div class="pageWrap">';
                                     } else if (isset($_SESSION['userID']) && ($_SESSION['fk_access'] == $row['fk_access'] || $_SESSION['fk_repository'] == $row['fk_repository'])) {
                                         echo '<td><a href="' . $value12 . $value13 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value12 . $value13 . '" height=50></img></a></td>';
                                     } else {
-                                        echo '<td><a href="' . $default . 'restricted.jpg" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $default . 'restricted_thumb.jpg" height=50></img></a></td></tr>';
+                                        echo '<td><img src="' . $default . '" height=50></img></td>';
                                     }
 
+                                }else{
+                                    echo '<td><img src="' . $default . '" height=50></img></td>';
                                 }
                                 echo '</tr>';
                                 $rowcount++;
@@ -633,7 +637,8 @@ echo '<div class="pageWrap">';
 		<script src="<?php echo $basePath; ?>digisig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
 		<script>
 		    var basePath = '<?php echo 'http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], '/') + 1); ?>';
-			var num_result_per_page = <?php echo $num_result_per_page ?>;
+			var num_result_per_page = parseInt(<?php echo $num_result_per_page ?>);
+			var table_text_len = 100;
 			
 			function getFullText(id) {
 				$('#a_' + id).html($('#full_' + id).val());
@@ -657,26 +662,32 @@ echo '<div class="pageWrap">';
 				}).done(function(data) {
 					if (data != '00000' && '' != data) {
 						data = JSON.parse(data);
+						var del_show_more = data['del_show_more'];
+						var c = 0;
 						for (d in data) {
 							var v1 = data[d][0];
 							var v2 = data[d][1];
 							var v3 = data[d][2];
-							var short_value2 = v2.substr(0, 50);
+							var short_value2 = v2.substr(0, table_text_len);
 							var lastRowNum = $('#show_more_tr_' + field).attr('last_row_num');
-							if (v2.length > 50) {
+							if (v2.length > table_text_len) {
 								$('#show_more_tr_' + field).before('<tr><td>' + lastRowNum + '</td><td><a id="a_' + v1 + '" href=' + address + '/entity/' + v1 + '>' + short_value2 + '...</a> <a id="get_' + v1 + '" onclick="getFullText(' + v1 + ')">(More)</a><input type="hidden" id="full_' + v1 + '" value="' + v2 + '" /><input type="hidden" id="short_' + v1 + '" value="' + short_value2 + '" /></td><td>' + v3 + '</td></tr>');
 							} else {
 								$('#show_more_tr_' + field).before('<tr><td>' + lastRowNum + '</td><td><a id="a_' + v1 + '" href=' + address + '/entity/' + v1 + '>' + v2 + '</a></td><td>' + v3 + '</td></tr>');
 							}
 							lastRowNum++;
 							$('#show_more_tr_' + field).attr('last_row_num', lastRowNum);
+							c++;
 						}
 						$('#show_more_tr_' + field).attr('last_row_num', lastRowNum--);
 						$('#load_next_pending_' + field).hide();
-						offset += parseInt(num_result_per_page);
+						offset += num_result_per_page;
 						$('#show_more_btn_' + field).attr('offset', offset);
 					} else {
 						$('#load_next_pending_' + field).hide();
+					}
+					if(c < num_result_per_page || c == 0){
+					    $('#show_more_tr_' + field).remove();
 					}
 				});
 			}

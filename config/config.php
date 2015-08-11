@@ -16,13 +16,13 @@
 
 
 # Connection
-    // $link = mysqli_connect('localhost:3306', 'root', '1229@Oxford', 'digisigres');
-    // if(!$link){
-        // die('Could not connect: ' . mysqli_error($link));
-    // }
-    
-    $link = mysqli_connect('localhost:3306', 'digisig', '1EMeeIIINnn', 'digisigres');
+    $link = mysqli_connect('localhost:3306', 'root', '1229@Oxford', 'digisigres');
     if(!$link){
         die('Could not connect: ' . mysqli_error($link));
     }
+    
+    // $link = mysqli_connect('localhost:3306', 'digisig', '1EMeeIIINnn', 'digisigres');
+    // if(!$link){
+        // die('Could not connect: ' . mysqli_error($link));
+    // }
 ?>
