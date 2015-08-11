@@ -258,8 +258,8 @@ echo '<div class="pageWrap">';
                             $row = mysqli_fetch_array($query8result);
 
                             //assign variables
-                            $value1 = $row['sdv_index'];
-                            $value2 = $row['catalogue_volume'];
+                            $value1 = $row['a_index'];
+                            $value2 = $row['collection_volume'];
                             $value3 = $row['catalogue_pagenumber'];
                             $value4 = $row['sealdescription_identifier'];
                             $value5 = $row['realizer'];
