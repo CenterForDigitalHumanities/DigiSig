@@ -52,13 +52,16 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
     
         //test to see how many rows the query returned
         $numberofresults = mysqli_num_rows($query5result);
+        //get total amout of results
+        $query5count_result = mysqli_query($link, $query5);
+        $count = mysqli_num_rows($query5count_result);
     
         //if there are returned rows (except from all_fields) then present output
     
         If ($field != "all_fields") {
             $field_str = ucfirst($field);
             If ($numberofresults > 0) {
-                echo $numberofresults;
+                echo $count;
                 if ($numberofresults > 1) {
                     echo " results found for " . $term;
                 }
@@ -95,8 +98,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                     $rowcount++;
                 }
 
-                $query5count_result = mysqli_query($link, $query5);
-                $count = mysqli_num_rows($query5count_result);
+                
                 if($numberofresults < $count){
                     echo '<tr id="show_more_tr_'.$field.'" last_row_num='.$rowcount--.'><td colspan="3"><input type="button" id="show_more_btn_'.$field.'" value="Show More" offset='.($num_result_per_page+1).' onclick=\'getNextData("'.$field.'", "'.$index.'", "'.$term.'", "'.$address.'", "'.$exact.'", '.$limit.')\' /><span id="load_next_pending_'.$field.'" style="display:none">Loading...</span></td></tr></table>';    
                 }else{
