@@ -2,7 +2,7 @@
     $_SESSION['userID'] = 1;
     $_SESSION['fk_access'] = 1;
     $_SESSION['fk_repository'] = 0;
-    $_SESSION['user_email'] = "";
+    $_SESSION['user_email'] = "DigiSig";
 ?>
 <html>
 <head>

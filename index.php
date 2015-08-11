@@ -168,15 +168,20 @@ echo '<div class="pageWrap">';
                             
                             //echo "ITEM";
                             echo '<div class="seal sealPiece">ITEM</div>
-                            <div class="sealMetadata sealPiece"><span class="sealLabel">Digisig ID: </span><span id="digisigID">DIGISIG ID: ' .$id.'</span>
-                            <span clss="sealLabel">Permalink: </span><span id="permalink">http://digisig.org/entity/'. $id .'</span>
-                            <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
-                            </div>';
+                            <div class="sealMetadata sealPiece">
+                                <span class="sealLabel">Title: </span><span id="title">'.$value1.':'.$value2.'</span>
+                            </div>
+                            <div class="sealMetadata sealPiece">
+                                <span class="sealLabel">Digisig ID: </span><span id="digisigID">' .$id.'</span>
+                                <span clss="sealLabel">Permalink: </span><span id="permalink">http://digisig.org/entity/'. $id .'</span>
+                                <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
+                            </div>
+                            ';
 
                             //echo "<br><br>" . $value1 . ": " . $value2;
                             //all the other values listed under shelfmark are optional
-                            echo '<table class="metaTable"><thead><th>Title</th><th>Location</th><th>Description</th><th>Dated</th><th>External Link</th></thead>'
-                            . '<tbody><tr><td>'.$value1.':'.$value2.'</td><td>'.$value12.'</td><td>'.$value13.'</td><td>'.$value10.'</td><td>'.$value14.$value15.'</td></tr></tbody></table>';
+                            echo '<table class="metaTable"><thead><th>Dated</th><th>Description</th><th>Location</th><th>External Link</th></thead>'
+                            . '<tbody><tr><td>'.$value10.'</td><td>'.$value13.'</td><td>'.$value12.'</td><td><a href="'.$value14.$value15.'">'.$value14.$value15.'</a></td></tr></tbody></table>';
 //                            if (isset($value15)) {
 //                                echo '<a href="' . $value14 . $value15 . '" target="_blank">external link</a>';
 //
@@ -283,17 +288,22 @@ echo '<div class="pageWrap">';
                             $value13 = $row['ui_catalogue'];
                             $value14 = $row['connection'];
                             //formulate header
-                            echo '<div class="seal sealPiece">Seal Description</div>
-                            <div class="sealMetadata sealPiece"><span class="sealLabel">DigiSig ID: </span><span id="digisigID">' .$id.'</span>
-                            <span clss="sealLabel">Permalink: </span><span id="permalink">http://digisig.org/entity/'. $id .'</span>
-                            <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
-                            </div>';
-                            $tableHeader = "<thead><th>Title</th>";
+                             echo '<div class="seal sealPiece">Seal Description</div>
+                            <div class="sealMetadata sealPiece">
+                                <span class="sealLabel">Title: </span><span id="title">'.$value1.':'.$value2.'</span>
+                            </div>
+                            <div class="sealMetadata sealPiece">
+                                <span class="sealLabel">Digisig ID: </span><span id="digisigID">' .$id.'</span>
+                                <span clss="sealLabel">Permalink: </span><span id="permalink">http://digisig.org/entity/'. $id .'</span>
+                                <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
+                            </div>                           
+                            ';
+                            $tableHeader = "<thead>";
                             $tableBody = "<tbody><tr>";
                             
                             // title
                             //echo $value1 . ":" . $value4;
-                            $tableBody .= "<td>".$value1.":".$value4."</td>";
+                            //$tableBody .= "<td>".$value1.":".$value4."</td>";
                             if (isset($value2)) {
                                 $tableHeader .= "<th>Volume</th>";
                                 $tableBody .= "<td>".$value2."</td>";
@@ -399,7 +409,7 @@ echo '<div class="pageWrap">';
                         If ($entity == 1) {
 
                             echo '<div class="seal sealPiece">SEAL</div>
-                            <div class="sealMetadata sealPiece"><span class="sealLabel">Digisig ID: </span><span id="digisigID">DIGISIG ID: ' .$id.'</span>
+                            <div class="sealMetadata sealPiece"><span class="sealLabel">Digisig ID: </span><span id="digisigID">' .$id.'</span>
                             <span clss="sealLabel">Permalink: </span><span id="permalink">http://digisig.org/entity/'. $id .'</span>
                             <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
                             </div>';
@@ -438,7 +448,7 @@ echo '<div class="pageWrap">';
                             $query10 = "SELECT * FROM shelfmark_view WHERE id_seal = $id";
                             $query10result = mysqli_query($link, $query10);
                             echo '<div class="separator_2">Examples</div>';
-                            echo '<table class="metaTable"><thead><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>shape</th><th>Dated</th><th>External Link</th><th>Thumbnail</th></thead>'
+                            echo '<table class="metaTable"><thead><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>shape</th><th>Dated</th><th>Item</th><th>Thumbnail</th></thead>'
                             . '<tbody>';
                             $rowcount = 1;
 
@@ -558,7 +568,7 @@ echo '<div class="pageWrap">';
 
             case 'advanced search' :
                 {
-                    echo "<br>Text about forthcoming search options";
+                    echo "Section under construction. Please check back regularly for updates";
                 }
                 break;
 

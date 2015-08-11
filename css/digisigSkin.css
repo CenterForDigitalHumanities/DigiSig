@@ -287,3 +287,8 @@ select{
     cursor: pointer;
 }
 
+option[value="holder"]{
+    color: white !important;
+    font-weight: bold !important;
+}
+

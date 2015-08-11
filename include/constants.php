@@ -24,6 +24,6 @@ $title = "DIGISIG";
 $num_result_per_page = 100;
 
 # National Archives page to search archon codes
-$archonsearch = "http://discovery.nationalarchives.gov.uk/details/a"
+$archonsearch = "http://discovery.nationalarchives.gov.uk/details/a";
 
 ?>

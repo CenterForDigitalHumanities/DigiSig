@@ -136,7 +136,7 @@ function queryview($entity, $id) {
 
 function sealdescription ($query12result, $address, $duplicate) {
     
-    echo '<table class="metaTable"><thead><th>#</th><th>Name</th><th>Reference</th><th>External Link</th></thead><tbody>';
+    echo '<table class="metaTable"><thead><th>#</th><th>Name</th><th>Reference</th><th>Seal Description</th></thead><tbody>';
     $rowcount = 1;
 
 while ($row = mysqli_fetch_array($query12result)) {
