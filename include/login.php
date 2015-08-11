@@ -25,11 +25,12 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="../DigiSig/include/lightbox/css/lightbox.css">
-    <?php echo "<title>" . $title . "</title>" ?>
+    <?php echo "<title>Log In</title>" ?>
 </head>
 
 <body>
     <div class="container">
+        <h2 style="border-bottom: 1px solid black; width: 100%;">Log In</h2><br><br>
         <form action="../index.php" method="post">
             <div class="form-group">
                 <label for="email">Email address</label>

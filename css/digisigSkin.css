@@ -74,11 +74,17 @@
     margin-left:10px;
 }
 
-.searchBtn{
-    margin-left: 10px;
+.searchBtn_1{
     background-color: white;
     border: medium double;
-    margin-left: 40px;
+    margin-left: 40px; 
+    padding: 6px;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+}
+.searchBtn_2{
+    display: none;
 }
 /* Search Results Area */
 .searchResults{
@@ -244,3 +250,40 @@ select{
     text-indent: 1px;
     text-overflow: '';
 }
+
+.pageShade{
+    background-color: rgba(0,0,0,.3);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left : 0;
+    text-align: center;
+}
+
+.fullImgWrap{
+    position: relative;
+    height: 100%;
+    max-width: 85%;
+    width: auto;
+    background-color: black;
+    margin: 0 auto;
+}
+
+.fullImgWrap img{
+    position: relative;
+    max-height: 98%;
+    max-width: 100%;
+    top: 2%;
+    top: 100px;
+}
+.closeBtn{
+    border: 1px solid white;
+    padding: 4px;
+    color: white;
+    position: absolute;
+    right: 4px;
+    top: 0px;
+    cursor: pointer;
+}
+
