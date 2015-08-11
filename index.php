@@ -684,6 +684,18 @@ echo '<div class="pageWrap">';
                             var linkText = $("#permalink").html();
                             window.prompt("If you would like to copy to clipboard press 'Ctrl+C' (Windows) or 'Cmd-C' (Mac), then 'Enter' to close", linkText);
                         }
+                        function viewFullImage($btn){
+                            var $image = $btn.prev();
+                            var source = $image.attr("src");
+                            $("#pageShade").show();
+                            $("<div class='pageShade'></div>").appendTo("body");
+                            var $fullImg = $("<div class='fullImgWrap'><div class='closeBtn' onclick='closeFullImg();'>X</div><img src='"+source+"'/></div>");
+                            $("body").append($fullImg);
+                        }
+                        function closeFullImg(){
+                            $(".fullImgWrap").remove();
+                            $(".pageShade").remove();
+                        }
 		</script>
 </html>
 
