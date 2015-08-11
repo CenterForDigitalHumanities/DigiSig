@@ -1,24 +1,7 @@
 <?php
     include "../config/config.php";
     
-    if(isset($_POST['user_email']) && isset($_POST['password'])){
-        $email = $_POST['user_email'];
-        $pwd = $_POST['password'];
-        $login = "select * from user_digisig where user_email = '".$email."' and password='".$pwd."'";
-
-        $queryresults = mysqli_query($link, $login);
-        $count = mysqli_num_rows($queryresults);
-        if($count > 0){
-            $row = mysqli_fetch_array($queryresults);
-            $_SESSION['userID'] = $row['pk_user'];
-            $_SESSION['user_email'] = $row['user_email'];
-            $_SESSION['fk_access'] = $row['fk_access'];
-            $_SESSION['fk_repository'] = $row['fk_repository'];
-        }
-        else{
-            echo 'User email or password error, cannot log in. ';
-        }
-    }
+    
 ?>
 
 <html>
