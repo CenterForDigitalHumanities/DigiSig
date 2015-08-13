@@ -221,10 +221,10 @@ echo '<div class="pageWrap">';
                             // table detailing which seal impressions are associated with this item
                             
                             $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false);' />";
-                            echo "<div class='separator_2 indent2'>Examples</div>";
-                            if($count < 5){
+                            echo "<div class='separator_2 indent'>Examples</div>";
+                            if($count3 < 5){
                                 $addAsCard = "";
-                                echo "<div class='theCards_body indent2'>";
+                                echo "<div class='theCards_body indent'>";
                             }
                             else{
                                 echo '<table class="metaTable indent2">'
@@ -255,7 +255,7 @@ echo '<div class="pageWrap">';
                                     $value16 = $medium;
                                     $value17 = $small;
                                 }
-                                if($count < 5){
+                                if($count3 < 5){
                                     echo '<div class="card">';
                                     echo '<div class="cardInfo"><span class="cardInfoKey">#: </span> <span class="cardInfoVal">'.$addAsCard . $rowcount . '</span></div>';
                                     if(isset($value3) && $value3!==""){
@@ -286,6 +286,7 @@ echo '<div class="pageWrap">';
                                         echo '<div class="cardInfo"><span class="cardInfoKey">Thumbnail: </span>'
                                             . '<span class="cardInfoVal"><img src="' . $default . 'not_available_thumb.jpg"/></span></div>';
                                     }
+                                    echo "</div>";
                                 }
                                 else{
                                     echo '<tr><td>'.$addAsCard . $rowcount . '</td>';
@@ -309,8 +310,8 @@ echo '<div class="pageWrap">';
 
                                 $rowcount++;
                             }
-                            if($count < 5){
-                                echo '</div></div>';
+                            if($count3 < 5){
+                                echo '</div>';
                             }
                             else{
                                 echo '</tbody></table>';

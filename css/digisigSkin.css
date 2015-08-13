@@ -121,6 +121,7 @@ form[name="navigate"]{
 .pageWrap{
     margin: 0px 50px !important;
     color: #007799;
+    font-family: sans-serif !important;
 }
 /* This is the image logo and the navigation */
 .theheader{
@@ -132,6 +133,7 @@ form[name="navigate"]{
 .header{
     background-color: #079;
     color: white;
+    font-family: serif !important;
 }
 
 /* This is the footer navigation */
@@ -196,7 +198,7 @@ th{
     padding: 4px 8px !important;
 }
 td{
-    border:1px solid #079;
+    border:1px solid rgba(0,119,153, .3);
     max-width: 720px;
     padding: 4px 8px !important;
 }
