@@ -19,8 +19,9 @@
         it aims to foster sigillographic research by linking and matching sigillographic 
         datasets and making that information available.
     </p>-->
+    
     <form class="searchArea" name = "search" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" onsubmit="submitFormSearch()">
-        <div class="searchTitle">Search</div>
+        <div class="searchTitle">SEARCH</div>
         <div class="searchPiece">
         <!--<p style="color: white;">Select Field:<br/></p>-->
         <select name="field"/>

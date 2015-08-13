@@ -40,7 +40,7 @@ session_start();
         }
     }
     
-include "header.php";
+include "header.php"; 
 echo '<div class="pageWrap">';
 //user login
 
@@ -187,9 +187,9 @@ echo '<div class="pageWrap">';
                             $value15 = $row['ui_event_repository'];
                             
                             //echo "ITEM";
-                            echo '<div class="seal sealPiece">ITEM</div>
+                            echo '<div class="seal sealPiece hdr1">ITEM</div>
                             <div class="sealMetadata sealPiece">
-                                <span class="sealLabel">Title: </span><span id="title">'.$value1.':'.$value2.'</span>
+                                <span class="sealLabel hdr2">Title: </span><span id="title">'.$value1.':'.$value2.'</span>
                             </div>
                             <div class="sealMetadata sealPiece">
                                 <span class="sealLabel">Digisig ID: </span><span id="digisigID">' .$id.'</span>
@@ -221,13 +221,13 @@ echo '<div class="pageWrap">';
                             // table detailing which seal impressions are associated with this item
                             
                             $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false);' />";
-                            echo "<div class='separator_2'>Examples</div>";
+                            echo "<div class='separator_2 indent2'>Examples</div>";
                             if($count < 5){
                                 $addAsCard = "";
-                                echo "<div class='theCards_body'>";
+                                echo "<div class='theCards_body indent2'>";
                             }
                             else{
-                                echo '<table class="metaTable">'
+                                echo '<table class="metaTable indent2">'
                                 . '<thead><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>Shape</th><th>Seal Link</th><th>Thumbnail</th></thead>'
                                 . '<tbody>'; //'<tr><td></td><td>nature</td><td>number</td><td>position</td><td>shape</td></tr>'
                             }
@@ -346,9 +346,9 @@ echo '<div class="pageWrap">';
                             $value13 = $row['ui_catalogue'];
                             $value14 = $row['connection'];
                             //formulate header
-                             echo '<div class="seal sealPiece">Seal Description</div>
+                             echo '<div class="seal sealPiece hdr1">Seal Description</div>
                             <div class="sealMetadata sealPiece">
-                                <span class="sealLabel">Title: </span><span id="title">'.$value1.':'.$value2.'</span>
+                                <span class="sealLabel hdr2">Title: </span><span id="title">'.$value1.':'.$value2.'</span>
                             </div>
                             <div class="sealMetadata sealPiece">
                                 <span class="sealLabel">Digisig ID: </span><span id="digisigID">' .$id.'</span>
@@ -395,42 +395,42 @@ echo '<div class="pageWrap">';
                             if (isset($value5)) {
                                 $tableHeader .= "<th>Name</th>";
                                 $tableBody .= "<td>".$value5."</td>";
-                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Name: </span> <span class="cardInfoVal">pp.'.$value5.'</span></div>';
+                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Name: </span> <span class="cardInfoVal">'.$value5.'</span></div>';
                                 //echo '<br><br> Name:' . $value5 . '<br>';
                             }
 
                             if (isset($value6)) {
                                 $tableHeader .= "<th>Motif</th>";
                                 $tableBody .= "<td>".$value6."</td>";
-                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Motif: </span> <span class="cardInfoVal">pp.'.$value6.'</span></div>';
+                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Motif: </span> <span class="cardInfoVal">'.$value6.'</span></div>';
                                 //echo '<br> Motif:' . $value6 . '<br>';
                             }
 
                             if (isset($value7)) {
                                 $tableHeader .= "<th>Legend</th>";
                                 $tableBody .= "<td>".$value7."</td>";
-                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Legend: </span> <span class="cardInfoVal">pp.'.$value7.'</span></div>';
+                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Legend: </span> <span class="cardInfoVal">'.$value7.'</span></div>';
                                 //echo '<br> Legend:' . $value7 . '<br>';
                             }
 
                             if (isset($value8)) {
                                 $tableHeader .= "<th>Shape</th>";
                                 $tableBody .= "<td>".$value8."</td>";
-                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Shape: </span> <span class="cardInfoVal">pp.'.$value8.'</span></div>';
+                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Shape: </span> <span class="cardInfoVal">'.$value8.'</span></div>';
                                 //echo '<br> Shape:' . $value8 . '<br>';
                             }
 
                             if (isset($value9)) {
                                 $tableHeader .= "<th>Size Y</th>";
                                 $tableBody .= "<td>".$value9."</td>";
-                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Size Y: </span> <span class="cardInfoVal">pp.'.$value9.'</span></div>';
+                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Size Y: </span> <span class="cardInfoVal">'.$value9.'</span></div>';
                                 //echo '<br> Size Vertical:' . $value9 . '<br>';
                             }
 
                             if (isset($value10)) {
                                 $tableHeader .= "<th>Size X</th>";
                                 $tableBody .= "<td>".$value10."</td>";
-                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Size X: </span> <span class="cardInfoVal">pp.'.$value10.'</span></div>';
+                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Size X: </span> <span class="cardInfoVal">'.$value10.'</span></div>';
                                 //echo '<br> Size Horizontal:' . $value10 . '<br>';
                             }
 
@@ -492,29 +492,32 @@ echo '<div class="pageWrap">';
                         //for a seal
                         If ($entity == 1) {
 
-                            echo '<div class="seal sealPiece">SEAL</div>
+                            echo '<div class="sealPiece seal hdr1">SEAL</div>
                             <div class="sealMetadata sealPiece"><span class="sealLabel">Digisig ID: </span><span id="digisigID">' .$id.'</span>
                             <span clss="sealLabel">Permalink: </span><span id="permalink">http://digisig.org/entity/'. $id .'</span>
                             <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
                             </div>';
             //perhaps this could be a card?
-                            echo '<table class="metaTable">'
-                            . '<thead><th>Shape</th><th>Height</th><th>Width</th></thead>'
-                            . '<tbody><tr>';
+                            $shapeDims = '<div class="sealMetadata sealPiece">';
+                            
 
                             // note that a seal can have two faces but I am going to assume that the double side ones are the same
                             $row = mysqli_fetch_array($query8result);
                             $value3 = $row['shape'];
                             $value4 = $row['face_vertical'];
                             $value5 = $row['face_horizontal'];
-
-                            echo '<td>' . $value3 . '</td>';
-                            echo '<td>' . $value4 . '</td>';
-                            echo '<td>' . $value5 . '</td></tr>';
+                            if(isset($value3) && $value3!==""){
+                                $shapeDims .= "<span class='sealLabel'>Shape: </span><span id='shape'>$value3</span>";
+                            }
+                            if(isset($value4) && $value4!==""){
+                                $shapeDims .= "<span class='sealLabel'>Height: </span><span id='height'>$value4</span>";
+                            }
+                            if(isset($value5) && $value5!==""){
+                                $shapeDims .= "<span class='sealLabel'>Width: </span><span id='width'>$value4</span>";
+                            }
+                            $shapeDims.= "</div>";
+                            echo $shapeDims;
                             $id_seal = $row['id_seal'];
-
-                            echo "</tbody></table>";
-
                             // call seal description function to make list of associated seal descriptions
 
                             $query12 = "SELECT * FROM sealdescription_view WHERE id_seal = $id";
@@ -532,16 +535,16 @@ echo '<div class="pageWrap">';
                             $query10 = "SELECT * FROM shelfmark_view WHERE id_seal = $id";
                             $query10result = mysqli_query($link, $query10);
                             $count2 = mysqli_num_rows($query10result);
-                            echo '<div class="separator_2">Examples</div>';
+                            echo '<div class="separator_2 indent2">Examples</div>';
                             
                             $rowcount = 1;
                             $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false);' />";
                             if($count2 < 5){
                                 $addAsCard = "";
-                                echo '<div class="theCards_body">';
+                                echo '<div class="theCards_body indent2">';
                             }
                             else{
-                                echo '<table class="metaTable"><thead><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>Shape</th><th>Dated</th><th>Item</th><th>Thumbnail</th></thead>'
+                                echo '<table class="metaTable indent2"><thead><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>Shape</th><th>Dated</th><th>Item</th><th>Thumbnail</th></thead>'
                                 . '<tbody>';
                             }
                             while ($row = mysqli_fetch_array($query10result)) {

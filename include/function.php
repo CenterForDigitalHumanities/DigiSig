@@ -176,11 +176,11 @@ function sealdescription ($query12result, $address, $duplicate) {
     $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false);' />";
     if($count < 5){
         $addAsCard = "";
-        echo '<div class="theCards_body">';
+        echo '<div class="theCards_body indent">';
         
     }
     else{
-        echo '<table class="metaTable"><thead><th>#</th><th>Name</th><th>Reference</th><th>Seal Description</th></thead><tbody>';
+        echo '<table class="metaTable indent"><thead><th>#</th><th>Name</th><th>Reference</th><th>Seal Description</th></thead><tbody>';
     }
     while ($row = mysqli_fetch_array($query12result)) {
         $value1 = $row['a_index'];
