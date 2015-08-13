@@ -160,6 +160,7 @@ echo '<div class="pageWrap">';
                     $query6 = "SELECT * FROM entity WHERE entity_code = $entity";
                     $query6result = mysqli_query($link, $query6);
                     $row = mysqli_fetch_object($query6result);
+                    $count = mysqli_num_rows($query6result);
                     if (isset($row) && $row != null) {
                         $column = $row -> entity_column;
                         $view = $row -> entity_view;
@@ -185,7 +186,6 @@ echo '<div class="pageWrap">';
                             $value14 = $row['connection'];
                             $value15 = $row['ui_event_repository'];
                             
-                            
                             //echo "ITEM";
                             echo '<div class="seal sealPiece">ITEM</div>
                             <div class="sealMetadata sealPiece">
@@ -200,39 +200,37 @@ echo '<div class="pageWrap">';
 
                             //echo "<br><br>" . $value1 . ": " . $value2;
                             //all the other values listed under shelfmark are optional
-                            echo '<table class="metaTable"><thead><th>Dated</th><th>Description</th><th>Location</th><th>External Link</th></thead>'
+                            if($count < 5){
+                                echo '<div class="theCards_body">';
+                                echo '<div class="card">';
+                                echo '<div class="cardInfo"><span class="cardInfoKey">Dated: </span> <span class="cardInfoVal">'.$value10.'</span></div>';
+                                echo '<div class="cardInfo"><span class="cardInfoKey">Description: </span> <span class="cardInfoVal">'.$value13.'</span></div>';
+                                echo '<div class="cardInfo"><span class="cardInfoKey">Location: </span> <span class="cardInfoVal">'.$value12.'</span></div>';
+                                echo '<div class="cardInfo"><span class="cardInfoKey">External Link: </span> <span class="cardInfoVal"><a href="'.$value14.$value15.'">'.$value14.$value15.'</a></span></div>';
+                                echo '</div></div>';
+                            }
+                            else{
+                                echo '<table class="metaTable"><thead><th>Dated</th><th>Description</th><th>Location</th><th>External Link</th></thead>'
                             . '<tbody><tr><td>'.$value10.'</td><td>'.$value13.'</td><td>'.$value12.'</td><td><a href="'.$value14.$value15.'">'.$value14.$value15.'</a></td></tr></tbody></table>';
-//                            if (isset($value15)) {
-//                                echo '<a href="' . $value14 . $value15 . '" target="_blank">external link</a>';
-//
-//                            }
-//
-//                            if (isset($value10)) {
-//                                echo "<br> dated:" . $value10;
-//                                if (isset($value11)) {
-//                                    echo " to " . $value11;
-//                                }
-//                            }
-//
-//                            if (isset($value12)) {
-//                                echo "<br> Location:" ;
-//                            }
-//
-//                            If (isset($value13)) {
-//                                echo "<br> Description:" . $value13;
-//                            }
-                            
+                            }                           
 
                             //show table of associated impressions
                             $query12 = "SELECT * FROM shelfmark_view WHERE id_item = $id ORDER BY position_latin";
                             $query12result = mysqli_query($link, $query12);
-
+                            $count3 = mysqli_num_rows($query12result);
                             // table detailing which seal impressions are associated with this item
-                            echo "<div class='separator_2'>Examples</div>";
-                            echo '<table class="metaTable">'
-                            . '<thead><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>Shape</th><th>Seal Link</th><th>Thumbnail</th></thead>'
-                            . '<tbody>'; //'<tr><td></td><td>nature</td><td>number</td><td>position</td><td>shape</td></tr>'
                             
+                            $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false);' />";
+                            echo "<div class='separator_2'>Examples</div>";
+                            if($count < 5){
+                                $addAsCard = "";
+                                echo "<div class='theCards_body'>";
+                            }
+                            else{
+                                echo '<table class="metaTable">'
+                                . '<thead><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>Shape</th><th>Seal Link</th><th>Thumbnail</th></thead>'
+                                . '<tbody>'; //'<tr><td></td><td>nature</td><td>number</td><td>position</td><td>shape</td></tr>'
+                            }
                             while ($row = mysqli_fetch_array($query12result)) {
                                 $value3 = $row['nature'];
                                 $value4 = "";
@@ -257,33 +255,65 @@ echo '<div class="pageWrap">';
                                     $value16 = $medium;
                                     $value17 = $small;
                                 }
-                                echo '<tr><td>' . $rowcount . '</td>';
-                                echo '<td>' . $value3 . '</td>';
-                                echo '<td>' . $value4 . '</td>';
-                                echo '<td>' . $value5 . '</td>';
-                                echo '<td>' . $value6 . '</td>';
-                                echo '<td><a href="' . $address . '/entity/' . $value7 . '">view seal entry</a></td>';
-                                If (isset($value18)) {
-                                    if (1 == $row['fk_access']) {
-                                        echo '<td><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value17 . $value18 . '" /></a></td></tr>';
-                                    } else if (isset($_SESSION['userID']) && ($_SESSION['fk_access'] == $row['fk_access'] || $_SESSION['fk_repository'] == $row['fk_repository'])) {
-                                        echo '<td><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value17 . $value18 . '" /></a></td></tr>';
-                                    } else {
-                                        echo '<td><img src="' . $default . 'restricted_thumb.jpg"/></td></tr>';
+                                if($count < 5){
+                                    echo '<div class="card">';
+                                    echo '<div class="cardInfo"><span class="cardInfoKey">#: </span> <span class="cardInfoVal">'.$addAsCard . $rowcount . '</span></div>';
+                                    echo '<div class="cardInfo"><span class="cardInfoKey">Nature: </span> <span class="cardInfoVal">'.$value3. '</span></div>';
+                                    echo '<div class="cardInfo"><span class="cardInfoKey">Number: </span> <span class="cardInfoVal">'.$value4. '</span></div>';
+                                    echo '<div class="cardInfo"><span class="cardInfoKey">Position: </span> <span class="cardInfoVal">'.$value5. '</span></div>';;
+                                    echo '<div class="cardInfo"><span class="cardInfoKey">Shape: </span> <span class="cardInfoVal">'.$value6. '</span></div>';;
+                                    echo '<div class="cardInfo"><span class="cardInfoKey">Seal Link: </span><span class="cardInfoVal"><a href="' . $address . '/entity/' . $value7 . '">view seal entry</a></span></div>';
+                                    If (isset($value18)) {
+                                        if (1 == $row['fk_access']) {
+                                            echo '<div class="cardInfo"><span class="cardInfoKey">Thumbnail: </span>'
+                                            . '<span class="cardInfoVal"><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value17 . $value18 . '" /></a></span></div>';
+                                        } else if (isset($_SESSION['userID']) && ($_SESSION['fk_access'] == $row['fk_access'] || $_SESSION['fk_repository'] == $row['fk_repository'])) {
+                                            echo '<div class="cardInfo"><span class="cardInfoKey">Thumbnail: </span>'
+                                            . '<span class="cardInfoVal"><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value17 . $value18 . '" /></a></span></div>';
+                                        } else {
+                                            echo '<div class="cardInfo"><span class="cardInfoKey">Thumbnail: </span>'
+                                            . '<span class="cardInfoVal"><img src="' . $default . 'restricted_thumb.jpg"/></span></div>';
+                                        }
+                                    }else{
+                                        echo '<div class="cardInfo"><span class="cardInfoKey">Thumbnail: </span>'
+                                            . '<span class="cardInfoVal"><img src="' . $default . 'not_available_thumb.jpg"/></span></div>';
                                     }
-                                }else{
-                                    echo '<td><img src="' . $default . 'not_available_thumb.jpg"/></td></tr>';
+                                }
+                                else{
+                                    echo '<tr><td>'.$addAsCard . $rowcount . '</td>';
+                                    echo '<td>' . $value3 . '</td>';
+                                    echo '<td>' . $value4 . '</td>';
+                                    echo '<td>' . $value5 . '</td>';
+                                    echo '<td>' . $value6 . '</td>';
+                                    echo '<td><a href="' . $address . '/entity/' . $value7 . '">view seal entry</a></td>';
+                                    If (isset($value18)) {
+                                        if (1 == $row['fk_access']) {
+                                            echo '<td><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value17 . $value18 . '" /></a></td></tr>';
+                                        } else if (isset($_SESSION['userID']) && ($_SESSION['fk_access'] == $row['fk_access'] || $_SESSION['fk_repository'] == $row['fk_repository'])) {
+                                            echo '<td><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value17 . $value18 . '" /></a></td></tr>';
+                                        } else {
+                                            echo '<td><img src="' . $default . 'restricted_thumb.jpg"/></td></tr>';
+                                        }
+                                    }else{
+                                        echo '<td><img src="' . $default . 'not_available_thumb.jpg"/></td></tr>';
+                                    }
                                 }
 
                                 $rowcount++;
                             }
-                            echo '</tbody></table>';
+                            if($count < 5){
+                                echo '</div></div>';
+                            }
+                            else{
+                                echo '</tbody></table>';
+                            }
+                            
                         }
 
                         //for seal descriptions
                         If ($entity == 3) {
                             $row = mysqli_fetch_array($query8result);
-
+                            $count = mysqli_num_rows($query8result);
                             //assign variables
                             $value1 = $row['a_index'];
                             $value2 = $row['collection_volume'];
@@ -318,8 +348,11 @@ echo '<div class="pageWrap">';
                                 <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
                             </div>                           
                             ';
-                            $tableHeader = "<thead>";
-                            $tableBody = "<tbody><tr>";
+                                $cardArea = "<div class='theCards_body'><div class='card'>";
+                                $tableHeader = "<thead>";
+                                $tableBody = "<tbody><tr>";
+                             
+                            
                             
                             // title
                             //echo $value1 . ":" . $value4;
@@ -327,22 +360,26 @@ echo '<div class="pageWrap">';
                             if (isset($value2)) {
                                 $tableHeader .= "<th>Volume</th>";
                                 $tableBody .= "<td>".$value2."</td>";
+                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Volume: </span> <span class="cardInfoVal">'.$value2.'</span></div>';
                                 //echo ", vol." . $value2;
                             }
                             if (isset($value3)) {
                                 if (strpos($value3, '-') !== false) {
                                     $tableHeader .= "<th>Page</th>";
                                     $tableBody .= "<td>p.".$value3."</td>";
+                                    $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Page: </span> <span class="cardInfoVal">p.'.$value3.'</span></div>';
                                     //echo ", p." . $value3;
                                 } else {
                                     $tableHeader .= "<th>Page</th>";
                                     $tableBody .= "<td>pp.".$value3."</td>";
+                                    $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Page: </span> <span class="cardInfoVal">pp.'.$value3.'</span></div>';
                                     //echo ", pp." . $value3;
                                 }
                             }
                             if (isset($value13)) {
                                 $tableHeader .= "<th>External Link</th>";
                                 $tableBody .= "<td><a href='" . $value14 . $value13 . "'>" . $value14 . $value13 . "</a></td>";
+                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">External Link: </span> <span class="cardInfoVal"><a href="' . $value14 . $value13 . '">' . $value14 . $value13 . '</a></span></div>';
                                 //echo '<a href="' . $value14 . $value13 . '" target="_blank">external link</a>';
                             }
                             //output entry -- only output variables with values
@@ -350,36 +387,42 @@ echo '<div class="pageWrap">';
                             if (isset($value5)) {
                                 $tableHeader .= "<th>Name</th>";
                                 $tableBody .= "<td>".$value5."</td>";
+                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Name: </span> <span class="cardInfoVal">pp.'.$value5.'</span></div>';
                                 //echo '<br><br> Name:' . $value5 . '<br>';
                             }
 
                             if (isset($value6)) {
                                 $tableHeader .= "<th>Motif</th>";
                                 $tableBody .= "<td>".$value6."</td>";
+                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Motif: </span> <span class="cardInfoVal">pp.'.$value6.'</span></div>';
                                 //echo '<br> Motif:' . $value6 . '<br>';
                             }
 
                             if (isset($value7)) {
                                 $tableHeader .= "<th>Legend</th>";
                                 $tableBody .= "<td>".$value7."</td>";
+                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Legend: </span> <span class="cardInfoVal">pp.'.$value7.'</span></div>';
                                 //echo '<br> Legend:' . $value7 . '<br>';
                             }
 
                             if (isset($value8)) {
                                 $tableHeader .= "<th>Shape</th>";
                                 $tableBody .= "<td>".$value8."</td>";
+                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Shape: </span> <span class="cardInfoVal">pp.'.$value8.'</span></div>';
                                 //echo '<br> Shape:' . $value8 . '<br>';
                             }
 
                             if (isset($value9)) {
                                 $tableHeader .= "<th>Size Y</th>";
                                 $tableBody .= "<td>".$value9."</td>";
+                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Size Y: </span> <span class="cardInfoVal">pp.'.$value9.'</span></div>';
                                 //echo '<br> Size Vertical:' . $value9 . '<br>';
                             }
 
                             if (isset($value10)) {
                                 $tableHeader .= "<th>Size X</th>";
                                 $tableBody .= "<td>".$value10."</td>";
+                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Size X: </span> <span class="cardInfoVal">pp.'.$value10.'</span></div>';
                                 //echo '<br> Size Horizontal:' . $value10 . '<br>';
                             }
 
@@ -390,15 +433,21 @@ echo '<div class="pageWrap">';
                                 if (1 == $row['fk_access']) {
                                     $tableBody .= '<td><img class="sealThumbnail" src="' . $description . $value12 . '"/>'
                                     . '<input class="digiBtn viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/></td>';
+                                    $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Image: </span> <span class="cardInfoVal">'
+                                            . '<img class="sealThumbnail" src="' . $description . $value12 . '"/><input class="digiBtn viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/></span></div>';
                                    
                                     //echo '<a href="' . $description . $value12 . '" data-lightbox="example-1" data-title=""><img src="' . $description . $value12 . '" height=200></img></a><br>';
                                 } else if (isset($_SESSION['userID']) && ($_SESSION['fk_access'] == $row['fk_access'] || $_SESSION['fk_repository'] == $row['fk_repository'])) {
                                     $tableBody.= '<td><img class="sealThumbnail" src="' . $description . $value12 . '" height="200"/>'
                                     . '<input class="digiBtn viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/></td>';
+                                    $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Image: </span> <span class="cardInfoVal"><img class="sealThumbnail" src="' . $description . $value12 . '" height="200"/>'
+                                    . '<input class="digiBtn viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/></span></div>';
                                    // echo '<a href="' . $description . $value12 . '" data-lightbox="example-1" data-title=""><img src="' . $description . $value12 . '" height=200></img></a><br>';
                                 } else {
                                     $tableBody .= '<td><img class="sealThumbnail" src="' . $default . 'restricted_thumb.jpg" height=50/>'
                                     . '<input class="digiBtn viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/></td>';
+                                    $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Size X: </span> <span class="cardInfoVal"><img class="sealThumbnail" src="' . $default . 'restricted_thumb.jpg" height=50/>'
+                                    . '<input class="digiBtn viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/></span></div>';
                                     //echo '<td><a href="' . $default . 'restricted.jpg"><img src="' . $default . 'restricted_thumb.jpg" height=50></img></a></td></tr>';
                                 }
                             }
@@ -406,7 +455,14 @@ echo '<div class="pageWrap">';
                             //link to seal page
                             $tableHeader .= "<th>Seal Link</th></thead>";
                             $tableBody .= "<td><a href='". $address ."/entity/". $value11."'>view seal entry</a></td></tr></tbody>";
-                            echo "<table>".$tableHeader.$tableBody."</table>";
+                            $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Seal Link </span> <span class="cardInfoVal"><a href="'. $address ."/entity/". $value11.'">view seal entry</a></span></div>';
+                            if($count < 5){
+                                echo $cardArea."</div></div>";
+                            }
+                            else{
+                                echo "<table>".$tableHeader.$tableBody."</table>";
+                            }
+                            
                             //echo '<br><a href=' . $address . '/entity/' . $value11 . '>view seal entry</a><br>';
 
                             //check for other seal descriptions
@@ -416,7 +472,7 @@ echo '<div class="pageWrap">';
                                 $query12result = mysqli_query($link, $query12);
     
                                 $count = mysqli_num_rows($query12result);
-                                if ($count > 1) {
+                                if ($count > 0) {
                                     //echo "other descriptions";
                                     echo "<div class='separator_2'>Other Descriptions</div>";
                                     $duplicate = $id;
@@ -433,7 +489,7 @@ echo '<div class="pageWrap">';
                             <span clss="sealLabel">Permalink: </span><span id="permalink">http://digisig.org/entity/'. $id .'</span>
                             <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
                             </div>';
-
+            //perhaps this could be a card?
                             echo '<table class="metaTable">'
                             . '<thead><th>Shape</th><th>Height</th><th>Width</th></thead>'
                             . '<tbody><tr>';
@@ -455,9 +511,9 @@ echo '<div class="pageWrap">';
 
                             $query12 = "SELECT * FROM sealdescription_view WHERE id_seal = $id";
                             $query12result = mysqli_query($link, $query12);
-                            $count = mysqli_num_rows($query12result);
+                            $count1 = mysqli_num_rows($query12result);
                             $duplicate = $id;
-                            if ($count > 0) {
+                            if ($count1 > 0) {
                                 //echo "<div class='separator_2'>Other Descriptions</div>";
                                 echo "<br><div class='separator_2'>Other Descriptions</div>";
                                 $duplicate = $id;
@@ -467,11 +523,19 @@ echo '<div class="pageWrap">';
                             // list of associated seal impressions
                             $query10 = "SELECT * FROM shelfmark_view WHERE id_seal = $id";
                             $query10result = mysqli_query($link, $query10);
+                            $count2 = mysqli_num_rows($query10result);
                             echo '<div class="separator_2">Examples</div>';
-                            echo '<table class="metaTable"><thead><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>shape</th><th>Dated</th><th>Item</th><th>Thumbnail</th></thead>'
-                            . '<tbody>';
+                            
                             $rowcount = 1;
-
+                            $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false);' />";
+                            if($count2 < 5){
+                                $addAsCard = "";
+                                echo '<div class="theCards_body">';
+                            }
+                            else{
+                                echo '<table class="metaTable"><thead><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>Shape</th><th>Dated</th><th>Item</th><th>Thumbnail</th></thead>'
+                                . '<tbody>';
+                            }
                             while ($row = mysqli_fetch_array($query10result)) {
 
                                 $value1 = $row['nature'];
@@ -493,37 +557,68 @@ echo '<div class="pageWrap">';
                                 $value12 = $row['thumb'];
                                 $value13 = $row['representation_thumbnail'];
                                 $value14 = $row['medium'];
-                                $value7 = $row['representation_filename'];
 
                                 //test to see if the connection string indicates that it is in the local image store
                                 if ($value12 == "local") {
                                     $value12 = $small;
                                     $value14 = $medium;
                                 }
-                                echo '<tr><td>' . $rowcount . '</td>';
-                                echo '<td>' . $value1 . '</td>';
-                                echo '<td>' . $value2 . '</td>';
-                                echo '<td>' . $value3 . '</td>';
-                                echo '<td>' . $value4 . '</td>';
-                                echo '<td> dated:' . date("Y",strtotime($value9)) . ' to ' . date("Y",strtotime($value10));
-                                echo '<td><a href=' . $address . '/entity/' . $value6 . '>' . $value5 . '</a></td>';
-                                if (isset($value13)) {
+                                if($count2 < 5){
+                                    echo '<div class="card">';
+                                    echo '<div class="cardInfo"><span class="cardInfoKey">#: </span> <span class="cardInfoVal">'.$addAsCard . $rowcount . '</span></div>';
+                                    echo '<div class="cardInfo"><span class="cardInfoKey">Nature: </span> <span class="cardInfoVal">'.$value1.'</span></div>';
+                                    echo '<div class="cardInfo"><span class="cardInfoKey">Number: </span> <span class="cardInfoVal">'.$value2.'</span></div>';
+                                    echo '<div class="cardInfo"><span class="cardInfoKey">Position: </span> <span class="cardInfoVal">'.$value3.'</span></div>';
+                                    echo '<div class="cardInfo"><span class="cardInfoKey">Shape: </span> <span class="cardInfoVal">'.$value4.'</span></div>';
+                                    echo '<div class="cardInfo"><span class="cardInfoKey">Dated: </span> <span class="cardInfoVal"> dated:' . date("Y",strtotime($value9)) . ' to ' . date("Y",strtotime($value10)).'</span></div>';
+                                    echo '<div class="cardInfo"><span class="cardInfoKey">Item: </span> <span class="cardInfoVal"><a href=' . $address . '/entity/' . $value6 . '>' . $value5 . '</a></span></div>';
+                                    echo '<div class="cardInfo"><span class="cardInfoKey">Shape: </span> <span class="cardInfoVal">'.$value4.'</span></div>';
+                                    if (isset($value13)) {
 
-                                    if (1 == $row['fk_access']) {
-                                        echo '<td><a href="' . $value12 . $value13 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value12 . $value13 . '" height=50></img></a></td>';
-                                    } else if (isset($_SESSION['userID']) && ($_SESSION['fk_access'] == $row['fk_access'] || $_SESSION['fk_repository'] == $row['fk_repository'])) {
-                                        echo '<td><a href="' . $value12 . $value13 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value12 . $value13 . '" height=50></img></a></td>';
-                                    } else {
-                                        echo '<td><img src="' . $default . 'restricted_thumb.jpg" height=50></img></td>';
+                                        if (1 == $row['fk_access']) {
+                                            echo '<div class="cardInfo"><span class="cardInfoKey">Thumbnail: </span><span class="cardInfoVal"> <a href="' . $value12 . $value13 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value12 . $value13 . '" height=50></img></a></span></div>';
+                                        } else if (isset($_SESSION['userID']) && ($_SESSION['fk_access'] == $row['fk_access'] || $_SESSION['fk_repository'] == $row['fk_repository'])) {
+                                            echo '<div class="cardInfo"><span class="cardInfoKey">Thumbnail: </span><span class="cardInfoVal"><a href="' . $value12 . $value13 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value12 . $value13 . '" height=50></img></a></span></div>';
+                                        } else {
+                                            echo '<td><img src="' . $default . 'restricted_thumb.jpg" height=50></img></td>';
+                                        }
+
+                                    }else{
+                                        echo '<div class="cardInfo"><span class="cardInfoKey">Thumbnail: </span><span class="cardInfoVal"><img src="' . $default . 'not_available_thumb.jpg" height=50></img></span></div>';
                                     }
-
-                                }else{
-                                    echo '<td><img src="' . $default . 'not_available_thumb.jpg" height=50></img></td>';
                                 }
-                                echo '</tr>';
+                                else{
+                                    echo '<tr><td>'.$addAsCard . $rowcount . '</td>';
+                                    echo '<td>' . $value1 . '</td>';
+                                    echo '<td>' . $value2 . '</td>';
+                                    echo '<td>' . $value3 . '</td>';
+                                    echo '<td>' . $value4 . '</td>';
+                                    echo '<td> dated:' . date("Y",strtotime($value9)) . ' to ' . date("Y",strtotime($value10)).'</td>';
+                                    echo '<td><a href=' . $address . '/entity/' . $value6 . '>' . $value5 . '</a></td>';
+                                    if (isset($value13)) {
+
+                                        if (1 == $row['fk_access']) {
+                                            echo '<td><a href="' . $value12 . $value13 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value12 . $value13 . '" height=50></img></a></td>';
+                                        } else if (isset($_SESSION['userID']) && ($_SESSION['fk_access'] == $row['fk_access'] || $_SESSION['fk_repository'] == $row['fk_repository'])) {
+                                            echo '<td><a href="' . $value12 . $value13 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value12 . $value13 . '" height=50></img></a></td>';
+                                        } else {
+                                            echo '<td><img src="' . $default . 'restricted_thumb.jpg" height=50></img></td>';
+                                        }
+
+                                    }else{
+                                        echo '<td><img src="' . $default . 'not_available_thumb.jpg" height=50></img></td>';
+                                    }
+                                    echo '</tr>';
+                                    
+                                }
                                 $rowcount++;
                             }
-                            echo "</tbody></table>";
+                            if($count2<5){
+                                echo "</div></div>";
+                            }
+                            else{
+                                echo "</tbody></table>";
+                            }
                         }
                     }else{
                         echo "No Data Found...";
@@ -650,10 +745,15 @@ echo '<div class="pageWrap">';
         echo "</div>"; //close page wrap
         include "include/footer.php";
     ?>
-
+                <div class="addedCardArea">
+                    <div class="closeBtn" onclick="$('.addedCardArea').hide();">X</div>
+                    <div class="addedCardHeader">Selected Entries</div>
+                    <div class="thecards"></div>
+                </div>
 		</body>
 		<script src="<?php echo $basePath; ?>digisig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
 		<script>
+                    var cardID = 0 ;
 		    var basePath = '<?php echo 'http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], '/') + 1); ?>';
 			var num_result_per_page = parseInt(<?php echo $num_result_per_page ?>);
 			var table_text_len = 100;
@@ -723,6 +823,58 @@ echo '<div class="pageWrap">';
                         function closeFullImg(){
                             $(".fullImgWrap").remove();
                             $(".pageShade").remove();
+                        }
+                        function cardMe($checkbox, card){
+                            if($checkbox.is(":checked")){
+                                if(card == false){
+                                    console.log("Assign a unique card ID");
+                                    cardID++;
+                                    card = cardID;
+                                    console.log(cardID);
+                                    $checkbox.attr("onchange", "cardMe($(this), '"+cardID+"');");                                
+                                }
+                                console.log("Add card to stack: " + card);
+                                var $dataLabels = $checkbox.closest("table").children("thead").children("tr").children("th");
+                                var $dataRow = $checkbox.closest("tr").children("td");
+                                var parsedObject = {};
+                                var keyArray = [];
+                                var valueArray = [];
+                                $.each($dataLabels, function(){
+                                    console.log("Key "+$(this).html());
+                                    keyArray.push($(this).html());
+                                });
+                                $.each($dataRow, function(){
+                                    console.log("Value "+$(this).html())
+                                    valueArray.push($(this).html());
+                                });
+                                for(var i=0; i<$dataRow.length; i++){
+                                    parsedObject[keyArray[i]] = valueArray[i];
+                                }
+                                console.log(parsedObject);
+                                var cardHTML = $("<div cardID='"+card+"' class='card'></div>");
+                                $.each(parsedObject, function(key,value){
+                                    if(key === "#"){
+                                        value = value.split(">")[1];
+                                        console.log("JUST THE # :" + value);
+                                    }
+                                    if(value !== ""){
+                                        var appender = $("<div class='cardInfo'>\n\
+                                            <span class='cardInfoKey'>"+key+":</span><span class='cardInfoVal'> "+value+"</span>\n\
+                                        </div>");
+                                        cardHTML.append(appender);
+                                    }
+                                });
+                                console.log("Card html");
+                                console.log(cardHTML);
+                                $(".theCards").append(cardHTML);
+                                $(".addedCardArea").show();
+                            }
+                            else{
+                                //Remove from card stack
+                                console.log("Remove card from stack: " + card);
+                                $(".theCards").find("div[cardID='"+card+"']").remove();
+                            }
+                            
                         }
 		</script>
 </html>

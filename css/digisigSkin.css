@@ -292,3 +292,55 @@ option[value="holder"]{
     font-weight: bold !important;
 }
 
+.addedCardArea{
+    position: fixed;
+    overflow-y: auto;
+    display: none;
+    padding: 25px;
+    top: 15%;
+    height: 50%;
+    left: 0px;
+    margin: 0% 5%;
+    border: 2px solid #FF0;
+    width: 90%;
+    z-index: 5;
+    background-color: #00485E;
+    color: white;
+}
+
+.card{
+    border: 1px solid blue;
+    padding: 5px;
+    margin: 6px 0px;
+    width: 400px;
+    display: inline-table;
+    height: 90%;
+    margin-right: 7px;
+    background-color: #F0EAD6;
+    color: black;
+}
+.theCards{
+    overflow-x: auto;
+    display: block;
+    white-space: nowrap;
+}
+.theCards_body{
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    border: 2px solid black;
+    padding: 5px;
+}
+.theCards_body .card{
+    height:auto;
+}
+.addedCardHeader{
+    font-weight: bold;
+    font-size: 19px;
+    display: block;
+    position: relative;
+    border-bottom: 2px solid white;
+}
+.cardInfoVal{
+    white-space: normal;
+}
