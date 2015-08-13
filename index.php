@@ -189,7 +189,7 @@ echo '<div class="pageWrap">';
                             //echo "ITEM";
                             echo '<div class="seal sealPiece hdr1">ITEM</div>
                             <div class="sealMetadata sealPiece">
-                                <span class="sealLabel hdr2">Title: </span><span id="title">'.$value1.':'.$value2.'</span>
+                                <span class="sealLabel hdr2">Title: </span> <span id="title">'.$value1.':'.$value2.'</span>
                             </div>
                             <div class="sealMetadata sealPiece">
                                 <span class="sealLabel">Digisig ID: </span><span id="digisigID">' .$id.'</span>
@@ -203,10 +203,18 @@ echo '<div class="pageWrap">';
                             if($count < 5){
                                 echo '<div class="theCards_body">';
                                 echo '<div class="card_single">';
-                                echo '<div class="cardInfo"><span class="cardInfoKey">Dated: </span> <span class="cardInfoVal">'.$value10.'</span></div>';
-                                echo '<div class="cardInfo"><span class="cardInfoKey">Description: </span> <span class="cardInfoVal">'.$value13.'</span></div>';
-                                echo '<div class="cardInfo"><span class="cardInfoKey">Location: </span> <span class="cardInfoVal">'.$value12.'</span></div>';
-                                echo '<div class="cardInfo"><span class="cardInfoKey">External Link: </span> <span class="cardInfoVal"><a href="'.$value14.$value15.'">'.$value14.$value15.'</a></span></div>';
+                                if(isset($value10) && $value10!==""){
+                                    echo '<div class="cardInfo"><span class="cardInfoKey">Dated: </span> <span class="cardInfoVal">'.$value10.'</span></div>';
+                                }
+                                if(isset($value13) && $value10!==""){
+                                    echo '<div class="cardInfo"><span class="cardInfoKey">Description: </span> <span class="cardInfoVal">'.$value13.'</span></div>';
+                                }
+                                if(isset($value12) && $value12!==""){
+                                    echo '<div class="cardInfo"><span class="cardInfoKey">Location: </span> <span class="cardInfoVal">'.$value12.'</span></div>';
+                                }
+                                if(isset($value14) && $value14!=="" && isset($value15) && $value15!==""){
+                                    echo '<div class="cardInfo"><span class="cardInfoKey">External Link: </span> <span class="cardInfoVal"><a href="'.$value14.$value15.'">'.$value14.$value15.'</a></span></div>';
+                                }
                                 echo '</div></div>';
                             }
                             else{

@@ -242,7 +242,7 @@ table.maxmin th, table.maxmin td{
     margin-right:15px;
     color:black;
 }
-#permalink, #shape, #height, #width{
+#permalink, #shape, #height, #width, #title{
     color: black;
 }
 #height, #shape{
