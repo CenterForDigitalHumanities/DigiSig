@@ -405,3 +405,10 @@ table.indent2 td{
 .theCards_body.indent2{
     background-color: rgba(0,119,153, .3);
 }
+.resultCount{
+    color: red;
+}
+.resultTerm{
+    color: darkred;
+    font-style: italic;    
+}

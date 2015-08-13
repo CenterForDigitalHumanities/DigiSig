@@ -59,14 +59,14 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
         If ($field != "all_fields") {
             $field_str = ucfirst($field);
             If ($numberofresults > 0) {
-                echo $count;
+                echo "<span class='resultCount'>$count</span>";
                 if ($numberofresults > 1) {
-                    echo " results found for " . $term;
+                    echo " results found for <span class='resultTerm'>" . $term ."</span>";
                 }
                 else {
-                    echo " result found for " . $term;
+                    echo " result found for <span class='resultTerm'>" . $term ."</span>";
                 }
-                echo " in " . $field_str;
+                echo " in <span class='resultTerm'>" . $field_str ."</span>";
             
                 //drawing the results in a tabular form
                 $rowcount = 1;
@@ -138,7 +138,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                 }
                 
             }
-            else {echo "<p>no results in " . $field_str . "</p>";}
+            else {echo "<p><span class='resultCount'>0</span> results in <span class='resultTerm'>" . $field_str . "</span></p>";}
         }
     }
 }
