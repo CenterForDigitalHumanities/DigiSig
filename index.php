@@ -202,7 +202,7 @@ echo '<div class="pageWrap">';
                             //all the other values listed under shelfmark are optional
                             if($count < 5){
                                 echo '<div class="theCards_body">';
-                                echo '<div class="card">';
+                                echo '<div class="card_single">';
                                 echo '<div class="cardInfo"><span class="cardInfoKey">Dated: </span> <span class="cardInfoVal">'.$value10.'</span></div>';
                                 echo '<div class="cardInfo"><span class="cardInfoKey">Description: </span> <span class="cardInfoVal">'.$value13.'</span></div>';
                                 echo '<div class="cardInfo"><span class="cardInfoKey">Location: </span> <span class="cardInfoVal">'.$value12.'</span></div>';
@@ -348,7 +348,7 @@ echo '<div class="pageWrap">';
                                 <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
                             </div>                           
                             ';
-                                $cardArea = "<div class='theCards_body'><div class='card'>";
+                                $cardArea = "<div class='theCards_body'><div class='card_single'>";
                                 $tableHeader = "<thead>";
                                 $tableBody = "<tbody><tr>";
                              

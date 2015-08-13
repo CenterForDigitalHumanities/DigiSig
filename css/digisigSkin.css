@@ -344,3 +344,14 @@ option[value="holder"]{
 .cardInfoVal{
     white-space: normal;
 }
+.card_single{
+    border: 1px solid blue;
+    padding: 5px;
+    margin: 6px 0px;
+    width: 99%;
+    display: inline-table;
+    height: auto;
+    margin-right: 7px;
+    background-color: #F0EAD6;
+    color: black;
+}
