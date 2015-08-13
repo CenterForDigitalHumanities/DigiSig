@@ -193,15 +193,17 @@ th{
     border: 1px solid black;
     padding: 5px !important;
     max-width: 720px;
+    padding: 4px 8px !important;
 }
 td{
     border:1px solid #079;
-    padding: 5px !important;
     max-width: 720px;
+    padding: 4px 8px !important;
 }
 
 table{
     margin: 3px 0px;
+    border-collapse: collapse !important;
 }
 
 table.maxmin th, table.maxmin td{
