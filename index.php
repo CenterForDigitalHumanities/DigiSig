@@ -258,10 +258,18 @@ echo '<div class="pageWrap">';
                                 if($count < 5){
                                     echo '<div class="card">';
                                     echo '<div class="cardInfo"><span class="cardInfoKey">#: </span> <span class="cardInfoVal">'.$addAsCard . $rowcount . '</span></div>';
-                                    echo '<div class="cardInfo"><span class="cardInfoKey">Nature: </span> <span class="cardInfoVal">'.$value3. '</span></div>';
-                                    echo '<div class="cardInfo"><span class="cardInfoKey">Number: </span> <span class="cardInfoVal">'.$value4. '</span></div>';
-                                    echo '<div class="cardInfo"><span class="cardInfoKey">Position: </span> <span class="cardInfoVal">'.$value5. '</span></div>';;
-                                    echo '<div class="cardInfo"><span class="cardInfoKey">Shape: </span> <span class="cardInfoVal">'.$value6. '</span></div>';;
+                                    if(isset($value3) && $value3!==""){
+                                        echo '<div class="cardInfo"><span class="cardInfoKey">Nature: </span> <span class="cardInfoVal">'.$value3. '</span></div>';
+                                    }
+                                    if(isset($value4) && $value4!==""){
+                                         echo '<div class="cardInfo"><span class="cardInfoKey">Number: </span> <span class="cardInfoVal">'.$value4. '</span></div>';
+                                    }
+                                    if(isset($value5) && $value5!==""){
+                                        echo '<div class="cardInfo"><span class="cardInfoKey">Position: </span> <span class="cardInfoVal">'.$value5. '</span></div>';
+                                    }
+                                    if(isset($value6) && $value6!==""){
+                                        echo '<div class="cardInfo"><span class="cardInfoKey">Shape: </span> <span class="cardInfoVal">'.$value6. '</span></div>';
+                                    }
                                     echo '<div class="cardInfo"><span class="cardInfoKey">Seal Link: </span><span class="cardInfoVal"><a href="' . $address . '/entity/' . $value7 . '">view seal entry</a></span></div>';
                                     If (isset($value18)) {
                                         if (1 == $row['fk_access']) {
@@ -566,13 +574,23 @@ echo '<div class="pageWrap">';
                                 if($count2 < 5){
                                     echo '<div class="card">';
                                     echo '<div class="cardInfo"><span class="cardInfoKey">#: </span> <span class="cardInfoVal">'.$addAsCard . $rowcount . '</span></div>';
-                                    echo '<div class="cardInfo"><span class="cardInfoKey">Nature: </span> <span class="cardInfoVal">'.$value1.'</span></div>';
-                                    echo '<div class="cardInfo"><span class="cardInfoKey">Number: </span> <span class="cardInfoVal">'.$value2.'</span></div>';
-                                    echo '<div class="cardInfo"><span class="cardInfoKey">Position: </span> <span class="cardInfoVal">'.$value3.'</span></div>';
-                                    echo '<div class="cardInfo"><span class="cardInfoKey">Shape: </span> <span class="cardInfoVal">'.$value4.'</span></div>';
-                                    echo '<div class="cardInfo"><span class="cardInfoKey">Dated: </span> <span class="cardInfoVal"> dated:' . date("Y",strtotime($value9)) . ' to ' . date("Y",strtotime($value10)).'</span></div>';
+                                    if(isset($value1) && $value1!==""){
+                                        echo '<div class="cardInfo"><span class="cardInfoKey">Nature: </span> <span class="cardInfoVal">'.$value1.'</span></div>';
+                                    }
+                                    if(isset($value2) && $value2!==""){
+                                        echo '<div class="cardInfo"><span class="cardInfoKey">Number: </span> <span class="cardInfoVal">'.$value2.'</span></div>';
+                                    }
+                                    if(isset($value3) && $value3!==""){
+                                        echo '<div class="cardInfo"><span class="cardInfoKey">Position: </span> <span class="cardInfoVal">'.$value3.'</span></div>';
+                                    }
+                                    if(isset($value4) && $value4!==""){
+                                        echo '<div class="cardInfo"><span class="cardInfoKey">Shape: </span> <span class="cardInfoVal">'.$value4.'</span></div>';
+                                    }
+                                    if(isset($value9) && $value9!=="" && isset($value10) && $value10!==""){
+                                       echo '<div class="cardInfo"><span class="cardInfoKey">Dated: </span> <span class="cardInfoVal"> dated:' . date("Y",strtotime($value9)) . ' to ' . date("Y",strtotime($value10)).'</span></div>';
+                                    }
                                     echo '<div class="cardInfo"><span class="cardInfoKey">Item: </span> <span class="cardInfoVal"><a href=' . $address . '/entity/' . $value6 . '>' . $value5 . '</a></span></div>';
-                                    echo '<div class="cardInfo"><span class="cardInfoKey">Shape: </span> <span class="cardInfoVal">'.$value4.'</span></div>';
+//                                    echo '<div class="cardInfo"><span class="cardInfoKey">Shape: </span> <span class="cardInfoVal">'.$value4.'</span></div>';
                                     if (isset($value13)) {
 
                                         if (1 == $row['fk_access']) {

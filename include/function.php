@@ -97,15 +97,17 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                     if($numberofresults < 5){
                         echo '<div class="card">';
                         echo '<div class="cardInfo"><span class="cardInfoKey">#: </span> <span class="cardInfoVal">'.$addAsCard . $rowcount .'</span></div>';
-                        if(strlen($value2) >= $table_text_len){
-                            $short_value2 = substr($value2, 0, $table_text_len);
-                            echo '<div class="cardInfo"><span class="cardInfoKey">'.$field_str.': </span><span class="cardInfoVal">'
-                                . '<a id="a_'.$value1.'" href=' . $address . '/entity/'.$value1.'>'. $short_value2 . '...</a> <a id="get_'.$value1.'" onclick="getFullText('.$value1.')">(More)</a><input type="hidden" id="full_'.$value1.'" value="'.$value2.'" /><input type="hidden" id="short_'.$value1.'" value="'.$short_value2.'" /></span></div>';
-                            echo '<div class="cardInfo"><span class="cardInfoKey">Reference: </span> <span class="cardInfoVal">'.$value3.'</span></div>';
-                        }else{
-                            echo '<div class="cardInfo"><span class="cardInfoKey">'.$field_str.': </span>'
-                                    . '<span class="cardInfoVal"><a id="a_'.$value1.'" href=' . $address . '/entity/'.$value1.'>'.$value2.'</a></span></div>';
-                            echo '<div class="cardInfo"><span class="cardInfoKey">Reference: </span> <span class="cardInfoVal">'.$value3.'</span></div>';
+                        if(isset($value2)){
+                            if(strlen($value2) >= $table_text_len){
+                                $short_value2 = substr($value2, 0, $table_text_len);
+                                echo '<div class="cardInfo"><span class="cardInfoKey">'.$field_str.': </span><span class="cardInfoVal">'
+                                    . '<a id="a_'.$value1.'" href=' . $address . '/entity/'.$value1.'>'. $short_value2 . '...</a> <a id="get_'.$value1.'" onclick="getFullText('.$value1.')">(More)</a><input type="hidden" id="full_'.$value1.'" value="'.$value2.'" /><input type="hidden" id="short_'.$value1.'" value="'.$short_value2.'" /></span></div>';
+                                echo '<div class="cardInfo"><span class="cardInfoKey">Reference: </span> <span class="cardInfoVal">'.$value3.'</span></div>';
+                            }else{
+                                echo '<div class="cardInfo"><span class="cardInfoKey">'.$field_str.': </span>'
+                                        . '<span class="cardInfoVal"><a id="a_'.$value1.'" href=' . $address . '/entity/'.$value1.'>'.$value2.'</a></span></div>';
+                                echo '<div class="cardInfo"><span class="cardInfoKey">Reference: </span> <span class="cardInfoVal">'.$value3.'</span></div>';
+                            }
                         }
                         echo "</div>";
                     }
@@ -118,6 +120,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                             echo '<td><a id="a_'.$value1.'" href=' . $address . '/entity/'.$value1.'>'.$value2.'</a></td><td>'. $value3. '</td></tr>';
                         }
                     }
+                    
             
                     $rowcount++;
                 }
@@ -188,11 +191,16 @@ function sealdescription ($query12result, $address, $duplicate) {
             if($count < 5){
                 echo '<div class="card">';
                 echo '<div class="cardInfo"><span class="cardInfoKey">#: </span> <span class="cardInfoVal">'. $addAsCard . $rowcount .'</span></div>';
-                echo '<div class="cardInfo"><span class="cardInfoKey">Name: </span> <span class="cardInfoVal">'.$value4.'</span></div>';
-                echo '<div class="cardInfo"><span class="cardInfoKey">Reference: </span> <span class="cardInfoVal">'.$value1.'</span></div>';
-                echo '<div class="cardInfo"><span class="cardInfoKey">Seal Description: </span> <span class="cardInfoVal"><a href="' . $address . '/entity/' . $value3. '">' . $value2 . '</a></span></div>';
+                if(isset($value4) && $value4!==""){
+                    echo '<div class="cardInfo"><span class="cardInfoKey">Name: </span> <span class="cardInfoVal">'.$value4.'</span></div>';
+                }
+                if(isset($value1) && $value1!==""){
+                    echo '<div class="cardInfo"><span class="cardInfoKey">Reference: </span> <span class="cardInfoVal">'.$value1.'</span></div>';
+                }
+                if(isset($value3) && $value3!=="" && isset($value2) && $value2!==""){
+                   echo '<div class="cardInfo"><span class="cardInfoKey">Seal Description: </span> <span class="cardInfoVal"><a href="' . $address . '/entity/' . $value3. '">' . $value2 . '</a></span></div>';
+                }
                 echo "</div>";
-                
             }
             else{
                 echo '<tr><td> '. $addAsCard . $rowcount . '</td>';
