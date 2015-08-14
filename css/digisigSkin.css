@@ -423,6 +423,7 @@ table.indent2 td{
     text-align: center;
     padding: 12px;
     right: -190px;
+    background-color: white;
 }
 .toggleArrow{
     border: 1px solid #079;
@@ -433,6 +434,8 @@ table.indent2 td{
     font-weight: bold;
     font-size: 19px;
     cursor: default;
+    background-color:white;
+    
 }
 .toggleArrow:hover{
     background-color: rgba(0, 119, 153, 0.3);
