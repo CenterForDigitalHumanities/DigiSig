@@ -326,7 +326,7 @@ option[value="holder"]{
 }
 
 .card{
-    border: 1px solid #079;
+    border: 2px solid #079;
     padding: 15px;
     margin: 6px 7px 6px 0px;
     width: 400px;
@@ -362,7 +362,7 @@ option[value="holder"]{
 }
 
 .card_single{
-    border: 1px solid #079;
+    border: 2px solid #079;
     padding: 15px;
     margin: 6px 0px;
     max-width: 800px;
@@ -390,6 +390,8 @@ option[value="holder"]{
 }
 .cardInfoKey{
     color: black;
+    font-weight: bold;
+    margin-right:5px;
 }
 .cardInfo{
     margin: 2px 0px;
