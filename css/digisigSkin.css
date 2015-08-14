@@ -300,7 +300,7 @@ select{
     color: white;
     position: absolute;
     right: 4px;
-    top: 0px;
+    top: 4px;
     cursor: pointer;
 }
 
@@ -333,13 +333,13 @@ option[value="holder"]{
     overflow-y: auto;
     display: inline-block;
     background-color: #FFF;
-    height: 90%;
+    height: 95%;
 }
 .theCards{
     overflow-x: auto;
     display: block;
     white-space: nowrap;
-    height: 95%;
+    height: 93%;
 }
 .theCards_body{
     display: block;
@@ -417,7 +417,7 @@ table.indent2 td{
 }
 .viewCardWidget{
     position: fixed;
-    top: 20%;
+    top: 35%;
     right: 0px;
     border: 1px solid #079;
     text-align: center;
@@ -429,7 +429,7 @@ table.indent2 td{
     padding: 5px;
     position: absolute;
     left: -23px;
-    top: 14px;
+    top: 27px;
     font-weight: bold;
     font-size: 19px;
     cursor: default;
@@ -441,4 +441,5 @@ table.indent2 td{
     font-weight: bold;
     font-size: 19px;
     color: #00485E;
+    max-width: 169px;
 }

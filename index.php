@@ -777,12 +777,13 @@ echo '<div class="pageWrap">';
     ?>
                 <div class="addedCardArea">
                     <div class="closeBtn" onclick="$('.addedCardArea').hide();">X</div>
-                    <div class="addedCardHeader">Selected Entries</div>
+                    <div class="addedCardHeader">Card Slider</div>
+                    <div class="inst">To add cards to the slider, check the box under the heading '&#x2713;' in the results tables on the page.</div>
                     <div class="thecards"></div>
                 </div>
             <div class="viewCardWidget">
                     <div class="toggleArrow" active="no" onclick="toggleCardWidget($(this));"> < </div>
-                    <div class="cardCountText">You have <span id="cardcount">0</span> cards.</div>
+                    <div class="cardCountText">You have <span id="cardcount">0</span> cards in your slider.</div>
                     <a onclick="$('.addedCardArea').show(); $('.toggleArrow').click();">View Cards</a>
                 </div>
 		</body>
