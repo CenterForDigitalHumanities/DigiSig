@@ -218,8 +218,8 @@ echo '<div class="pageWrap">';
                                 echo '</div></div>';
                             }
                             else{
-                                echo '<table class="metaTable"><thead><th>Dated</th><th>Description</th><th>Location</th><th>External Link</th></thead>'
-                            . '<tbody><tr><td>'.$value10.'</td><td>'.$value13.'</td><td>'.$value12.'</td><td><a href="'.$value14.$value15.'">'.$value14.$value15.'</a></td></tr></tbody></table>';
+                                echo '<div class="tableWrap"><table class="metaTable"><thead><th>Dated</th><th>Description</th><th>Location</th><th>External Link</th></thead>'
+                            . '<tbody><tr><td>'.$value10.'</td><td>'.$value13.'</td><td>'.$value12.'</td><td><a href="'.$value14.$value15.'">'.$value14.$value15.'</a></td></tr></tbody></table></div>';
                             }                           
 
                             //show table of associated impressions
@@ -229,13 +229,13 @@ echo '<div class="pageWrap">';
                             // table detailing which seal impressions are associated with this item
                             
                             $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false);' />";
-                            echo "<div class='separator_2 indent'>Examples</div>";
+                            echo "<div class='separator_2'>Examples</div>";
                             if($count3 < 5){
                                 $addAsCard = "";
                                 echo "<div class='theCards_body indent'>";
                             }
                             else{
-                                echo '<table class="metaTable indent2">'
+                                echo '<div class="tableWrap"><table class="metaTable indent2">'
                                 . '<thead><th>&#x2714;</th><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>Shape</th><th>Seal Link</th><th>Thumbnail</th></thead>'
                                 . '<tbody>'; //'<tr><td></td><td>nature</td><td>number</td><td>position</td><td>shape</td></tr>'
                             }
@@ -265,7 +265,7 @@ echo '<div class="pageWrap">';
                                 }
                                 if($count3 < 5){
                                     echo '<div class="card">';
-                                    echo '<div class="cardInfo"><span class="cardInfoKey">#: </span> <span class="cardInfoVal">'.$addAsCard . $rowcount . '</span></div>';
+                                    echo '<div class="cardNum">#'.$addAsCard . $rowcount . '</div>';
                                     if(isset($value3) && $value3!==""){
                                         echo '<div class="cardInfo"><span class="cardInfoKey">Nature: </span> <span class="cardInfoVal">'.$value3. '</span></div>';
                                     }
@@ -322,7 +322,7 @@ echo '<div class="pageWrap">';
                                 echo '</div>';
                             }
                             else{
-                                echo '</tbody></table>';
+                                echo '</tbody></table></div>';
                             }
                             
                         }
@@ -472,12 +472,12 @@ echo '<div class="pageWrap">';
                             //link to seal page
                             $tableHeader .= "<th>Seal Link</th></thead>";
                             $tableBody .= "<td><a href='". $address ."/entity/". $value11."'>view seal entry</a></td></tr></tbody>";
-                            $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Seal Link </span> <span class="cardInfoVal"><a href="'. $address ."/entity/". $value11.'">view seal entry</a></span></div>';
+                            $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Seal Link: </span> <span class="cardInfoVal"><a href="'. $address ."/entity/". $value11.'">view seal entry</a></span></div>';
                             if($count < 5){
                                 echo $cardArea."</div></div>";
                             }
                             else{
-                                echo "<table>".$tableHeader.$tableBody."</table>";
+                                echo "<div class='tableWrap'><table>".$tableHeader.$tableBody."</table></div>";
                             }
                             
                             //echo '<br><a href=' . $address . '/entity/' . $value11 . '>view seal entry</a><br>';
@@ -544,7 +544,7 @@ echo '<div class="pageWrap">';
                             $query10 = "SELECT * FROM shelfmark_view WHERE id_seal = $id";
                             $query10result = mysqli_query($link, $query10);
                             $count2 = mysqli_num_rows($query10result);
-                            echo '<div class="separator_2 indent2">Examples</div>';
+                            echo '<div class="separator_2">Examples</div>';
                             
                             $rowcount = 1;
                             $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false);' />";
@@ -553,7 +553,7 @@ echo '<div class="pageWrap">';
                                 echo '<div class="theCards_body indent2">';
                             }
                             else{
-                                echo '<table class="metaTable indent2"><thead><th>&#x2714;</th><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>Shape</th><th>Dated</th><th>Item</th><th>Thumbnail</th></thead>'
+                                echo '<div class="tableWrap"><table class="metaTable indent2"><thead><th>&#x2714;</th><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>Shape</th><th>Dated</th><th>Item</th><th>Thumbnail</th></thead>'
                                 . '<tbody>';
                             }
                             while ($row = mysqli_fetch_array($query10result)) {
@@ -585,7 +585,7 @@ echo '<div class="pageWrap">';
                                 }
                                 if($count2 < 5){
                                     echo '<div class="card">';
-                                    echo '<div class="cardInfo"><span class="cardInfoKey">#: </span> <span class="cardInfoVal">'.$addAsCard . $rowcount . '</span></div>';
+                                    echo '<div class="cardNum">#'.$addAsCard . $rowcount . '</div>';
                                     if(isset($value1) && $value1!==""){
                                         echo '<div class="cardInfo"><span class="cardInfoKey">Nature: </span> <span class="cardInfoVal">'.$value1.'</span></div>';
                                     }
@@ -647,7 +647,7 @@ echo '<div class="pageWrap">';
                                 echo "</div></div>";
                             }
                             else{
-                                echo "</tbody></table>";
+                                echo "</tbody></table></div>";
                             }
                         }
                     }else{
@@ -904,16 +904,18 @@ echo '<div class="pageWrap">';
                                 console.log(parsedObject);
                                 var cardHTML = $("<div cardID='"+card+"' class='card'></div>");
                                 $.each(parsedObject, function(key,value){
-//                                    if(key === "#"){
-//                                        value = value.split(">")[1];
-//                                        console.log("JUST THE # :" + value);
-//                                    }
-                                    if(value !== ""){
-                                        var appender = $("<div class='cardInfo'>\n\
+                                    var appender = "";
+                                    if(key === "#"){
+                                        appender = $("<div class='cardNum'>\n\
+                                            "+key+" "+value+"\n\
+                                        </div>");
+                                    }
+                                    else if(value !== ""){
+                                        appender = $("<div class='cardInfo'>\n\
                                             <span class='cardInfoKey'>"+key+":</span><span class='cardInfoVal'> "+value+"</span>\n\
                                         </div>");
-                                        cardHTML.append(appender);
                                     }
+                                    cardHTML.append(appender);
                                 });
                                 console.log("Card html");
                                 console.log(cardHTML);
@@ -929,7 +931,11 @@ echo '<div class="pageWrap">';
                                 cardCount--;
                                 $("#cardcount").html(cardCount);
                             }
-                            
+                            if($(".toggleArrow").attr("active")==="no"){
+                                $(".viewCardWidget").css("right", "0px");
+                                $(".toggleArrow").html(" > ");
+                                $(".toggleArrow").attr("active", "yes");
+                            }
                         }
                         
                         $(function(){

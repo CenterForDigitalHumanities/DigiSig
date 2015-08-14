@@ -99,11 +99,13 @@
     font-weight: bold;
     text-decoration: underline;
     font-size: 17px;
+    color:#00485E;
 }
 .separator_2{
-    font-weight: bold;
     font-size: 17px;
     margin-top:10px;
+    color: #00485E;
+    text-transform: uppercase;
     /*margin-left: 15px;*/
 }
 .searchTitle{
@@ -203,9 +205,16 @@ td{
     padding: 4px 8px !important;
 }
 
+.tableWrap{
+    border-top: 1px solid #079;
+    border-bottom: 1px solid #079;
+    padding : 12px 0px;
+    margin: 40px 0px;
+}
+
 table{
-    margin: 3px 0px;
     border-collapse: collapse !important;
+    
 }
 
 table.maxmin th, table.maxmin td{
@@ -331,9 +340,11 @@ option[value="holder"]{
     margin: 6px 7px 6px 0px;
     width: 400px;
     overflow-y: auto;
-    display: inline-block;
+    display: inline-table;
     background-color: #FFF;
     height: 95%;
+    white-space: nowrap;
+    position: relative;
 }
 .theCards{
     overflow-x: auto;
@@ -344,14 +355,14 @@ option[value="holder"]{
 .theCards_body{
     display: block;
     overflow-x: auto;
-    white-space: nowrap;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    padding: 5px;
-    margin-top: 8px;
+    border-top: 1px solid #079;
+    border-bottom: 1px solid #079;
+    padding : 12px 0px;
+    margin: 40px 0px;
 }
 .theCards_body .card{
     height:auto;
+    
 }
 .addedCardHeader{
     font-weight: bold;
@@ -366,7 +377,7 @@ option[value="holder"]{
     padding: 15px;
     margin: 6px 0px;
     max-width: 800px;
-    min-width: 400px;
+    min-width: 550px;
     display: inline-table;
     height: auto;
     margin-right: 7px;
@@ -385,13 +396,24 @@ option[value="holder"]{
     text-transform: uppercase;
 }
 .cardInfoVal{
-    color: black;
+    color: #000;
     white-space: normal;
+    display: inline-table;
+    position: relative;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 250px;
 }
 .cardInfoKey{
-    color: black;
+    color: #00485E;
     font-weight: bold;
-    margin-right:5px;
+    margin-right: 5px;
+    display: inline-table;
+    text-align: right;
+    position: relative;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 93px;
 }
 .cardInfo{
     margin: 2px 0px;
@@ -404,7 +426,7 @@ option[value="holder"]{
 }
 
 table.indent2 td{
-    background-color: rgba(0,119,153, .3);
+    background-color: rgba(0,119,153, .1);
 }
 
 .theCards_body.indent2{
@@ -465,3 +487,25 @@ table.indent2 td{
     display: inline-block;
     top: 5px;
 }
+.cardNum{
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #079;
+    left: 0px;
+    padding-left: 15px;
+    top: 8px;
+    font-weight: bold;
+    color: #00485E;
+}
+.card > :nth-child(2){
+    margin-top: 25px;
+}
+.resultWrap{
+    position: relative;
+}
+
+.resultWrap_2{
+    position: relative;
+    margin-bottom: 6px;
+}
+
