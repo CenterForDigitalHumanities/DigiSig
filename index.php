@@ -191,7 +191,7 @@ echo '<div class="pageWrap">';
                             <div class="sealMetadata sealPiece">
                                 <span class="sealLabel hdr2">Title: </span> <span id="title">'.$value1.':'.$value2.'</span>
                             </div>
-                            <div class="sealMetadata sealPiece">
+                            <div class="sealMetadata sealPiece nobot">
                                 <span class="sealLabel">Digisig ID: </span><span id="digisigID">' .$id.'</span>
                                 <span clss="sealLabel">Permalink: </span><span id="permalink">http://digisig.org/entity/'. $id .'</span>
                                 <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
@@ -359,7 +359,7 @@ echo '<div class="pageWrap">';
                             <div class="sealMetadata sealPiece">
                                 <span class="sealLabel hdr2">Title: </span><span id="title">'.$value1.':'.$value2.'</span>
                             </div>
-                            <div class="sealMetadata sealPiece">
+                            <div class="sealMetadata sealPiece nobot">
                                 <span class="sealLabel">Digisig ID: </span><span id="digisigID">' .$id.'</span>
                                 <span clss="sealLabel">Permalink: </span><span id="permalink">http://digisig.org/entity/'. $id .'</span>
                                 <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
@@ -507,7 +507,7 @@ echo '<div class="pageWrap">';
                             <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
                             </div>';
             //perhaps this could be a card?
-                            $shapeDims = '<div class="sealMetadata sealPiece">';
+                            $shapeDims = '<div class="sealMetadata sealPiece nobot">';
                             
 
                             // note that a seal can have two faces but I am going to assume that the double side ones are the same
@@ -535,7 +535,7 @@ echo '<div class="pageWrap">';
                             $duplicate = $id;
                             if ($count1 > 0) {
                                 //echo "<div class='separator_2'>Other Descriptions</div>";
-                                echo "<br><div class='separator_2'>Other Descriptions</div>";
+                                echo "<div class='separator_2'>Other Descriptions</div>";
                                 $duplicate = $id;
                                 sealdescription($query12result, $address, $duplicate);
                             }
@@ -616,6 +616,7 @@ echo '<div class="pageWrap">';
                                     }else{
                                         echo '<div class="cardInfo"><span class="cardInfoKey">Thumbnail: </span><span class="cardInfoVal"><img src="' . $default . 'not_available_thumb.jpg" height=50></img></span></div>';
                                     }
+                                    echo "</div>";
                                 }
                                 else{
                                     echo '<tr><td>'.$addAsCard.'</td><td>'. $rowcount . '</td>';

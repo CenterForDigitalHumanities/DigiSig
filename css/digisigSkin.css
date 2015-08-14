@@ -364,6 +364,15 @@ option[value="holder"]{
     height:auto;
     
 }
+
+.sealMetadata + .theCards_body {
+    margin-top: 15px !important;
+}
+
+.sealMetadata + .tableWrap {
+    margin-top: 15px !important;
+}
+
 .addedCardHeader{
     font-weight: bold;
     font-size: 19px;
@@ -377,7 +386,7 @@ option[value="holder"]{
     padding: 15px;
     margin: 6px 0px;
     max-width: 800px;
-    min-width: 550px;
+    min-width: 600px;
     display: inline-table;
     height: auto;
     margin-right: 7px;
@@ -507,5 +516,23 @@ table.indent2 td{
 .resultWrap_2{
     position: relative;
     margin-bottom: 6px;
+}
+
+.separator_2 + .theCards_body{
+    margin-top: 8px !important;
+}
+.separator_2 + .tableWrap{
+    margin-top: 8px !important;
+}
+.theCards_body + .separator_2{
+    margin-top: 8px !important;
+}
+
+.sealMetadata + separator_2{
+    margin-top: 8px !important;
+}
+
+.nobot{
+    border-bottom: 1px solid white !important;
 }
 
