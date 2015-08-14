@@ -784,7 +784,7 @@ echo '<div class="pageWrap">';
             <div class="viewCardWidget">
                     <div class="toggleArrow" active="no" onclick="toggleCardWidget($(this));"> < </div>
                     <div class="cardCountText">You have <span id="cardcount">0</span> cards in your slider.</div>
-                    <a onclick="$('.addedCardArea').show(); $('.toggleArrow').click();">View Cards</a>
+                    <a class='viewCardLink' onclick="$('.addedCardArea').show(); $('.toggleArrow').click();">View Cards</a>
                 </div>
 		</body>
 		<script src="<?php echo $basePath; ?>digisig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>

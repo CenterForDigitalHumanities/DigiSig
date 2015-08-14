@@ -425,7 +425,11 @@ table.indent2 td{
     text-align: center;
     padding: 12px;
     right: -190px;
-    background-color: white;
+    /*background-color: white;*/
+    background: -webkit-linear-gradient(#00485E, #079); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#00485E, #079); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#00485E, #079); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#00485E, #079); /* Standard syntax */
 }
 .toggleArrow{
     border: 1px solid #079;
@@ -437,6 +441,11 @@ table.indent2 td{
     font-size: 19px;
     cursor: default;
     background-color:white;
+    background: -webkit-linear-gradient(left, #00485E, #079); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right,#00485E, #079); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right,#00485E, #079); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(right,#00485E, #079); /* Standard syntax */
+    color: white;
     
 }
 /*.toggleArrow:hover{
@@ -445,6 +454,14 @@ table.indent2 td{
 .cardCountText{
     font-weight: bold;
     font-size: 19px;
-    color: #00485E;
+    color: white;
     max-width: 169px;
+}
+.viewCardLink{
+    background-color: white;
+    padding: 3px;
+    margin-top: 1px;
+    position: relative;
+    display: inline-block;
+    top: 5px;
 }
