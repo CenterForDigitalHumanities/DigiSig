@@ -3,7 +3,7 @@
 
 	<head>
 		<script src="<?php echo $basePath; ?>digisig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
-		<link rel="stylesheet" href="<?php echo $basePath; ?>digisig/css/digisigSkin.css" />
+		<link rel="stylesheet" href="<?php echo $basePath; ?>digisig/css/digisigSkin.css" />                
 
 	</head>
 	<body>
@@ -236,7 +236,7 @@ echo '<div class="pageWrap">';
                             }
                             else{
                                 echo '<table class="metaTable indent2">'
-                                . '<thead><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>Shape</th><th>Seal Link</th><th>Thumbnail</th></thead>'
+                                . '<thead><th>&#x2714;</th><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>Shape</th><th>Seal Link</th><th>Thumbnail</th></thead>'
                                 . '<tbody>'; //'<tr><td></td><td>nature</td><td>number</td><td>position</td><td>shape</td></tr>'
                             }
                             while ($row = mysqli_fetch_array($query12result)) {
@@ -297,7 +297,7 @@ echo '<div class="pageWrap">';
                                     echo "</div>";
                                 }
                                 else{
-                                    echo '<tr><td>'.$addAsCard . $rowcount . '</td>';
+                                    echo '<tr><td>'.$addAsCard .'</td><td>'. $rowcount . '</td>';
                                     echo '<td>' . $value3 . '</td>';
                                     echo '<td>' . $value4 . '</td>';
                                     echo '<td>' . $value5 . '</td>';
@@ -553,7 +553,7 @@ echo '<div class="pageWrap">';
                                 echo '<div class="theCards_body indent2">';
                             }
                             else{
-                                echo '<table class="metaTable indent2"><thead><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>Shape</th><th>Dated</th><th>Item</th><th>Thumbnail</th></thead>'
+                                echo '<table class="metaTable indent2"><thead><th>&#x2714;</th><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>Shape</th><th>Dated</th><th>Item</th><th>Thumbnail</th></thead>'
                                 . '<tbody>';
                             }
                             while ($row = mysqli_fetch_array($query10result)) {
@@ -618,7 +618,7 @@ echo '<div class="pageWrap">';
                                     }
                                 }
                                 else{
-                                    echo '<tr><td>'.$addAsCard . $rowcount . '</td>';
+                                    echo '<tr><td>'.$addAsCard.'</td><td>'. $rowcount . '</td>';
                                     echo '<td>' . $value1 . '</td>';
                                     echo '<td>' . $value2 . '</td>';
                                     echo '<td>' . $value3 . '</td>';
@@ -780,9 +780,27 @@ echo '<div class="pageWrap">';
                     <div class="addedCardHeader">Selected Entries</div>
                     <div class="thecards"></div>
                 </div>
+            <div class="viewCardWidget">
+                    <div class="toggleArrow" active="no" onclick="toggleCardWidget($(this));"> < </div>
+                    <div class="cardCountText">You have <span id="cardcount">0</span> cards.</div>
+                    <a onclick="$('.addedCardArea').show(); $('.toggleArrow').click();">View Cards</a>
+                </div>
 		</body>
 		<script src="<?php echo $basePath; ?>digisig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
 		<script>
+                    function toggleCardWidget($toggle){
+                        if($toggle.attr("active") == "no"){
+                            $(".viewCardWidget").css("right", "0px");
+                            $(".toggleArrow").html(" > ");
+                            $toggle.attr("active", "yes");
+                        }
+                        else{
+                            $(".viewCardWidget").css("right", "-190px");
+                            $(".toggleArrow").html(" < ");
+                            $toggle.attr("active", "no");
+                        }
+                    }
+
                     var cardID = 0 ;
 		    var basePath = '<?php echo 'http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], '/') + 1); ?>';
 			var num_result_per_page = parseInt(<?php echo $num_result_per_page ?>);
@@ -855,6 +873,8 @@ echo '<div class="pageWrap">';
                             $(".pageShade").remove();
                         }
                         function cardMe($checkbox, card){
+                            var cardCount = $("#cardcount").html();
+                            cardCount = parseInt(cardCount);
                             if($checkbox.is(":checked")){
                                 if(card == false){
                                     console.log("Assign a unique card ID");
@@ -869,24 +889,24 @@ echo '<div class="pageWrap">';
                                 var parsedObject = {};
                                 var keyArray = [];
                                 var valueArray = [];
-                                $.each($dataLabels, function(){
-                                    console.log("Key "+$(this).html());
-                                    keyArray.push($(this).html());
-                                });
-                                $.each($dataRow, function(){
-                                    console.log("Value "+$(this).html())
-                                    valueArray.push($(this).html());
-                                });
-                                for(var i=0; i<$dataRow.length; i++){
-                                    parsedObject[keyArray[i]] = valueArray[i];
+                                for(var i=1; i<$dataLabels.length; i++){
+                                    console.log("Key "+$($dataLabels[i]).html());
+                                    keyArray.push($($dataLabels[i]).html());
+                                }
+                                for(var j=1; j<$dataRow.length; j++){
+                                    console.log("Value "+$($dataRow[j]).html())
+                                    valueArray.push($($dataRow[j]).html());
+                                }
+                                for(var k=0; k<$dataRow.length-1; k++){
+                                    parsedObject[keyArray[k]] = valueArray[k];
                                 }
                                 console.log(parsedObject);
                                 var cardHTML = $("<div cardID='"+card+"' class='card'></div>");
                                 $.each(parsedObject, function(key,value){
-                                    if(key === "#"){
-                                        value = value.split(">")[1];
-                                        console.log("JUST THE # :" + value);
-                                    }
+//                                    if(key === "#"){
+//                                        value = value.split(">")[1];
+//                                        console.log("JUST THE # :" + value);
+//                                    }
                                     if(value !== ""){
                                         var appender = $("<div class='cardInfo'>\n\
                                             <span class='cardInfoKey'>"+key+":</span><span class='cardInfoVal'> "+value+"</span>\n\
@@ -897,15 +917,20 @@ echo '<div class="pageWrap">';
                                 console.log("Card html");
                                 console.log(cardHTML);
                                 $(".theCards").append(cardHTML);
-                                $(".addedCardArea").show();
+                                cardCount++;
+                                $("#cardcount").html(cardCount);
+                                //$(".addedCardArea").show();
                             }
                             else{
                                 //Remove from card stack
                                 console.log("Remove card from stack: " + card);
                                 $(".theCards").find("div[cardID='"+card+"']").remove();
+                                cardCount--;
+                                $("#cardcount").html(cardCount);
                             }
                             
                         }
+                        
 		</script>
 </html>
 

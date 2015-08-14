@@ -77,7 +77,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                     
                 }
                 else{
-                    echo '<table class="metaTable maxmin"><thead><th>#</th><th>'.$field_str.'</th><th>Reference</th></thead><tbody>';
+                    echo '<table class="metaTable maxmin"><thead><th>&#x2714;</th><th>#</th><th>'.$field_str.'</th><th>Reference</th></thead><tbody>';
                 }
                 while ($row = mysqli_fetch_array($query5result)){
                     $value1 = $row[0];
@@ -112,7 +112,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                         echo "</div>";
                     }
                     else{
-                        echo '<tr><td>'.$addAsCard . $rowcount . '</td>';
+                        echo '<tr><td>'.$addAsCard.'</td><td>'. $rowcount . '</td>';
                         if(strlen($value2) >= $table_text_len){
                             $short_value2 = substr($value2, 0, $table_text_len);
                             echo '<td><a id="a_'.$value1.'" href=' . $address . '/entity/'.$value1.'>'. $short_value2 . '...</a> <a id="get_'.$value1.'" onclick="getFullText('.$value1.')">(More)</a><input type="hidden" id="full_'.$value1.'" value="'.$value2.'" /><input type="hidden" id="short_'.$value1.'" value="'.$short_value2.'" /></td><td>'. $value3. '</td></tr>';

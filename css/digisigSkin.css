@@ -57,9 +57,9 @@
     margin: 0px 20px;
     font-weight: bold;
 }
-/*.navigate:hover{
-    border: 1px solid white;
-}*/
+.navigate:hover{
+    color: rgba(0,72,94,.9);
+}
 .searchPiece{
     display: inline-block;
 }
@@ -157,9 +157,9 @@ form[name="navigate"]{
     margin: 0px 20px;
     font-weight: bold;
 }
-/*.footNav:hover{
-    border: 1px solid white;
-}*/
+.footNav:hover{
+    color: rgba(0,72,94,.9);
+}
 /* Login as part of the nav.  Needs to look like a link. */
 .login{
     position: absolute;
@@ -311,7 +311,7 @@ option[value="holder"]{
 
 .addedCardArea{
     position: fixed;
-    overflow-y: auto;
+    /*overflow-y: auto;*/
     display: none;
     padding: 25px;
     top: 15%;
@@ -331,10 +331,9 @@ option[value="holder"]{
     margin: 6px 7px 6px 0px;
     width: 400px;
     overflow-y: auto;
-    display: inline-table;
+    display: inline-block;
     background-color: #FFF;
-    max-height: 85%;
-    min-height: 60%;
+    height: 90%;
 }
 .theCards{
     overflow-x: auto;
@@ -415,4 +414,31 @@ table.indent2 td{
 .resultTerm{
     color: darkred;
     font-style: italic;    
+}
+.viewCardWidget{
+    position: fixed;
+    top: 20%;
+    right: 0px;
+    border: 1px solid #079;
+    text-align: center;
+    padding: 12px;
+    right: -190px;
+}
+.toggleArrow{
+    border: 1px solid #079;
+    padding: 5px;
+    position: absolute;
+    left: -23px;
+    top: 14px;
+    font-weight: bold;
+    font-size: 19px;
+    cursor: default;
+}
+.toggleArrow:hover{
+    background-color: rgba(0, 119, 153, 0.3);
+}
+.cardCountText{
+    font-weight: bold;
+    font-size: 19px;
+    color: #00485E;
 }
