@@ -932,6 +932,13 @@ echo '<div class="pageWrap">';
                             
                         }
                         
+                        $(function(){
+                            var url = window.location.href;
+                            if(url.indexOf("/digisig/about")>-1 || url.indexOf("/digisig/contact")>-1){
+                                $(".viewCardWidget").hide();
+                            }
+                        });
+                        
 		</script>
 </html>
 
