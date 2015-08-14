@@ -437,9 +437,9 @@ table.indent2 td{
     background-color:white;
     
 }
-.toggleArrow:hover{
+/*.toggleArrow:hover{
     background-color: rgba(0, 119, 153, 0.3);
-}
+}*/
 .cardCountText{
     font-weight: bold;
     font-size: 19px;
