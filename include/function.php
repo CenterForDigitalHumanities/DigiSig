@@ -59,14 +59,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
         If ($field != "all_fields") {
             $field_str = ucfirst($field);
             If ($numberofresults > 0) {
-                echo "<span class='resultCount'>$count</span>";
-                if ($numberofresults > 1) {
-                    echo " results found for <span class='resultTerm'>" . $term ."</span>";
-                }
-                else {
-                    echo " result found for <span class='resultTerm'>" . $term ."</span>";
-                }
-                echo " in <span class='resultTerm'>" . $field_str ."</span>";
+                
             
                 //drawing the results in a tabular form
                 $rowcount = 1;
@@ -74,9 +67,27 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                 if($count < 5){
                     $addAsCard = "";
                     echo '<div class="theCards_body">';
-                    
+                    echo '<div class="resultWrap">';
+                    echo "<span class='resultCount'>$count</span>";
+                    if ($numberofresults > 1) {
+                        echo " results found for <span class='resultTerm'>" . $term ."</span>";
+                    }
+                    else {
+                        echo " result found for <span class='resultTerm'>" . $term ."</span>";
+                    }
+                    echo " in <span class='resultTerm'>" . $field_str ."</span></div>";
                 }
                 else{
+                    echo '<div class="tableWrap">';
+                    echo '<div class="resultWrap_2">';
+                    echo "<span class='resultCount'>$count</span>";
+                    if ($numberofresults > 1) {
+                        echo " results found for <span class='resultTerm'>" . $term ."</span>";
+                    }
+                    else {
+                        echo " result found for <span class='resultTerm'>" . $term ."</span>";
+                    }
+                    echo " in <span class='resultTerm'>" . $field_str ."</span></div>";
                     echo '<table class="metaTable maxmin"><thead><th>&#x2714;</th><th>#</th><th>'.$field_str.'</th><th>Reference</th></thead><tbody>';
                 }
                 while ($row = mysqli_fetch_array($query5result)){
@@ -96,7 +107,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                     
                     if($numberofresults < 5){
                         echo '<div class="card">';
-                        echo '<div class="cardInfo"><span class="cardInfoKey">#: </span> <span class="cardInfoVal">'.$addAsCard . $rowcount .'</span></div>';
+                        echo '<div class="cardNum">#'.$addAsCard . $rowcount .'</div>';
                         if(isset($value2)){
                             if(strlen($value2) >= $table_text_len){
                                 $short_value2 = substr($value2, 0, $table_text_len);
@@ -133,12 +144,12 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                     echo '<tr id="show_more_tr_'.$field.'" last_row_num='.$rowcount--.'><td colspan="3"><input type="button" id="show_more_btn_'.$field.'" value="Show More" offset='.($num_result_per_page+1).' onclick=\'getNextData("'.$field.'", "'.$index.'", "'.$term.'", "'.$address.'", "'.$exact.'", '.$limit.')\' /><span id="load_next_pending_'.$field.'" style="display:none">Loading...</span></td></tr></table>';    
                     }
                     else{
-                        echo '</table>';
+                        echo '</table></div>';
                     }
                 }
                 
             }
-            else {echo "<p><span class='resultCount'>0</span> results in <span class='resultTerm'>" . $field_str . "</span></p>";}
+            else {echo "<div class='tableWrap'><div class='resultWrap'><span class='resultCount'>0</span> results in <span class='resultTerm'>" . $field_str . "</span></div></div>";}
         }
     }
 }
@@ -180,7 +191,7 @@ function sealdescription ($query12result, $address, $duplicate) {
         
     }
     else{
-        echo '<table class="metaTable indent"><thead><th>#</th><th>Name</th><th>Reference</th><th>Seal Description</th></thead><tbody>';
+        echo '<div class="tableWrap"><table class="metaTable indent"><thead><th>#</th><th>Name</th><th>Reference</th><th>Seal Description</th></thead><tbody>';
     }
     while ($row = mysqli_fetch_array($query12result)) {
         $value1 = $row['a_index'];
@@ -190,7 +201,7 @@ function sealdescription ($query12result, $address, $duplicate) {
         if (isset($duplicate) && $value3 != $duplicate) { 
             if($count < 5){
                 echo '<div class="card">';
-                echo '<div class="cardInfo"><span class="cardInfoKey">#: </span> <span class="cardInfoVal">'. $addAsCard . $rowcount .'</span></div>';
+                echo '<div class="cardNum"># '. $addAsCard . $rowcount .'</div>';
                 if(isset($value4) && $value4!==""){
                     echo '<div class="cardInfo"><span class="cardInfoKey">Name: </span> <span class="cardInfoVal">'.$value4.'</span></div>';
                 }
@@ -215,7 +226,7 @@ function sealdescription ($query12result, $address, $duplicate) {
         echo "</div>";
     }
     else{
-        echo "</tbody></table><br>";
+        echo "</tbody></table></div>";
     }
 }
 
