@@ -443,7 +443,7 @@ option{
     padding-left: 15px;
 }
 .indent2{
-    padding-left: 30px;
+    padding-left: 45px;
 }
 
 table.indent2 td{
@@ -548,3 +548,14 @@ table.indent2 td{
     border-bottom: 1px solid white !important;
 }
 
+input[type="button"]{
+    padding: 5px;
+    border: 2px solid #079;
+    cursor: pointer;
+    color: #079;
+    background-color: white;
+}
+
+input[type="button"]:hover{
+    background-color: rgba(0, 119, 153, 0.3);
+}

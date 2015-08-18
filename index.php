@@ -839,9 +839,9 @@ echo '<div class="pageWrap">';
 							var short_value2 = v2.substr(0, table_text_len);
 							var lastRowNum = $('#show_more_tr_' + field).attr('last_row_num');
 							if (v2.length > table_text_len) {
-								$('#show_more_tr_' + field).before('<tr><td>' + lastRowNum + '</td><td><a id="a_' + v1 + '" href=' + address + '/entity/' + v1 + '>' + short_value2 + '...</a> <a id="get_' + v1 + '" onclick="getFullText(' + v1 + ')">(More)</a><input type="hidden" id="full_' + v1 + '" value="' + v2 + '" /><input type="hidden" id="short_' + v1 + '" value="' + short_value2 + '" /></td><td>' + v3 + '</td></tr>');
+								$('#show_more_tr_' + field).before('<tr><td><input onchange="cardMe($(this), false);" type="checkbox"></td><td>' + lastRowNum + '</td><td><a id="a_' + v1 + '" href=' + address + '/entity/' + v1 + '>' + short_value2 + '...</a> <a id="get_' + v1 + '" onclick="getFullText(' + v1 + ')">(More)</a><input type="hidden" id="full_' + v1 + '" value="' + v2 + '" /><input type="hidden" id="short_' + v1 + '" value="' + short_value2 + '" /></td><td>' + v3 + '</td></tr>');
 							} else {
-								$('#show_more_tr_' + field).before('<tr><td>' + lastRowNum + '</td><td><a id="a_' + v1 + '" href=' + address + '/entity/' + v1 + '>' + v2 + '</a></td><td>' + v3 + '</td></tr>');
+								$('#show_more_tr_' + field).before('<tr><td><input onchange="cardMe($(this), false);" type="checkbox"></td><td>' + lastRowNum + '</td><td><a id="a_' + v1 + '" href=' + address + '/entity/' + v1 + '>' + v2 + '</a></td><td>' + v3 + '</td></tr>');
 							}
 							lastRowNum++;
 							$('#show_more_tr_' + field).attr('last_row_num', lastRowNum);
