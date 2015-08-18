@@ -96,8 +96,8 @@
 }
 /* Titles separating search results */
 .separator{
-    font-weight: bold;
-    text-decoration: underline;
+/*    font-weight: bold;*/
+/*    text-decoration: underline;*/
     font-size: 17px;
     color:#00485E;
 }
@@ -316,6 +316,18 @@ select{
 option[value="holder"]{
     color: white !important;
     font-weight: bold !important;
+    margin: 5px 0px !important;
+}
+
+option[value="split"]{
+    color: #33ADFF !important;
+    margin: 5px 0px !important;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+option{
+    margin-left: 8px;
 }
 
 .addedCardArea{
