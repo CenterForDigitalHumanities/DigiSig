@@ -104,12 +104,6 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                     if($value3 == ""){
                         $value3 = "<i>empty</i>";
                     }
-                    echo '<tr><td>' . $rowcount . '</td>';
-                    if(strlen($value2) >= $table_text_len){
-                        $short_value2 = substr($value2, 0, $table_text_len);
-                        echo '<td><a id="a_'.$value1.'" href=' . $address . '/entity/'.$value1.'>'. $short_value2 . '...</a> <a id="get_'.$value1.'" onclick="getFullText('.$value1.')">(More)</a><input type="hidden" id="full_'.$value1.'" value="'.$value2.'" /><input type="hidden" id="short_'.$value1.'" value="'.$short_value2.'" /></td><td>'. $value3. '</td></tr>';
-                    }else{
-                        echo '<td><a id="a_'.$value1.'" href=' . $address . '/entity/'.$value1.'>'.$value2.'</a></td><td>'. $value3. '</td></tr>';
                     
                     if($numberofresults < 5){
                         echo '<div class="card">';
@@ -155,11 +149,8 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                 }
                 
             }
+            else {echo "<div class='tableWrap'><div class='resultWrap'><span class='resultCount'>0</span> results in <span class='resultTerm'>" . $field_str . "</span></div></div>";}
         }
-        else {
-            echo "<div class='tableWrap'><div class='resultWrap'><span class='resultCount'>0</span> results in <span class='resultTerm'>" . $field_str . "</span></div></div>";
-        }
-    }
     }
 }
 
