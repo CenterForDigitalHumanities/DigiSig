@@ -59,19 +59,38 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
         If ($field != "all_fields") {
             $field_str = ucfirst($field);
             If ($numberofresults > 0) {
-                echo $count;
-                if ($numberofresults > 1) {
-                    echo " results found for " . $term;
-                }
-                else {
-                    echo " result found for " . $term;
-                }
-                echo " in " . $field_str;
+                
             
                 //drawing the results in a tabular form
-                echo '<table class="metaTable maxmin"><thead><th>#</th><th>'.$field_str.'</th><th>Reference</th></thead><tbody>';
                 $rowcount = 1;
-                while ($row = mysqli_fetch_array($query5result)) {
+                $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false);' />";
+                if($count < 5){
+                    $addAsCard = "";
+                    echo '<div class="theCards_body">';
+                    echo '<div class="resultWrap">';
+                    echo "<span class='resultCount'>$count</span>";
+                    if ($numberofresults > 1) {
+                        echo " results found for <span class='resultTerm'>" . $term ."</span>";
+                    }
+                    else {
+                        echo " result found for <span class='resultTerm'>" . $term ."</span>";
+                    }
+                    echo " in <span class='resultTerm'>" . $field_str ."</span></div>";
+                }
+                else{
+                    echo '<div class="tableWrap">';
+                    echo '<div class="resultWrap_2">';
+                    echo "<span class='resultCount'>$count</span>";
+                    if ($numberofresults > 1) {
+                        echo " results found for <span class='resultTerm'>" . $term ."</span>";
+                    }
+                    else {
+                        echo " result found for <span class='resultTerm'>" . $term ."</span>";
+                    }
+                    echo " in <span class='resultTerm'>" . $field_str ."</span></div>";
+                    echo '<table class="metaTable maxmin"><thead><th>&#x2714;</th><th>#</th><th>'.$field_str.'</th><th>Reference</th></thead><tbody>';
+                }
+                while ($row = mysqli_fetch_array($query5result)){
                     $value1 = $row[0];
                     $value2 = $row[1];
                     $value3 = $row[2];
@@ -91,20 +110,56 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                         echo '<td><a id="a_'.$value1.'" href=' . $address . '/entity/'.$value1.'>'. $short_value2 . '...</a> <a id="get_'.$value1.'" onclick="getFullText('.$value1.')">(More)</a><input type="hidden" id="full_'.$value1.'" value="'.$value2.'" /><input type="hidden" id="short_'.$value1.'" value="'.$short_value2.'" /></td><td>'. $value3. '</td></tr>';
                     }else{
                         echo '<td><a id="a_'.$value1.'" href=' . $address . '/entity/'.$value1.'>'.$value2.'</a></td><td>'. $value3. '</td></tr>';
+                    
+                    if($numberofresults < 5){
+                        echo '<div class="card">';
+                        echo '<div class="cardNum">#'.$addAsCard . $rowcount .'</div>';
+                        if(isset($value2)){
+                            if(strlen($value2) >= $table_text_len){
+                                $short_value2 = substr($value2, 0, $table_text_len);
+                                echo '<div class="cardInfo"><span class="cardInfoKey">'.$field_str.': </span><span class="cardInfoVal">'
+                                    . '<a id="a_'.$value1.'" href=' . $address . '/entity/'.$value1.'>'. $short_value2 . '...</a> <a id="get_'.$value1.'" onclick="getFullText('.$value1.')">(More)</a><input type="hidden" id="full_'.$value1.'" value="'.$value2.'" /><input type="hidden" id="short_'.$value1.'" value="'.$short_value2.'" /></span></div>';
+                                echo '<div class="cardInfo"><span class="cardInfoKey">Reference: </span> <span class="cardInfoVal">'.$value3.'</span></div>';
+                            }else{
+                                echo '<div class="cardInfo"><span class="cardInfoKey">'.$field_str.': </span>'
+                                        . '<span class="cardInfoVal"><a id="a_'.$value1.'" href=' . $address . '/entity/'.$value1.'>'.$value2.'</a></span></div>';
+                                echo '<div class="cardInfo"><span class="cardInfoKey">Reference: </span> <span class="cardInfoVal">'.$value3.'</span></div>';
+                            }
+                        }
+                        echo "</div>";
                     }
+                    else{
+                        echo '<tr><td>'.$addAsCard.'</td><td>'. $rowcount . '</td>';
+                        if(strlen($value2) >= $table_text_len){
+                            $short_value2 = substr($value2, 0, $table_text_len);
+                            echo '<td><a id="a_'.$value1.'" href=' . $address . '/entity/'.$value1.'>'. $short_value2 . '...</a> <a id="get_'.$value1.'" onclick="getFullText('.$value1.')">(More)</a><input type="hidden" id="full_'.$value1.'" value="'.$value2.'" /><input type="hidden" id="short_'.$value1.'" value="'.$short_value2.'" /></td><td>'. $value3. '</td></tr>';
+                        }else{
+                            echo '<td><a id="a_'.$value1.'" href=' . $address . '/entity/'.$value1.'>'.$value2.'</a></td><td>'. $value3. '</td></tr>';
+                        }
+                    }
+                    
             
                     $rowcount++;
                 }
 
-                
-                if($numberofresults < $count){
-                    echo '<tr id="show_more_tr_'.$field.'" last_row_num='.$rowcount--.'><td colspan="3"><input type="button" id="show_more_btn_'.$field.'" value="Show More" offset='.($num_result_per_page+1).' onclick=\'getNextData("'.$field.'", "'.$index.'", "'.$term.'", "'.$address.'", "'.$exact.'", '.$limit.')\' /><span id="load_next_pending_'.$field.'" style="display:none">Loading...</span></td></tr></table>';    
-                }else{
-                    echo '</table>';
+                if($count < 5){
+                    echo "</div>";
                 }
+                else{
+                    if($numberofresults < $count ){
+                    echo '<tr id="show_more_tr_'.$field.'" last_row_num='.$rowcount--.'><td colspan="3"><input type="button" id="show_more_btn_'.$field.'" value="Show More" offset='.($num_result_per_page+1).' onclick=\'getNextData("'.$field.'", "'.$index.'", "'.$term.'", "'.$address.'", "'.$exact.'", '.$limit.')\' /><span id="load_next_pending_'.$field.'" style="display:none">Loading...</span></td></tr></table>';    
+                    }
+                    else{
+                        echo '</table></div>';
+                    }
+                }
+                
             }
-            else {echo "<p>no results in " . $field_str . "</p>";}
         }
+        else {
+            echo "<div class='tableWrap'><div class='resultWrap'><span class='resultCount'>0</span> results in <span class='resultTerm'>" . $field_str . "</span></div></div>";
+        }
+    }
     }
 }
 
@@ -135,24 +190,53 @@ function queryview($entity, $id) {
 // the function can omit one description -- flagged by the $duplicate value
 
 function sealdescription ($query12result, $address, $duplicate) {
+    $count = mysqli_num_rows($query12result);
     
-    echo '<table class="metaTable"><thead><th>#</th><th>Name</th><th>Reference</th><th>Seal Description</th></thead><tbody>';
     $rowcount = 1;
-
-while ($row = mysqli_fetch_array($query12result)) {
-    $value1 = $row['a_index'];
-    $value2 = $row['sealdescription_identifier'];
-    $value3 = $row['id_sealdescription'];
-    $value4 = $row['realizer'];
-    if (isset($duplicate) && $value3 != $duplicate) { 
-        echo '<tr><td> '. $rowcount . '</td>';
-        echo '<td>' . $value4 . '</td>';
-        echo '<td>' . $value1 . '</td>';
-        echo '<td><a href="' . $address . '/entity/' . $value3. '">' . $value2 . '</a></td></tr>';
-        $rowcount++;
+    $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false);' />";
+    if($count < 5){
+        $addAsCard = "";
+        echo '<div class="theCards_body indent">';
+        
     }
-}
-    echo "</tbody></table><br>";
+    else{
+        echo '<div class="tableWrap"><table class="metaTable indent"><thead><th>#</th><th>Name</th><th>Reference</th><th>Seal Description</th></thead><tbody>';
+    }
+    while ($row = mysqli_fetch_array($query12result)) {
+        $value1 = $row['a_index'];
+        $value2 = $row['sealdescription_identifier'];
+        $value3 = $row['id_sealdescription'];
+        $value4 = $row['realizer'];
+        if (isset($duplicate) && $value3 != $duplicate) { 
+            if($count < 5){
+                echo '<div class="card">';
+                echo '<div class="cardNum"># '. $addAsCard . $rowcount .'</div>';
+                if(isset($value4) && $value4!==""){
+                    echo '<div class="cardInfo"><span class="cardInfoKey">Name: </span> <span class="cardInfoVal">'.$value4.'</span></div>';
+                }
+                if(isset($value1) && $value1!==""){
+                    echo '<div class="cardInfo"><span class="cardInfoKey">Reference: </span> <span class="cardInfoVal">'.$value1.'</span></div>';
+                }
+                if(isset($value3) && $value3!=="" && isset($value2) && $value2!==""){
+                   echo '<div class="cardInfo"><span class="cardInfoKey">Seal Description: </span> <span class="cardInfoVal"><a href="' . $address . '/entity/' . $value3. '">' . $value2 . '</a></span></div>';
+                }
+                echo "</div>";
+            }
+            else{
+                echo '<tr><td> '. $addAsCard . $rowcount . '</td>';
+                echo '<td>' . $value4 . '</td>';
+                echo '<td>' . $value1 . '</td>';
+                echo '<td><a href="' . $address . '/entity/' . $value3. '">' . $value2 . '</a></td></tr>';
+            }
+            $rowcount++;
+        }
+    }
+    if($count < 5){
+        echo "</div>";
+    }
+    else{
+        echo "</tbody></table></div>";
+    }
 }
 
 ?>

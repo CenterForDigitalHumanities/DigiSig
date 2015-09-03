@@ -15,7 +15,7 @@
 }
 /* navigation bar */
 .navigation{
-    border-bottom: 1px solid #000;
+    /*border-bottom: 1px solid #000;*/
     padding: 10px 0px 10px 10px;
 } 
 
@@ -57,9 +57,9 @@
     margin: 0px 20px;
     font-weight: bold;
 }
-/*.navigate:hover{
-    border: 1px solid white;
-}*/
+.navigate:hover{
+    color: rgba(0,72,94,.9);
+}
 .searchPiece{
     display: inline-block;
 }
@@ -68,6 +68,7 @@
     border: 1px solid #000;
     background-color: #00485E;
     padding: 10px 0px 10px 0px;
+    margin-top: 28px;
 }
 /* Search tool areas  */
 .searchArea p, .searchArea input, .searchArea select{
@@ -95,15 +96,17 @@
 }
 /* Titles separating search results */
 .separator{
-    font-weight: bold;
-    text-decoration: underline;
+/*    font-weight: bold;*/
+/*    text-decoration: underline;*/
     font-size: 17px;
+    color:#00485E;
 }
 .separator_2{
-    font-weight: bold;
-    text-decoration: underline;
     font-size: 17px;
     margin-top:10px;
+    color: #00485E;
+    text-transform: uppercase;
+    /*margin-left: 15px;*/
 }
 .searchTitle{
     color: #FFF;
@@ -118,21 +121,31 @@ form[name="navigate"]{
     top: -2px;
 }
 .pageWrap{
-    margin: 0px 10px !important;
+    margin: 0px 50px !important;
     color: #007799;
+    font-family: sans-serif !important;
 }
 /* This is the image logo and the navigation */
+.theheader{
+    background-color: #079;
+    color: white;
+    top: 14px !important;
+    margin: 0px 50px;
+}
 .header{
     background-color: #079;
     color: white;
+    font-family: serif !important;
 }
 
 /* This is the footer navigation */
 .footer{
-    background-color: #00485E;
+    background-color: #079;
     margin-top: 10px;
-    height: 50px;
-    line-height: 50px;
+    height: 36px;
+    line-height: 39px;
+    margin: 10px 50px;
+    text-align: center;
 }
 
 /* Footer buttons need to look like links */
@@ -146,9 +159,9 @@ form[name="navigate"]{
     margin: 0px 20px;
     font-weight: bold;
 }
-/*.footNav:hover{
-    border: 1px solid white;
-}*/
+.footNav:hover{
+    color: rgba(0,72,94,.9);
+}
 /* Login as part of the nav.  Needs to look like a link. */
 .login{
     position: absolute;
@@ -178,20 +191,30 @@ thead{
 }
 th{
     text-align: center;
-    border-left: 1px solid black;
+/*    border-left: 1px solid black;
     border-right: 1px solid black;
-    border-top: 1px solid black;
+    border-top: 1px solid black;*/
+    border: 1px solid black;
     padding: 5px !important;
     max-width: 720px;
+    padding: 4px 8px !important;
 }
 td{
-    border:1px solid black;
-    padding: 5px !important;
+    border:1px solid rgba(0,119,153, .3);
     max-width: 720px;
+    padding: 4px 8px !important;
+}
+
+.tableWrap{
+    border-top: 1px solid #079;
+    border-bottom: 1px solid #079;
+    padding : 12px 0px;
+    margin: 40px 0px;
 }
 
 table{
-    margin: 3px 0px;
+    border-collapse: collapse !important;
+    
 }
 
 table.maxmin th, table.maxmin td{
@@ -228,8 +251,11 @@ table.maxmin th, table.maxmin td{
     margin-right:15px;
     color:black;
 }
-#permalink{
+#permalink, #shape, #height, #width, #title{
     color: black;
+}
+#height, #shape{
+    margin-right: 15px;
 }
 .sealMetadata{
     padding: 5px 0px;
@@ -283,12 +309,253 @@ select{
     color: white;
     position: absolute;
     right: 4px;
-    top: 0px;
+    top: 4px;
     cursor: pointer;
 }
 
 option[value="holder"]{
     color: white !important;
     font-weight: bold !important;
+    margin: 5px 0px !important;
 }
 
+option[value="split"]{
+    color: #33ADFF !important;
+    margin: 5px 0px !important;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+option{
+    margin-left: 8px;
+}
+
+.addedCardArea{
+    position: fixed;
+    /*overflow-y: auto;*/
+    display: none;
+    padding: 25px;
+    top: 5%;
+    height: 505px;
+    left: 0px;
+    margin: 0% 5%;
+    width: 90%;
+    z-index: 5;
+    background-color: #00485E;
+    color: white;
+    box-shadow: 0px 0px 19px 4px black;
+}
+
+.card{
+    border: 2px solid #079;
+    padding: 15px;
+    margin: 6px 7px 6px 0px;
+    width: 400px;
+    overflow-y: auto;
+    display: inline-table;
+    background-color: #FFF;
+    height: 95%;
+    white-space: nowrap;
+    position: relative;
+}
+.theCards{
+    overflow-x: auto;
+    display: block;
+    white-space: nowrap;
+    height: 93%;
+}
+.theCards_body{
+    display: block;
+    overflow-x: auto;
+    border-top: 1px solid #079;
+    border-bottom: 1px solid #079;
+    padding : 12px 0px;
+    margin: 40px 0px;
+}
+.theCards_body .card{
+    height:auto;
+    
+}
+
+.sealMetadata + .theCards_body {
+    margin-top: 15px !important;
+}
+
+.sealMetadata + .tableWrap {
+    margin-top: 15px !important;
+}
+
+.addedCardHeader{
+    font-weight: bold;
+    font-size: 19px;
+    display: block;
+    position: relative;
+    border-bottom: 2px solid white;
+}
+
+.card_single{
+    border: 2px solid #079;
+    padding: 15px;
+    margin: 6px 0px;
+    max-width: 800px;
+    min-width: 600px;
+    display: inline-table;
+    height: auto;
+    margin-right: 7px;
+    background-color: white;
+    
+}
+
+.hdr1{
+    color: #00485E;
+    font-size:20px;
+    text-transform: uppercase;
+}
+.hdr2{
+    color: #079;
+    /*font-size:20px;*/
+    text-transform: uppercase;
+}
+.cardInfoVal{
+    color: #000;
+    white-space: normal;
+    display: inline-table;
+    position: relative;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 250px;
+}
+.cardInfoKey{
+    color: #00485E;
+    font-weight: bold;
+    margin-right: 5px;
+    display: inline-table;
+    text-align: right;
+    position: relative;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 93px;
+}
+.cardInfo{
+    margin: 2px 0px;
+}
+.indent{
+    padding-left: 15px;
+}
+.indent2{
+    padding-left: 45px;
+}
+
+table.indent2 td{
+    background-color: rgba(0,119,153, .1);
+}
+
+.theCards_body.indent2{
+    background-color: rgba(0,119,153, .3);
+}
+.resultCount{
+    color: red;
+}
+.resultTerm{
+    color: darkred;
+    font-style: italic;    
+}
+.viewCardWidget{
+    position: fixed;
+    top: 35%;
+    right: 0px;
+    border: 1px solid #079;
+    text-align: center;
+    padding: 12px;
+    right: -190px;
+    /*background-color: white;*/
+    background: -webkit-linear-gradient(#00485E, #079); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#00485E, #079); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#00485E, #079); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#00485E, #079); /* Standard syntax */
+}
+.toggleArrow{
+    border: 1px solid #079;
+    padding: 5px;
+    position: absolute;
+    left: -23px;
+    top: 27px;
+    font-weight: bold;
+    font-size: 19px;
+    cursor: default;
+    background-color:white;
+    background: -webkit-linear-gradient(left, #00485E, #079); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right,#00485E, #079); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right,#00485E, #079); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(right,#00485E, #079); /* Standard syntax */
+    color: white;
+    
+}
+/*.toggleArrow:hover{
+    background-color: rgba(0, 119, 153, 0.3);
+}*/
+.cardCountText{
+    font-weight: bold;
+    font-size: 19px;
+    color: white;
+    max-width: 169px;
+}
+.viewCardLink{
+    background-color: white;
+    padding: 3px;
+    margin-top: 1px;
+    position: relative;
+    display: inline-block;
+    top: 5px;
+}
+.cardNum{
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #079;
+    left: 0px;
+    padding-left: 15px;
+    top: 8px;
+    font-weight: bold;
+    color: #00485E;
+}
+.card > :nth-child(2){
+    margin-top: 25px;
+}
+.resultWrap{
+    position: relative;
+}
+
+.resultWrap_2{
+    position: relative;
+    margin-bottom: 6px;
+}
+
+.separator_2 + .theCards_body{
+    margin-top: 8px !important;
+}
+.separator_2 + .tableWrap{
+    margin-top: 8px !important;
+}
+.theCards_body + .separator_2{
+    margin-top: 8px !important;
+}
+
+.sealMetadata + separator_2{
+    margin-top: 8px !important;
+}
+
+.nobot{
+    border-bottom: 1px solid white !important;
+}
+
+input[type="button"]{
+    padding: 5px;
+    border: 2px solid #079;
+    cursor: pointer;
+    color: #079;
+    background-color: white;
+}
+
+input[type="button"]:hover{
+    background-color: rgba(0, 119, 153, 0.3);
+}

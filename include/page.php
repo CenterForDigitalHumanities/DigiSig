@@ -19,8 +19,9 @@
         it aims to foster sigillographic research by linking and matching sigillographic 
         datasets and making that information available.
     </p>-->
+    
     <form class="searchArea" name = "search" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" onsubmit="submitFormSearch()">
-        <div class="searchTitle">Search</div>
+        <div class="searchTitle">SEARCH</div>
         <div class="searchPiece">
         <!--<p style="color: white;">Select Field:<br/></p>-->
         <select name="field"/>
@@ -69,13 +70,13 @@
                     echo $all_indexes;
                     $query2 = "SELECT pk_index, a_index, index_order, index_url, fk_catalogue FROM tb_index WHERE fk_catalogue > 0 ORDER BY index_order";
                     $searchindex1 = mysqli_query($link, $query2);
-                    echo '<option value= "catalogue" disabled>Catalogue</option>';
+                    echo '<option value="split" disabled>Catalogue</option>';
                     while ($row = mysqli_fetch_array($searchindex1)){
                         echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";               
                         }
                     $query3 = "SELECT pk_index, a_index, index_order, index_url, fk_repository FROM tb_index WHERE fk_repository > 0 ORDER BY index_order";
                     $searchindex2 = mysqli_query($link, $query3);
-                    echo '<option value= "catalogue" disabled>Repository</option>';
+                    echo '<option value="split" disabled>Repository</option>';
                     while ($row = mysqli_fetch_array($searchindex2)){
                         echo "<option value=".$row['index_url'] . ">" . $row['a_index'] . "</option>";
                     }
