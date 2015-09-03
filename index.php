@@ -229,7 +229,7 @@ echo '<div class="pageWrap">';
                             // table detailing which seal impressions are associated with this item
                             
                             $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false);' />";
-                            echo "<div class='separator_2'>Examples</div>";
+                            echo "<div class='separator_2'>Seals</div>";
                             if($count3 < 5){
                                 $addAsCard = "";
                                 echo "<div class='theCards_body indent'>";
@@ -430,16 +430,16 @@ echo '<div class="pageWrap">';
                             }
 
                             if (isset($value9)) {
-                                $tableHeader .= "<th>Size Y</th>";
+                                $tableHeader .= "<th>Height</th>";
                                 $tableBody .= "<td>".$value9."</td>";
-                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Size Y: </span> <span class="cardInfoVal">'.$value9.'</span></div>';
+                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Height: </span> <span class="cardInfoVal">'.$value9.'</span></div>';
                                 //echo '<br> Size Vertical:' . $value9 . '<br>';
                             }
 
                             if (isset($value10)) {
-                                $tableHeader .= "<th>Size X</th>";
+                                $tableHeader .= "<th>Width</th>";
                                 $tableBody .= "<td>".$value10."</td>";
-                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Size X: </span> <span class="cardInfoVal">'.$value10.'</span></div>';
+                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Width: </span> <span class="cardInfoVal">'.$value10.'</span></div>';
                                 //echo '<br> Size Horizontal:' . $value10 . '<br>';
                             }
 
@@ -463,7 +463,7 @@ echo '<div class="pageWrap">';
                                 } else {
                                     $tableBody .= '<td><img class="sealThumbnail" src="' . $default . 'restricted_thumb.jpg" height=50/>'
                                     . '<input class="digiBtn viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/></td>';
-                                    $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Size X: </span> <span class="cardInfoVal"><img class="sealThumbnail" src="' . $default . 'restricted_thumb.jpg" height=50/>'
+                                    $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Width: </span> <span class="cardInfoVal"><img class="sealThumbnail" src="' . $default . 'restricted_thumb.jpg" height=50/>'
                                     . '<input class="digiBtn viewImgBtn" type="button" value="View Image" onclick="viewFullImage($(this));"/></span></div>';
                                     //echo '<td><a href="' . $default . 'restricted.jpg"><img src="' . $default . 'restricted_thumb.jpg" height=50></img></a></td></tr>';
                                 }
@@ -489,8 +489,7 @@ echo '<div class="pageWrap">';
                                 $query12result = mysqli_query($link, $query12);
     
                                 $count = mysqli_num_rows($query12result);
-                                if ($count > 0) {
-                                    //echo "other descriptions";
+                                if ($count > 1) {
                                     echo "<div class='separator_2'>Other Descriptions</div>";
                                     $duplicate = $id;
                                     sealdescription($query12result, $address, $duplicate);
@@ -533,9 +532,10 @@ echo '<div class="pageWrap">';
                             $query12result = mysqli_query($link, $query12);
                             $count1 = mysqli_num_rows($query12result);
                             $duplicate = $id;
-                            if ($count1 > 0) {
+                            
+                            if ($count1 > 1) {
                                 //echo "<div class='separator_2'>Other Descriptions</div>";
-                                echo "<div class='separator_2'>Other Descriptions</div>";
+                                echo "<div class='separator_2'>Descriptions</div>";
                                 $duplicate = $id;
                                 sealdescription($query12result, $address, $duplicate);
                             }
@@ -754,7 +754,7 @@ echo '<div class="pageWrap">';
                 </p>";
                 echo "<div class='searchResults'>";
                 //echo "<div class='resultsTitle'>Results</div>";
-                echo "<span class='separator'>Publications and Projects</span><br>";
+                echo "<span class='separator_2'>Publications and Projects</span><br>";
 
                 $query = "SELECT DISTINCT title, uri_catalogue FROM search_view WHERE title NOT IN ('Public Index') ORDER BY title";
                 $queryresults = mysqli_query($link, $query);
@@ -763,7 +763,7 @@ echo '<div class="pageWrap">';
                     echo "<br>";
                 }
 
-                echo "<span class='separator'>Repositories</span><br>";
+                echo "<span class='separator_2' style='margin-top: 20px; display: block;'>Repositories</span>";
                 $query = "SELECT DISTINCT repository_fulltitle, id_archoncode FROM shelfmark_view ORDER BY repository_fulltitle";
                 $queryresults = mysqli_query($link, $query);
                 while ($row = mysqli_fetch_assoc($queryresults)) {
@@ -839,9 +839,9 @@ echo '<div class="pageWrap">';
 							var short_value2 = v2.substr(0, table_text_len);
 							var lastRowNum = $('#show_more_tr_' + field).attr('last_row_num');
 							if (v2.length > table_text_len) {
-								$('#show_more_tr_' + field).before('<tr><td>' + lastRowNum + '</td><td><a id="a_' + v1 + '" href=' + address + '/entity/' + v1 + '>' + short_value2 + '...</a> <a id="get_' + v1 + '" onclick="getFullText(' + v1 + ')">(More)</a><input type="hidden" id="full_' + v1 + '" value="' + v2 + '" /><input type="hidden" id="short_' + v1 + '" value="' + short_value2 + '" /></td><td>' + v3 + '</td></tr>');
+								$('#show_more_tr_' + field).before('<tr><td><input onchange="cardMe($(this), false);" type="checkbox"></td><td>' + lastRowNum + '</td><td><a id="a_' + v1 + '" href=' + address + '/entity/' + v1 + '>' + short_value2 + '...</a> <a id="get_' + v1 + '" onclick="getFullText(' + v1 + ')">(More)</a><input type="hidden" id="full_' + v1 + '" value="' + v2 + '" /><input type="hidden" id="short_' + v1 + '" value="' + short_value2 + '" /></td><td>' + v3 + '</td></tr>');
 							} else {
-								$('#show_more_tr_' + field).before('<tr><td>' + lastRowNum + '</td><td><a id="a_' + v1 + '" href=' + address + '/entity/' + v1 + '>' + v2 + '</a></td><td>' + v3 + '</td></tr>');
+								$('#show_more_tr_' + field).before('<tr><td><input onchange="cardMe($(this), false);" type="checkbox"></td><td>' + lastRowNum + '</td><td><a id="a_' + v1 + '" href=' + address + '/entity/' + v1 + '>' + v2 + '</a></td><td>' + v3 + '</td></tr>');
 							}
 							lastRowNum++;
 							$('#show_more_tr_' + field).attr('last_row_num', lastRowNum);
