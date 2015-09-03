@@ -85,7 +85,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                     if($value3 == ""){
                         $value3 = "<i>empty</i>";
                     }
-                    echo '<tr><td>' . $rowcount . '</td>'; //
+                    echo '<tr><td>' . $rowcount . '</td>';
                     if(strlen($value2) >= $table_text_len){
                         $short_value2 = substr($value2, 0, $table_text_len);
                         echo '<td><a id="a_'.$value1.'" href=' . $address . '/entity/'.$value1.'>'. $short_value2 . '...</a> <a id="get_'.$value1.'" onclick="getFullText('.$value1.')">(More)</a><input type="hidden" id="full_'.$value1.'" value="'.$value2.'" /><input type="hidden" id="short_'.$value1.'" value="'.$short_value2.'" /></td><td>'. $value3. '</td></tr>';
