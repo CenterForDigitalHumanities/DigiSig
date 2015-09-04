@@ -171,7 +171,7 @@ form[name="navigate"]{
     padding:0!important;
     font: inherit;
     cursor: pointer;    
-    color: white;
+    color: white !important;
     font-weight: bold;
 }
 .seal, .sealMetadata{

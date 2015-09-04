@@ -489,7 +489,7 @@ echo '<div class="pageWrap">';
                                 $query12result = mysqli_query($link, $query12);
     
                                 $count = mysqli_num_rows($query12result);
-                                if ($count > 1) {
+                                if ($count > 0) {
                                     echo "<div class='separator_2'>Other Descriptions</div>";
                                     $duplicate = $id;
                                     sealdescription($query12result, $address, $duplicate);
@@ -533,7 +533,7 @@ echo '<div class="pageWrap">';
                             $count1 = mysqli_num_rows($query12result);
                             $duplicate = $id;
                             
-                            if ($count1 > 1) {
+                            if ($count1 > 0) {
                                 //echo "<div class='separator_2'>Other Descriptions</div>";
                                 echo "<div class='separator_2'>Descriptions</div>";
                                 $duplicate = $id;
