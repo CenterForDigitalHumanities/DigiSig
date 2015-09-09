@@ -750,7 +750,7 @@ echo '<div class="pageWrap">';
                         <u><b>$sealcount</b></u> seal records and
                         <u><b>$imagecount</b></u> images 
                     </p>
-					<p> Digisig includes data from the following: </p>";
+					<p> Digisig includes data from the following cool stuff: </p>";
 					
                 echo "<div class='searchResults'>";
                 //echo "<div class='resultsTitle'>Results</div>";
