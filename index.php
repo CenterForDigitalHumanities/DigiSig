@@ -749,7 +749,9 @@ echo '<div class="pageWrap">';
                         It currently contains:
                         <u><b>$sealcount</b></u> seal records and
                         <u><b>$imagecount</b></u> images 
-                    </p>";
+                    </p>
+					<p> Digisig includes data from the following: </p>";
+					
                 echo "<div class='searchResults'>";
                 //echo "<div class='resultsTitle'>Results</div>";
                 echo "<span class='separator_2'>Publications and Projects</span><br>";
