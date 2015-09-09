@@ -59,11 +59,9 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
         If ($field != "all_fields") {
             $field_str = ucfirst($field);
             If ($numberofresults > 0) {
-                
-            
                 //drawing the results in a tabular form
                 $rowcount = 1;
-                $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false);' />";
+                $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false, false);' />";
                 if($count < 5){
                     $addAsCard = "";
                     echo '<div class="theCards_body">';
@@ -106,7 +104,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                     }
                     
                     if($numberofresults < 5){
-                        echo '<div class="card">';
+                        echo '<div class="card"><label><input type="checkbox" onchange="cardMe($(this), false, true);"/> Add To Slider </label>';
                         echo '<div class="cardNum">#'.$addAsCard . $rowcount .'</div>';
                         if(isset($value2)){
                             if(strlen($value2) >= $table_text_len){
@@ -130,6 +128,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                         }else{
                             echo '<td><a id="a_'.$value1.'" href=' . $address . '/entity/'.$value1.'>'.$value2.'</a></td><td>'. $value3. '</td></tr>';
                         }
+                        
                     }
                     
             
@@ -141,7 +140,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                 }
                 else{
                     if($numberofresults < $count ){
-                    echo '<tr id="show_more_tr_'.$field.'" last_row_num='.$rowcount--.'><td colspan="3"><input type="button" id="show_more_btn_'.$field.'" value="Show More" offset='.($num_result_per_page+1).' onclick=\'getNextData("'.$field.'", "'.$index.'", "'.$term.'", "'.$address.'", "'.$exact.'", '.$limit.')\' /><span id="load_next_pending_'.$field.'" style="display:none">Loading...</span></td></tr></table>';    
+                    echo '<tr id="show_more_tr_'.$field.'" last_row_num='.$rowcount--.'><td colspan="3"><input type="button" id="show_more_btn_'.$field.'" value="Show More" offset='.($num_result_per_page+1).' onclick=\'getNextData("'.$field.'", "'.$index.'", "'.$term.'", "'.$address.'", "'.$exact.'", '.$limit.')\' /><span id="load_next_pending_'.$field.'" style="display:none">Loading...</span></td></tr></table></div>';    
                     }
                     else{
                         echo '</table></div>';
@@ -184,7 +183,7 @@ function sealdescription ($query12result, $address, $duplicate) {
     $count = mysqli_num_rows($query12result);
     
     $rowcount = 1;
-    $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false);' />";
+    $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false, false);' />";
     if($count < 5){
         $addAsCard = "";
         echo '<div class="theCards_body indent">';
@@ -200,7 +199,7 @@ function sealdescription ($query12result, $address, $duplicate) {
         $value4 = $row['realizer'];
         if (isset($duplicate) && $value3 != $duplicate) { 
             if($count < 5){
-                echo '<div class="card">';
+                echo '<div class="card"><label><input type="checkbox" onchange="cardMe($(this), false, true);"/> Add To Slider </label>';
                 echo '<div class="cardNum"># '. $addAsCard . $rowcount .'</div>';
                 if(isset($value4) && $value4!==""){
                     echo '<div class="cardInfo"><span class="cardInfoKey">Name: </span> <span class="cardInfoVal">'.$value4.'</span></div>';

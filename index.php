@@ -228,7 +228,7 @@ echo '<div class="pageWrap">';
                             $count3 = mysqli_num_rows($query12result);
                             // table detailing which seal impressions are associated with this item
                             
-                            $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false);' />";
+                            $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false, false);' />";
                             echo "<div class='separator_2'>Seals</div>";
                             if($count3 < 5){
                                 $addAsCard = "";
@@ -237,7 +237,7 @@ echo '<div class="pageWrap">';
                             else{
                                 echo '<div class="tableWrap"><table class="metaTable indent2">'
                                 . '<thead><th>&#x2714;</th><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>Shape</th><th>Seal Link</th><th>Thumbnail</th></thead>'
-                                . '<tbody>'; //'<tr><td></td><td>nature</td><td>number</td><td>position</td><td>shape</td></tr>'
+                                . ''; //'<tr><td></td><td>nature</td><td>number</td><td>position</td><td>shape</td></tr>'
                             }
                             while ($row = mysqli_fetch_array($query12result)) {
                                 $value3 = $row['nature'];
@@ -264,7 +264,7 @@ echo '<div class="pageWrap">';
                                     $value17 = $small;
                                 }
                                 if($count3 < 5){
-                                    echo '<div class="card">';
+                                    echo '<div class="card"><label><input type="checkbox" onchange="cardMe($(this), false, true);"/> Add To Slider </label>';
                                     echo '<div class="cardNum">#'.$addAsCard . $rowcount . '</div>';
                                     if(isset($value3) && $value3!==""){
                                         echo '<div class="cardInfo"><span class="cardInfoKey">Nature: </span> <span class="cardInfoVal">'.$value3. '</span></div>';
@@ -332,7 +332,8 @@ echo '<div class="pageWrap">';
                             $row = mysqli_fetch_array($query8result);
                             $count = mysqli_num_rows($query8result);
                             //assign variables
-                            $value1 = $row['a_index'];
+                            //$value1 = $row['a_index'];
+                            $value1 = $row['collection_fulltitle'];
                             $value2 = $row['collection_volume'];
                             $value3 = $row['catalogue_pagenumber'];
                             $value4 = $row['sealdescription_identifier'];
@@ -356,8 +357,8 @@ echo '<div class="pageWrap">';
                             $value14 = $row['connection'];
                             //formulate header
                              echo '<div class="seal sealPiece hdr1">Seal Description</div>
-                            <div class="sealMetadata sealPiece">
-                                <span class="sealLabel hdr2">Title: </span><span id="title">'.$value1.':'.$value2.'</span>
+                            <div class="sealMetadata sealPiece nobot">
+                                <span class="sealLabel hdr2">Title: </span><span id="title">'.$value1.' : '.$value4.'</span>
                             </div>
                             <div class="sealMetadata sealPiece nobot">
                                 <span class="sealLabel">Digisig ID: </span><span id="digisigID">' .$id.'</span>
@@ -368,9 +369,7 @@ echo '<div class="pageWrap">';
                                 $cardArea = "<div class='theCards_body'><div class='card_single'>";
                                 $tableHeader = "<thead>";
                                 $tableBody = "<tbody><tr>";
-                             
-                            
-                            
+
                             // title
                             //echo $value1 . ":" . $value4;
                             //$tableBody .= "<td>".$value1.":".$value4."</td>";
@@ -547,7 +546,7 @@ echo '<div class="pageWrap">';
                             echo '<div class="separator_2">Examples</div>';
                             
                             $rowcount = 1;
-                            $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false);' />";
+                            $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false, false);' />";
                             if($count2 < 5){
                                 $addAsCard = "";
                                 echo '<div class="theCards_body indent2">';
@@ -584,7 +583,7 @@ echo '<div class="pageWrap">';
                                     $value14 = $medium;
                                 }
                                 if($count2 < 5){
-                                    echo '<div class="card">';
+                                    echo '<div class="card"> <label><input type="checkbox" onchange="cardMe($(this), false, true);"/> Add To Slider </label>';
                                     echo '<div class="cardNum">#'.$addAsCard . $rowcount . '</div>';
                                     if(isset($value1) && $value1!==""){
                                         echo '<div class="cardInfo"><span class="cardInfoKey">Nature: </span> <span class="cardInfoVal">'.$value1.'</span></div>';
@@ -645,7 +644,7 @@ echo '<div class="pageWrap">';
                                 $rowcount++;
                             }
                             if($count2<5){
-                                echo "</div></div>";
+                                echo "</div>";
                             }
                             else{
                                 echo "</tbody></table></div>";
@@ -741,17 +740,16 @@ echo '<div class="pageWrap">';
 
             default :
                 echo "<p>
-                DigiSig is a new resource for the study of sigillography, particularly medieval 
-                seals from the British Isles.
-                It currently contains:
-                <u><b>$sealcount</b></u> seal records and
-                <u><b>$imagecount</b></u> images 
-                </p>
-                <p>
-                    Based at the centre for Digital Humanities at St Louis University, Missouri, 
-                    it aims to foster sigillographic research by linking and matching sigillographic 
-                    datasets and making that information available.
-                </p>";
+                        DigiSig is a new resource for the study of sigillography, particularly medieval 
+                        seals from the British Isles.  Based at the centre for Digital Humanities at St Louis University, Missouri, 
+                        it aims to foster sigillographic research by linking and matching sigillographic 
+                        datasets and making that information available.
+                    </p>
+                    <p>
+                        It currently contains:
+                        <u><b>$sealcount</b></u> seal records and
+                        <u><b>$imagecount</b></u> images 
+                    </p>";
                 echo "<div class='searchResults'>";
                 //echo "<div class='resultsTitle'>Results</div>";
                 echo "<span class='separator_2'>Publications and Projects</span><br>";
@@ -839,9 +837,9 @@ echo '<div class="pageWrap">';
 							var short_value2 = v2.substr(0, table_text_len);
 							var lastRowNum = $('#show_more_tr_' + field).attr('last_row_num');
 							if (v2.length > table_text_len) {
-								$('#show_more_tr_' + field).before('<tr><td><input onchange="cardMe($(this), false);" type="checkbox"></td><td>' + lastRowNum + '</td><td><a id="a_' + v1 + '" href=' + address + '/entity/' + v1 + '>' + short_value2 + '...</a> <a id="get_' + v1 + '" onclick="getFullText(' + v1 + ')">(More)</a><input type="hidden" id="full_' + v1 + '" value="' + v2 + '" /><input type="hidden" id="short_' + v1 + '" value="' + short_value2 + '" /></td><td>' + v3 + '</td></tr>');
+								$('#show_more_tr_' + field).before('<tr><td><input onchange="cardMe($(this), false, false);" type="checkbox"></td><td>' + lastRowNum + '</td><td><a id="a_' + v1 + '" href=' + address + '/entity/' + v1 + '>' + short_value2 + '...</a> <a id="get_' + v1 + '" onclick="getFullText(' + v1 + ')">(More)</a><input type="hidden" id="full_' + v1 + '" value="' + v2 + '" /><input type="hidden" id="short_' + v1 + '" value="' + short_value2 + '" /></td><td>' + v3 + '</td></tr>');
 							} else {
-								$('#show_more_tr_' + field).before('<tr><td><input onchange="cardMe($(this), false);" type="checkbox"></td><td>' + lastRowNum + '</td><td><a id="a_' + v1 + '" href=' + address + '/entity/' + v1 + '>' + v2 + '</a></td><td>' + v3 + '</td></tr>');
+								$('#show_more_tr_' + field).before('<tr><td><input onchange="cardMe($(this), false, false);" type="checkbox"></td><td>' + lastRowNum + '</td><td><a id="a_' + v1 + '" href=' + address + '/entity/' + v1 + '>' + v2 + '</a></td><td>' + v3 + '</td></tr>');
 							}
 							lastRowNum++;
 							$('#show_more_tr_' + field).attr('last_row_num', lastRowNum);
@@ -874,7 +872,7 @@ echo '<div class="pageWrap">';
                             $(".fullImgWrap").remove();
                             $(".pageShade").remove();
                         }
-                        function cardMe($checkbox, card){
+                        function cardMe($checkbox, card, card2){
                             var cardCount = $("#cardcount").html();
                             cardCount = parseInt(cardCount);
                             if($checkbox.is(":checked")){
@@ -883,41 +881,50 @@ echo '<div class="pageWrap">';
                                     cardID++;
                                     card = cardID;
                                     console.log(cardID);
-                                    $checkbox.attr("onchange", "cardMe($(this), '"+cardID+"');");                                
+                                    $checkbox.attr("onchange", "cardMe($(this), '"+cardID+"', "+card2+");");                                
                                 }
                                 console.log("Add card to stack: " + card);
-                                var $dataLabels = $checkbox.closest("table").children("thead").children("tr").children("th");
-                                var $dataRow = $checkbox.closest("tr").children("td");
-                                var parsedObject = {};
-                                var keyArray = [];
-                                var valueArray = [];
-                                for(var i=1; i<$dataLabels.length; i++){
-                                    console.log("Key "+$($dataLabels[i]).html());
-                                    keyArray.push($($dataLabels[i]).html());
+                                if(card2 === true){
+                                    cardHTML = $checkbox.parent().parent().clone();
+                                    cardHTML.find("input[type='checkbox']").remove();
+                                    if(cardHTML.attr('cardID') === undefined || cardHTML.attr('cardID') === ''){
+                                        cardHTML.attr("cardID", cardID);
+                                    }  
                                 }
-                                for(var j=1; j<$dataRow.length; j++){
-                                    console.log("Value "+$($dataRow[j]).html())
-                                    valueArray.push($($dataRow[j]).html());
-                                }
-                                for(var k=0; k<$dataRow.length-1; k++){
-                                    parsedObject[keyArray[k]] = valueArray[k];
-                                }
-                                console.log(parsedObject);
-                                var cardHTML = $("<div cardID='"+card+"' class='card'></div>");
-                                $.each(parsedObject, function(key,value){
-                                    var appender = "";
-                                    if(key === "#"){
-                                        appender = $("<div class='cardNum'>\n\
-                                            "+key+" "+value+"\n\
-                                        </div>");
+                                else{
+                                    var $dataLabels = $checkbox.closest("table").children("thead").children("tr").children("th");
+                                    var $dataRow = $checkbox.closest("tr").children("td");
+                                    var parsedObject = {};
+                                    var keyArray = [];
+                                    var valueArray = [];
+                                    for(var i=1; i<$dataLabels.length; i++){
+                                        console.log("Key "+$($dataLabels[i]).html());
+                                        keyArray.push($($dataLabels[i]).html());
                                     }
-                                    else if(value !== ""){
-                                        appender = $("<div class='cardInfo'>\n\
-                                            <span class='cardInfoKey'>"+key+":</span><span class='cardInfoVal'> "+value+"</span>\n\
-                                        </div>");
+                                    for(var j=1; j<$dataRow.length; j++){
+                                        console.log("Value "+$($dataRow[j]).html())
+                                        valueArray.push($($dataRow[j]).html());
                                     }
-                                    cardHTML.append(appender);
-                                });
+                                    for(var k=0; k<$dataRow.length-1; k++){
+                                        parsedObject[keyArray[k]] = valueArray[k];
+                                    }
+                                    console.log(parsedObject);
+                                    var cardHTML = $("<div cardID='"+card+"' class='card'></div>");
+                                    $.each(parsedObject, function(key,value){
+                                        var appender = "";
+                                        if(key === "#"){
+                                            appender = $("<div class='cardNum'>\n\
+                                                "+key+" "+value+"\n\
+                                            </div>");
+                                        }
+                                        else if(value !== ""){
+                                            appender = $("<div class='cardInfo'>\n\
+                                                <span class='cardInfoKey'>"+key+":</span><span class='cardInfoVal'> "+value+"</span>\n\
+                                            </div>");
+                                        }
+                                        cardHTML.append(appender);
+                                    });
+                                }
                                 console.log("Card html");
                                 console.log(cardHTML);
                                 $(".theCards").append(cardHTML);
