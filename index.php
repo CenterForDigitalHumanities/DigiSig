@@ -221,7 +221,7 @@ echo '<div class="pageWrap">';
                                     echo '<div class="cardInfo"><span class="cardInfoKey">Location: </span> <span class="cardInfoVal">'.$value12.'</span></div>';
                                 }
                                 if(isset($value14) && $value14!=="" && isset($value15) && $value15!==""){
-                                    echo '<div class="cardInfo"><span class="cardInfoKey">External Link: </span> <span class="cardInfoVal"><a href="'.$value14.$value15.'">'.$value14.$value15.'</a></span></div>';
+                                    echo '<div class="cardInfo"><span class="cardInfoKey">External Link: </span> <span class="cardInfoVal"><a href="'.$value14.$value15.'" target="_blank">'.$value14.$value15.'</a></span></div>';
                                 }
                                 echo '</div></div>';
                             }
@@ -234,7 +234,7 @@ echo '<div class="pageWrap">';
                                 }
                                 echo '<div class="tableWrap"><table class="metaTable"><thead><th>Dated</th><th>Description</th><th>Location</th><th>External Link</th></thead>'
                                 . '<tbody><tr>'
-                                . $dateTD.'<td>'.$value13.'</td><td>'.$value12.'</td><td><a href="'.$value14.$value15.'">'.$value14.$value15.'</a></td></tr></tbody></table></div>';
+                                . $dateTD.'<td>'.$value13.'</td><td>'.$value12.'</td><td><a href="'.$value14.$value15.'" target="_blank">'.$value14.$value15.'</a></td></tr></tbody></table></div>';
                             }                           
 
                             //show table of associated impressions
@@ -407,8 +407,8 @@ echo '<div class="pageWrap">';
                             }
                             if (isset($value13)) {
                                 $tableHeader .= "<th>External Link</th>";
-                                $tableBody .= "<td><a href='" . $value14 . $value13 . "'>" . $value14 . $value13 . "</a></td>";
-                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">External Link: </span> <span class="cardInfoVal"><a href="' . $value14 . $value13 . '">' . $value14 . $value13 . '</a></span></div>';
+                                $tableBody .= "<td><a href='" . $value14 . $value13 . "' target='_blank'>" . $value14 . $value13 . "</a></td>";
+                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">External Link: </span> <span class="cardInfoVal"><a href="' . $value14 . $value13 . '" target="_blank">' . $value14 . $value13 . '</a></span></div>';
                                 //echo '<a href="' . $value14 . $value13 . '" target="_blank">external link</a>';
                             }
                             //output entry -- only output variables with values
@@ -756,7 +756,7 @@ echo '<div class="pageWrap">';
                             Saint Louis University<br>
                             3650 Lindell Blvd<br>
                             St. Louis, MO 63103<br>
-                            <a href='http://slu.academia.edu/JohnMcEwan'>http://slu.academia.edu/JohnMcEwan</a>";
+                            <a href='http://slu.academia.edu/JohnMcEwan' target='_blank'>http://slu.academia.edu/JohnMcEwan</a>";
                 }
                 break;
 

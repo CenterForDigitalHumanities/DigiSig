@@ -91,7 +91,12 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                 while ($row = mysqli_fetch_array($query5result)){
                     $value1 = $row[0];
                     $value2 = $row[1];
-                    $value3 = $row[2];
+                    if(isset($row[2])){
+                        $value3 = $row[2];
+                    }
+                    else{
+                        $value3 = '';
+                    }
                     
                     if($value1 == ""){
                         $value1 = "<i>empty</i>";
@@ -140,7 +145,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                 }
                 else{
                     if($numberofresults < $count ){
-                    echo '<tr id="show_more_tr_'.$field.'" last_row_num='.$rowcount--.'><td colspan="3"><input type="button" id="show_more_btn_'.$field.'" value="Show More" offset='.($num_result_per_page+1).' onclick=\'getNextData("'.$field.'", "'.$index.'", "'.$term.'", "'.$address.'", "'.$exact.'", '.$limit.')\' /><span id="load_next_pending_'.$field.'" style="display:none">Loading...</span></td></tr></table></div>';    
+                    echo '<tr id="show_more_tr_'.$field.'" last_row_num='.$rowcount--.'><td colspan="3"><input type="button" id="show_more_btn_'.$field.'" value="Show More" offset="'.($num_result_per_page+1).'" onclick=\'getNextData("'.$field.'", "'.$index.'", "'.$term.'", "'.$address.'", "'.$exact.'", '.$limit.')\' /><span id="load_next_pending_'.$field.'" style="display:none">Loading...</span></td></tr></table></div>';    
                     }
                     else{
                         echo '</table></div>';
