@@ -185,6 +185,14 @@ echo '<div class="pageWrap">';
                             $value13 = $row['repository_description'];
                             $value14 = $row['connection'];
                             $value15 = $row['ui_event_repository'];
+                            if(isset($value11) && $value11!=="" && isset($value10) && $value10!==""){
+                                $outputDate1 = date_create($value10);
+                                $outputDate2 = date_create($value11);
+                            }
+
+                            
+
+                                    
                             
                             //echo "ITEM";
                             echo '<div class="seal sealPiece hdr1">ITEM</div>
@@ -203,8 +211,8 @@ echo '<div class="pageWrap">';
                             if($count < 5){
                                 echo '<div class="theCards_body">';
                                 echo '<div class="card_single">';
-                                if(isset($value10) && $value10!==""){
-                                    echo '<div class="cardInfo"><span class="cardInfoKey">Dated: </span> <span class="cardInfoVal">'.$value10.'</span></div>';
+                                if(isset($value11) && $value11!=="" && isset($value10) && $value10!==""){
+                                    echo '<div class="cardInfo"><span class="cardInfoKey">Dated: </span> <span class="cardInfoVal">' . date_format($outputDate1, 'Y') . ' to ' . date_format($outputDate2, 'Y').'</span></div>';
                                 }
                                 if(isset($value13) && $value10!==""){
                                     echo '<div class="cardInfo"><span class="cardInfoKey">Description: </span> <span class="cardInfoVal">'.$value13.'</span></div>';
@@ -218,8 +226,15 @@ echo '<div class="pageWrap">';
                                 echo '</div></div>';
                             }
                             else{
+                                if(isset($value11) && $value11!=="" && isset($value10) && $value10!==""){
+                                    $dateTD = '<td>' . date_format($outputDate1, 'Y') . ' to ' . date_format($outputDate2, 'Y').'</td>';
+                                }
+                                else{
+                                    $dateTD = '<td></td>';
+                                }
                                 echo '<div class="tableWrap"><table class="metaTable"><thead><th>Dated</th><th>Description</th><th>Location</th><th>External Link</th></thead>'
-                            . '<tbody><tr><td>'.$value10.'</td><td>'.$value13.'</td><td>'.$value12.'</td><td><a href="'.$value14.$value15.'">'.$value14.$value15.'</a></td></tr></tbody></table></div>';
+                                . '<tbody><tr>'
+                                . $dateTD.'<td>'.$value13.'</td><td>'.$value12.'</td><td><a href="'.$value14.$value15.'">'.$value14.$value15.'</a></td></tr></tbody></table></div>';
                             }                           
 
                             //show table of associated impressions
@@ -356,15 +371,13 @@ echo '<div class="pageWrap">';
                             $value13 = $row['ui_catalogue'];
                             $value14 = $row['connection'];
                             //formulate header
-                             echo '<div class="seal sealPiece hdr1">Seal Description</div>
+                             echo '<div class="seal sealPiece hdr1">Seal Description <span class="gotoEntry"><a href="'. $address ."/entity/". $value11.'">view seal entry</a></span></div>
                             <div class="sealMetadata sealPiece nobot">
-                                <span class="sealLabel hdr2">Title: </span><span id="title">'.$value1.' : '.$value4.'</span>
-                            </div>
-                            <div class="sealMetadata sealPiece nobot">
-                                <span class="sealLabel">Digisig ID: </span><span id="digisigID">' .$id.'</span>
+                                <span class="sealLabel hdr2">Title: </span><span id="title">'.$value1.' : '.$value4.'</span><br>
+                                <span class="sealLabel">Digisig ID: </span><span id="digisigID">' .$id.'</span><br>
                                 <span clss="sealLabel">Permalink: </span><span id="permalink">http://digisig.org/entity/'. $id .'</span>
                                 <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
-                            </div>                           
+                            </div>                          
                             ';
                                 $cardArea = "<div class='theCards_body'><div class='card_single'>";
                                 $tableHeader = "<thead>";
@@ -471,7 +484,7 @@ echo '<div class="pageWrap">';
                             //link to seal page
                             $tableHeader .= "<th>Seal Link</th></thead>";
                             $tableBody .= "<td><a href='". $address ."/entity/". $value11."'>view seal entry</a></td></tr></tbody>";
-                            $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Seal Link: </span> <span class="cardInfoVal"><a href="'. $address ."/entity/". $value11.'">view seal entry</a></span></div>';
+                            //$cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Seal Link: </span> <span class="cardInfoVal"><a href="'. $address ."/entity/". $value11.'">view seal entry</a></span></div>';
                             if($count < 5){
                                 echo $cardArea."</div></div>";
                             }
@@ -488,7 +501,7 @@ echo '<div class="pageWrap">';
                                 $query12result = mysqli_query($link, $query12);
     
                                 $count = mysqli_num_rows($query12result);
-                                if ($count > 0) {
+                                if ($count > 1) {
                                     echo "<div class='separator_2'>Other Descriptions</div>";
                                     $duplicate = $id;
                                     sealdescription($query12result, $address, $duplicate);
@@ -576,7 +589,6 @@ echo '<div class="pageWrap">';
                                 $value12 = $row['thumb'];
                                 $value13 = $row['representation_thumbnail'];
                                 $value14 = $row['medium'];
-
                                 //test to see if the connection string indicates that it is in the local image store
                                 if ($value12 == "local") {
                                     $value12 = $small;
@@ -598,7 +610,9 @@ echo '<div class="pageWrap">';
                                         echo '<div class="cardInfo"><span class="cardInfoKey">Shape: </span> <span class="cardInfoVal">'.$value4.'</span></div>';
                                     }
                                     if(isset($value9) && $value9!=="" && isset($value10) && $value10!==""){
-                                       echo '<div class="cardInfo"><span class="cardInfoKey">Dated: </span> <span class="cardInfoVal"> dated:' . date("Y",strtotime($value9)) . ' to ' . date("Y",strtotime($value10)).'</span></div>';
+                                        $outputDate1 = date_create($value9);
+                                        $outputDate2 = date_create($value10);
+                                       echo '<div class="cardInfo"><span class="cardInfoKey">Dated: </span> <span class="cardInfoVal"> ' . date_format($outputDate1, 'Y') . ' to ' . date_format($outputDate2, 'Y') .'</span></div>';
                                     }
                                     echo '<div class="cardInfo"><span class="cardInfoKey">Item: </span> <span class="cardInfoVal"><a href=' . $address . '/entity/' . $value6 . '>' . $value5 . '</a></span></div>';
 //                                    echo '<div class="cardInfo"><span class="cardInfoKey">Shape: </span> <span class="cardInfoVal">'.$value4.'</span></div>';
@@ -623,7 +637,15 @@ echo '<div class="pageWrap">';
                                     echo '<td>' . $value2 . '</td>';
                                     echo '<td>' . $value3 . '</td>';
                                     echo '<td>' . $value4 . '</td>';
-                                    echo '<td> dated:' . date("Y",strtotime($value9)) . ' to ' . date("Y",strtotime($value10)).'</td>';
+                                    if(isset($value9) && $value9!=="" && isset($value10) && $value10!==""){
+                                        $outputDate1 = date_create($value9);
+                                        $outputDate2 = date_create($value10);
+                                        echo '<td> ' . date_format($outputDate1, 'Y') . ' to ' . date_format($outputDate2, 'Y').'</td>';
+                                    }
+                                    else{
+                                        echo '<td> </td>';
+                                    }
+       
                                     echo '<td><a href=' . $address . '/entity/' . $value6 . '>' . $value5 . '</a></td>';
                                     if (isset($value13)) {
 
@@ -919,7 +941,7 @@ echo '<div class="pageWrap">';
                                                 "+key+" "+value+"\n\
                                             </div>");
                                         }
-                                        else if(value !== ""){
+                                        else if(value.trim() !== ""){
                                             appender = $("<div class='cardInfo'>\n\
                                                 <span class='cardInfoKey'>"+key+":</span><span class='cardInfoVal'> "+value+"</span>\n\
                                             </div>");

@@ -118,7 +118,9 @@
 }
 form[name="navigate"]{
     position: relative;
-    top: -2px;
+    width: 100%;
+    margin: 0px;
+    text-align: center;
 }
 .pageWrap{
     margin: 0px 50px !important;
@@ -129,8 +131,8 @@ form[name="navigate"]{
 .theheader{
     background-color: #079;
     color: white;
-    top: 14px !important;
-    margin: 0px 50px;
+    top: -3px;
+    margin: 0px;
 }
 .header{
     background-color: #079;
@@ -206,7 +208,7 @@ td{
 }
 
 .tableWrap{
-    border-top: 1px solid #079;
+    /*border-top: 1px solid #079;*/
     border-bottom: 1px solid #079;
     padding : 12px 0px;
     margin: 40px 0px;
@@ -367,7 +369,7 @@ option{
 .theCards_body{
     display: block;
     overflow-x: auto;
-    border-top: 1px solid #079;
+    /*border-top: 1px solid #079;*/
     border-bottom: 1px solid #079;
     padding : 12px 0px;
     margin: 40px 0px;
@@ -513,7 +515,7 @@ table.indent2 td{
     width: 100%;
     border-bottom: 1px solid #079;
     left: 0px;
-    padding-left: 4px;
+    padding: 3px 0px 0px 8px;
     top: 0px;
     font-weight: bold;
     color: #00485E;
@@ -568,10 +570,18 @@ input[type="button"]:hover{
 .card label{
     position: absolute !important;
     top: 0px;
-    right: 3px;
+    right: 9px;
     z-index: 3;
 }
 
 .card .cardInfo:first-child{
     margin-top: 10px !important;
+}
+
+.gotoEntry{
+    position: relative;
+    display: inline-block;
+    left: 50px;
+    color: #00485E;
+    font-size: 14px;
 }
