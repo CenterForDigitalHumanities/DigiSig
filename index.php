@@ -1,9 +1,9 @@
-<?php $basePath = 'http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], '/') + 1); ?>
+<?php $basePath = 'http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], '/')); ?>
 <html>
 
 	<head>
-		<script src="<?php echo $basePath; ?>digisig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
-		<link rel="stylesheet" href="<?php echo $basePath; ?>digisig/css/digisigSkin.css" />                
+		<script src="<?php echo $basePath; ?>/digisig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
+		<link rel="stylesheet" href="<?php echo $basePath; ?>/digisig/css/digisigSkin.css" />                
 
 	</head>
 	<body>
@@ -810,7 +810,7 @@ echo '<div class="pageWrap">';
                     <a class='viewCardLink' onclick="$('.addedCardArea').show(); $('.toggleArrow').click();">View Cards</a>
                 </div>
 		</body>
-		<script src="<?php echo $basePath; ?>digisig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
+		<script src="<?php echo $basePath; ?>/digisig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
 		<script>
                     function toggleCardWidget($toggle){
                         if($toggle.attr("active") == "no"){
@@ -826,7 +826,7 @@ echo '<div class="pageWrap">';
                     }
 
                     var cardID = 0 ;
-		    var basePath = '<?php echo 'http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], '/') + 1); ?>';
+		    var basePath = '<?php echo 'http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], '/')); ?>';
 			var num_result_per_page = parseInt(<?php echo $num_result_per_page ?>);
 			var table_text_len = 100;
 			
@@ -841,7 +841,7 @@ echo '<div class="pageWrap">';
 			function getNextData(field, index, term, address, exact, limit) {
 				$('#load_next_pending_' + field).show();
 				var offset = parseInt($('#show_more_btn_' + field).attr('offset'));
-				$.post(basePath + 'digisig/include/loadNextData.php', {
+				$.post(basePath + '/digisig/include/loadNextData.php', {
 					'field' : field,
 					'index' : index,
 					'term' : term,

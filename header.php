@@ -1,11 +1,12 @@
 <div class='header digisigHeader'>
-    <img class='digisigImg' src='<?php echo $basePath; ?>digisig/images/digsig.jpg'/>
+    <img class='digisigImg' src='<?php echo $basePath; ?>/digisig/images/digsig.jpg'/>
+    <div id="headerCredit" href="<?php echo $basePath; ?>/digisig/entity/thisentity"></div>
 </div>
 <?php
 $logBtn = "";
 $action = $_SERVER['PHP_SELF'];
 if(!isset($_SESSION['userID']) || $_SESSION['userID'] === 1){
-    $logBtn = "<input class='login' type='button' value='log in' onclick='window.location=\"$basePath/DigiSig/include/login.php\"' />";
+    $logBtn = "<input class='login' type='button' value='log in' onclick='window.location=\"$basePath/digisig/include/login.php\"' />";
 }
 else
 {
