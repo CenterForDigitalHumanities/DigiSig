@@ -4,7 +4,7 @@
 function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
     $num_result_per_page = 100;
     $table_text_len = 100;
-    $link = mysqli_connect('localhost:3306', 'root', '1229@Oxford', 'digisigres');
+    $link = mysqli_connect('localhost:3306', 'root', 'letmein', 'digisigres');
     // $link = mysqli_connect('localhost:3306', 'digisig', '1EMeeIIINnn', 'digisigres');
     $pagination_part = ' limit ' . $limit . ' offset ' . $offset;
     // search 'what' and 'from'? 
@@ -61,8 +61,9 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
             If ($numberofresults > 0) {
                 //drawing the results in a tabular form
                 $rowcount = 1;
+                // JM: I have turned off the cards on the results page for the moment
                 $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false, false);' />";
-                if($count < 5){
+                if($count < 0){
                     $addAsCard = "";
                     echo '<div class="theCards_body">';
                     echo '<div class="resultWrap">';
@@ -86,8 +87,14 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                         echo " result found for <span class='resultTerm'>" . $term ."</span>";
                     }
                     echo " in <span class='resultTerm'>" . $field_str ."</span></div>";
-                    echo '<table class="metaTable maxmin"><thead><th>&#x2714;</th><th>#</th><th>'.$field_str.'</th><th>Reference</th></thead><tbody>';
+                    if ($field == "seal") {
+                        echo '<table class="metaTable maxmin"><thead><th>&#x2714;</th><th>#</th><th>'.$field_str.'</th></thead><tbody>';  
+                    }
+                    else{
+                        echo '<table class="metaTable maxmin"><thead><th>&#x2714;</th><th>#</th><th>'.$field_str.'</th><th>Sources</th></thead><tbody>';
+                        }
                 }
+               
                 while ($row = mysqli_fetch_array($query5result)){
                     $value1 = $row[0];
                     $value2 = $row[1];
@@ -108,19 +115,19 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                         $value3 = "<i>empty</i>";
                     }
                     
-                    if($numberofresults < 5){
-                        echo '<div class="card"><label><input type="checkbox" onchange="cardMe($(this), false, true);"/> Add To Slider </label>';
+                    if($numberofresults < 0){
+                        echo '<div class="card"><label><input type="checkbox" onchange="cardMe($(this), false, true);"/> Add To Folder </label>';
                         echo '<div class="cardNum">#'.$addAsCard . $rowcount .'</div>';
                         if(isset($value2)){
                             if(strlen($value2) >= $table_text_len){
                                 $short_value2 = substr($value2, 0, $table_text_len);
                                 echo '<div class="cardInfo"><span class="cardInfoKey">'.$field_str.': </span><span class="cardInfoVal">'
                                     . '<a id="a_'.$value1.'" href=' . $address . '/entity/'.$value1.'>'. $short_value2 . '...</a> <a id="get_'.$value1.'" onclick="getFullText('.$value1.')">(More)</a><input type="hidden" id="full_'.$value1.'" value="'.$value2.'" /><input type="hidden" id="short_'.$value1.'" value="'.$short_value2.'" /></span></div>';
-                                echo '<div class="cardInfo"><span class="cardInfoKey">Reference: </span> <span class="cardInfoVal">'.$value3.'</span></div>';
+                                echo '<div class="cardInfo"><span class="cardInfoKey">Source: </span> <span class="cardInfoVal">'.$value3.'</span></div>';
                             }else{
                                 echo '<div class="cardInfo"><span class="cardInfoKey">'.$field_str.': </span>'
                                         . '<span class="cardInfoVal"><a id="a_'.$value1.'" href=' . $address . '/entity/'.$value1.'>'.$value2.'</a></span></div>';
-                                echo '<div class="cardInfo"><span class="cardInfoKey">Reference: </span> <span class="cardInfoVal">'.$value3.'</span></div>';
+                                echo '<div class="cardInfo"><span class="cardInfoKey">Source: </span> <span class="cardInfoVal">'.$value3.'</span></div>';
                             }
                         }
                         echo "</div>";
@@ -131,7 +138,12 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                             $short_value2 = substr($value2, 0, $table_text_len);
                             echo '<td><a id="a_'.$value1.'" href=' . $address . '/entity/'.$value1.'>'. $short_value2 . '...</a> <a id="get_'.$value1.'" onclick="getFullText('.$value1.')">(More)</a><input type="hidden" id="full_'.$value1.'" value="'.$value2.'" /><input type="hidden" id="short_'.$value1.'" value="'.$short_value2.'" /></td><td>'. $value3. '</td></tr>';
                         }else{
+                            if ($field == "seal") {
+                            echo '<td><a id="a_'.$value1.'" href=' . $address . '/entity/'.$value1.'>'.$value2.'</a></td></tr>';    
+                            }
+                            else {
                             echo '<td><a id="a_'.$value1.'" href=' . $address . '/entity/'.$value1.'>'.$value2.'</a></td><td>'. $value3. '</td></tr>';
+                            }
                         }
                         
                     }
@@ -140,7 +152,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                     $rowcount++;
                 }
 
-                if($count < 5){
+                if($count < 0){
                     echo "</div>";
                 }
                 else{
@@ -161,7 +173,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
 
 
 function queryview($entity, $id) {
-     $link = mysqli_connect('localhost:3306', 'root', '1229@Oxford', 'digisigres');
+     $link = mysqli_connect('localhost:3306', 'root', 'letmein', 'digisigres');
     //$link = mysqli_connect('localhost:3306', 'digisig', '1EMeeIIINnn', 'digisigres');
 
      //convert view number to view text string and find out what variables to return
@@ -198,30 +210,36 @@ function sealdescription ($query12result, $address, $duplicate) {
         echo '<div class="tableWrap"><table class="metaTable indent"><thead><th>#</th><th>Name</th><th>Reference</th><th>Seal Description</th></thead><tbody>';
     }
     while ($row = mysqli_fetch_array($query12result)) {
-        $value1 = $row['a_index'];
+        //$value1 = $row['a_index'];
+        $value1 = $row['collection_fulltitle'];
         $value2 = $row['sealdescription_identifier'];
         $value3 = $row['id_sealdescription'];
         $value4 = $row['realizer'];
         if (isset($duplicate) && $value3 != $duplicate) { 
             if($count < 5){
-                echo '<div class="card"><label><input type="checkbox" onchange="cardMe($(this), false, true);"/> Add To Slider </label>';
+                echo '<div class="card"><label><input type="checkbox" onchange="cardMe($(this), false, true);"/> Add To Folder </label>';
                 echo '<div class="cardNum"># '. $addAsCard . $rowcount .'</div>';
                 if(isset($value4) && $value4!==""){
-                    echo '<div class="cardInfo"><span class="cardInfoKey">Name: </span> <span class="cardInfoVal">'.$value4.'</span></div>';
+                    //echo '<div class="cardInfo"><span class="cardInfoKey">Name: </span> <span class="cardInfoVal">'.$value4.'</span></div>';
                 }
                 if(isset($value1) && $value1!==""){
-                    echo '<div class="cardInfo"><span class="cardInfoKey">Reference: </span> <span class="cardInfoVal">'.$value1.'</span></div>';
-                }
-                if(isset($value3) && $value3!=="" && isset($value2) && $value2!==""){
-                   echo '<div class="cardInfo"><span class="cardInfoKey">Seal Description: </span> <span class="cardInfoVal"><a href="' . $address . '/entity/' . $value3. '">' . $value2 . '</a></span></div>';
+                    {
+                    //echo '<div class="cardInfo"><span class="cardInfoKey">Reference </span> <span class="cardInfoVal">'.$value1.'</span></div>';
+                    echo '<div class="cardInfo"><span class="cardInfoVal">'.$value1;
+                    }
+                    if(isset($value3) && $value3!=="" && isset($value2) && $value2!==""){
+                    echo ', <a href="' . $address . '/entity/' . $value3. '">' . $value2 . '</a>';
+                    }
+                    echo '</span></div>';
                 }
                 echo "</div>";
             }
             else{
                 echo '<tr><td> '. $addAsCard . $rowcount . '</td>';
-                echo '<td>' . $value4 . '</td>';
-                echo '<td>' . $value1 . '</td>';
-                echo '<td><a href="' . $address . '/entity/' . $value3. '">' . $value2 . '</a></td></tr>';
+                //echo '<td>' . $value4 . '</td>';
+                //echo '<td>' . $value1 . '</td>';
+                //echo '<td><a href="' . $address . '/entity/' . $value3. '">' . $value2 . '</a></td></tr>';
+                echo '<td>' . $value1 . '<a href="' . $address . '/entity/' . $value3. '">' . $value2 . '</a></td></tr>';
             }
             $rowcount++;
         }
