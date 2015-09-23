@@ -279,7 +279,7 @@ echo '<div class="pageWrap">';
                                     $value17 = $small;
                                 }
                                 if($count3 < 5){
-                                    echo '<div class="card"><label><input type="checkbox" onchange="cardMe($(this), false, true);"/> Add To Slider </label>';
+                                    echo '<div class="card"><label><input type="checkbox" onchange="cardMe($(this), false, true);"/> Add To Folder </label>';
                                     echo '<div class="cardNum">#'.$addAsCard . $rowcount . '</div>';
                                     if(isset($value3) && $value3!==""){
                                         echo '<div class="cardInfo"><span class="cardInfoKey">Nature: </span> <span class="cardInfoVal">'.$value3. '</span></div>';
@@ -370,6 +370,7 @@ echo '<div class="pageWrap">';
                             $value12 = $row['representation_filename'];
                             $value13 = $row['ui_catalogue'];
                             $value14 = $row['connection'];
+                            $value15 = $row['sealdescription'];
                             //formulate header
                              echo '<div class="seal sealPiece hdr1">Seal Description <span class="gotoEntry"><a href="'. $address ."/entity/". $value11.'">view seal entry</a></span></div>
                             <div class="sealMetadata sealPiece nobot">
@@ -394,25 +395,22 @@ echo '<div class="pageWrap">';
                             }
                             if (isset($value3)) {
                                 if (strpos($value3, '-') !== false) {
-                                    $tableHeader .= "<th>Page</th>";
-                                    $tableBody .= "<td>p.".$value3."</td>";
-                                    $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Page: </span> <span class="cardInfoVal">p.'.$value3.'</span></div>';
+                                    $tableHeader .= "<th>Pages</th>";
+                                    $tableBody .= "<td>".$value3."</td>";
+                                    $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Pages: </span> <span class="cardInfoVal">'.$value3.'</span></div>';
                                     //echo ", p." . $value3;
                                 } else {
                                     $tableHeader .= "<th>Page</th>";
-                                    $tableBody .= "<td>pp.".$value3."</td>";
-                                    $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Page: </span> <span class="cardInfoVal">pp.'.$value3.'</span></div>';
+                                    $tableBody .= "<td>".$value3."</td>";
+                                    $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Page: </span> <span class="cardInfoVal">'.$value3.'</span></div>';
                                     //echo ", pp." . $value3;
                                 }
                             }
-                            if (isset($value13)) {
-                                $tableHeader .= "<th>External Link</th>";
-                                $tableBody .= "<td><a href='" . $value14 . $value13 . "' target='_blank'>" . $value14 . $value13 . "</a></td>";
-                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">External Link: </span> <span class="cardInfoVal"><a href="' . $value14 . $value13 . '" target="_blank">' . $value14 . $value13 . '</a></span></div>';
-                                //echo '<a href="' . $value14 . $value13 . '" target="_blank">external link</a>';
-                            }
+            
                             //output entry -- only output variables with values
 
+                            if (empty($value12)) {
+                            
                             if (isset($value5)) {
                                 $tableHeader .= "<th>Name</th>";
                                 $tableBody .= "<td>".$value5."</td>";
@@ -420,6 +418,13 @@ echo '<div class="pageWrap">';
                                 //echo '<br><br> Name:' . $value5 . '<br>';
                             }
 
+                            if (isset($value15)) {
+                                $tableHeader .= "<th>Description</th>";
+                                $tableBody .= "<td>".$value15."</td>";
+                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Description: </span> <span class="cardInfoVal">'.$value15.'</span></div>';
+                                //echo '<br><br> Name:' . $value15 . '<br>';
+                            }
+                            
                             if (isset($value6)) {
                                 $tableHeader .= "<th>Motif</th>";
                                 $tableBody .= "<td>".$value6."</td>";
@@ -455,6 +460,13 @@ echo '<div class="pageWrap">';
                                 //echo '<br> Size Horizontal:' . $value10 . '<br>';
                             }
 
+                            if (isset($value13)) {
+                                $tableHeader .= "<th>External Link</th>";
+                                $tableBody .= "<td><a href='" . $value14 . $value13 . "' target='_blank'>" . $value14 . $value13 . "</a></td>";
+                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">External Link: </span> <span class="cardInfoVal"><a href="' . $value14 . $value13 . '" target="_blank">' . $value14 . $value13 . '</a></span></div>';
+                                //echo '<a href="' . $value14 . $value13 . '" target="_blank">external link</a>';
+                            }
+                            }
                             //prepare the photograph -- if it is available
                             if (isset($value12)) {
                                 $tableHeader .= "<th>Image</th>";
@@ -527,15 +539,22 @@ echo '<div class="pageWrap">';
                             $value4 = $row['face_vertical'];
                             $value5 = $row['face_horizontal'];
                             if(isset($value3) && $value3!==""){
-                                $shapeDims .= "<span class='sealLabel'>Shape: </span><span id='shape'>$value3</span>";
+                                $shapeDims .= "<span class='sealLabel'>Shape: </span><span id='shape'>$value3";
+                                //$shapeDims .= "<span class='sealLabel'>Shape: </span><span id='shape'>$value3</span>";
                             }
                             if(isset($value4) && $value4!==""){
-                                $shapeDims .= "<span class='sealLabel'>Height: </span><span id='height'>$value4</span>";
+                                {
+                                $shapeDims .= ", $value4";
+                                //    $shapeDims .= "<span class='sealLabel'>Height: </span><span id='height'>$value4</span>";
+                                }
+                                if(isset($value5) && $value5!==""){
+                                    $shapeDims .= " x $value5";
+                                    //$shapeDims .= "<span class='sealLabel'>Width: </span><span id='width'>$value5</span>";
+                                }
+                                $shapeDims .= " mm";
                             }
-                            if(isset($value5) && $value5!==""){
-                                $shapeDims .= "<span class='sealLabel'>Width: </span><span id='width'>$value4</span>";
-                            }
-                            $shapeDims.= "</div>";
+                            $shapeDims.= "</span></div>";
+                            //$shapeDims.= "</div>";
                             echo $shapeDims;
                             $id_seal = $row['id_seal'];
                             // call seal description function to make list of associated seal descriptions
@@ -565,7 +584,7 @@ echo '<div class="pageWrap">';
                                 echo '<div class="theCards_body indent2">';
                             }
                             else{
-                                echo '<div class="tableWrap"><table class="metaTable indent2"><thead><th>&#x2714;</th><th>#</th><th>Nature</th><th>Number</th><th>Position</th><th>Shape</th><th>Dated</th><th>Item</th><th>Thumbnail</th></thead>'
+                                echo '<div class="tableWrap"><table class="metaTable indent2"><thead><th>&#x2714;</th><th>#</th><th>Nature</th><th>Position</th><th>Dated</th><th>Item</th><th>Image</th></thead>'
                                 . '<tbody>';
                             }
                             while ($row = mysqli_fetch_array($query10result)) {
@@ -595,7 +614,7 @@ echo '<div class="pageWrap">';
                                     $value14 = $medium;
                                 }
                                 if($count2 < 5){
-                                    echo '<div class="card"> <label><input type="checkbox" onchange="cardMe($(this), false, true);"/> Add To Slider </label>';
+                                    echo '<div class="card"> <label><input type="checkbox" onchange="cardMe($(this), false, true);"/> Add To Folder </label>';
                                     echo '<div class="cardNum">#'.$addAsCard . $rowcount . '</div>';
                                     if(isset($value1) && $value1!==""){
                                         echo '<div class="cardInfo"><span class="cardInfoKey">Nature: </span> <span class="cardInfoVal">'.$value1.'</span></div>';
@@ -634,9 +653,9 @@ echo '<div class="pageWrap">';
                                 else{
                                     echo '<tr><td>'.$addAsCard.'</td><td>'. $rowcount . '</td>';
                                     echo '<td>' . $value1 . '</td>';
-                                    echo '<td>' . $value2 . '</td>';
+                                    //echo '<td>' . $value2 . '</td>';
                                     echo '<td>' . $value3 . '</td>';
-                                    echo '<td>' . $value4 . '</td>';
+                                    //echo '<td>' . $value4 . '</td>';
                                     if(isset($value9) && $value9!=="" && isset($value10) && $value10!==""){
                                         $outputDate1 = date_create($value9);
                                         $outputDate2 = date_create($value10);
@@ -682,42 +701,42 @@ echo '<div class="pageWrap">';
             case 'about' :
                 {
                     echo "<br>
-                    <div class='aboutHeader'>About Digitial Sigillography</div><br>
+                    <div class='aboutHeader'>The Digitial Sigillography Resource</div><br>
+                    <i>Sigillography</i><br><br>
                     Hundreds of thousands of seals survive from medieval Europe, and they provide unique and
-                    important information. A seal is ‘a mark of authority or ownership, pressed in relief upon a plastic
-                    material by the impact of a matrix or die-engraved intaglio’. Men and women from all levels of
-                    society used seals to validate documents, but also to make statements about their family
+                    important information. A seal is 'a mark of authority or ownership, pressed in relief upon a plastic
+                    material by the impact of a matrix or die-engraved intaglio'(1). Men and women from all levels of
+                    society used seals to authenticate documents, but also to make statements about their family
                     connections, social aspirations and personal values. Seals incorporate both text and images so they
                     are powerful tools of expression. In a period starved of evidence concerning the individual, seals
                     offer insight into identity, and expose regional and local cultural variations. The advent of digital
                     technology offers an unprecedented and exciting opportunity to harness the extraordinary potential
-                    of this unique historical resource.<br><br>
-                    Today medieval seals are preserved in archives and museums across the British Isles where they are
+                    of this unique historical resource. Today medieval seals are preserved in archives and museums across the British Isles where they are
                     often prominently and proudly displayed as iconic monuments of artistic and cultural heritage.
                     However, they remain poorly understood because there is no central place where researchers and
                     members of the general public can turn for information. This is partly because much of the
                     information is trapped in outdated and unstandardized formats. Many institutions began
                     cataloguing their collections in the nineteenth and twentieth centuries, well before the advent of
                     electronic data management systems. The result is that we now have information in a wide variety
-                    of formats ranging from card indexes, to printed catalogues, to electronic databases.
-                    <br><br>
-                    Scholars have long argued that to realize the full potential of sigillographic information, these
+                    of formats ranging from card indexes, to printed catalogues, to electronic databases. Scholars have long argued that to realize the full potential of sigillographic information, these
                     datasets need to be integrated. We have now reached the point where the technology makes this
                     entirely feasible, so sigillography has reached a critical juncture. The challenge is no longer
                     technological, but rather conceptual. The shift to a digital format offers an opportunity to investigate
                     the potential of new types of catalogues and indexes that enable novel ways of accessing the
                     materials, while also facilitating access for both scholars and the public.
                     <br><br>
-                    DigiSig<br><br>
+                    (1) Brigitte Bedos-Rezak, 'Seals and Sigillography, Western European', in Joseph R. Strayer, ed. 
+                    <i>Dictionary of the Middle Ages</i> (New York: Scribner, 1988), pp.123.
+                    
+                    <br><br>
+                    <i>DigiSig</i><br><br>
 
                     DigiSig is an experimental digital humanities project which brings together a number of major
-                    datasets, produced by the archives, museums, and the higher education sectors, that are publicly
-                    accessible and extensively used by the public and academic researchers. These datasets have been
+                    datasets, produced by the archives, museums, and the higher education sectors. These datasets have been
                     reconfigured, enhanced and integrated, so that can be searched in concert, and photographs added,
-                    where possible. The system enables users to access sigillographic information in traditional ways,
-                    but in a novel format.
+                    where possible. The system enables users to access sigillographic information in a novel format.
 
-                    <br><br>The Author<br><br>
+                    <br><br><i>The Author</i><br><br>
 
                     John McEwan BA (University of Western Ontario), MA PhD (Royal Holloway, University of London)
                     specializes in the political, social and cultural history of medieval Britain. His research focuses on
@@ -727,18 +746,20 @@ echo '<div class="pageWrap">';
                     are: ‘Making a mark in medieval London: the social and economic status of seal-makers, c.1200-
                     1350', in Seals and their Context in the Middle Ages (2015), 'The politics of financial accountability:
                     auditing the chamberlain in London c.1298-1349', in Hiérarchie des Pouvoirs, Délégation de Pouvoir
-                    et Responsabilité des Administrateurs dans L’Antiquité et au Moyen Âge (2012), and ‘The aldermen
-                    of London, c.1200-80: Alfred Beaven revisited’, Transactions of the London and Middlesex
+                    et Responsabilité des Administrateurs dans L'Antiquité et au Moyen Âge (2012), and ‘The aldermen
+                    of London, c.1200-80: Alfred Beaven revisited', Transactions of the London and Middlesex
                     Archaeological Society (2012). His current book project is concerned with the formation, articulation
                     and expression of collective identities in thirteenth-century London.
                     
-                    <br><br>Acknowledgements<br><br>
+                    <br><br><i>Acknowledgements</i><br><br>
                     This project was made possible by the generous support of a large number of scholars and
                     repositories who have offered both guidance and advice, as well as data and special access to the
                     historical materials. The project was carried out in 2014-15 at the Centre for Digital Humanities at St
-                    Louis University, Missouri thanks to a fellowship provided by the Wash Allen foundation. The author
+                    Louis University, Missouri thanks to a fellowship provided by the Walsh Allen foundation. The author
                     wishes to thank all the members the centre's web development team, as well as James Ginther and
-                    Debra Cashions, for their support throughout the year. 
+                    Debra Cashion, for their support throughout the year.
+                    
+                   
                     ";
                 }
                 break;
@@ -761,18 +782,11 @@ echo '<div class="pageWrap">';
                 break;
 
             default :
-                echo "<p>
-                        DigiSig is a new resource for the study of sigillography, particularly medieval 
-                        seals from the British Isles.  Based at the centre for Digital Humanities at St Louis University, Missouri, 
-                        it aims to foster sigillographic research by linking and matching sigillographic 
-                        datasets and making that information available.
-                    </p>
-                    <p>
-                        It currently contains:
-                        <u><b>$sealcount</b></u> seal records and
-                        <u><b>$imagecount</b></u> images 
-                    </p>
-					<p> Digisig includes data from the following cool stuff: </p>";
+                echo "
+                    <p><i>
+                        Search
+                        <b>$sealcount</b> seal records and
+                        <b>$imagecount</b> images from the following sources: </i></p>";
 					
                 echo "<div class='searchResults'>";
                 //echo "<div class='resultsTitle'>Results</div>";
@@ -793,20 +807,20 @@ echo '<div class="pageWrap">';
                     echo "<br>";
                 }
                 echo "</div>";
-
+                             
         }
         echo "</div>"; //close page wrap
         include "include/footer.php";
     ?>
                 <div class="addedCardArea">
                     <div class="closeBtn" onclick="$('.addedCardArea').hide();">X</div>
-                    <div class="addedCardHeader">Card Slider</div>
-                    <div class="inst">To add cards to the slider, check the box under the heading '&#x2713;' in the results tables on the page.</div>
+                    <div class="addedCardHeader">Card Folder</div>
+                    <div class="inst">To add cards to the folder, check the box under the heading '&#x2713;' in the results tables on the page.</div>
                     <div class="thecards"></div>
                 </div>
             <div class="viewCardWidget">
                     <div class="toggleArrow" active="no" onclick="toggleCardWidget($(this));"> < </div>
-                    <div class="cardCountText">You have <span id="cardcount">0</span> cards in your slider.</div>
+                    <div class="cardCountText">You have <span id="cardcount">0</span> cards in your folder.</div>
                     <a class='viewCardLink' onclick="$('.addedCardArea').show(); $('.toggleArrow').click();">View Cards</a>
                 </div>
 		</body>
