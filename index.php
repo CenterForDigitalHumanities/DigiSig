@@ -2,9 +2,12 @@
 <html>
 
 	<head>
+<!--                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>  
+                <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">-->
 		<script src="<?php echo $basePath; ?>/digisig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
 		<link rel="stylesheet" href="<?php echo $basePath; ?>/digisig/css/digisigSkin.css" />                
-
+                
 	</head>
 	<body>
 
@@ -371,7 +374,7 @@ echo '<div class="pageWrap">';
                             $value13 = $row['ui_catalogue'];
                             $value14 = $row['connection'];
                             //formulate header
-                             echo '<div class="seal sealPiece hdr1">Seal Description <span class="gotoEntry"><a href="'. $address ."/entity/". $value11.'">view seal entry</a></span></div>
+                             echo '<div class="seal sealPiece hdr1">Seal Description</div>
                             <div class="sealMetadata sealPiece nobot">
                                 <span class="sealLabel hdr2">Title: </span><span id="title">'.$value1.' : '.$value4.'</span><br>
                                 <span class="sealLabel">Digisig ID: </span><span id="digisigID">' .$id.'</span><br>
@@ -486,7 +489,7 @@ echo '<div class="pageWrap">';
                             $tableBody .= "<td><a href='". $address ."/entity/". $value11."'>view seal entry</a></td></tr></tbody>";
                             //$cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Seal Link: </span> <span class="cardInfoVal"><a href="'. $address ."/entity/". $value11.'">view seal entry</a></span></div>';
                             if($count < 5){
-                                echo $cardArea."</div></div>";
+                                echo $cardArea."</div><span class='gotoEntry'><a href='". $address .'/entity/'. $value11."'>view seal entry</a></span></div>";
                             }
                             else{
                                 echo "<div class='tableWrap'><table>".$tableHeader.$tableBody."</table></div>";

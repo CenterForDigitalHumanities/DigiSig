@@ -17,7 +17,7 @@ else
     else{
         $email = "NOT FOUND";
     }
-    $logBtn = "<span class='login' style='margin-right: 50px;'>User: ".$_SESSION['user_email']."&nbsp;&nbsp;</span><input class='login' type='button' value='log out' onclick='window.location=\"$basePath/digisig/logout.php\"' />";
+    $logBtn = "<span class='login email' >User: ".$_SESSION['user_email']."&nbsp;&nbsp;</span><input class='login' type='button' value='log out' onclick='window.location=\"$basePath/digisig/logout.php\"' />";
 }
 
 

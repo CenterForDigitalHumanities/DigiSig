@@ -169,12 +169,17 @@ form[name="navigate"]{
     position: absolute;
     right: 10px;
     background:none!important;
-    border:none; 
+    border:none !important; 
     padding:0!important;
     font: inherit;
     cursor: pointer;    
     color: white !important;
     font-weight: bold;
+}
+.email{
+    cursor:default !important; 
+    margin-right:70px;
+    color: #00485E !important;
 }
 .seal, .sealMetadata{
     border-bottom: 1px solid rgb(0, 119, 153);
@@ -583,8 +588,8 @@ input[type="button"]:hover{
 
 .gotoEntry{
     position: relative;
-    display: inline-block;
-    left: 50px;
+    display: block;
     color: #00485E;
     font-size: 14px;
+    text-transform: uppercase;
 }
