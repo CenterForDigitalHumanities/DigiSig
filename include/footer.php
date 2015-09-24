@@ -11,12 +11,16 @@
 //    $logBtn = "<input class='login' type='button' value='log out' onclick='' />";
 //}
 $action = $_SERVER['PHP_SELF'];
-echo "<i>
+
+/*
+ * This belongs on the about us page.
+ <p>
           DigiSig is a new resource for the study of sigillography, particularly medieval 
           seals from the British Isles.  Based at the centre for Digital Humanities at St Louis University, Missouri, 
           it aims to foster sigillographic research by linking and matching sigillographic 
           datasets and making that information available.
-                    </i>";
+        </p>
+ */
 echo '<div class="footer">
         <form name ="navigate" action="'.$action.'" method="post">
             <input class="footNav" type="submit" name ="submit" value ="HOME"/>
