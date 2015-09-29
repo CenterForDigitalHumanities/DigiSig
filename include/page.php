@@ -7,18 +7,6 @@
 </head>
 
 <body>
-<!--    <p>
-        DigiSig is a new resource for the study of sigillography, particularly medieval 
-        seals from the British Isles.
-        It currently contains:
-        <?php //echo "<u><b>$sealcount</b></u>" ?> seal records and
-        <?php //echo "<u><b>$imagecount</b></u>" ?> images 
-    </p>
-    <p>
-        Based at the centre for Digital Humanities at St Louis University, Missouri, 
-        it aims to foster sigillographic research by linking and matching sigillographic 
-        datasets and making that information available.
-    </p>-->
     
     <form class="searchArea" name = "search" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" onsubmit="submitFormSearch()">
         <div class="searchTitle">SEARCH</div>

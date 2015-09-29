@@ -146,8 +146,17 @@ form[name="navigate"]{
     margin-top: 10px;
     height: 36px;
     line-height: 39px;
-    margin: 10px 50px;
+    margin: 50px 0px 0px;
     text-align: center;
+}
+
+.footer_2{
+    background-color: #00485E;
+    margin-top: 10px;
+    height: 72px;
+    margin: 0px 0px 50px;
+    text-align: center;
+    color: white;
 }
 
 /* Footer buttons need to look like links */
@@ -303,7 +312,8 @@ select{
     width: auto;
     background-color: black;
     margin: 0 auto;
-    overflow-y: scroll
+    overflow-y: scroll;
+    z-index: 4;
 }
 
 .fullImgWrap img{
@@ -407,13 +417,17 @@ option{
     border: 2px solid #079;
     padding: 15px;
     margin: 6px 0px;
-    max-width: 800px;
-    min-width: 600px;
+/*    max-width: 800px;
+    min-width: 600px;*/
+    width: 80%;
     display: inline-table;
     height: auto;
     margin-right: 7px;
     background-color: white;
     
+}
+.card_single .cardInfoVal{
+    width: 70% !important;
 }
 
 .hdr1{

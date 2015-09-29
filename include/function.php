@@ -63,7 +63,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                 $rowcount = 1;
                 // JM: I have turned off the cards on the results page for the moment
                 $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false, false);' />";
-                if($count < 0){
+                if($numberofresults < 5){
                     $addAsCard = "";
                     echo '<div class="theCards_body">';
                     echo '<div class="resultWrap">';
@@ -115,7 +115,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                         $value3 = "<i>empty</i>";
                     }
                     
-                    if($numberofresults < 0){
+                    if($numberofresults < 5){
                         echo '<div class="card"><label><input type="checkbox" onchange="cardMe($(this), false, true);"/> Add To Folder </label>';
                         echo '<div class="cardNum">#'.$addAsCard . $rowcount .'</div>';
                         if(isset($value2)){
@@ -152,7 +152,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
                     $rowcount++;
                 }
 
-                if($count < 0){
+                if($numberofresults < 5){
                     echo "</div>";
                 }
                 else{
