@@ -4,7 +4,7 @@
 function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
     $num_result_per_page = 100;
     $table_text_len = 100;
-    $link = mysqli_connect('localhost:3306', 'root', '1229@Oxford', 'digisigres');
+    $link = mysqli_connect('localhost:3306', 'root', 'letmein', 'digisigres');
     // $link = mysqli_connect('localhost:3306', 'digisig', '1EMeeIIINnn', 'digisigres');
     $pagination_part = ' limit ' . $limit . ' offset ' . $offset;
     // search 'what' and 'from'? 
@@ -173,7 +173,7 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
 
 
 function queryview($entity, $id) {
-     $link = mysqli_connect('localhost:3306', 'root', '1229@Oxford', 'digisigres');
+     $link = mysqli_connect('localhost:3306', 'root', 'letmein', 'digisigres');
     //$link = mysqli_connect('localhost:3306', 'digisig', '1EMeeIIINnn', 'digisigres');
 
      //convert view number to view text string and find out what variables to return
