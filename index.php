@@ -17,7 +17,8 @@
 
         #connection details
         include "config/config.php";
-
+        #all activity happens through index.php.  Analytics tracking should catch all the traffic we want it to through the include on this page.
+        include "include/analyticstracking.php";
         #constants and default values
         include "include/constants.php";
 
