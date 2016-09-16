@@ -5,8 +5,8 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
     $num_result_per_page = 100;
     $table_text_len = 100;
     //$link = mysqli_connect('localhost:3306', 'root', 'letmein', 'digisigres');
-     $link = mysqli_connect('localhost:3306', 'root', '1229@Oxford', 'digisigres');
-    // $link = mysqli_connect('localhost:3306', 'digisig', '1EMeeIIINnn', 'digisigres');
+    $link = mysqli_connect('localhost:3306', 'root', '1229@Oxford', 'digisigres');
+    //$link = mysqli_connect('localhost:3306', 'digisig', '1EMeeIIINnn', 'digisigres');
     $pagination_part = ' limit ' . $limit . ' offset ' . $offset;
     // search 'what' and 'from'? 
     $query3 = "SELECT field_title, field_url, field_column, field_returnedvariables FROM field WHERE field_url = '$field'";

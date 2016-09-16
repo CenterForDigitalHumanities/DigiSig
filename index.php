@@ -2,9 +2,9 @@
 <html>
 
 	<head>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-                <!--<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>-->  
-                <!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>-->  
+        <!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.1/js/lightbox-plus-jquery.min.js"></script>
 		<link rel="stylesheet" href="<?php echo $basePath; ?>/digisig/css/digisigSkin.css" />                
                 
@@ -45,11 +45,13 @@ session_start();
     }
     
 include "header.php"; 
+echo "<div class='content_wrap'>";
+include "include/page.php";
 echo '<div class="pageWrap">';
 //user login
 
         #constants and default values
-        include "include/constants.php";
+        #include "include/constants.php";
 
         //my functions
         include "include/function.php";
@@ -60,6 +62,8 @@ echo '<div class="pageWrap">';
         if (isset($_POST['submit'])) {
 
             $page = "/" . strtolower($_POST['submit']);
+            $address = "/DigiSig";
+            $field = $index = $term = $exact = "";
 
             if (isset($_POST['field'])) {
                 $field = "/" . strtolower($_POST['field']);
@@ -76,10 +80,13 @@ echo '<div class="pageWrap">';
             if (isset($_POST['exact'])) {
                 $exact = "/e";
             }
-
             $url = ($address . $page . $field . $index . $term . $exact);
+            echo '<script type="text/javascript">
+               window.location.href = "'.$url.'";
+          </script>';
+            die();
             // reload the page with the new header
-            header('Location:' . $url);
+
         }
 
         // reset the post array to clear any lingering data
@@ -90,6 +97,8 @@ echo '<div class="pageWrap">';
          */
 
         $path_info = parse_path();
+        $new_url = $_SERVER['REQUEST_URI'];
+        echo '<script>window.history.pushState("Object", "Title", "'.$new_url.'");</script>';
 
         if ($path_info['call_parts'][0] == "search") {
             $field = ($path_info['call_parts'][1]);
@@ -128,7 +137,7 @@ echo '<div class="pageWrap">';
          * 4) Basic Search bar
          */
 
-        include "include/page.php";
+        
 
         // load the optional extra parts of the page depending on the header
 
@@ -152,6 +161,7 @@ echo '<div class="pageWrap">';
                         queryResult($field, $index, $term, $address, $exact, 0, $num_result_per_page);
                     }
                 }
+                echo "</div>"; //close page wrap
                 break;
 
             case 'entity' :
@@ -701,6 +711,7 @@ echo '<div class="pageWrap">';
                     }
 
                 }
+                echo "</div>"; //close page wrap
                 break;
 
             case 'about' :
@@ -767,12 +778,14 @@ echo '<div class="pageWrap">';
                    
                     ";
                 }
+                echo "</div>"; //close page wrap
                 break;
 
             case 'advanced search' :
                 {
                     echo "Section under construction. Please check back regularly for updates";
                 }
+                echo "</div>"; //close page wrap
                 break;
 
             case 'contact' :
@@ -783,18 +796,69 @@ echo '<div class="pageWrap">';
                             3650 Lindell Blvd<br>
                             St. Louis, MO 63103<br>
                             <a href='http://slu.academia.edu/JohnMcEwan' target='_blank'>http://slu.academia.edu/JohnMcEwan</a>";
+
                 }
+                echo "</div>"; //close page wrap
                 break;
 
-            default :
-                echo "
-                    <p><i>
-                        Search
-                        <b>$sealcount</b> seal records and
-                        <b>$imagecount</b> images from the following sources: </i></p>";
-					
-                echo "<div class='searchResults'>";
-                //echo "<div class='resultsTitle'>Results</div>";
+            default :                
+                include "include/imageGallery.php";
+
+                echo "<h2 class='using'>using digisig</h2>";
+                echo "<div class='info_text'>
+                    <h4>seal  <div class='icon'></div></h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
+                        auctor, augue ac hendrerit pretium, ante lacus tincidunt justo,
+                        vel venenatis augue libero at leo.
+                        How to Search
+                         a lectus malesuada pharetra et in elit. Pellentesque non
+                        euismod nunc. Pellentesque imperdiet sodales nisi. 
+                    </p>
+                    <h4>item <div class='icon'></div></h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
+                        auctor, augue ac hendrerit pretium, ante lacus tincidunt justo,
+                        vel venenatis augue libero at leo.
+                        How to Search
+                         a lectus malesuada pharetra et in elit. Pellentesque non
+                        euismod nunc. Pellentesque imperdiet sodales nisi. 
+                    </p>
+                    <h4>description <div class='icon'></div></h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
+                        auctor, augue ac hendrerit pretium, ante lacus tincidunt justo,
+                        vel venenatis augue libero at leo.
+                        How to Search
+                         a lectus malesuada pharetra et in elit. Pellentesque non
+                        euismod nunc. Pellentesque imperdiet sodales nisi. 
+                    </p>
+                    <h4>impression/matrix/cast <div class='icon'></div><div class='icon'></div><div class='icon'></div></h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
+                        auctor, augue ac hendrerit pretium, ante lacus tincidunt justo,
+                        vel venenatis augue libero at leo.
+                        How to Search
+                         a lectus malesuada pharetra et in elit. Pellentesque non
+                        euismod nunc. Pellentesque imperdiet sodales nisi. 
+                    </p>
+                </div>";
+                echo "<div class='info_images'>
+                    <div class='img_holder' style='margin-bottom: 15px'>Header</div>
+                    <div class='img_holder'>Header</div>
+                </div>";
+
+                echo "</div>"; //close page wrap
+                echo "<div class='sources'>";
+                echo "<div class='sources_title'>
+                <h3>Contributing Repositories & Sources</h3>
+                <p><i>
+                            Search <b>$sealcount</b> seal records and
+                            <b>$imagecount</b> images from the following sources:
+                        </i>
+                    </p>
+                </div>";
+                echo "<div id='projects'>";
                 echo "<span class='separator_2'>Publications and Projects</span><br>";
 
                 $query = "SELECT DISTINCT title, uri_catalogue FROM search_view WHERE title NOT IN ('Public Index') ORDER BY title";
@@ -803,8 +867,9 @@ echo '<div class="pageWrap">';
                     echo '<a href="' . $row['uri_catalogue'] . '" target="_blank">' . $row['title'] . '</a>';
                     echo "<br>";
                 }
-
-                echo "<span class='separator_2' style='margin-top: 20px; display: block;'>Repositories</span>";
+                echo "</div>";
+                echo "<div id='repos'>";
+                echo "<span class='separator_2' style='margin-top: 5px; display: block;'>Repositories  </span>";
                 $query = "SELECT DISTINCT repository_fulltitle, id_archoncode FROM shelfmark_view ORDER BY repository_fulltitle";
                 $queryresults = mysqli_query($link, $query);
                 while ($row = mysqli_fetch_assoc($queryresults)) {
@@ -812,10 +877,15 @@ echo '<div class="pageWrap">';
                     echo "<br>";
                 }
                 echo "</div>";
+                echo "<div style='clear:both'></div>";
+                echo "</div>";
+                
+
+
                              
         }
-       
-        echo "</div>"; //close page wrap
+        echo "</div>"; //close content_wrap
+        
         include "include/footer.php";
     ?>
                 <div class="addedCardArea">
@@ -832,20 +902,20 @@ echo '<div class="pageWrap">';
 		</body>
 		<script src="<?php echo $basePath; ?>/digisig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
 		<script>
-                    function toggleCardWidget($toggle){
-                        if($toggle.attr("active") == "no"){
-                            $(".viewCardWidget").css("right", "0px");
-                            $(".toggleArrow").html(" > ");
-                            $toggle.attr("active", "yes");
-                        }
-                        else{
-                            $(".viewCardWidget").css("right", "-190px");
-                            $(".toggleArrow").html(" < ");
-                            $toggle.attr("active", "no");
-                        }
-                    }
+            function toggleCardWidget($toggle){
+                if($toggle.attr("active") == "no"){
+                    $(".viewCardWidget").css("right", "0px");
+                    $(".toggleArrow").html(" > ");
+                    $toggle.attr("active", "yes");
+                }
+                else{
+                    $(".viewCardWidget").css("right", "-190px");
+                    $(".toggleArrow").html(" < ");
+                    $toggle.attr("active", "no");
+                }
+            }
 
-                    var cardID = 0 ;
+            var cardID = 0 ;
 		    var basePath = '<?php echo 'http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], '/')); ?>';
 			var num_result_per_page = parseInt(<?php echo $num_result_per_page ?>);
 			var table_text_len = 100;
@@ -870,10 +940,14 @@ echo '<div class="pageWrap">';
 					'offset' : offset,
 					'limit' : limit
 				}).done(function(data) {
+                    console.log("Call back from loadNextData.php...");
+                    console.log(data);
+                    var counter = 0;
 					if (data != '00000' && '' != data) {
 						data = JSON.parse(data);
 						var del_show_more = data['del_show_more'];
 						var c = 0;
+                        var length1 = Object.keys(data).length;
 						for (d in data) {
 							var v1 = data[d][0];
 							var v2 = data[d][1];
@@ -888,13 +962,15 @@ echo '<div class="pageWrap">';
 							lastRowNum++;
 							$('#show_more_tr_' + field).attr('last_row_num', lastRowNum);
 							c++;
+                            console.log("found row "+c+" of "+length1);
 						}
 						$('#show_more_tr_' + field).attr('last_row_num', lastRowNum--);
 						$('#load_next_pending_' + field).hide();
 						offset += num_result_per_page;
 						$('#show_more_btn_' + field).attr('offset', offset);
 					} else {
-						$('#load_next_pending_' + field).hide();
+						//$('#load_next_pending_' + field).hide();
+                        $('#load_next_pending_' + field).html("Could not get entries...");
 					}
 					if(c < num_result_per_page || c == 0){
 					    $('#show_more_tr_' + field).remove();
@@ -989,6 +1065,28 @@ echo '<div class="pageWrap">';
                                 $(".toggleArrow").attr("active", "yes");
                             }
                         }
+
+                        function toggleSources(which){
+                            console.log("TOGGLE SOURCES");
+                            if(which === 1){
+                                console.log("TOGGLE 1");                               
+                                $("#sources_2").css("left", "-560px");
+                                $("#sources_1").css("left", "48px");
+                            }
+                            else if (which === 2){
+                                console.log("TOGGLE 2");                            
+                                $("#sources_1").css("left", "-560px");
+                                $("#sources_2").css("left", "48px");
+                            }
+                            else if(which === 0){
+                                $("#sources_1").css("left", "-560px");
+                                $("#sources_2").css("left", "-560px");
+                            }
+                            else{
+                                console.warn("toggle called on odd target.");
+                            }
+                        }
+
                         
                         $(function(){
                             var url = window.location.href;
