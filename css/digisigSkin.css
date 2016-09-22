@@ -100,13 +100,18 @@
 /*    text-decoration: underline;*/
     font-size: 17px;
     color:#00485E;
+    font-style: italic;    
 }
 .separator_2{
-    font-size: 17px;
+    font-size: 20px;
     margin-top:10px;
     color: #00485E;
-    text-transform: uppercase;
-    /*margin-left: 15px;*/
+    /*text-transform: uppercase;*/
+    font-style: italic;    
+    margin-left: 15px;
+}
+#projects .separator_2{
+    margin-left: 0px;
 }
 .searchTitle{
     color: #FFF;
@@ -189,8 +194,12 @@ form[name="navigate"]{
     margin-right:70px;
     color: #00485E !important;
 }
-.seal, .sealMetadata{
+.seal{
     border-bottom: 1px solid rgb(0, 119, 153);
+}
+.sealMetadata{
+    border-bottom: none !important;
+    padding-top: 5px;
 }
 a:hover{
 	cursor: pointer
@@ -200,7 +209,7 @@ a:hover{
 }
 /* Table CSS */
 thead{
-    background-color: #007799;
+    background-color: #00485E;
     color: white;
     font-weight: bold;
 }
@@ -209,20 +218,42 @@ th{
 /*    border-left: 1px solid black;
     border-right: 1px solid black;
     border-top: 1px solid black;*/
+    /*border: 1px solid black;*/
+    padding: 5px !important;
+    max-width: 720px;
+    padding: 4px 8px !important;
+}
+.metaTable.maxmin td{
+    border:1px solid rgba(0,119,153, .3);
+    max-width: 720px;
+    padding: 8px !important;
+}
+
+.metaTable.maxmin th{
+    text-align: center;
     border: 1px solid black;
     padding: 5px !important;
     max-width: 720px;
     padding: 4px 8px !important;
 }
+.metaTable.indent2 tr{
+    padding: 2px 0px;
+}
 td{
-    border:1px solid rgba(0,119,153, .3);
+    /*border:1px solid rgba(0,119,153, .3);*/
     max-width: 720px;
-    padding: 4px 8px !important;
+    padding: 0px 8px !important;
+}
+tbody tr:nth-child(odd){
+    background-color: rgba(0,119,153, .3);
+}
+tbody tr:nth-child(even) {
+    background-color: rgba(0,119,153, .2);
 }
 
 .tableWrap{
     /*border-top: 1px solid #079;*/
-    border-bottom: 1px solid #079;
+    /*border-bottom: 1px solid #079;*/
     padding : 12px 0px;
     margin: 40px 0px;
 }
@@ -273,9 +304,7 @@ table.maxmin th, table.maxmin td{
 #height, #shape{
     margin-right: 15px;
 }
-.sealMetadata{
-    padding: 5px 0px;
-}
+
 .sealExample{
     display: inline-block;
 }
@@ -309,7 +338,7 @@ select{
     max-width: 85%;
     top: 1%;
     width: auto;
-    background-color: black;
+    background-color: #00485E;
     margin: 0 auto;
     overflow-y: scroll;
     z-index: 4;
@@ -365,17 +394,31 @@ option{
     box-shadow: 0px 0px 19px 4px black;
 }
 
+.indent .card{
+    padding: 0px 14px 7px 7px;
+    margin: 0px 7px 6px 0px;
+    width: auto;
+    height: 200px;
+    border-right: 1px solid #00485E;
+}
+
+.indent .card .cardInfoVal{
+    width: 300px;
+}
+
 .card{
-    border: 2px solid #079;
-    padding: 25px 0px 7px 15px;
+    /*border: 2px solid #079;*/
+    padding: 7px 0px 7px 15px;
     margin: 6px 7px 6px 0px;
     width: 400px;
     overflow-y: auto;
     display: inline-table;
     background-color: #FFF;
-    height: 95%;
+    height: 83%;
     white-space: nowrap;
     position: relative;
+    font-style: normal;
+    font-size: 14px;
 }
 .theCards{
     overflow-x: auto;
@@ -385,23 +428,22 @@ option{
 }
 .theCards_body{
     display: block;
-    overflow-x: auto;
-    /*border-top: 1px solid #079;*/
-    border-bottom: 1px solid #079;
-    padding : 12px 0px;
-    margin: 40px 0px;
+    overflow: auto;
+    /*border-bottom: 1px solid #079; */
+    padding: 12px 0px;
+    margin: 5px 0px;
+    height: auto;
 }
 .theCards_body .card{
-    height:auto;
-    
+
 }
 
 .sealMetadata + .theCards_body {
-    margin-top: 15px !important;
+    margin-top: 5px !important;
 }
 
 .sealMetadata + .tableWrap {
-    margin-top: 15px !important;
+    margin-top: 55px !important;
 }
 
 .addedCardHeader{
@@ -413,11 +455,17 @@ option{
 }
 
 .card_single{
-    border: 2px solid #079;
-    padding: 15px;
+    /*border: 2px solid #079;*/
+    /*padding: 15px;
     margin: 6px 0px;
-/*    max-width: 800px;
-    min-width: 600px;*/
+    width: 80%;
+    display: inline-table;
+    height: auto;
+    margin-right: 7px;
+    background-color: white;*/
+
+    padding: 0px 0px 0px 0px;
+    margin: 6px 0px;
     width: 80%;
     display: inline-table;
     height: auto;
@@ -429,16 +477,10 @@ option{
     width: 70% !important;
 }
 
-.hdr1{
-    color: #00485E;
-    font-size:20px;
-    text-transform: uppercase;
+.card_single .cardInfoKey{
+    font-style: italic;    
 }
-.hdr2{
-    color: #079;
-    /*font-size:20px;*/
-    text-transform: uppercase;
-}
+
 .cardInfoVal{
     color: #000;
     white-space: normal;
@@ -450,30 +492,46 @@ option{
 }
 .cardInfoKey{
     color: #00485E;
-    font-weight: bold;
+    /*font-weight: bold;*/
     margin-right: 5px;
     display: inline-table;
     text-align: right;
     position: relative;
     text-overflow: ellipsis;
     overflow: hidden;
-    width: 95px;
+    width: 88px;
+    white-space: normal;
+
 }
 .cardInfo{
     margin: 2px 0px;
 }
-.indent{
+.indent, .indent3{
     padding-left: 15px;
+    
+}
+.indent3 .card{
+    width: auto;
 }
 .indent2{
     padding-left: 45px;
 }
 
-table.indent2 td{
-    background-color: rgba(0,119,153, .1);
+.data_wrapper.white{
+    background-color:white;
 }
-
-.theCards_body.indent2{
+.data_wrapper.white .card{
+    background-color:white;
+}
+.data_wrapper .card{
+    background-color: #fbefdf;
+}
+.data_wrapper{
+    background-color: #fbefdf; /* #fdf7ef #fbefdf    #fbf1e3    #fcf3e7 */
+    /*border-bottom: 1px solid #079;*/
+    border-top: 1px solid #079;
+}
+.indent3 .card{
     background-color: rgba(0,119,153, .3);
 }
 .resultCount{
@@ -541,6 +599,7 @@ table.indent2 td{
     top: 0px;
     font-weight: bold;
     color: #00485E;
+    display:none; /* Only show inside of tables */
 }
 /*.card > :nth-child(2){
     margin-top: 25px;
@@ -564,7 +623,7 @@ table.indent2 td{
     margin-top: 8px !important;
 }
 
-.sealMetadata + separator_2{
+.sealMetadata + .separator_2{
     margin-top: 8px !important;
 }
 
@@ -594,6 +653,7 @@ input[type="button"]:hover{
     top: 0px;
     right: 9px;
     z-index: 3;
+    display: none; /* Disabling for now */
 }
 
 .card .cardInfo:first-child{
@@ -659,7 +719,10 @@ input[type="button"]:hover{
     position: relative;
     display: block;
 }
-.pageWrap{
+.pageWrap.homeWrap{
+    width: 74%;
+}
+.pageWrap.homeWrap{
     color: #007799;
     font-family: sans-serif !important;
     width: auto;
@@ -713,6 +776,37 @@ input[type="button"]:hover{
     position: relative;
 }
 
+.icon_info{
+    height: 20px;
+    width: 20px;
+    top: 4px;
+    display: inline-block;
+    background-color: rgba(0,119,153, .3);
+    margin-left: 4px;
+    position: relative;
+}
+
+.icon_card{
+    height: 20px;
+    width: 20px;
+    top: 14px;
+    right: 7px;
+    display: inline-block;
+    background-color: rgba(0,119,153, .3);
+    position: absolute;
+}
+
+.icon_shape{
+    height: 35px;
+    width: 35px;
+    display: inline-block;
+    background-color: rgba(0,119,153, .3);
+    margin-left: 15px;
+    position: relative;
+    top: 10px;
+}
+
+
 .using{
     text-transform: uppercase;
     color: #00485E;
@@ -724,4 +818,50 @@ input[type="button"]:hover{
     border-bottom: 1px solid #337ab7;
     padding-bottom: 5px;
 }
+.sealLabel{
+    color: #00485E;
+    margin-right: 10px;
+
+}
+.sealHeader{
+    text-align:right;
+    padding-bottom: 3px;
+    padding-top: 14px;
+}
+.sealHeader .hdr{
+    font-size: 21px;
+    display: inline-block;
+    position: absolute;
+    left: 0px;
+    text-transform: uppercase;
+}
+.sealHeader span{
+    display: inline-block;
+    position: relative;
+}
+.sealHeader #digisigID{
+    display: inline-block;
+    position: relative;
+}
+.hdr2{
+    display: none;
+}
+#title{
+    color: #00485E;
+    font-size:15px;
+}
+#title_inline{
+    color: #00485E;
+    font-size:15px;
+    display: inline-table;
+    margin-left: 50px;
+}
+#sealDims{
+    /*color: #00485E;*/
+    font-size:18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #337ab7;
+}
+
+
 

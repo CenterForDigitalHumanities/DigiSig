@@ -47,7 +47,7 @@ session_start();
 include "header.php"; 
 echo "<div class='content_wrap'>";
 include "include/page.php";
-echo '<div class="pageWrap">';
+
 //user login
 
         #constants and default values
@@ -144,7 +144,7 @@ echo '<div class="pageWrap">';
         switch($path_info['call_parts'][0]) {
 
             case 'search' :
-
+                echo '<div class="pageWrap">';
                 //test to see if the search string has more than 1 character
                 if (strlen($term) > 0) {
                     $term = str_replace("_", "/", $term);
@@ -165,7 +165,7 @@ echo '<div class="pageWrap">';
                 break;
 
             case 'entity' :
-
+                echo '<div class="pageWrap">';
                 # show information about a specific entity
 
                 // first test that we have an entity number and proceed if yes
@@ -209,11 +209,8 @@ echo '<div class="pageWrap">';
                                     
                             
                             //echo "ITEM";
-                            echo '<div class="seal sealPiece hdr1">ITEM</div>
-                            <div class="sealMetadata sealPiece">
-                                <span class="sealLabel hdr2">Title: </span> <span id="title">'.$value1.':'.$value2.'</span>
-                            </div>
-                            <div class="sealMetadata sealPiece nobot">
+                            echo '<div class="seal sealPiece sealHeader">
+                                <span class="sealLabel hdr">ITEM <div class="icon"></div><div class="icon_info"></div></span>
                                 <span class="sealLabel">Digisig ID: </span><span id="digisigID">' .$id.'</span>
                                 <span clss="sealLabel">Permalink: </span><span id="permalink">http://digisig.org/entity/'. $id .'</span>
                                 <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
@@ -222,9 +219,12 @@ echo '<div class="pageWrap">';
 
                             //echo "<br><br>" . $value1 . ": " . $value2;
                             //all the other values listed under shelfmark are optional
+                            
                             if($count < 5){
                                 echo '<div class="theCards_body">';
                                 echo '<div class="card_single">';
+                                echo '<div class="cardInfo"><span class="cardInfoKey">Title: </span><span class="cardInfoVal">'.$value1.':'.$value2.'</span></div>';
+                                
                                 if(isset($value11) && $value11!=="" && isset($value10) && $value10!==""){
                                     echo '<div class="cardInfo"><span class="cardInfoKey">Dated: </span> <span class="cardInfoVal">' . date_format($outputDate1, 'Y') . ' to ' . date_format($outputDate2, 'Y').'</span></div>';
                                 }
@@ -256,9 +256,9 @@ echo '<div class="pageWrap">';
                             $query12result = mysqli_query($link, $query12);
                             $count3 = mysqli_num_rows($query12result);
                             // table detailing which seal impressions are associated with this item
-                            
+                            echo "<div class='data_wrapper'>";
                             $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false, false);' />";
-                            echo "<div class='separator_2'>Seals</div>";
+                            echo "<div class='separator_2'>Associated Impressions/Casts/Matrix <div class='icon'></div><div class='icon_info'></div></div>";
                             if($count3 < 5){
                                 $addAsCard = "";
                                 echo "<div class='theCards_body indent'>";
@@ -348,10 +348,10 @@ echo '<div class="pageWrap">';
                                 $rowcount++;
                             }
                             if($count3 < 5){
-                                echo '</div>';
+                                echo '</div></div>';
                             }
                             else{
-                                echo '</tbody></table></div>';
+                                echo '</tbody></table></div></div>';
                             }
                             
                         }
@@ -386,12 +386,14 @@ echo '<div class="pageWrap">';
                             $value14 = $row['connection'];
                             $value15 = $row['sealdescription'];
                             //formulate header
-                             echo '<div class="seal sealPiece hdr1">Seal Description</div>
-                            <div class="sealMetadata sealPiece nobot">
-                                <span class="sealLabel hdr2">Title: </span><span id="title">'.$value1.' : '.$value4.'</span><br>
-                                <span class="sealLabel">Digisig ID: </span><span id="digisigID">' .$id.'</span><br>
+                             echo '<div class="seal sealPiece sealHeader">
+                                <span class="sealLabel hdr">Description <div class="icon"></div></span>
+                                <span class="sealLabel">Digisig ID: </span><span id="digisigID">' .$id.'</span>
                                 <span clss="sealLabel">Permalink: </span><span id="permalink">http://digisig.org/entity/'. $id .'</span>
                                 <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
+                             </div>
+                            <div class="sealMetadata sealPiece nobot">
+                                <span class="sealLabel hdr2">Title: </span><span id="title">'.$value1.' : '.$value4.'</span><br>
                             </div>                          
                             ';
                                 $cardArea = "<div class='theCards_body'><div class='card_single'>";
@@ -528,7 +530,8 @@ echo '<div class="pageWrap">';
     
                                 $count = mysqli_num_rows($query12result);
                                 if ($count > 1) {
-                                    echo "<div class='separator_2'>Other Descriptions</div>";
+                                    echo "<div class='data_wrapper'>";
+                                    echo "<div class='separator_2'>Other Descriptions <div class='icon'></div><div class='icon_info'></div></div>";
                                     $duplicate = $id;
                                     sealdescription($query12result, $address, $duplicate);
                                 }
@@ -538,13 +541,14 @@ echo '<div class="pageWrap">';
                         //for a seal
                         If ($entity == 1) {
 
-                            echo '<div class="sealPiece seal hdr1">SEAL</div>
-                            <div class="sealMetadata sealPiece"><span class="sealLabel">Digisig ID: </span><span id="digisigID">' .$id.'</span>
+                            echo '<div class="sealPiece sealHeader seal">
+                            <span class="sealLabel hdr">SEAL <div class="icon"></div> <div class="icon_info"></div></span>
+                            <span class="sealLabel">Digisig ID: </span><span id="digisigID">' .$id.'</span>
                             <span clss="sealLabel">Permalink: </span><span id="permalink">http://digisig.org/entity/'. $id .'</span>
                             <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
                             </div>';
             //perhaps this could be a card?
-                            $shapeDims = '<div class="sealMetadata sealPiece nobot">';
+                            $shapeDims = '<div id="sealDims" class="sealPiece nobot">';
                             
 
                             // note that a seal can have two faces but I am going to assume that the double side ones are the same
@@ -567,7 +571,7 @@ echo '<div class="pageWrap">';
                                 }
                                 $shapeDims .= " mm";
                             }
-                            $shapeDims.= "</span></div>";
+                            $shapeDims.= "</span> <div class='icon_shape'></div></div>";
                             //$shapeDims.= "</div>";
                             echo $shapeDims;
                             $id_seal = $row['id_seal'];
@@ -579,8 +583,8 @@ echo '<div class="pageWrap">';
                             $duplicate = $id;
                             
                             if ($count1 > 0) {
-                                //echo "<div class='separator_2'>Other Descriptions</div>";
-                                echo "<div class='separator_2'>Descriptions</div>";
+                                echo "<div class='data_wrapper white'>";
+                                echo "<div class='separator_2' style='background-color:white;'>Descriptions <div class='icon'></div><div class='icon_info'></div></div>";
                                 $duplicate = $id;
                                 sealdescription($query12result, $address, $duplicate);
                             }
@@ -589,16 +593,17 @@ echo '<div class="pageWrap">';
                             $query10 = "SELECT * FROM shelfmark_view WHERE id_seal = $id";
                             $query10result = mysqli_query($link, $query10);
                             $count2 = mysqli_num_rows($query10result);
-                            echo '<div class="separator_2">Examples</div>';
+                            echo "<div class='data_wrapper'>";
+                            echo '<div class="separator_2">Impression/Matrix/Cast <div class="icon"></div><div class="icon_info"></div></div>';
                             
                             $rowcount = 1;
                             $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false, false);' />";
                             if($count2 < 5){
                                 $addAsCard = "";
-                                echo '<div class="theCards_body indent2">';
+                                echo '<div class="theCards_body indent3">';
                             }
                             else{
-                                echo '<div class="tableWrap"><table class="metaTable indent2"><thead><th>&#x2714;</th><th>#</th><th>Nature</th><th>Position</th><th>Dated</th><th>Item</th><th>Image</th></thead>'
+                                echo '<div class="tableWrap"><table class="metaTable indent2"><thead><th>&#x2714;</th><th>#</th><th>Nature</th><th>Position</th><th>Dated</th><th>Thumbnail</th><th>Component of Item</th></thead>'
                                 . '<tbody>';
                             }
                             while ($row = mysqli_fetch_array($query10result)) {
@@ -630,6 +635,7 @@ echo '<div class="pageWrap">';
                                 if($count2 < 5){
                                     echo '<div class="card"> <label><input type="checkbox" onchange="cardMe($(this), false, true);"/> Add To Folder </label>';
                                     echo '<div class="cardNum">#'.$addAsCard . $rowcount . '</div>';
+                                    echo '<div class="icon_card"></div>';
                                     if(isset($value1) && $value1!==""){
                                         echo '<div class="cardInfo"><span class="cardInfoKey">Nature: </span> <span class="cardInfoVal">'.$value1.'</span></div>';
                                     }
@@ -647,7 +653,7 @@ echo '<div class="pageWrap">';
                                         $outputDate2 = date_create($value10);
                                        echo '<div class="cardInfo"><span class="cardInfoKey">Dated: </span> <span class="cardInfoVal"> ' . date_format($outputDate1, 'Y') . ' to ' . date_format($outputDate2, 'Y') .'</span></div>';
                                     }
-                                    echo '<div class="cardInfo"><span class="cardInfoKey">Item: </span> <span class="cardInfoVal"><a href=' . $address . '/entity/' . $value6 . '>' . $value5 . '</a></span></div>';
+                                    
 //                                    echo '<div class="cardInfo"><span class="cardInfoKey">Shape: </span> <span class="cardInfoVal">'.$value4.'</span></div>';
                                     if (isset($value13)) {
 
@@ -662,6 +668,7 @@ echo '<div class="pageWrap">';
                                     }else{
                                         echo '<div class="cardInfo"><span class="cardInfoKey">Thumbnail: </span><span class="cardInfoVal"><img src="' . $default . 'not_available_thumb.jpg" height=50></img></span></div>';
                                     }
+                                    echo '<div class="cardInfo"><span class="cardInfoKey">Component of Item: </span> <span class="cardInfoVal"><a href=' . $address . '/entity/' . $value6 . '>' . $value5 . '</a></span></div>';
                                     echo "</div>";
                                 }
                                 else{
@@ -678,8 +685,6 @@ echo '<div class="pageWrap">';
                                     else{
                                         echo '<td> </td>';
                                     }
-       
-                                    echo '<td><a href=' . $address . '/entity/' . $value6 . '>' . $value5 . '</a></td>';
                                     if (isset($value13)) {
 
                                         if (1 == $row['fk_access']) {
@@ -694,16 +699,17 @@ echo '<div class="pageWrap">';
                                     }else{
                                         echo '<td><img src="' . $default . 'not_available_thumb.jpg" height=50></img></td>';
                                     }
+                                    echo '<td><a href=' . $address . '/entity/' . $value6 . '>' . $value5 . '</a></td>';
                                     echo '</tr>';
                                     
                                 }
                                 $rowcount++;
                             }
                             if($count2<5){
-                                echo "</div>";
+                                echo "</div></div>";
                             }
                             else{
-                                echo "</tbody></table></div>";
+                                echo "</tbody></table></div></div>";
                             }
                         }
                     }else{
@@ -715,6 +721,7 @@ echo '<div class="pageWrap">';
                 break;
 
             case 'about' :
+            echo '<div class="pageWrap">';
                 {
                     echo "<br>
                     <div class='aboutHeader'>The Digitial Sigillography Resource</div><br>
@@ -782,6 +789,7 @@ echo '<div class="pageWrap">';
                 break;
 
             case 'advanced search' :
+                echo '<div class="pageWrap">';
                 {
                     echo "Section under construction. Please check back regularly for updates";
                 }
@@ -789,6 +797,7 @@ echo '<div class="pageWrap">';
                 break;
 
             case 'contact' :
+                echo '<div class="pageWrap">';
                 {
                     echo "<br>Center for Digital Humanities<br>
                             Pius XII Memorial Library, 324 AB Tower<br>
@@ -801,7 +810,8 @@ echo '<div class="pageWrap">';
                 echo "</div>"; //close page wrap
                 break;
 
-            default :                
+            default :     
+                echo '<div class="pageWrap homeWrap">';           
                 include "include/imageGallery.php";
 
                 echo "<h2 class='using'>using digisig</h2>";
