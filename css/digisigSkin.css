@@ -110,7 +110,7 @@
     font-style: italic;    
     margin-left: 15px;
 }
-#projects .separator_2{
+#projects .separator_2, #repos .separator_2{
     margin-left: 0px;
 }
 .searchTitle{
@@ -155,7 +155,7 @@ form[name="navigate"]{
     background-color: #00485E;
     height: auto;
     padding: 5px 0px;
-    text-align: center;
+    text-align: right;
     color: white;
 }
 
@@ -766,14 +766,76 @@ input[type="button"]:hover{
     margin-bottom: 5px;
 }
 
-.icon{
+.icon_seal{
     height: 25px;
     width: 25px;
     top: 6px;
     display: inline-block;
-    background-color: rgba(0,119,153, .3);
+    /*background-color: rgba(0,119,153, .3);*/
     margin-left: 15px;
     position: relative;
+    background-image: url('../images/icons/digisigseal.png');
+    background-size: 25px 25px;
+}
+
+.icon_item{
+    height: 25px;
+    width: 25px;
+    top: 6px;
+    display: inline-block;
+    /*background-color: rgba(0,119,153, .3);*/
+    margin-left: 15px;
+    position: relative;
+    background-image: url('../images/icons/digisigitem.png');
+    background-size: 25px 25px;
+}
+
+.icon_descr{
+    height: 25px;
+    width: 25px;
+    top: 6px;
+    display: inline-block;
+    /*background-color: rgba(0,119,153, .3);*/
+    margin-left: 15px;
+    position: relative;
+    background-image: url('../images/icons/digisigdescription.png');
+    background-size: 25px 25px;
+}
+
+.icon_cast{
+    height: 25px;
+    width: 25px;
+    top: 6px;
+    display: inline-block;
+    /*background-color: rgba(0,119,153, .3);*/
+    margin-left: 15px;
+    position: relative;
+    background-image: url('../images/icons/digisigcast.png');
+    background-size: 25px 25px;
+}
+
+.icon_matrix{
+    height: 25px;
+    width: 25px;
+    top: 6px;
+    display: inline-block;
+    /*background-color: rgba(0,119,153, .3);*/
+    margin-left: 15px;
+    position: relative;
+    background-image: url('../images/icons/digisigmatrix.png');
+    background-size: 25px 25px;
+}
+
+.icon_impression{
+    height: 25px;
+    width: 25px;
+    top: 6px;
+    display: inline-block;
+    /*background-color: rgba(0,119,153, .3);*/
+    margin-left: 15px;
+    position: relative;
+    background-image: url('../images/icons/digisigimpression.png');
+    background-size: 25px 25px;
 }
 
 .icon_info{
@@ -862,6 +924,10 @@ input[type="button"]:hover{
     padding-bottom: 12px;
     border-bottom: 1px solid #337ab7;
 }
-
+.footer_logo{
+    right: 2%;
+    display: inline-block;
+    position: relative;
+}
 
 

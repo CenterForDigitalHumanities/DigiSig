@@ -24,12 +24,13 @@ echo '<div class="footer">
       </div>';
 
 echo '<div class="footer_2">
-        <p>
-          DigiSig is a new resource for the study of sigillography, particularly medieval 
-          seals from the British Isles.  Based at the centre for Digital Humanities at St Louis University, Missouri, 
-          it aims to foster sigillographic research by linking and matching sigillographic 
-          datasets and making that information available.
-        </p>
+        <img class="footer_logo" src="images/logos/cdhatslu.png" />
       </div>';
+      // <p>
+      //     DigiSig is a new resource for the study of sigillography, particularly medieval 
+      //     seals from the British Isles.  Based at the centre for Digital Humanities at St Louis University, Missouri, 
+      //     it aims to foster sigillographic research by linking and matching sigillographic 
+      //     datasets and making that information available.
+      //   </p>
 ?>
 

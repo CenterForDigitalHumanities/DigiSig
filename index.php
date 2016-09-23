@@ -210,7 +210,7 @@ include "include/page.php";
                             
                             //echo "ITEM";
                             echo '<div class="seal sealPiece sealHeader">
-                                <span class="sealLabel hdr">ITEM <div class="icon"></div><div class="icon_info"></div></span>
+                                <span class="sealLabel hdr">ITEM <div class="icon_item"></div><div class="icon_info"></div></span>
                                 <span class="sealLabel">Digisig ID: </span><span id="digisigID">' .$id.'</span>
                                 <span clss="sealLabel">Permalink: </span><span id="permalink">http://digisig.org/entity/'. $id .'</span>
                                 <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
@@ -258,7 +258,7 @@ include "include/page.php";
                             // table detailing which seal impressions are associated with this item
                             echo "<div class='data_wrapper'>";
                             $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false, false);' />";
-                            echo "<div class='separator_2'>Associated Impressions/Casts/Matrix <div class='icon'></div><div class='icon_info'></div></div>";
+                            echo "<div class='separator_2'>Associated Impressions/Casts/Matrix <div class='icon_impression'></div><div class='icon_info'></div></div>";
                             if($count3 < 5){
                                 $addAsCard = "";
                                 echo "<div class='theCards_body indent'>";
@@ -308,7 +308,7 @@ include "include/page.php";
                                         echo '<div class="cardInfo"><span class="cardInfoKey">Shape: </span> <span class="cardInfoVal">'.$value6. '</span></div>';
                                     }
                                     echo '<div class="cardInfo"><span class="cardInfoKey">Seal Link: </span><span class="cardInfoVal"><a href="' . $address . '/entity/' . $value7 . '">view seal entry</a></span></div>';
-                                    If (isset($value18)) {
+                                    if (isset($value18)) {
                                         if (1 == $row['fk_access']) {
                                             echo '<div class="cardInfo"><span class="cardInfoKey">Thumbnail: </span>'
                                             . '<span class="cardInfoVal"><a href="' . $value16 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value17 . $value18 . '" /></a></span></div>';
@@ -387,7 +387,7 @@ include "include/page.php";
                             $value15 = $row['sealdescription'];
                             //formulate header
                              echo '<div class="seal sealPiece sealHeader">
-                                <span class="sealLabel hdr">Description <div class="icon"></div></span>
+                                <span class="sealLabel hdr">Description <div class="icon_descr"></div></span>
                                 <span class="sealLabel">Digisig ID: </span><span id="digisigID">' .$id.'</span>
                                 <span clss="sealLabel">Permalink: </span><span id="permalink">http://digisig.org/entity/'. $id .'</span>
                                 <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
@@ -531,7 +531,7 @@ include "include/page.php";
                                 $count = mysqli_num_rows($query12result);
                                 if ($count > 1) {
                                     echo "<div class='data_wrapper'>";
-                                    echo "<div class='separator_2'>Other Descriptions <div class='icon'></div><div class='icon_info'></div></div>";
+                                    echo "<div class='separator_2'>Other Descriptions <div class='icon_descr'></div><div class='icon_info'></div></div>";
                                     $duplicate = $id;
                                     sealdescription($query12result, $address, $duplicate);
                                 }
@@ -542,7 +542,7 @@ include "include/page.php";
                         If ($entity == 1) {
 
                             echo '<div class="sealPiece sealHeader seal">
-                            <span class="sealLabel hdr">SEAL <div class="icon"></div> <div class="icon_info"></div></span>
+                            <span class="sealLabel hdr">SEAL <div class="icon_seal"></div> <div class="icon_info"></div></span>
                             <span class="sealLabel">Digisig ID: </span><span id="digisigID">' .$id.'</span>
                             <span clss="sealLabel">Permalink: </span><span id="permalink">http://digisig.org/entity/'. $id .'</span>
                             <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
@@ -584,7 +584,7 @@ include "include/page.php";
                             
                             if ($count1 > 0) {
                                 echo "<div class='data_wrapper white'>";
-                                echo "<div class='separator_2' style='background-color:white;'>Descriptions <div class='icon'></div><div class='icon_info'></div></div>";
+                                echo "<div class='separator_2' style='background-color:white;'>Descriptions <div class='icon_descr'></div><div class='icon_info'></div></div>";
                                 $duplicate = $id;
                                 sealdescription($query12result, $address, $duplicate);
                             }
@@ -594,7 +594,7 @@ include "include/page.php";
                             $query10result = mysqli_query($link, $query10);
                             $count2 = mysqli_num_rows($query10result);
                             echo "<div class='data_wrapper'>";
-                            echo '<div class="separator_2">Impression/Matrix/Cast <div class="icon"></div><div class="icon_info"></div></div>';
+                            echo '<div class="separator_2">Impression/Matrix/Cast <div class="icon_impression"></div><div class="icon_info"></div></div>';
                             
                             $rowcount = 1;
                             $addAsCard = "<input type='checkbox' onchange='cardMe($(this), false, false);' />";
@@ -810,13 +810,13 @@ include "include/page.php";
                 echo "</div>"; //close page wrap
                 break;
 
-            default :     
+            default :    
                 echo '<div class="pageWrap homeWrap">';           
                 include "include/imageGallery.php";
 
                 echo "<h2 class='using'>using digisig</h2>";
                 echo "<div class='info_text'>
-                    <h4>seal  <div class='icon'></div></h4>
+                    <h4>seal  <div class='icon_seal'></div></h4>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
                         auctor, augue ac hendrerit pretium, ante lacus tincidunt justo,
@@ -825,7 +825,7 @@ include "include/page.php";
                          a lectus malesuada pharetra et in elit. Pellentesque non
                         euismod nunc. Pellentesque imperdiet sodales nisi. 
                     </p>
-                    <h4>item <div class='icon'></div></h4>
+                    <h4>item <div class='icon_item'></div></h4>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
                         auctor, augue ac hendrerit pretium, ante lacus tincidunt justo,
@@ -834,7 +834,7 @@ include "include/page.php";
                          a lectus malesuada pharetra et in elit. Pellentesque non
                         euismod nunc. Pellentesque imperdiet sodales nisi. 
                     </p>
-                    <h4>description <div class='icon'></div></h4>
+                    <h4>description <div class='icon_descr'></div></h4>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
                         auctor, augue ac hendrerit pretium, ante lacus tincidunt justo,
@@ -843,7 +843,7 @@ include "include/page.php";
                          a lectus malesuada pharetra et in elit. Pellentesque non
                         euismod nunc. Pellentesque imperdiet sodales nisi. 
                     </p>
-                    <h4>impression/matrix/cast <div class='icon'></div><div class='icon'></div><div class='icon'></div></h4>
+                    <h4>impression/matrix/cast <div class='icon_impression'></div><div class='icon_matrix'></div><div class='icon_cast'></div></h4>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
                         auctor, augue ac hendrerit pretium, ante lacus tincidunt justo,
