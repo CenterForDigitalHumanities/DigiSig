@@ -24,7 +24,7 @@ echo '<div class="footer">
       </div>';
 
 echo '<div class="footer_2">
-        <img class="footer_logo" src="images/logos/cdhatslu.png" />
+        <img class="footer_logo" src="'.$basePath.'/digisig/images/logos/cdhatslu.png" />
       </div>';
       // <p>
       //     DigiSig is a new resource for the study of sigillography, particularly medieval 

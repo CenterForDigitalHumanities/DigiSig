@@ -391,14 +391,14 @@ include "include/page.php";
                                 <span class="sealLabel">Digisig ID: </span><span id="digisigID">' .$id.'</span>
                                 <span clss="sealLabel">Permalink: </span><span id="permalink">http://digisig.org/entity/'. $id .'</span>
                                 <input class="digiBtn" type="button" value="Copy Link" onclick="linkToClipboard();" />
-                             </div>
-                            <div class="sealMetadata sealPiece nobot">
-                                <span class="sealLabel hdr2">Title: </span><span id="title">'.$value1.' : '.$value4.'</span><br>
-                            </div>                          
+                             </div>                        
                             ';
                                 $cardArea = "<div class='theCards_body'><div class='card_single'>";
+                                $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Title: </span><span id="title" class="cardInfoVal">'.$value1.' : '.$value4.'</span></div>';
                                 $tableHeader = "<thead>";
                                 $tableBody = "<tbody><tr>";
+                                $tableHeader .= "<th>Title</th>";
+                                $tableBody .= "<td>".$value1." : ".$value4."</td>";
 
                             // title
                             //echo $value1 . ":" . $value4;
