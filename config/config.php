@@ -16,9 +16,9 @@
 
 
 # Connection
-    $link = mysqli_connect('localhost:3306', 'digisig', '1EMeeIIINnn', 'digisigres'); //img01
+    //$link = mysqli_connect('localhost:3306', 'digisig', '1EMeeIIINnn', 'digisigres'); //img01
     //$link = mysqli_connect('localhost:3306', 'root', 'letmein', 'digisigres'); //john
-    //$link = mysqli_connect('localhost:3306', 'root', '1229@Oxford', 'digisigres'); //local
+    $link = mysqli_connect('localhost:3306', 'root', '1229@Oxford', 'digisigres'); //local
     if(!$link){
         die('Could not connect: ' . mysqli_error($link));
     }

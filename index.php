@@ -62,8 +62,9 @@ include "include/page.php";
         if (isset($_POST['submit'])) {
 
             $page = "/" . strtolower($_POST['submit']);
-            $address = "/DigiSig";
-            $field = $index = $term = $exact = "";
+            $address = "/digisig";
+            $domain = $field = $index = $term = $exact = "";
+            $domain = 'http://' . $_SERVER['HTTP_HOST'];
 
             if (isset($_POST['field'])) {
                 $field = "/" . strtolower($_POST['field']);
@@ -80,10 +81,10 @@ include "include/page.php";
             if (isset($_POST['exact'])) {
                 $exact = "/e";
             }
-            $url = ($address . $page . $field . $index . $term . $exact);
+            $url = ($domain . $address . $page . $field . $index . $term . $exact);
             echo '<script type="text/javascript">
                window.location.href = "'.$url.'";
-          </script>';
+            </script>';
             die();
             // reload the page with the new header
 
@@ -870,9 +871,12 @@ include "include/page.php";
                 </div>";
                 echo "<div id='projects'>";
                 echo "<span class='separator_2'>Publications and Projects</span><br>";
-
-                $query = "SELECT DISTINCT title, uri_catalogue FROM search_view WHERE title NOT IN ('Public Index') ORDER BY title";
+                //somehow we have to exclude repository 'unknown'
+                //AND title != 'unknown'
+                $query = "SELECT DISTINCT title, uri_catalogue FROM search_view WHERE title NOT IN ('Public Index') AND title != 'unknown' ORDER BY title";
                 $queryresults = mysqli_query($link, $query);
+                //I want to get a count of hits for each repository. Count the distinct titles that we get from the query.  Limit the list to those that have more than 50 examples.
+                //This is done in gallery_view already, so perhaps just get into those to get the counts with simple select statements.   
                 while ($row = mysqli_fetch_assoc($queryresults)) {
                     echo '<a href="' . $row['uri_catalogue'] . '" target="_blank">' . $row['title'] . '</a>';
                     echo "<br>";
