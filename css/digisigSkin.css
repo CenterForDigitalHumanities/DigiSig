@@ -748,7 +748,7 @@ input[type="button"]:hover{
 .info_text{
     width: 50%;
     height: auto;
-    display: inline-table;
+    display: inline-block;
 }
 .info_text h4{
     color: #00485E;
@@ -756,13 +756,22 @@ input[type="button"]:hover{
 .info_images{
     width: 50%;
     height: auto;
-    display: inline-table;
+    display: inline-block;
 }
 .img_holder{
     height: 300px;
     width: 100%;
     display: block;
     background-color: rgba(0,119,153, .3);
+}
+.img_structure{
+    height: 395px;
+    width: 88%;
+    display: block;
+    background-image: url(../images/digisig_structure.jpg);
+    margin-left: 56px;
+    position: relative;
+    background-size: 100% 395px;
 }
 
 .sources_title h3{

@@ -855,8 +855,7 @@ include "include/page.php";
                     </p>
                 </div>";
                 echo "<div class='info_images'>
-                    <div class='img_holder' style='margin-bottom: 15px'>Header</div>
-                    <div class='img_holder'>Header</div>
+                    <div class='img_structure' style='margin-bottom: 15px'></div>
                 </div>";
 
                 echo "</div>"; //close page wrap

@@ -31,11 +31,12 @@
                 $value2 = $row['shelfmark'];
                 $value9 = $row['name_first'] . " " . $row['name_last'];
                 $medium = $row['medium'];
-                if($medium!=="local"){
-                    $basePath = "";
+                $medium = $medium.trim();
+                if($medium=="local"){
+                    $medium = "";
                 }
                 else{
-                    $medium = "";
+                    $basePath = "";
                 }
                 $seal_id = $row['id_seal'];
                 $seal_connection = $basePath."/DigiSig/entity/".$seal_id;
