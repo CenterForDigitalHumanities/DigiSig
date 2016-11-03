@@ -690,9 +690,10 @@ input[type="button"]:hover{
     padding-top: 4px;
 }
 
+/* Display this for a good area to add some text at the start of the image gallery */
 .galleryText{
     position: relative;
-    display: inline-block;
+    display: none; /*inline-block*/
     height: 100%;
     width: 170px;
     border: 1px solid red;
