@@ -400,6 +400,7 @@ option{
     width: auto;
     height: 200px;
     border-right: 1px solid #00485E;
+    height: 83%;
 }
 
 .indent .card .cardInfoVal{
@@ -414,7 +415,7 @@ option{
     overflow-y: auto;
     display: inline-table;
     background-color: #FFF;
-    height: 83%;
+    height: 125px;
     white-space: nowrap;
     position: relative;
     font-style: normal;
@@ -433,9 +434,6 @@ option{
     padding: 12px 0px;
     margin: 5px 0px;
     height: auto;
-}
-.theCards_body .card{
-
 }
 
 .sealMetadata + .theCards_body {
