@@ -21,7 +21,7 @@
         $sql_quick = "SELECT * FROM 'gallery_view' LIMIT $offset, 5";
         $result = mysqli_query( $link,$sql_quick);
         $basePath = 'http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], '/'));
-        $basePath .= '/DigiSig/images/';
+        $basePath .= '/digisig/images/';
         if(isset($result) && $result!==""){
             while ($row = mysqli_fetch_array($result)) {
                 $returnHtml = $returnHtml."<div class='imgFake'>";
@@ -40,7 +40,7 @@
                     $basePath = "";
                 }
                 $seal_id = $row['id_seal'];
-                $seal_connection = $basePath."/DigiSig/entity/".$seal_id;
+                $seal_connection = $basePath."/digisig/entity/".$seal_id;
                  if (isset($image)) {
 //                    if (1 == $row['fk_access']) {
 //                        echo '<a href="' . $value16 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '"><img src="' . $value17 . $value18 . '" /></a></div>';
@@ -107,7 +107,7 @@
                 $seal_id = $row['id_seal'];
 				$imagelocation = $row['medium'];
 				$imagelocation= str_replace("local",$basePath."/Digisig/images/medium/",$imagelocation);				
-                $seal_connection = $basePath. "/DigiSig/entity/".$seal_id;
+                $seal_connection = $basePath. "/digisig/entity/".$seal_id;
                 $value16 = $row['connection'];
                 $value2 = $row['shelfmark'];
 				
