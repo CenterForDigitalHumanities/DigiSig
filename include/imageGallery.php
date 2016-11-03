@@ -40,7 +40,8 @@
                     $basePath = "";
                 }
                 $seal_id = $row['id_seal'];
-                $seal_connection = $basePath."/digisig/entity/".$seal_id;
+                //$seal_connection = $basePath."/digisig/entity/".$seal_id;
+                $seal_connection = "http://digisig.org/entity/".$seal_id;
                  if (isset($image)) {
 //                    if (1 == $row['fk_access']) {
 //                        echo '<a href="' . $value16 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '"><img src="' . $value17 . $value18 . '" /></a></div>';
@@ -107,7 +108,8 @@
                 $seal_id = $row['id_seal'];
 				$imagelocation = $row['medium'];
 				$imagelocation= str_replace("local",$basePath."/digisig/images/medium/",$imagelocation);				
-                $seal_connection = $basePath. "/digisig/entity/".$seal_id;
+                //$seal_connection = $basePath. "/digisig/entity/".$seal_id;
+                $seal_connection = "http://digisig.org/entity/".$seal_id;
                 $value16 = $row['connection'];
                 $value2 = $row['shelfmark'];
 				
