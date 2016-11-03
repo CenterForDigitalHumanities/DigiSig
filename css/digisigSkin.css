@@ -298,6 +298,10 @@ table.maxmin th, table.maxmin td{
     margin-right:15px;
     color:black;
 }
+#shape{
+    margin-top: 14px;
+    display: inline-block;
+}
 #permalink, #shape, #height, #width, #title{
     color: black;
 }
@@ -865,7 +869,7 @@ input[type="button"]:hover{
     height: 23px;
     width: 25px;
     top: 4px;
-    display: inline-block;
+    display: none; /* inline-block */
     margin-left: 4px;
     position: relative;
     background-image: url('../images/icons/info.png');
@@ -877,7 +881,7 @@ input[type="button"]:hover{
     width: 20px;
     top: 14px;
     right: 7px;
-    display: inline-block;
+    display: none; /* inline-block*/
     background-color: rgba(0,119,153, .3);
     position: absolute;
 }
