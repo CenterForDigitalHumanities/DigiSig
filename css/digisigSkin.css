@@ -713,6 +713,7 @@ input[type="button"]:hover{
     height: 178px;
     width: 178px;
     margin-right: 15px;
+    text-align: center;
 }
 .imageFake a{
     background-image: url('../images/default/no_image.jpg');
