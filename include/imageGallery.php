@@ -106,7 +106,7 @@
 				$imagethumb = $row['representation_thumbnail'];
                 $seal_id = $row['id_seal'];
 				$imagelocation = $row['medium'];
-				$imagelocation= str_replace("local",$basePath."/Digisig/images/medium/",$imagelocation);				
+				$imagelocation= str_replace("local",$basePath."/digisig/images/medium/",$imagelocation);				
                 $seal_connection = $basePath. "/digisig/entity/".$seal_id;
                 $value16 = $row['connection'];
                 $value2 = $row['shelfmark'];

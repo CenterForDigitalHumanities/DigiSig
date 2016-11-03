@@ -400,7 +400,7 @@ option{
     width: auto;
     height: 200px;
     border-right: 1px solid #00485E;
-    height: 83%;
+    overflow-y: auto;
 }
 
 .indent .card .cardInfoVal{
@@ -686,6 +686,7 @@ input[type="button"]:hover{
     background-color: rgba(0,119,153, .3);
     white-space: nowrap;
     padding-top: 4px;
+    padding-left: 11px;
 }
 
 /* Display this for a good area to add some text at the start of the image gallery */
