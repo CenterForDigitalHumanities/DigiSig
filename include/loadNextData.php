@@ -32,8 +32,10 @@ require_once("../config/config.php");
         $search = "LIKE '%$term%'";
     }
 
+    //echo nl2br("Get these variables from search_view table... ".  $variables ." \n");
     // make the SQL search string
     $query5 = "SELECT DISTINCT $variables FROM search_view WHERE ($column $search)";
+    echo(nl2br($query5."\n"));
 
     // Searching by *both* repository and catalogue is not supported -- choose one
     if ($repository > 0) {
@@ -56,19 +58,34 @@ require_once("../config/config.php");
 
     //if there are returned rows (except from all_fields) then present output
 
+    //echo "FIELD IS " . $field;
+    //echo "number of results is ".$numberofresults;
+    $i = 0;
+
     If ($field != "all_fields")
     {
         if ($numberofresults > 0) 
         {
+
             $return_value = array();
+
             while ($row = mysqli_fetch_array($query5result)) {
                 $return_value[] = $row;
             }
-            echo json_encode($return_value);
+            $return_value = json_encode($return_value);
+            if(json_last_error() == JSON_ERROR_NONE){
+                echo $return_value;
+            }
+            else{
+                echo "0000" + json_last_error();
+            }
         }
         else 
         {
             echo "00000";
         }
+    }
+    else{
+        echo "00000";
     }
 ?>
