@@ -287,11 +287,14 @@ include "include/page.php";
                                 $value17 = $row['thumb'];
                                 $value18 = $row['representation_thumbnail'];
                                 $value19 = $row['medium'];
-
+                                $value19 = $value19.trim();
                                 //test to see if the connection string indicates that it is in the local image store
-                                if ($value17 == "local") {
-                                    $value19 = $medium;
+                                if($value19=="local" || $value19==null || $value19==""){
+                                    $value19 = "../images/medium/";
+                                }
+                                if ($value17 == "local" || $value17==null || $value17=="") {
                                     $value17 = $small;
+                                    //$value14 = $medium;
                                 }
                                 if($count3 < 5){
                                     echo '<div class="card"><label><input type="checkbox" onchange="cardMe($(this), false, true);"/> Add To Folder </label>';
@@ -308,7 +311,8 @@ include "include/page.php";
                                     if(isset($value6) && $value6!==""){
                                         echo '<div class="cardInfo"><span class="cardInfoKey">Shape: </span> <span class="cardInfoVal">'.$value6. '</span></div>';
                                     }
-                                    //BH FIXME why is entity in the URL instead of medium?
+                                    //BH FIXME why is entity in the URL instead of medium? 4/27/17
+                                    
                                     if (isset($value18)) {
                                         if (1 == $row['fk_access']) {
                                             echo '<div class="cardInfo"><span class="cardInfoKey"></span>'
@@ -336,9 +340,9 @@ include "include/page.php";
                                     echo '<td><a href="' . $address . '/entity/' . $value7 . '">view seal entry</a></td>';
                                     If (isset($value18)) {
                                         if (1 == $row['fk_access']) {
-                                            echo '<td><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value17 . $value18 . '" /></a></td></tr>';
+                                            echo '<td><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value19 . $value18 . '" /></a></td></tr>';
                                         } else if (isset($_SESSION['userID']) && ($_SESSION['fk_access'] == $row['fk_access'] || $_SESSION['fk_repository'] == $row['fk_repository'])) {
-                                            echo '<td><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value17 . $value18 . '" /></a></td></tr>';
+                                            echo '<td><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value19 . $value18 . '" /></a></td></tr>';
                                         } else {
                                             echo '<td><img src="' . $default . 'restricted_thumb.jpg"/></td></tr>';
                                         }
@@ -636,9 +640,12 @@ include "include/page.php";
                                 $value13 = $row['representation_thumbnail'];
                                 $value14 = $row['medium'];
                                 //test to see if the connection string indicates that it is in the local image store
-                                if ($value12 == "local") {
+                                if($value14=="local" || $value14==null || $value14==""){
+                                    $value14 = "../images/medium/";
+                                }
+                                if ($value12 == "local" || $value12==null || $value12=="") {
                                     $value12 = $small;
-                                    $value14 = $medium;
+                                    //$value14 = $medium;
                                 }
                                 if($count2 < 5){
                                     echo '<div class="card"> <label><input type="checkbox" onchange="cardMe($(this), false, true);"/> Add To Folder </label>';
@@ -663,7 +670,9 @@ include "include/page.php";
                                     }
                                     
 //                                    echo '<div class="cardInfo"><span class="cardInfoKey">Shape: </span> <span class="cardInfoVal">'.$value4.'</span></div>';
-                                    //BH FIXME here, where is entity instead of medium in the URL?
+                                    
+                                    //BH FIXME here, where is entity instead of medium in the URL? 4-27-17
+                                    
                                     if (isset($value13)) {
 
                                         if (1 == $row['fk_access']) {
@@ -698,9 +707,9 @@ include "include/page.php";
                                     if (isset($value13)) {
 
                                         if (1 == $row['fk_access']) {
-                                            echo '<td><a href="' . $value14 . $value7 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value12 . $value13 . '" height=50></img></a></td>';
+                                            echo '<td><a href="' . $value14 . $value7 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value14 . $value13 . '" height=50></img></a></td>';
                                         } else if (isset($_SESSION['userID']) && ($_SESSION['fk_access'] == $row['fk_access'] || $_SESSION['fk_repository'] == $row['fk_repository'])) {
-                                            echo '<td><a href="' . $value14 . $value7 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value12 . $value13 . '" height=50></img></a></td>';
+                                            echo '<td><a href="' . $value14 . $value7 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value14 . $value13 . '" height=50></img></a></td>';
                                         } else {
                                             #echo '<td><img src="' . $default . 'restricted_thumb.jpg" height=50></img></td>';
                                             echo '<td><a href="' . $default . 'restricted.jpg" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"> <img src="' . $default . 'restricted_thumb.jpg" height=50></img></td>';
