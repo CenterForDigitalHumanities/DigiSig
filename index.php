@@ -312,10 +312,10 @@ include "include/page.php";
                                     if (isset($value18)) {
                                         if (1 == $row['fk_access']) {
                                             echo '<div class="cardInfo"><span class="cardInfoKey"></span>'
-                                            . '<span class="cardInfoVal"><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value17 . $value18 . '" /></a></span></div>';
+                                            . '<span class="cardInfoVal"><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value19 . $value18 . '" /></a></span></div>';
                                         } else if (isset($_SESSION['userID']) && ($_SESSION['fk_access'] == $row['fk_access'] || $_SESSION['fk_repository'] == $row['fk_repository'])) {
                                             echo '<div class="cardInfo"><span class="cardInfoKey"></span>'
-                                            . '<span class="cardInfoVal"><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value17 . $value18 . '" /></a></span></div>';
+                                            . '<span class="cardInfoVal"><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value19 . $value18 . '" /></a></span></div>';
                                         } else {
                                             echo '<div class="cardInfo"><span class="cardInfoKey"></span>'
                                             . '<span class="cardInfoVal"><img src="' . $default . 'restricted_thumb.jpg"/></span></div>';
@@ -668,9 +668,9 @@ include "include/page.php";
 
                                         if (1 == $row['fk_access']) {
 											#JM fixed the href references so they work now for external photographs
-                                            echo '<div class="cardInfo"><span class="cardInfoKey"></span><span class="cardInfoVal"> <a href="' . $value14 . $value7 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value12 . $value13 . '" height=50></img></a></span></div>';
+                                            echo '<div class="cardInfo"><span class="cardInfoKey"></span><span class="cardInfoVal"> <a href="' . $value14 . $value7 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value14 . $value13 . '" height=50></img></a></span></div>';
                                         } else if (isset($_SESSION['userID']) && ($_SESSION['fk_access'] == $row['fk_access'] || $_SESSION['fk_repository'] == $row['fk_repository'])) {
-                                            echo '<div class="cardInfo"><span class="cardInfoKey"></span><span class="cardInfoVal"><a href="' . $value14 . $value7 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value12 . $value13 . '" height=50></img></a></span></div>';
+                                            echo '<div class="cardInfo"><span class="cardInfoKey"></span><span class="cardInfoVal"><a href="' . $value14 . $value7 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value14 . $value13 . '" height=50></img></a></span></div>';
                                         } else {
                                             echo '<td><img src="' . $default . 'restricted_thumb.jpg" height=50></img></td>';
                                         }
