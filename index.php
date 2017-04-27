@@ -308,6 +308,7 @@ include "include/page.php";
                                     if(isset($value6) && $value6!==""){
                                         echo '<div class="cardInfo"><span class="cardInfoKey">Shape: </span> <span class="cardInfoVal">'.$value6. '</span></div>';
                                     }
+                                    //BH FIXME why is entity in the URL instead of medium?
                                     if (isset($value18)) {
                                         if (1 == $row['fk_access']) {
                                             echo '<div class="cardInfo"><span class="cardInfoKey"></span>'
@@ -323,7 +324,7 @@ include "include/page.php";
                                         echo '<div class="cardInfo"><span class="cardInfoKey"></span>'
                                             . '<span class="cardInfoVal"><img src="' . $default . 'no_image_thumb.jpg"/></span></div>';
                                     }
-									echo '<div class="cardInfo"><span class="cardInfoKey">Seal Link: </span><span class="cardInfoVal"><a href="' . $address . '/entity/' . $value7 . '">view seal entry</a></span></div>';
+                                    echo '<div class="cardInfo"><span class="cardInfoKey">Seal Link: </span><span class="cardInfoVal"><a href="' . $address . '/entity/' . $value7 . '">view seal entry</a></span></div>';
                                     echo "</div>";
                                 }
                                 else{
@@ -662,6 +663,7 @@ include "include/page.php";
                                     }
                                     
 //                                    echo '<div class="cardInfo"><span class="cardInfoKey">Shape: </span> <span class="cardInfoVal">'.$value4.'</span></div>';
+                                    //BH FIXME here, where is entity instead of medium in the URL?
                                     if (isset($value13)) {
 
                                         if (1 == $row['fk_access']) {
