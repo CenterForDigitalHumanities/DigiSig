@@ -287,7 +287,6 @@ include "include/page.php";
                                 $value17 = $row['thumb'];
                                 $value18 = $row['representation_thumbnail'];
                                 $value19 = $row['medium'];
-                                $value19 = $value19.trim();
                                 //test to see if the connection string indicates that it is in the local image store
                                 if($value19=="local" || $value19==null || $value19==""){
                                     $value19 = "../images/medium/";
@@ -316,10 +315,10 @@ include "include/page.php";
                                     if (isset($value18)) {
                                         if (1 == $row['fk_access']) {
                                             echo '<div class="cardInfo"><span class="cardInfoKey"></span>'
-                                            . '<span class="cardInfoVal"><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value19 . $value18 . '" /></a></span></div>';
+                                            . '<span class="cardInfoVal "><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img class="limitImgSize" src="' . $value19 . $value18 . '" /></a></span></div>';
                                         } else if (isset($_SESSION['userID']) && ($_SESSION['fk_access'] == $row['fk_access'] || $_SESSION['fk_repository'] == $row['fk_repository'])) {
                                             echo '<div class="cardInfo"><span class="cardInfoKey"></span>'
-                                            . '<span class="cardInfoVal"><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value19 . $value18 . '" /></a></span></div>';
+                                            . '<span class="cardInfoVal"><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img class="limitImgSize" src="' . $value19 . $value18 . '" /></a></span></div>';
                                         } else {
                                             echo '<div class="cardInfo"><span class="cardInfoKey"></span>'
                                             . '<span class="cardInfoVal"><img src="' . $default . 'restricted_thumb.jpg"/></span></div>';
@@ -340,9 +339,9 @@ include "include/page.php";
                                     echo '<td><a href="' . $address . '/entity/' . $value7 . '">view seal entry</a></td>';
                                     If (isset($value18)) {
                                         if (1 == $row['fk_access']) {
-                                            echo '<td><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value19 . $value18 . '" /></a></td></tr>';
+                                            echo '<td><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img class="limitImgSize" src="' . $value19 . $value18 . '" /></a></td></tr>';
                                         } else if (isset($_SESSION['userID']) && ($_SESSION['fk_access'] == $row['fk_access'] || $_SESSION['fk_repository'] == $row['fk_repository'])) {
-                                            echo '<td><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img src="' . $value19 . $value18 . '" /></a></td></tr>';
+                                            echo '<td><a href="' . $value19 . $value8 . '" data-lightbox="example-1" data-title="' . $value2 . '<br>photo: ' . $value9 . '"><img class="limitImgSize" src="' . $value19 . $value18 . '" /></a></td></tr>';
                                         } else {
                                             echo '<td><img src="' . $default . 'restricted_thumb.jpg"/></td></tr>';
                                         }
