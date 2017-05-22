@@ -12,6 +12,9 @@
 .digisigImg{
     max-width:100%;
     height:auto;
+    /* New log might break stuff.  This is the fix. */
+/*    background-size: contain;
+    background-repeat: no-repeat;*/
 }
 /* navigation bar */
 .navigation{
@@ -271,7 +274,7 @@ table.maxmin th, table.maxmin td{
     height:80px;
     width: 73px;
     position: relative;
-    background-image: url("/DigiSig/images/default/not_available_thumb.jpg");
+    background-image: url("../images/default/not_available_thumb.jpg");
 }
 .viewImgBtn{
     position: relative;
@@ -729,6 +732,8 @@ input[type="button"]:hover{
     height: 170px;
     display: inline-block;
     position: relative;
+    background-size: 170px 170px;
+    background-image: url('../images/default/no_image.jpg');
 }
 .content_wrap{
     margin: 0px 50px !important;

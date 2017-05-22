@@ -11,7 +11,7 @@
 	</head>
 	<body>
 
-		<?php // ALPHA version: July 2015
+		<?php // Version 2: May 2017
 
         #functions
 
@@ -49,9 +49,6 @@ echo "<div class='content_wrap'>";
 include "include/page.php";
 
 //user login
-
-        #constants and default values
-        #include "include/constants.php";
 
         //my functions
         include "include/function.php";
@@ -480,14 +477,15 @@ include "include/page.php";
                                 $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">Width: </span> <span class="cardInfoVal">'.$value10.'</span></div>';
                                 //echo '<br> Size Horizontal:' . $value10 . '<br>';
                             }
-
+/*
                             if (isset($value13)) {
                                 $tableHeader .= "<th>External Link</th>";
                                 $tableBody .= "<td><a href='" . $value14 . $value13 . "' target='_blank'>" . $value14 . $value13 . "</a></td>";
                                 $cardArea .= '<div class="cardInfo"><span class="cardInfoKey">External Link: </span> <span class="cardInfoVal"><a href="' . $value14 . $value13 . '" target="_blank">' . $value14 . $value13 . '</a></span></div>';
                                 //echo '<a href="' . $value14 . $value13 . '" target="_blank">external link</a>';
-                            }
-                            }
+								}
+*/
+								}
                             //prepare the photograph -- if it is available
                             if (isset($value12)) {
                                 $tableHeader .= "<th>Image</th>";
@@ -676,9 +674,9 @@ include "include/page.php";
 
                                         if (1 == $row['fk_access']) {
 											#JM fixed the href references so they work now for external photographs
-                                            echo '<div class="cardInfo"><span class="cardInfoKey"></span><span class="cardInfoVal"> <a href="' . $value14 . $value7 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value14 . $value13 . '" height=50></img></a></span></div>';
+                                            echo '<div class="cardInfo"><span class="cardInfoKey"></span><span class="cardInfoVal"> <a href="' . $value14 . $value7 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value12 . $value13 . '" height=50></img></a></span></div>';
                                         } else if (isset($_SESSION['userID']) && ($_SESSION['fk_access'] == $row['fk_access'] || $_SESSION['fk_repository'] == $row['fk_repository'])) {
-                                            echo '<div class="cardInfo"><span class="cardInfoKey"></span><span class="cardInfoVal"><a href="' . $value14 . $value7 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value14 . $value13 . '" height=50></img></a></span></div>';
+                                            echo '<div class="cardInfo"><span class="cardInfoKey"></span><span class="cardInfoVal"><a href="' . $value14 . $value7 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value12 . $value13 . '" height=50></img></a></span></div>';
                                         } else {
                                             echo '<td><img src="' . $default . 'restricted_thumb.jpg" height=50></img></td>';
                                         }
@@ -706,9 +704,9 @@ include "include/page.php";
                                     if (isset($value13)) {
 
                                         if (1 == $row['fk_access']) {
-                                            echo '<td><a href="' . $value14 . $value7 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value14 . $value13 . '" height=50></img></a></td>';
+                                            echo '<td><a href="' . $value14 . $value7 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value12 . $value13 . '" height=50></img></a></td>';
                                         } else if (isset($_SESSION['userID']) && ($_SESSION['fk_access'] == $row['fk_access'] || $_SESSION['fk_repository'] == $row['fk_repository'])) {
-                                            echo '<td><a href="' . $value14 . $value7 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value14 . $value13 . '" height=50></img></a></td>';
+                                            echo '<td><a href="' . $value14 . $value7 . '" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"><img src="' . $value12 . $value13 . '" height=50></img></a></td>';
                                         } else {
                                             #echo '<td><img src="' . $default . 'restricted_thumb.jpg" height=50></img></td>';
                                             echo '<td><a href="' . $default . 'restricted.jpg" data-lightbox="example-1" data-title="' . $value5 . '<br>photo: ' . $value8 . '"> <img src="' . $default . 'restricted_thumb.jpg" height=50></img></td>';

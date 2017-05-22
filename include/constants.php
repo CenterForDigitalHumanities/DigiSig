@@ -5,6 +5,9 @@
 # URL Root
 $address = 'http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], '/') + 1)."digisig";
 
+# Bryan's alternative root
+$basePath = 'http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], '/'));
+
 # Location of medium manifestation photographs
 $medium = $address . "/images/medium/";
 

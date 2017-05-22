@@ -4,8 +4,7 @@
 function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
     $num_result_per_page = 100;
     $table_text_len = 100;
-	//$link = mysqli_connect('localhost:3306', 'digisig_user', 'password', 'digisig_sep_26'); //john
-    //$link = mysqli_connect('localhost:3306', 'root', '1229@Oxford', 'digisigres'); //local
+//	$link = mysqli_connect('localhost:3306', 'digisig_user', 'password', 'digisig_local'); //john
     $link = mysqli_connect('localhost:3306', 'digisig', '1EMeeIIINnn', 'digisigres'); //img01
     $pagination_part = ' limit ' . $limit . ' offset ' . $offset;
     // search 'what' and 'from'? 
@@ -174,9 +173,8 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
 
 
 function queryview($entity, $id) {
-     //$link = mysqli_connect('localhost:3306', 'root', 'letmein', 'digisigres');
-      $link = mysqli_connect('localhost:3306', 'root', '1229@Oxford', 'digisigres');
-    //$link = mysqli_connect('localhost:3306', 'digisig', '1EMeeIIINnn', 'digisigres');
+ //	$link = mysqli_connect('localhost:3306', 'digisig_user', 'password', 'digisig_local'); //john
+    $link = mysqli_connect('localhost:3306', 'digisig', '1EMeeIIINnn', 'digisigres');
 
      //convert view number to view text string and find out what variables to return
     $query6 = "SELECT entity_view_short, entity_column_short, entity_returnedvariables_short, entity_url FROM entity WHERE entity_url = '$entity'";
