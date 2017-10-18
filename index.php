@@ -859,7 +859,9 @@ include "include/page.php";
                     </p>
                 </div>";
                 echo "<div class='info_images'>
-                    <div class='img_structure' style='margin-bottom: 15px'></div>
+                    <div class='img_structure'>
+                    <img src='./images/digisig_structure.jpg' alt='diagram' style='width: 100%;'>
+                    </div>
                 </div>";
 
                 echo "</div>"; //close page wrap
