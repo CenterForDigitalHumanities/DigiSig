@@ -7,6 +7,8 @@
         <!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.1/js/lightbox-plus-jquery.min.js"></script>
 		<link rel="stylesheet" href="<?php echo $basePath; ?>/digisig/css/digisigSkin.css" />                
+        <link type="text/css" href="/digisig/css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="Stylesheet">
+	    <link type="text/css" href="/digisig/css/webrtiviewer.css" rel="Stylesheet">
                 
 	</head>
 	<body>
@@ -800,11 +802,11 @@ include "include/page.php";
 
             case 'gallery' :
             echo '<div class="pageWrap">
-                <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-                <script type="text/javascript" src="js/jquery-ui.min.js"></script>
-                <script type="text/javascript" src="js/pep.min.js"></script>
-                <script type="text/javascript" src="spidergl/spidergl.js"></script>
-                <script type="text/javascript" src="spidergl/multires.js"></script>
+                <script type="text/javascript" src="/digisig/js/jquery-1.11.3.min.js"></script>
+                <script type="text/javascript" src="/digisig/js/jquery-ui.min.js"></script>
+                <script type="text/javascript" src="/digisig/js/pep.min.js"></script>
+                <script type="text/javascript" src="/digisig/spidergl/spidergl.js"></script>
+                <script type="text/javascript" src="/digisig/spidergl/multires.js"></script>
                 
                 <div style="display: flex; align-items: center; justify-content: center;">
                     <div id=toolbar style="margin:.5rem;float:left;width:2rem;height:400px;">
@@ -872,7 +874,7 @@ include "include/page.php";
                 foreach($dirArray as $dir){
                     echo '<div class="cardInfo"><a href="gallery/'+$dir+'">'+$dir+'</a></div>';
                 }
-                
+
                 echo '</div>
             </div>';
                 break;
