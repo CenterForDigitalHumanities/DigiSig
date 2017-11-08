@@ -205,7 +205,85 @@ include "include/page.php";
         // load the optional extra parts of the page depending on the header
 
             switch($path_info['call_parts'][0]) {
-
+                case 'gallery' :
+                echo '<div class="pageWrap">
+                    <script type="text/javascript" src="/digisig/js/jquery-1.11.3.min.js"></script>
+                    <script type="text/javascript" src="/digisig/js/jquery-ui.min.js"></script>
+                    <script type="text/javascript" src="/digisig/js/pep.min.js"></script>
+                    <script type="text/javascript" src="/digisig/spidergl/spidergl.js"></script>
+                    <script type="text/javascript" src="/digisig/spidergl/multires.js"></script>
+                    
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <div id=toolbar style="margin:.5rem;float:left;width:2rem;height:400px;">
+                            <button class="toolbarButton" id="zoomIn" touch-action="none">
+                                <img src="css/icons/zoomin.png" alt="zoom in">
+                            </button>
+                            <button class="toolbarButton" id="zoomOut" touch-action="none">
+                                <img src="css/icons/zoomout.png" alt="zoom out">
+                            </button>
+                            <!-- <button class="toolbarButton" id="light" touch-action="none">
+                                <img src="css/icons/light.png" alt="light">
+                            </button> -->
+                            <button class="toolbarButton" id="fullscreen" touch-action="none">
+                                <img src="css/icons/full.png" alt="fullscreen">
+                            </button>
+                            <button class="toolbarButton" id="help" touch-action="none">
+                                    <img src="css/icons/help.png" alt="help">
+                                    </button>
+                            <button role=button id="flip" onclick="toggleFlip(this);" style="transform: rotate(-90deg);bottom: -2rem;position: relative;height: 2.25rem;right: 1.5rem;width: 5rem;">flip</button>
+                        </div>
+                        <div id="viewerCont">
+                
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        var viewerCont = "viewerCont";
+                        function launchRTI() {
+                            let params = window.location.search;
+                            let dindex = params.indexOf("directory=") + 10;
+                            let windex = params.indexOf("width=") + 6;
+                            let hindex = params.indexOf("height=") + 7;
+                            let dir = '+$DIR+';
+                            let w = params.substring(windex).split("&")[0] || 900;
+                            let h = params.substring(hindex).split("&")[0] || 600;
+                            $("#canvas-width").val(w).change();
+                            $("#canvas-height").val(h).change();
+                            // var opts = {
+                                // linkNode: "footer",
+                                // linkNodeStyle: {},
+                                // toolbarNode: "toolbar",
+                                // toolbarStyle: {
+                                // 	margin: ".5rem",
+                                // 	cssFloat: "left",
+                                // 	width: "2rem",
+                                // 	height: "400px"
+                                // }
+                                // externalToolbar: true
+                            // }
+                            createRtiViewer(viewerCont, "/digisig/images/webrti/" + dir, w, h, opts);
+                        }
+                        launchRTI();
+                        function toggleFlip(el) {
+                            let isFlipped = el.innerHTML.indexOf("unflip") > -1;
+                            if (!isFlipped) {
+                                $("#" + viewerCont).css("transform", "scaleX(-1)");
+                                $(el).text("unflip");
+                            } else {
+                                $("#" + viewerCont).css("transform", "");
+                                $(el).text("flip");
+                            }
+                        }
+                    </script>
+                    <div style="display:flex;flex-wrap:wrap;">';
+    
+                    foreach($dirArray as $dir){
+                        echo '<div class="cardInfo"><a href="gallery/'+$dir+'">'+$dir+'</a></div>';
+                    }
+    
+                    echo '</div>
+                </div>';
+                    break;
+    
             case 'search' :
                 echo '<div class="pageWrap">';
                 //test to see if the search string has more than 1 character
@@ -800,84 +878,6 @@ include "include/page.php";
                 echo "</div>"; //close page wrap
                 break;
 
-            case 'gallery' :
-            echo '<div class="pageWrap">
-                <script type="text/javascript" src="/digisig/js/jquery-1.11.3.min.js"></script>
-                <script type="text/javascript" src="/digisig/js/jquery-ui.min.js"></script>
-                <script type="text/javascript" src="/digisig/js/pep.min.js"></script>
-                <script type="text/javascript" src="/digisig/spidergl/spidergl.js"></script>
-                <script type="text/javascript" src="/digisig/spidergl/multires.js"></script>
-                
-                <div style="display: flex; align-items: center; justify-content: center;">
-                    <div id=toolbar style="margin:.5rem;float:left;width:2rem;height:400px;">
-                        <button class="toolbarButton" id="zoomIn" touch-action="none">
-                            <img src="css/icons/zoomin.png" alt="zoom in">
-                        </button>
-                        <button class="toolbarButton" id="zoomOut" touch-action="none">
-                            <img src="css/icons/zoomout.png" alt="zoom out">
-                        </button>
-                        <!-- <button class="toolbarButton" id="light" touch-action="none">
-                            <img src="css/icons/light.png" alt="light">
-                        </button> -->
-                        <button class="toolbarButton" id="fullscreen" touch-action="none">
-                            <img src="css/icons/full.png" alt="fullscreen">
-                        </button>
-                        <button class="toolbarButton" id="help" touch-action="none">
-                                <img src="css/icons/help.png" alt="help">
-                                </button>
-                        <button role=button id="flip" onclick="toggleFlip(this);" style="transform: rotate(-90deg);bottom: -2rem;position: relative;height: 2.25rem;right: 1.5rem;width: 5rem;">flip</button>
-                    </div>
-                    <div id="viewerCont">
-            
-                    </div>
-                </div>
-                <script type="text/javascript">
-                    var viewerCont = "viewerCont";
-                    function launchRTI() {
-                        let params = window.location.search;
-                        let dindex = params.indexOf("directory=") + 10;
-                        let windex = params.indexOf("width=") + 6;
-                        let hindex = params.indexOf("height=") + 7;
-                        let dir = params.substring(dindex).split("&")[0] || "sample1";
-                        let w = params.substring(windex).split("&")[0] || 900;
-                        let h = params.substring(hindex).split("&")[0] || 600;
-                        $("#canvas-width").val(w).change();
-                        $("#canvas-height").val(h).change();
-                        // var opts = {
-                            // linkNode: "footer",
-                            // linkNodeStyle: {},
-                            // toolbarNode: "toolbar",
-                            // toolbarStyle: {
-                            // 	margin: ".5rem",
-                            // 	cssFloat: "left",
-                            // 	width: "2rem",
-                            // 	height: "400px"
-                            // }
-                            // externalToolbar: true
-                        // }
-                        createRtiViewer(viewerCont, "rti/" + dir, w, h, opts);
-                    }
-                    launchRTI();
-                    function toggleFlip(el) {
-                        let isFlipped = el.innerHTML.indexOf("unflip") > -1;
-                        if (!isFlipped) {
-                            $("#" + viewerCont).css("transform", "scaleX(-1)");
-                            $(el).text("unflip");
-                        } else {
-                            $("#" + viewerCont).css("transform", "");
-                            $(el).text("flip");
-                        }
-                    }
-                </script>
-                <div style="display:flex;flex-wrap:wrap;">';
-
-                foreach($dirArray as $dir){
-                    echo '<div class="cardInfo"><a href="gallery/'+$dir+'">'+$dir+'</a></div>';
-                }
-
-                echo '</div>
-            </div>';
-                break;
             case 'about' :
             echo '<div class="pageWrap">';
                 {
@@ -970,7 +970,7 @@ include "include/page.php";
 
             
             
-                default :    
+            default :    
                 echo '<div class="pageWrap homeWrap">';           
                 include "include/imageGallery.php";
 
