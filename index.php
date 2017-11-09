@@ -7,6 +7,8 @@
         <!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.1/js/lightbox-plus-jquery.min.js"></script>
 		<link rel="stylesheet" href="<?php echo $basePath; ?>/digisig/css/digisigSkin.css" />                
+        <link type="text/css" href="/digisig/css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="Stylesheet">
+	    <link type="text/css" href="/digisig/css/webrtiviewer.css" rel="Stylesheet">
                 
 	</head>
 	<body>
@@ -115,6 +117,72 @@ include "include/page.php";
             $title = $id;
         }
 
+        if ($path_info['call_parts'][0] == "gallery") {
+            $DIR = "bm_mcm1890";
+            if(count($path_info['call_parts']) > 1 ){ #&&$path_info['call_parts'][1]
+                $DIR = ($path_info['call_parts'][1]);
+            }
+            else{ //This can be a little more graceful.
+                $DIR = "bm_mcm1890";
+            }
+            // TODO: Maybe make a reference array for the DIR or pull from the query if
+            // available so that the $id can be passed around instead.
+            $title = $DIR;
+            $dirArray = [
+                "bm_mcm1890",
+                "bm_mcm2062",
+                "bm_mcm2064",
+                "bm_mcm2212",
+                "bm_mcm4973_back",
+                "bm_mcm4973_front",
+                "bm_mcm5222",
+                "bm_mcm5241",
+                "bm_mcm5330_back",
+                "bm_mcm5330_front",
+                "mol_2016_33",
+                "mol_84_434",
+                "sbh_1019_back",
+                "sbh_1019_front",
+                "sbh_1090_s2_back",
+                "sbh_1090_s2_front",
+                "sbh_1094",
+                "sbh_1143_back",
+                "sbh_1143_front",
+                "sbh_1263",
+                "sbh_1290",
+                "sbh_1337",
+                "sbh_1550",
+                "sbh_1_s1",
+                "sbh_1_s2",
+                "sbh_881_back",
+                "sbh_881_front",
+                "tna_883a",
+                "tna_883b",
+                "tna_e26_1a_58_back",
+                "tna_e26_1a_58_front",
+                "tna_e40_11002_s1_back",
+                "tna_e40_11002_s1_front",
+                "tna_e40_11002_s2",
+                "tna_e40_6839",
+                "tna_e40_6884_back",
+                "tna_e40_6884_front",
+                "tna_e42_146_s1",
+                "tna_e42_146_s2",
+                "tna_e42_543_back",
+                "tna_e42_543_front",
+                "tna_sc13_h88_back",
+                "tna_sc13_h88_front",
+                "tna_sc13_i34_back",
+                "tna_sc13_i34_front",
+                "tna_sc13_i38_back",
+                "tna_sc13_i38_front",
+                "tna_sc13_k36_back",
+                "tna_sc13_k36_front",
+                "tna_sc13_q1_back",
+                "tna_sc13_q1_front"
+            ];
+        }
+
         //Dataset statistics
 
         $query = "SELECT count(DISTINCT id_seal) as sealcount FROM sealdescription_view";
@@ -139,8 +207,79 @@ include "include/page.php";
 
         // load the optional extra parts of the page depending on the header
 
-        switch($path_info['call_parts'][0]) {
-
+            switch($path_info['call_parts'][0]) {
+                case 'gallery' :
+                echo '<div class="pageWrap">
+                    
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <div id=toolbar style="margin:.5rem;float:left;width:2rem;height:400px;">
+                            <button class="toolbarButton" id="zoomIn" touch-action="none">
+                                <img src="css/icons/zoomin.png" alt="zoom in">
+                            </button>
+                            <button class="toolbarButton" id="zoomOut" touch-action="none">
+                                <img src="css/icons/zoomout.png" alt="zoom out">
+                            </button>
+                            <!-- <button class="toolbarButton" id="light" touch-action="none">
+                                <img src="css/icons/light.png" alt="light">
+                            </button> -->
+                            <button class="toolbarButton" id="fullscreen" touch-action="none">
+                                <img src="css/icons/full.png" alt="fullscreen">
+                            </button>
+                            <button class="toolbarButton" id="help" touch-action="none">
+                                    <img src="css/icons/help.png" alt="help">
+                                    </button>
+                            <button role=button id="flip" onclick="toggleFlip(this);" style="transform: rotate(-90deg);bottom: -2rem;position: relative;height: 2.25rem;right: 1.5rem;width: 5rem;">flip</button>
+                        </div>
+                        <div id="viewerCont">
+                
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        var viewerCont = "viewerCont";
+                        function launchRTI() {
+                            let params = window.location.search;
+                            let dindex = params.indexOf("directory=") + 10;
+                            let windex = params.indexOf("width=") + 6;
+                            let hindex = params.indexOf("height=") + 7;
+                            let dir = "'.$DIR.'";
+                            let w = params.substring(windex).split("&")[0] || 900;
+                            let h = params.substring(hindex).split("&")[0] || 600;
+                            $("#canvas-width").val(w).change();
+                            $("#canvas-height").val(h).change();
+                             var opts = {
+                                 linkNode: "footer",
+                                 linkNodeStyle: {},
+                                 toolbarNode: "toolbar",
+                                 toolbarStyle: {
+                                 	margin: ".5rem",
+                                 	cssFloat: "left",
+                                 	width: "2rem",
+                                 	height: "400px"
+                                 },
+                                 externalToolbar: true
+                             };
+                            createRtiViewer(viewerCont, "/digisig/images/webrti/" + dir, w, h, opts);
+                        }
+                        launchRTI();
+                        function toggleFlip(el) {
+                            let isFlipped = el.innerHTML.indexOf("unflip") > -1;
+                            if (!isFlipped) {
+                                $("#" + viewerCont).css("transform", "scaleX(-1)");
+                                $(el).text("unflip");
+                            } else {
+                                $("#" + viewerCont).css("transform", "");
+                                $(el).text("flip");
+                            }
+                        }
+                    </script>
+                    <div style="display:flex;flex-wrap:wrap;">';
+                    foreach($dirArray as $dir){
+                        echo '<div class="cardInfo"><a href="/digisig/gallery/'.$dir.'">'.$dir.'</a></div>';
+                    }
+                    echo '</div>
+                </div>';
+                    break;
+    
             case 'search' :
                 echo '<div class="pageWrap">';
                 //test to see if the search string has more than 1 character
@@ -731,7 +870,6 @@ include "include/page.php";
                     }else{
                         echo "No Data Found...";
                     }
-
                 }
                 echo "</div>"; //close page wrap
                 break;
@@ -815,7 +953,7 @@ include "include/page.php";
             case 'contact' :
                 echo '<div class="pageWrap">';
                 {
-                    echo "<br>Center for Digital Humanities<br>
+                    echo "<br>Walter J. Ong, <small>S.J.</small> Center for Digital Humanities<br>
                             Pius XII Memorial Library, 324 AB Tower<br>
                             Saint Louis University<br>
                             3650 Lindell Blvd<br>
@@ -826,6 +964,8 @@ include "include/page.php";
                 echo "</div>"; //close page wrap
                 break;
 
+            
+            
             default :    
                 echo '<div class="pageWrap homeWrap">';           
                 include "include/imageGallery.php";
@@ -936,7 +1076,7 @@ include "include/page.php";
                     <div class="cardCountText">You have <span id="cardcount">0</span> cards in your folder.</div>
                     <a class='viewCardLink' onclick="$('.addedCardArea').show(); $('.toggleArrow').click();">View Cards</a>
                 </div>
-		</body>
+
 		<script src="<?php echo $basePath; ?>/digisig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
 		<script>
             function toggleCardWidget($toggle){
@@ -1133,5 +1273,11 @@ include "include/page.php";
                         });
                         
 		</script>
+        <script type="text/javascript" src="/digisig/js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="/digisig/js/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/digisig/js/pep.min.js"></script>
+        <script type="text/javascript" src="/digisig/spidergl/spidergl.js"></script>
+        <script type="text/javascript" src="/digisig/spidergl/multires.js"></script>
+</body>
 </html>
 
