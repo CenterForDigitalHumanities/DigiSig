@@ -35,7 +35,7 @@ require_once("../config/config.php");
     //echo nl2br("Get these variables from search_view table... ".  $variables ." \n");
     // make the SQL search string
     $query5 = "SELECT DISTINCT $variables FROM search_view WHERE ($column $search)";
-    echo(nl2br($query5."\n"));
+    //echo(nl2br($query5."\n"));
 
     // Searching by *both* repository and catalogue is not supported -- choose one
     if ($repository > 0) {
