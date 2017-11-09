@@ -210,11 +210,6 @@ include "include/page.php";
             switch($path_info['call_parts'][0]) {
                 case 'gallery' :
                 echo '<div class="pageWrap">
-                    <script type="text/javascript" src="/digisig/js/jquery-1.11.3.min.js"></script>
-                    <script type="text/javascript" src="/digisig/js/jquery-ui.min.js"></script>
-                    <script type="text/javascript" src="/digisig/js/pep.min.js"></script>
-                    <script type="text/javascript" src="/digisig/spidergl/spidergl.js"></script>
-                    <script type="text/javascript" src="/digisig/spidergl/multires.js"></script>
                     
                     <div style="display: flex; align-items: center; justify-content: center;">
                         <div id=toolbar style="margin:.5rem;float:left;width:2rem;height:400px;">
@@ -1081,7 +1076,7 @@ include "include/page.php";
                     <div class="cardCountText">You have <span id="cardcount">0</span> cards in your folder.</div>
                     <a class='viewCardLink' onclick="$('.addedCardArea').show(); $('.toggleArrow').click();">View Cards</a>
                 </div>
-		</body>
+
 		<script src="<?php echo $basePath; ?>/digisig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
 		<script>
             function toggleCardWidget($toggle){
@@ -1278,5 +1273,11 @@ include "include/page.php";
                         });
                         
 		</script>
+        <script type="text/javascript" src="/digisig/js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="/digisig/js/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/digisig/js/pep.min.js"></script>
+        <script type="text/javascript" src="/digisig/spidergl/spidergl.js"></script>
+        <script type="text/javascript" src="/digisig/spidergl/multires.js"></script>
+</body>
 </html>
 
