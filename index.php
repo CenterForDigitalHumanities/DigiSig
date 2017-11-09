@@ -119,9 +119,12 @@ include "include/page.php";
 
         if ($path_info['call_parts'][0] == "gallery") {
             $DIR = "bm_mcm1890";
-            if($path_info['call_parts'][1]){
+            if(count($path_info['call_parts']) > 1 ){ #&&$path_info['call_parts'][1]
                 $DIR = ($path_info['call_parts'][1]);
-            };
+            }
+            else{ //This can be a little more graceful.
+                $DIR = "bm_mcm1890";
+            }
             // TODO: Maybe make a reference array for the DIR or pull from the query if
             // available so that the $id can be passed around instead.
             $title = $DIR;
@@ -243,23 +246,23 @@ include "include/page.php";
                             let dindex = params.indexOf("directory=") + 10;
                             let windex = params.indexOf("width=") + 6;
                             let hindex = params.indexOf("height=") + 7;
-                            let dir = '+$DIR+';
+                            let dir = "'.$DIR.'";
                             let w = params.substring(windex).split("&")[0] || 900;
                             let h = params.substring(hindex).split("&")[0] || 600;
                             $("#canvas-width").val(w).change();
                             $("#canvas-height").val(h).change();
-                            // var opts = {
-                                // linkNode: "footer",
-                                // linkNodeStyle: {},
-                                // toolbarNode: "toolbar",
-                                // toolbarStyle: {
-                                // 	margin: ".5rem",
-                                // 	cssFloat: "left",
-                                // 	width: "2rem",
-                                // 	height: "400px"
-                                // }
-                                // externalToolbar: true
-                            // }
+                             var opts = {
+                                 linkNode: "footer",
+                                 linkNodeStyle: {},
+                                 toolbarNode: "toolbar",
+                                 toolbarStyle: {
+                                 	margin: ".5rem",
+                                 	cssFloat: "left",
+                                 	width: "2rem",
+                                 	height: "400px"
+                                 },
+                                 externalToolbar: true
+                             };
                             createRtiViewer(viewerCont, "/digisig/images/webrti/" + dir, w, h, opts);
                         }
                         launchRTI();
@@ -275,11 +278,10 @@ include "include/page.php";
                         }
                     </script>
                     <div style="display:flex;flex-wrap:wrap;">';
-    
                     foreach($dirArray as $dir){
-                        echo '<div class="cardInfo"><a href="gallery/'+$dir+'">'+$dir+'</a></div>';
+                        echo '<div class="cardInfo"><a href="gallery/'.$dir.'">'.$dir.'</a></div>';
                     }
-    
+                    echo "Post Loop";
                     echo '</div>
                 </div>';
                     break;
