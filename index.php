@@ -279,9 +279,8 @@ include "include/page.php";
                     </script>
                     <div style="display:flex;flex-wrap:wrap;">';
                     foreach($dirArray as $dir){
-                        echo '<div class="cardInfo"><a href="gallery/'.$dir.'">'.$dir.'</a></div>';
+                        echo '<div class="cardInfo"><a href="/digisig/gallery/'.$dir.'">'.$dir.'</a></div>';
                     }
-                    echo "Post Loop";
                     echo '</div>
                 </div>';
                     break;

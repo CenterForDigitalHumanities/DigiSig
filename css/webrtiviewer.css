@@ -6,13 +6,6 @@
 		outline: none;
 	}
 
-	body
-	{
-		margin: 4px;
-		overflow: hidden;
-		/*height: 100%;*/
-	}
-	
 	.toolbarButton, .toolbarButton2
 	{
 		margin-bottom: 10px !important;
