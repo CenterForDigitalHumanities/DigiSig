@@ -3,8 +3,6 @@
 
 	<head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <!--<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>-->  
-        <!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.1/js/lightbox-plus-jquery.min.js"></script>
 		<link rel="stylesheet" href="<?php echo $basePath; ?>/digisig/css/digisigSkin.css" />                
         <link type="text/css" href="/digisig/css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="Stylesheet">
@@ -120,7 +118,8 @@ include "include/page.php";
         if ($path_info['call_parts'][0] == "gallery") {
 			
 			if (count($path_info['call_parts']) > 1) {
-				$id = ($path_info['call_parts'][1]);
+                $id = ($path_info['call_parts'][1]);
+                echo '<h1>' . $id . ' so there.</h1>';
 			}
 			else {
                 //set a default RTI
@@ -179,17 +178,18 @@ include "include/page.php";
 			#test whether there is an RTI of another side of the object. If TRUE then we need button to reload RTI gallery with the target set to "gallery/" . $val13_alternaterti 
             // TODO: We keep running queries, but most of this data is already available in memory, I bet.
             
-            $queryrti_dblsided = "SELECT id_representation FROM gallery_rti WHERE id_support = $val9_support and fk_digisig <> $val12_id_digisig";
-			$queryrti_dblsided_result = mysqli_query($link, $queryrti_dblsided);
-			$row = mysqli_fetch_assoc($queryrti_dblsided_result);
-			$val13_alternaterti = $row['id_representation'];		
-			if(isset($val_alternaterti)) {
-				$flip = TRUE;
-			}
-			else {
-				$flip = FALSE;
-			}
-			
+            // $queryrti_dblsided = "SELECT id_representation FROM gallery_rti WHERE id_support = $val9_support and fk_digisig <> $val12_id_digisig";
+			// $queryrti_dblsided_result = mysqli_query($link, $queryrti_dblsided);
+			// $row = mysqli_fetch_assoc($queryrti_dblsided_result);
+			// $val13_alternaterti = $row['id_representation'];		
+			// if(isset($val_alternaterti)) {
+			// 	$flip = TRUE;
+			// }
+			// else {
+			// 	$flip = FALSE;
+			// }
+            $flip = FALSE;
+            
 			#test whether this is a positive or negative object. If TRUE then offer 'flip' button (which should perhaps be renamed to invert
 			if ($val2_image_state == 'negative') {
 				$invert = TRUE;
@@ -229,6 +229,10 @@ include "include/page.php";
                 
                         </div>
                     </div>
+                    <script type="text/javascript" src="/digisig/js/jquery-ui.min.js"></script>
+                    <script type="text/javascript" src="/digisig/js/pep.min.js"></script>
+                    <script type="text/javascript" src="/digisig/spidergl/spidergl.js"></script>
+                    <script type="text/javascript" src="/digisig/spidergl/multires.js"></script>
                     <script type="text/javascript">
                         var viewerCont = "viewerCont";
                         function launchRTI() {
@@ -257,13 +261,13 @@ include "include/page.php";
                         }
                         launchRTI();
                         function toggleFlip(el) {
-                            let isFlipped = el.innerHTML.indexOf("unflip") > -1;
+                            let isFlipped = el.innerHTML.indexOf("reverse") > -1;
                             if (!isFlipped) {
                                 $("#" + viewerCont).css("transform", "scaleX(-1)");
-                                $(el).text("unflip");
+                                $(el).text("reverse");
                             } else {
                                 $("#" + viewerCont).css("transform", "");
-                                $(el).text("flip");
+                                $(el).text("reverse");
                             }
                         }
                     </script>
@@ -1093,7 +1097,6 @@ include "include/page.php";
                     <a class='viewCardLink' onclick="$('.addedCardArea').show(); $('.toggleArrow').click();">View Cards</a>
                 </div>
 
-		<script src="<?php echo $basePath; ?>/digisig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
 		<script>
             function toggleCardWidget($toggle){
                 if($toggle.attr("active") == "no"){
@@ -1289,11 +1292,6 @@ include "include/page.php";
                         });
                         
 		</script>
-        <script type="text/javascript" src="/digisig/js/jquery-1.11.3.min.js"></script>
-        <script type="text/javascript" src="/digisig/js/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="/digisig/js/pep.min.js"></script>
-        <script type="text/javascript" src="/digisig/spidergl/spidergl.js"></script>
-        <script type="text/javascript" src="/digisig/spidergl/multires.js"></script>
 </body>
 </html>
 
