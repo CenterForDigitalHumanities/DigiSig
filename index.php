@@ -236,15 +236,7 @@ include "include/page.php";
                     <script type="text/javascript">
                         var viewerCont = "viewerCont";
                         function launchRTI() {
-                            let params = window.location.search;
-                            let dindex = params.indexOf("directory=") + 10;
-                            let windex = params.indexOf("width=") + 6;
-                            let hindex = params.indexOf("height=") + 7;
                             let dir = "'.$val1_directory.'";
-                            let w = params.substring(windex).split("&")[0] || 900;
-                            let h = params.substring(hindex).split("&")[0] || 600;
-                            $("#canvas-width").val(w).change();
-                            $("#canvas-height").val(h).change();
                              var opts = {
                                  linkNode: "footer",
                                  linkNodeStyle: {},
@@ -257,7 +249,7 @@ include "include/page.php";
                                  },
                                  externalToolbar: true
                              };
-                            createRtiViewer(viewerCont, "/digisig/images/webrti/" + dir, w, h, opts);
+                            createRtiViewer(viewerCont, "/digisig/images/webrti/" + dir, 900, 600, opts);
                         }
                         launchRTI();
                         function toggleFlip(el) {
