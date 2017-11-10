@@ -123,13 +123,13 @@ include "include/page.php";
 				$id = ($path_info['call_parts'][1]);
 			}
 			else {
-			//set a default RTI
-			$id = 11887234;			
+                //set a default RTI
+                $id = 11887234;			
 			}
-			$title = $id;			
+			$title = $id;	// TODO: Not a helpful title		
         }
 
-        //Dataset statistics
+        // Dataset statistics
 
         $query = "SELECT count(DISTINCT id_seal) as sealcount FROM sealdescription_view";
         $queryresults = mysqli_query($link, $query);
@@ -177,7 +177,9 @@ include "include/page.php";
 			$val12_id_digisig = $row['fk_digisig'];
 			
 			#test whether there is an RTI of another side of the object. If TRUE then we need button to reload RTI gallery with the target set to "gallery/" . $val13_alternaterti 
-			$queryrti_dblsided = "SELECT id_representation FROM gallery_rti WHERE id_support = $val9_support and fk_digisig <> $val12_id_digisig";
+            // TODO: We keep running queries, but most of this data is already available in memory, I bet.
+            
+            $queryrti_dblsided = "SELECT id_representation FROM gallery_rti WHERE id_support = $val9_support and fk_digisig <> $val12_id_digisig";
 			$queryrti_dblsided_result = mysqli_query($link, $queryrti_dblsided);
 			$row = mysqli_fetch_assoc($queryrti_dblsided_result);
 			$val13_alternaterti = $row['id_representation'];		
@@ -214,9 +216,15 @@ include "include/page.php";
                             </button>
                             <button class="toolbarButton" id="help" touch-action="none">
                                     <img src="css/icons/help.png" alt="help">
-                                    </button>
-                            <button role=button id="flip" onclick="toggleFlip(this);" style="transform: rotate(-90deg);bottom: -2rem;position: relative;height: 2.25rem;right: 1.5rem;width: 5rem;">flip</button>
-                        </div>
+                                    </button>';
+                if($invert) {
+                    echo '<button role=button id="flip" onclick="toggleFlip(this);" style="transform: rotate(-90deg);bottom: -2rem;position: relative;height: 2.25rem;right: 1.5rem;width: 5rem;">reverse</button>';
+                }
+                if($flip){
+                    echo '<a id="reverse" href="/digisig/gallery/' . $val_alternaterti . '" >flip</button>';
+                }
+                                    
+                echo '</div>
                         <div id="viewerCont">
                 
                         </div>
@@ -259,14 +267,10 @@ include "include/page.php";
                             }
                         }
                     </script>
+                        <h4 id="recordMetadata">
+                        ' . $val3_itemID . $val10_repository1 . $val11_repository2 . $val4_material . $val7_dim_vert . $val8_dim_hori . $val5_credit1 . $val6_credit2 .'
+                        </h4>
                     <div style="display:flex;flex-wrap:wrap;">';
-					
-					echo "<div>"; 
-
-
-#the metadata needs to be displayed alongside the RTI in some fashion
-			echo $val3_itemID . $val10_repository1 . $val11_repository2 . $val4_material . $val7_dim_vert . $val8_dim_hori . $val5_credit1 . $val6_credit2;
-
 
 		#Populate the RTI gallery
 		$queryrti2 = "SELECT * from gallery_rti";
@@ -283,19 +287,11 @@ include "include/page.php";
 			else ($val3_connection = $val2_thumb);		
 			$val4_id_rti = $row['id_representation'];
 					
-		echo '<br><div class="imageRTI"><a href="/digisig/gallery/'. $val4_id_rti . '"><img src="' . $val3_connection . $val1_filename . '"></div>';
-		
+		echo '<div class="cardInfo"><a href="/digisig/gallery/' . $val4_id_rti . '"><img src="' . $val3_connection . $val1_filename . '"></a></div>';
 		}
-
-					
-/*					
-			foreach($dirArray as $dir){
-                       echo '<div class="cardInfo"><a href="/digisig/gallery/'.$dir.'">'.$dir.'</a></div>';
-                  }
-*/
 	
 					
-			echo "<div></div>"; //close page wrap
+			echo "</div></div>"; //close page wrap
 			break;
  
 
