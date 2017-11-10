@@ -283,7 +283,7 @@ include "include/page.php";
 			else ($val3_connection = $val2_thumb);		
 			$val4_id_rti = $row['id_representation'];
 					
-		echo '<br><div class="imageRTI"><a href="/digisig/gallery/"'. $val4_id_rti . '><img src="' . $val3_connection . $val1_filename . '"></div>';
+		echo '<br><div class="imageRTI"><a href="/digisig/gallery/'. $val4_id_rti . '"><img src="' . $val3_connection . $val1_filename . '"></div>';
 		
 		}
 
