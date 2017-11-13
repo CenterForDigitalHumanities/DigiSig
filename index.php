@@ -3,11 +3,54 @@
 
 	<head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.1/js/lightbox-plus-jquery.min.js"></script>
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.1/js/lightbox-plus-jquery.min.js"></script> -->
 		<link rel="stylesheet" href="<?php echo $basePath; ?>/digisig/css/digisigSkin.css" />                
         <link type="text/css" href="/digisig/css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="Stylesheet">
 	    <link type="text/css" href="/digisig/css/webrtiviewer.css" rel="Stylesheet">
-                
+                <style>
+                .galleryDiv {
+                    padding:0.68rem;
+                }
+                    .galleryDiv img {
+                        height:80px;
+                        -webkit-transition: all 200ms;
+                        -moz-transition: all 200ms;
+                        transition: all 200ms;
+                        box-shadow:0 0px 0px black;
+                    }
+                    .galleryDiv img:hover {
+                        transform:scale(1.25);
+                        box-shadow: 0 2px 4px black;
+                    }
+                    .galleron {
+                        display: flex;
+                        flex-wrap: wrap;
+                        background: rgba(0,0,0,0.4);
+                        padding: 2rem;
+                        border-radius: 1rem;
+                    }
+                    .galleron::after {
+                        position: absolute;
+                        bottom: 0rem;
+                        right: 4rem;
+                        font-size: 800%;
+                        content: "RTI Gallery";
+                        color: transparent;
+                        z-index: -1;
+                        text-shadow: 0 0 10px #ccc;
+                        font-weight: bold;
+                    }
+                    #recordMetadata {
+                        width: 15%;
+                        left: 0;
+                        position: absolute;
+                        z-index: 2;
+                        background: rgba(230,230,230,0.75);
+                        padding: .5rem;
+                        margin-top: 5rem;
+                        box-shadow: 1px 1px 10px rgba(0,0,0,.15);
+                    }
+                </style>
 	</head>
 	<body>
 
@@ -116,14 +159,15 @@ include "include/page.php";
         }
 
         if ($path_info['call_parts'][0] == "gallery") {
-			
-			if (count($path_info['call_parts']) > 1) {
-                $id = ($path_info['call_parts'][1]);
-                echo '<h1>' . $id . ' so there.</h1>';
+          
+            if(array_key_exists('id',$_GET)){
+                $id = $_GET['id'];
+                $DNShack = '../';
 			}
 			else {
                 //set a default RTI
                 $id = 11887234;			
+                $DNShack = ''; // TODO: Remove when /gallery/ doesn't break everything.
 			}
 			$title = $id;	// TODO: Not a helpful title		
         }
@@ -217,14 +261,39 @@ include "include/page.php";
                             <button class="toolbarButton" id="help" touch-action="none">
                                     <img src="css/icons/help.png" alt="help">
                                     </button>';
-                if($invert) {
-                    echo '<button role=button id="flip" onclick="toggleFlip(this);" style="transform: rotate(-90deg);bottom: -2rem;position: relative;height: 2.25rem;right: 1.5rem;width: 5rem;">reverse</button>';
+                if($invert)
+                {
+                    echo '<button role=button id="flip" onclick="toggleFlip(this);" style="transform: rotate(-90deg);
+                    bottom: -2rem;
+                    position: relative;
+                    height: 3.25rem;
+                    right: 1.5rem;
+                    width: 6rem;
+                    background: #bbb!important;
+                    border: solid 1px #999 !important;
+                    color: white;
+                    text-shadow: 0 0 1px black;
+                    border-radius: .5rem;
+                    padding-bottom: 1rem;">reverse</button>';
                 }
-                if($flip){
-                    echo '<a id="reverse" href="/digisig/gallery/' . $val_alternaterti . '" >flip</button>';
+                if($flip)
+                {
+                    echo '<a id="reverse" href="/digisig/gallery?id=' . $val_alternaterti . '" >flip</button>';
                 }
                                     
+                    echo '<div id="recordMetadata">
+                <a href="/digisig/entity/' . $val3_itemID . '"><span class="icon_seal" ></span> Item ' . $val3_itemID . '</a>
+                <p>' . $val10_repository1 . ' ' . $val11_repository2 . '</p>';
+                if($val4_material.length >0)
+                {
+                    echo '<p><label>Material</label> ' . $val4_material . '</p>';
+                }
+                if($val7_dim_vert.length >0){
+                    echo '<p><label>Dimensions</label> ' . $val7_dim_vert . 'mm x' . $val8_dim_hori . 'mm</p>';
+                }
+                echo '<small> ' .  $val5_credit1 . ' ' . $val6_credit2 . '</small>';
                 echo '</div>
+                        </div>
                         <div id="viewerCont">
                 
                         </div>
@@ -247,26 +316,24 @@ include "include/page.php";
                                  	width: "2rem",
                                  	height: "400px"
                                  },
-                                 externalToolbar: true
+                                 externalToolbar: true,
+                                 DNShack: "' . $DNShack . '"
                              };
                             createRtiViewer(viewerCont, "/digisig/images/webrti/" + dir, 900, 600, opts);
                         }
                         launchRTI();
                         function toggleFlip(el) {
-                            let isFlipped = el.innerHTML.indexOf("reverse") > -1;
+                            let isFlipped = el.innerHTML.indexOf("original") > -1;
                             if (!isFlipped) {
                                 $("#" + viewerCont).css("transform", "scaleX(-1)");
-                                $(el).text("reverse");
+                                $(el).text("original");
                             } else {
                                 $("#" + viewerCont).css("transform", "");
                                 $(el).text("reverse");
                             }
                         }
                     </script>
-                        <h4 id="recordMetadata">
-                        ' . $val3_itemID . $val10_repository1 . $val11_repository2 . $val4_material . $val7_dim_vert . $val8_dim_hori . $val5_credit1 . $val6_credit2 .'
-                        </h4>
-                    <div style="display:flex;flex-wrap:wrap;">';
+                    <div class="galleron">';
 
 		#Populate the RTI gallery
 		$queryrti2 = "SELECT * from gallery_rti";
@@ -283,7 +350,7 @@ include "include/page.php";
 			else ($val3_connection = $val2_thumb);		
 			$val4_id_rti = $row['id_representation'];
 					
-		echo '<div class="cardInfo"><a href="/digisig/gallery/' . $val4_id_rti . '"><img src="' . $val3_connection . $val1_filename . '"></a></div>';
+		echo '<div class="galleryDiv"><a href="/digisig/gallery?id=' . $val4_id_rti . '"><img src="' . $val3_connection . $val1_filename . '"></a></div>';
 		}
 	
 					
