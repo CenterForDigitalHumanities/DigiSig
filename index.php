@@ -3,7 +3,7 @@
 
 	<head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.1/js/lightbox-plus-jquery.min.js"></script> -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.1/js/lightbox-plus-jquery.min.js"></script>
 		<link rel="stylesheet" href="<?php echo $basePath; ?>/digisig/css/digisigSkin.css" />                
         <link type="text/css" href="/digisig/css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="Stylesheet">
 	    <link type="text/css" href="/digisig/css/webrtiviewer.css" rel="Stylesheet">
@@ -162,12 +162,10 @@ include "include/page.php";
           
             if(array_key_exists('id',$_GET)){
                 $id = $_GET['id'];
-                $DNShack = '../';
 			}
 			else {
                 //set a default RTI
                 $id = 11887234;			
-                $DNShack = ''; // TODO: Remove when /gallery/ doesn't break everything.
 			}
 			$title = $id;	// TODO: Not a helpful title		
         }
@@ -316,8 +314,7 @@ include "include/page.php";
                                  	width: "2rem",
                                  	height: "400px"
                                  },
-                                 externalToolbar: true,
-                                 DNShack: "' . $DNShack . '"
+                                 externalToolbar: true
                              };
                             createRtiViewer(viewerCont, "/digisig/images/webrti/" + dir, 900, 600, opts);
                         }
