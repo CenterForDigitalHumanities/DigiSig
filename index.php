@@ -3,17 +3,58 @@
 
 	<head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <!--<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>-->  
-        <!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.1/js/lightbox-plus-jquery.min.js"></script>
 		<link rel="stylesheet" href="<?php echo $basePath; ?>/digisig/css/digisigSkin.css" />                
         <link type="text/css" href="/digisig/css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="Stylesheet">
 	    <link type="text/css" href="/digisig/css/webrtiviewer.css" rel="Stylesheet">
-                
+                <style>
+                .galleryDiv {
+                    padding:0.68rem;
+                }
+                    .galleryDiv img {
+                        height:80px;
+                        -webkit-transition: all 200ms;
+                        -moz-transition: all 200ms;
+                        transition: all 200ms;
+                        box-shadow:0 0px 0px black;
+                    }
+                    .galleryDiv img:hover {
+                        transform:scale(1.25);
+                        box-shadow: 0 2px 4px black;
+                    }
+                    .galleron {
+                        display: flex;
+                        flex-wrap: wrap;
+                        background: rgba(0,0,0,0.4);
+                        padding: 2rem;
+                        border-radius: 1rem;
+                    }
+                    .galleron::after {
+                        position: absolute;
+                        bottom: 0rem;
+                        right: 4rem;
+                        font-size: 800%;
+                        content: "RTI Gallery";
+                        color: transparent;
+                        z-index: -1;
+                        text-shadow: 0 0 10px #ccc;
+                        font-weight: bold;
+                    }
+                    #recordMetadata {
+                        width: 15%;
+                        left: 0;
+                        position: absolute;
+                        z-index: 2;
+                        background: rgba(230,230,230,0.75);
+                        padding: .5rem;
+                        margin-top: 5rem;
+                        box-shadow: 1px 1px 10px rgba(0,0,0,.15);
+                    }
+                </style>
 	</head>
 	<body>
 
-		<?php // Version 2: May 2017
+		<?php // Version 2: November 2017
 
         #functions
 
@@ -118,72 +159,18 @@ include "include/page.php";
         }
 
         if ($path_info['call_parts'][0] == "gallery") {
-            $DIR = "bm_mcm1890";
-            if(count($path_info['call_parts']) > 1 ){ #&&$path_info['call_parts'][1]
-                $DIR = ($path_info['call_parts'][1]);
-            }
-            else{ //This can be a little more graceful.
-                $DIR = "bm_mcm1890";
-            }
-            // TODO: Maybe make a reference array for the DIR or pull from the query if
-            // available so that the $id can be passed around instead.
-            $title = $DIR;
-            $dirArray = [
-                "bm_mcm1890",
-                "bm_mcm2062",
-                "bm_mcm2064",
-                "bm_mcm2212",
-                "bm_mcm4973_back",
-                "bm_mcm4973_front",
-                "bm_mcm5222",
-                "bm_mcm5241",
-                "bm_mcm5330_back",
-                "bm_mcm5330_front",
-                "mol_2016_33",
-                "mol_84_434",
-                "sbh_1019_back",
-                "sbh_1019_front",
-                "sbh_1090_s2_back",
-                "sbh_1090_s2_front",
-                "sbh_1094",
-                "sbh_1143_back",
-                "sbh_1143_front",
-                "sbh_1263",
-                "sbh_1290",
-                "sbh_1337",
-                "sbh_1550",
-                "sbh_1_s1",
-                "sbh_1_s2",
-                "sbh_881_back",
-                "sbh_881_front",
-                "tna_883a",
-                "tna_883b",
-                "tna_e26_1a_58_back",
-                "tna_e26_1a_58_front",
-                "tna_e40_11002_s1_back",
-                "tna_e40_11002_s1_front",
-                "tna_e40_11002_s2",
-                "tna_e40_6839",
-                "tna_e40_6884_back",
-                "tna_e40_6884_front",
-                "tna_e42_146_s1",
-                "tna_e42_146_s2",
-                "tna_e42_543_back",
-                "tna_e42_543_front",
-                "tna_sc13_h88_back",
-                "tna_sc13_h88_front",
-                "tna_sc13_i34_back",
-                "tna_sc13_i34_front",
-                "tna_sc13_i38_back",
-                "tna_sc13_i38_front",
-                "tna_sc13_k36_back",
-                "tna_sc13_k36_front",
-                "tna_sc13_q1_back",
-                "tna_sc13_q1_front"
-            ];
+          
+            if(array_key_exists('id',$_GET)){
+                $id = $_GET['id'];
+			}
+			else {
+                //set a default RTI
+                $id = 11887234;			
+			}
+			$title = $id;	// TODO: Not a helpful title		
         }
 
-        //Dataset statistics
+        // Dataset statistics
 
         $query = "SELECT count(DISTINCT id_seal) as sealcount FROM sealdescription_view";
         $queryresults = mysqli_query($link, $query);
@@ -209,8 +196,52 @@ include "include/page.php";
 
             switch($path_info['call_parts'][0]) {
                 case 'gallery' :
+							
+			#1:identify the RTI that needs to be displayed
+			$queryrti = "SELECT * FROM gallery_rti WHERE id_representation = $id";
+			$queryrtiresult = mysqli_query($link, $queryrti);
+			$row = mysqli_fetch_assoc($queryrtiresult);
+			#establish the directory where the RTI is located
+			$val1_directory = $row['representation_folder'];
+			
+			#info to display about RTI								
+			$val2_image_state = $row['image_state'];
+			$val3_itemID = $row['id_item'];
+			$val4_material = $row['material'];
+			$val5_credit1 = $row['name_first'];
+			$val6_credit2 = $row['name_last'];
+			$val7_dim_vert = $row['face_vertical'];
+			$val8_dim_hori = $row['face_horizontal'];
+			$val9_support = $row['id_support'];
+			$val10_repository1 = $row['repository_fulltitle'];
+			$val11_repository2 = $row['reference_full'];
+			$val12_id_digisig = $row['fk_digisig'];
+			
+			#test whether there is an RTI of another side of the object. If TRUE then we need button to reload RTI gallery with the target set to "gallery/" . $val13_alternaterti 
+            // TODO: We keep running queries, but most of this data is already available in memory, I bet.
+            
+            // $queryrti_dblsided = "SELECT id_representation FROM gallery_rti WHERE id_support = $val9_support and fk_digisig <> $val12_id_digisig";
+			// $queryrti_dblsided_result = mysqli_query($link, $queryrti_dblsided);
+			// $row = mysqli_fetch_assoc($queryrti_dblsided_result);
+			// $val13_alternaterti = $row['id_representation'];		
+			// if(isset($val_alternaterti)) {
+			// 	$flip = TRUE;
+			// }
+			// else {
+			// 	$flip = FALSE;
+			// }
+            $flip = FALSE;
+            
+			#test whether this is a positive or negative object. If TRUE then offer 'flip' button (which should perhaps be renamed to invert
+			if ($val2_image_state == 'negative') {
+				$invert = TRUE;
+			}
+			else {
+				$invert = FALSE;
+			}
+			        						
                 echo '<div class="pageWrap">
-                    
+                    	
                     <div style="display: flex; align-items: center; justify-content: center;">
                         <div id=toolbar style="margin:.5rem;float:left;width:2rem;height:400px;">
                             <button class="toolbarButton" id="zoomIn" touch-action="none">
@@ -227,25 +258,52 @@ include "include/page.php";
                             </button>
                             <button class="toolbarButton" id="help" touch-action="none">
                                     <img src="css/icons/help.png" alt="help">
-                                    </button>
-                            <button role=button id="flip" onclick="toggleFlip(this);" style="transform: rotate(-90deg);bottom: -2rem;position: relative;height: 2.25rem;right: 1.5rem;width: 5rem;">flip</button>
+                                    </button>';
+                if($invert)
+                {
+                    echo '<button role=button id="flip" onclick="toggleFlip(this);" style="transform: rotate(-90deg);
+                    bottom: -2rem;
+                    position: relative;
+                    height: 3.25rem;
+                    right: 1.5rem;
+                    width: 6rem;
+                    background: #bbb!important;
+                    border: solid 1px #999 !important;
+                    color: white;
+                    text-shadow: 0 0 1px black;
+                    border-radius: .5rem;
+                    padding-bottom: 1rem;">reverse</button>';
+                }
+                if($flip)
+                {
+                    echo '<a id="reverse" href="/digisig/gallery?id=' . $val_alternaterti . '" >flip</button>';
+                }
+                                    
+                    echo '<div id="recordMetadata">
+                <a href="/digisig/entity/' . $val3_itemID . '"><span class="icon_seal" ></span> Item ' . $val3_itemID . '</a>
+                <p>' . $val10_repository1 . ' ' . $val11_repository2 . '</p>';
+                if($val4_material.length >0)
+                {
+                    echo '<p><label>Material</label> ' . $val4_material . '</p>';
+                }
+                if($val7_dim_vert.length >0){
+                    echo '<p><label>Dimensions</label> ' . $val7_dim_vert . 'mm x' . $val8_dim_hori . 'mm</p>';
+                }
+                echo '<small> ' .  $val5_credit1 . ' ' . $val6_credit2 . '</small>';
+                echo '</div>
                         </div>
                         <div id="viewerCont">
                 
                         </div>
                     </div>
+                    <script type="text/javascript" src="/digisig/js/jquery-ui.min.js"></script>
+                    <script type="text/javascript" src="/digisig/js/pep.min.js"></script>
+                    <script type="text/javascript" src="/digisig/spidergl/spidergl.js"></script>
+                    <script type="text/javascript" src="/digisig/spidergl/multires.js"></script>
                     <script type="text/javascript">
                         var viewerCont = "viewerCont";
                         function launchRTI() {
-                            let params = window.location.search;
-                            let dindex = params.indexOf("directory=") + 10;
-                            let windex = params.indexOf("width=") + 6;
-                            let hindex = params.indexOf("height=") + 7;
-                            let dir = "'.$DIR.'";
-                            let w = params.substring(windex).split("&")[0] || 900;
-                            let h = params.substring(hindex).split("&")[0] || 600;
-                            $("#canvas-width").val(w).change();
-                            $("#canvas-height").val(h).change();
+                            let dir = "'.$val1_directory.'";
                              var opts = {
                                  linkNode: "footer",
                                  linkNodeStyle: {},
@@ -258,28 +316,47 @@ include "include/page.php";
                                  },
                                  externalToolbar: true
                              };
-                            createRtiViewer(viewerCont, "/digisig/images/webrti/" + dir, w, h, opts);
+                            createRtiViewer(viewerCont, "/digisig/images/webrti/" + dir, 900, 600, opts);
                         }
                         launchRTI();
                         function toggleFlip(el) {
-                            let isFlipped = el.innerHTML.indexOf("unflip") > -1;
+                            let isFlipped = el.innerHTML.indexOf("original") > -1;
                             if (!isFlipped) {
                                 $("#" + viewerCont).css("transform", "scaleX(-1)");
-                                $(el).text("unflip");
+                                $(el).text("original");
                             } else {
                                 $("#" + viewerCont).css("transform", "");
-                                $(el).text("flip");
+                                $(el).text("reverse");
                             }
                         }
                     </script>
-                    <div style="display:flex;flex-wrap:wrap;">';
-                    foreach($dirArray as $dir){
-                        echo '<div class="cardInfo"><a href="/digisig/gallery/'.$dir.'">'.$dir.'</a></div>';
-                    }
-                    echo '</div>
-                </div>';
-                    break;
-    
+                    <div class="galleron">';
+
+		#Populate the RTI gallery
+		$queryrti2 = "SELECT * from gallery_rti";
+		$queryrtiresult2 = mysqli_query($link, $queryrti2);
+		$row = mysqli_fetch_assoc($queryrtiresult2);
+		
+		while ($row = mysqli_fetch_array($queryrtiresult2)) {
+			$val1_filename = $row['representation_thumbnail'];
+            $val2_thumb = $row['thumb'];
+            //test to see if the connection string indicates that it is in the local image store
+            if ($val2_thumb == "local" || $val2_thumb==null) {
+                        $val3_connection = $small;
+			}
+			else ($val3_connection = $val2_thumb);		
+			$val4_id_rti = $row['id_representation'];
+					
+		echo '<div class="galleryDiv"><a href="/digisig/gallery?id=' . $val4_id_rti . '"><img src="' . $val3_connection . $val1_filename . '"></a></div>';
+		}
+	
+					
+			echo "</div></div>"; //close page wrap
+			break;
+ 
+
+
+ 
             case 'search' :
                 echo '<div class="pageWrap">';
                 //test to see if the search string has more than 1 character
@@ -964,8 +1041,7 @@ include "include/page.php";
                 echo "</div>"; //close page wrap
                 break;
 
-            
-            
+				
             default :    
                 echo '<div class="pageWrap homeWrap">';           
                 include "include/imageGallery.php";
@@ -1077,7 +1153,6 @@ include "include/page.php";
                     <a class='viewCardLink' onclick="$('.addedCardArea').show(); $('.toggleArrow').click();">View Cards</a>
                 </div>
 
-		<script src="<?php echo $basePath; ?>/digisig/include/lightbox/js/lightbox-plus-jquery.min.js"></script>
 		<script>
             function toggleCardWidget($toggle){
                 if($toggle.attr("active") == "no"){
@@ -1273,11 +1348,6 @@ include "include/page.php";
                         });
                         
 		</script>
-        <script type="text/javascript" src="/digisig/js/jquery-1.11.3.min.js"></script>
-        <script type="text/javascript" src="/digisig/js/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="/digisig/js/pep.min.js"></script>
-        <script type="text/javascript" src="/digisig/spidergl/spidergl.js"></script>
-        <script type="text/javascript" src="/digisig/spidergl/multires.js"></script>
 </body>
 </html>
 
