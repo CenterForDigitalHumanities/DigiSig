@@ -301,23 +301,6 @@ include "include/page.php";
                     <script type="text/javascript" src="/digisig/spidergl/spidergl.js"></script>
                     <script type="text/javascript" src="/digisig/spidergl/multires.js"></script>
                     <script type="text/javascript">
-                        var viewerCont = "viewerCont";
-                        function launchRTI() {
-                            let dir = "'.$val1_directory.'";
-                             var opts = {
-                                 linkNode: "footer",
-                                 linkNodeStyle: {},
-                                 toolbarNode: "toolbar",
-                                 toolbarStyle: {
-                                 	margin: ".5rem",
-                                 	cssFloat: "left",
-                                 	width: "2rem",
-                                 	height: "400px"
-                                 },
-                                 externalToolbar: true
-                             };
-                            createRtiViewer(viewerCont, "/digisig/images/webrti/" + dir, 900, 600, opts);
-                        }
                         launchRTI();
                         function toggleFlip(el) {
                             let isFlipped = el.innerHTML.indexOf("original") > -1;
@@ -1081,7 +1064,14 @@ include "include/page.php";
                 </div>";
 
                 echo "</div>"; //close page wrap
-                echo "<div class='sources'>";
+                echo "<div class='sources'>
+                 <h4>RTI Image Gallery</h4>
+                 <div id='rtithumb'></div>
+                </div>";
+                echo "<div class='sources'>
+                    <h4>RTI Image Gallery</h4>
+                    <div id='rtithumb'></div>
+                ";
                 echo "<div class='sources_title'>
                 <h3>Contributing Repositories & Sources</h3>
                 <p><i>
@@ -1339,12 +1329,36 @@ include "include/page.php";
                             }
                         }
 
+                        var viewerCont = "viewerCont";
+                        function launchRTI(elem,opt,cw,ch) {
+                            let container = elem || viewerCont;
+                            let width = cw || 900;
+                            let height = ch || 600;
+                            let dir = "'.$val1_directory.'";
+                             var opts = opt || {
+                                 linkNode: "footer",
+                                 linkNodeStyle: {},
+                                 toolbarNode: "toolbar",
+                                 toolbarStyle: {
+                                 	margin: ".5rem",
+                                 	cssFloat: "left",
+                                 	width: "2rem",
+                                 	height: "400px"
+                                 },
+                                 externalToolbar: true
+                             };
+                            createRtiViewer(container, "/digisig/images/webrti/" + dir, width, height, opts);
+                        }
                         
+                       
                         $(function(){
                             var url = window.location.href;
                             if(url.indexOf("/digisig/about")>-1 || url.indexOf("/digisig/contact")>-1){
                                 $(".viewCardWidget").hide();
                             }
+                            launchRTI("rtithumb",{
+                                toolbarStyle: { display: "none" }
+                            },300,200);
                         });
                         
 		</script>
