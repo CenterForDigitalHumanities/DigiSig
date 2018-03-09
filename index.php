@@ -296,10 +296,6 @@ include "include/page.php";
                 
                         </div>
                     </div>
-                    <script type="text/javascript" src="/digisig/js/jquery-ui.min.js"></script>
-                    <script type="text/javascript" src="/digisig/js/pep.min.js"></script>
-                    <script type="text/javascript" src="/digisig/spidergl/spidergl.js"></script>
-                    <script type="text/javascript" src="/digisig/spidergl/multires.js"></script>
                     <script type="text/javascript">
                         launchRTI();
                         function toggleFlip(el) {
@@ -1064,20 +1060,24 @@ include "include/page.php";
                 </div>";
 
                 echo "</div>"; //close page wrap
-                echo "<div class='sources'>
-                 <h4>RTI Image Gallery</h4>
-                 <div id='rtithumb'></div>
-                </div>";
-                echo "<div class='sources'>
-                    <h4>RTI Image Gallery</h4>
-                    <div id='rtithumb'></div>
-                ";
-                echo "<div class='sources_title'>
-                <h3>Contributing Repositories & Sources</h3>
-                <p><i>
+                echo "
+                    <div class='sources'>
+                        <h4>RTI Image Gallery</h4>
+                        <p>Interact with advanced seal imagery.</p>
+                        <div id='rtithumb'></div>
+                        <div class='sources_title'>
+                        <h3>Contributing Repositories & Sources</h3>
+                        <p><i>
                             Search <b>$sealcount</b> seal records from the following sources:
-                        </i>
-                    </p>
+                            </i>
+                        </p>
+                        <script>
+                        $(function(){
+                            launchRTI('rtithumb',{
+                                toolbarStyle: { display: none }
+                            },300,200);
+                            });
+                        </script>
                 </div>";
 				
 				// graph section -- needs development
@@ -1142,7 +1142,10 @@ include "include/page.php";
                     <div class="cardCountText">You have <span id="cardcount">0</span> cards in your folder.</div>
                     <a class='viewCardLink' onclick="$('.addedCardArea').show(); $('.toggleArrow').click();">View Cards</a>
                 </div>
-
+                <script type="text/javascript" src="/digisig/js/jquery-ui.min.js"></script>
+                <script type="text/javascript" src="/digisig/js/pep.min.js"></script>
+                <script type="text/javascript" src="/digisig/spidergl/spidergl.js"></script>
+                <script type="text/javascript" src="/digisig/spidergl/multires.js"></script>
 		<script>
             function toggleCardWidget($toggle){
                 if($toggle.attr("active") == "no"){
@@ -1356,9 +1359,6 @@ include "include/page.php";
                             if(url.indexOf("/digisig/about")>-1 || url.indexOf("/digisig/contact")>-1){
                                 $(".viewCardWidget").hide();
                             }
-                            launchRTI("rtithumb",{
-                                toolbarStyle: { display: "none" }
-                            },300,200);
                         });
                         
 		</script>
