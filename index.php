@@ -190,8 +190,6 @@ include "include/page.php";
          * 4) Basic Search bar
          */
 
-        
-
         // load the optional extra parts of the page depending on the header
 
             switch($path_info['call_parts'][0]) {
@@ -998,13 +996,11 @@ include "include/page.php";
                 echo "</div>"; //close page wrap
                 break;
 
-            case 'advanced search' :
-                echo '<div class="pageWrap">';
-                {
-                    echo "Section under construction. Please check back regularly for updates";
-                }
-                echo "</div>"; //close page wrap
-                break;
+                case 'classifications':
+                    if (isset($path_info['call_parts'][1])) {
+                        $motifClass = ($path_info['call_parts'][1]);    
+                      }
+                    break;
 
             case 'contact' :
                 echo '<div class="pageWrap">';
