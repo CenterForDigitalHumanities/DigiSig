@@ -5,7 +5,9 @@ function queryResult($field, $index, $term, $address, $exact, $offset, $limit) {
     $num_result_per_page = 100;
     $table_text_len = 100;
 //	$link = mysqli_connect('localhost:3306', 'digisig_user', 'password', 'digisig_local'); //john
-    $link = mysqli_connect('localhost:3306', 'digisig', '1EMeeIIINnn', 'digisigres'); //img01
+//    $link = mysqli_connect('localhost:3306', 'digisig', '1EMeeIIINnn', 'digisigres'); //img01
+    $link = mysqli_connect('localhost:3306', 'root', '', 'digisig'); //cubap
+
     $pagination_part = ' limit ' . $limit . ' offset ' . $offset;
     // search 'what' and 'from'? 
     $query3 = "SELECT field_title, field_url, field_column, field_returnedvariables FROM field WHERE field_url = '$field'";

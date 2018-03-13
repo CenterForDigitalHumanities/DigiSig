@@ -996,10 +996,11 @@ include "include/page.php";
                 echo "</div>"; //close page wrap
                 break;
 
-                case 'classifications':
+                case 'motifs':
                     if (isset($path_info['call_parts'][1])) {
                         $motifClass = ($path_info['call_parts'][1]);    
-                      }
+                    }
+                    include "include/motif.php";
                     break;
 
             case 'contact' :

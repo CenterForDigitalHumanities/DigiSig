@@ -16,7 +16,7 @@
             <div class="searchBtn_1" onclick="$(this)
                         .next()
                         .click();">GO</div>
-            <input class="searchBtn_2" type="submit" name ="submit" value ="Advanced Search"/>
+            <input class="searchBtn_2" type="submit" name ="submit" value ="motifs"/>
         </div>
     </form>
 
@@ -27,6 +27,7 @@
 //establish which part of the representation_view table to query
         $query1 = "SELECT pk_class, level, printphrase_class FROM classification_view WHERE id_class = '" . $motifClass . "'";
         $query1result = mysqli_query($link, $query1);
+        if($query1result){
         $row = mysqli_fetch_assoc($query1result);
         $classnumber = $row['pk_class'];
         $classlevel = "level" . $row['level'];
@@ -39,7 +40,10 @@
 
 //Title for group of photographs					
         Echo "<div>" . $classtitle . "<br> Number of results:" . $rowcount . "<br></div>";
-
+        } else {
+            echo '<p>No results</p>';
+            $rowcount = 0;
+        }
 
 //if there are results then check to see if then assemble a list of the filename and establish if they are 'local'
         if ($rowcount > 0) {
