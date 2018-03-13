@@ -50,6 +50,9 @@
                         margin-top: 5rem;
                         box-shadow: 1px 1px 10px rgba(0,0,0,.15);
                     }
+                    [onclick] {
+                        cursor: pointer;
+                    }
                 </style>
 	</head>
 	<body>
@@ -295,7 +298,7 @@ include "include/page.php";
                         </div>
                     </div>
                     <script type="text/javascript">
-                        launchRTI();
+                        $(function(){launchRTI();});
                         function toggleFlip(el) {
                             let isFlipped = el.innerHTML.indexOf("original") > -1;
                             if (!isFlipped) {
@@ -1061,7 +1064,7 @@ include "include/page.php";
                     <div class='sources'>
                         <h4>RTI Image Gallery</h4>
                         <p>Interact with advanced seal imagery.</p>
-                        <div id='rtithumb'></div>
+                        <div id='rtithumb' onclick='$(\"#galleryLink\").click()'></div>
                         <div class='sources_title'>
                         <h3>Contributing Repositories & Sources</h3>
                         <p><i>
@@ -1071,7 +1074,7 @@ include "include/page.php";
                         <script>
                         $(function(){
                             launchRTI('rtithumb',{
-                                toolbarStyle: { display: none }
+                                toolbarStyle: { display: 'none' }
                             },300,200);
                             });
                         </script>

@@ -58,9 +58,9 @@
         $rowcount = mysqli_num_rows($query2result);
 
 //Title for group of photographs					
-        Echo "<h3>" . $classtitle . " <span class='badge'>" . $rowcount . "</span></h3>";
+        Echo "<h3>" . $classtitle . " <span class='badge' title='" . $rowcount . " total results'>" . $rowcount . "</span></h3>";
         } else {
-            echo '<p>No results</p>';
+            echo '<p>No results; there may have been an error.</p>';
             $rowcount = 0;
         }
 
