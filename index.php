@@ -34,7 +34,7 @@
                         bottom: 0rem;
                         right: 4rem;
                         font-size: 800%;
-                        content: "RTI Gallery";
+                        content: attr(title);
                         color: transparent;
                         z-index: -1;
                         text-shadow: 0 0 10px #ccc;
@@ -307,7 +307,7 @@ include "include/page.php";
                             }
                         }
                     </script>
-                    <div class="galleron">';
+                    <div class="galleron" title="RTI Gallery">';
 
 		#Populate the RTI gallery
 		$queryrti2 = "SELECT * from gallery_rti";

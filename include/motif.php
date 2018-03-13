@@ -7,7 +7,26 @@
         $searchfields = mysqli_query($link, $query);
         echo "<option value='holder' disabled selected = 'true'>Select Class</option>";
         while ($row = mysqli_fetch_array($searchfields)) {
-            echo "<option value=" . $row['id_class'] . ">" . $row['classnotation'] . $row['printphrase_class'] . $row['cases'] . "</option>";
+            if(preg_match('/^\d{1}$/', $row['classnotation'])){
+                if($row['classnotation']>1){
+                    echo "</optgroup>";
+                }
+                echo "<optgroup label='" . $row['printphrase_class'] . "'>";
+            }
+            echo "<option value=" . $row['id_class'] . ">"
+                    . $row['classnotation']
+                    . " "
+                    . $row['printphrase_class'] 
+                    . " ("
+                    . $row['cases'] 
+                    .")"
+                    . "</option>";
+        if(isset($motifClass)){
+            if($row['id_class'] == $motifClass){
+                $galleryTitle = $row['classnotation'];
+            }
+        }
+            
         }
         ?>
         </select>
@@ -39,7 +58,7 @@
         $rowcount = mysqli_num_rows($query2result);
 
 //Title for group of photographs					
-        Echo "<div>" . $classtitle . "<br> Number of results:" . $rowcount . "<br></div>";
+        Echo "<h3>" . $classtitle . " <span class='badge'>" . $rowcount . "</span></h3>";
         } else {
             echo '<p>No results</p>';
             $rowcount = 0;
@@ -47,6 +66,7 @@
 
 //if there are results then check to see if then assemble a list of the filename and establish if they are 'local'
         if ($rowcount > 0) {
+            echo "<div class='galleron' title='" . $galleryTitle . "'>";
             while ($row = mysqli_fetch_array($query2result)) {
 
                 $val1_filename = $row['representation_thumbnail'];
@@ -63,10 +83,11 @@
 
                 $seal_connection = $address . "/entity/" . $val4_id_seal;
 
-                echo "<a target='_blank' href='" . $seal_connection . "' title= '" . $val6_label . "'>";
-                echo "<img src='" . $val3_connection . $val1_filename . "' alt= '" . $val6_label . "'  height ='100'></a><br>";
+                echo "<div class='galleryDiv'><a target='_blank' href='" . $seal_connection . "' title= '" . $val6_label . "'>";
+                echo "<img src='" . $val3_connection . $val1_filename . "' alt= '" . $val6_label . "'  height ='100'></a></div>";
             }
         }
+        echo "</div>";
     }
     ?>
     <script>
