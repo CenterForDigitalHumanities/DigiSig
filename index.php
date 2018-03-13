@@ -3,6 +3,8 @@
 
 	<head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo $basePath; ?>/digisig/include/lightbox/css/lightbox.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.1/js/lightbox-plus-jquery.min.js"></script>
 		<link rel="stylesheet" href="<?php echo $basePath; ?>/digisig/css/digisigSkin.css" />                
         <link type="text/css" href="/digisig/css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="Stylesheet">
@@ -92,7 +94,6 @@ session_start();
     
 include "header.php"; 
 echo "<div class='content_wrap'>";
-include "include/page.php";
 
 //user login
 

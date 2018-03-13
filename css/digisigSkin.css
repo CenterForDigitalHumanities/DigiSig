@@ -1,5 +1,5 @@
 
-/* 
+/*
     Created on : Jul 29, 2015, 2:21:02 PM
     Author     : bhaberbe
 */
@@ -20,7 +20,7 @@
 .navigation{
     /*border-bottom: 1px solid #000;*/
     padding: 10px 0px 10px 10px;
-} 
+}
 
 .navTitle{
     color: #F00;
@@ -52,7 +52,7 @@
 /* The header buttons need to look like links */
 .navigate{
     background:none!important;
-    border:none; 
+    border:none;
     padding:0!important;
     font: inherit;
     cursor: pointer;
@@ -68,10 +68,8 @@
 }
 /* Searching Form */
 .searchArea{
-    border: 1px solid #000;
     background-color: #00485E;
     padding: 10px 0px 10px 0px;
-    margin-top: 28px;
 }
 /* Search tool areas  */
 .searchArea p, .searchArea input, .searchArea select{
@@ -80,8 +78,9 @@
 
 .searchBtn_1{
     background-color: white;
+    color: #00485E;
     border: medium double;
-    margin-left: 40px; 
+    margin-left: 40px;
     padding: 6px;
     display: inline-block;
     cursor: pointer;
@@ -103,14 +102,14 @@
 /*    text-decoration: underline;*/
     font-size: 17px;
     color:#00485E;
-    font-style: italic;    
+    font-style: italic;
 }
 .separator_2{
     font-size: 20px;
     margin-top:10px;
     color: #00485E;
     /*text-transform: uppercase;*/
-    font-style: italic;    
+    font-style: italic;
     margin-left: 15px;
 }
 #projects .separator_2, #repos .separator_2{
@@ -169,10 +168,10 @@ form[name="navigate"]{
 /* Footer buttons need to look like links */
 .footNav{
     background:none!important;
-    border:none; 
+    border:none;
     padding:0!important;
     font: inherit;
-    cursor: pointer;    
+    cursor: pointer;
     color: white;
     margin: 0px 20px;
     font-weight: bold;
@@ -185,15 +184,15 @@ form[name="navigate"]{
     position: absolute;
     right: 10px;
     background:none!important;
-    border:none !important; 
+    border:none !important;
     padding:0!important;
     font: inherit;
-    cursor: pointer;    
+    cursor: pointer;
     color: white !important;
     font-weight: bold;
 }
 .email{
-    cursor:default !important; 
+    cursor:default !important;
     margin-right:70px;
     color: #00485E !important;
 }
@@ -263,7 +262,7 @@ tbody tr:nth-child(even) {
 
 table{
     border-collapse: collapse !important;
-    
+
 }
 
 table.maxmin th, table.maxmin td{
@@ -476,14 +475,14 @@ option{
     height: auto;
     margin-right: 7px;
     background-color: white;
-    
+
 }
 .card_single .cardInfoVal{
     width: 70% !important;
 }
 
 .card_single .cardInfoKey{
-    font-style: italic;    
+    font-style: italic;
 }
 
 .cardInfoVal{
@@ -513,7 +512,7 @@ option{
 }
 .indent, .indent3{
     padding-left: 15px;
-    
+
 }
 .indent3 .card{
     width: auto;
@@ -545,7 +544,7 @@ option{
 }
 .resultTerm{
     color: darkred;
-    font-style: italic;    
+    font-style: italic;
 }
 .viewCardWidget{
     position: fixed;
@@ -577,7 +576,7 @@ option{
     background: -moz-linear-gradient(right,#00485E, #079); /* For Firefox 3.6 to 15 */
     background: linear-gradient(right,#00485E, #079); /* Standard syntax */
     color: white;
-    
+
 }
 /*.toggleArrow:hover{
     background-color: rgba(0, 119, 153, 0.3);

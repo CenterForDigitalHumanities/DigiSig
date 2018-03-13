@@ -44,7 +44,7 @@
     if (isset($motifClass)) {
 
 //establish which part of the representation_view table to query
-        $query1 = "SELECT pk_class, level, printphrase_class FROM classification_view WHERE id_class = '" . $motifClass . "'";
+        $query1 = "SELECT pk_class, level, printphrase_class FROM classification_view WHERE id_class = '" . $motifClass . "' LIMIT 200;";
         $query1result = mysqli_query($link, $query1);
         if($query1result){
         $row = mysqli_fetch_assoc($query1result);
@@ -58,7 +58,11 @@
         $rowcount = mysqli_num_rows($query2result);
 
 //Title for group of photographs					
+if($rowcount==200){
+        Echo "<h3>" . $classtitle . " <span class='badge' title='First " . $rowcount . " results shown'>" . $rowcount . "</span></h3>";
+} else {
         Echo "<h3>" . $classtitle . " <span class='badge' title='" . $rowcount . " total results'>" . $rowcount . "</span></h3>";
+}
         } else {
             echo '<p>No results; there may have been an error.</p>';
             $rowcount = 0;
