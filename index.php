@@ -1000,7 +1000,7 @@ echo "<div class='content_wrap'>";
                 echo "</div>"; //close page wrap
                 break;
 
-                case 'motifs':
+                case 'labs':
                     if (isset($path_info['call_parts'][1])) {
                         $motifClass = ($path_info['call_parts'][1]);    
                     }

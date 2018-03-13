@@ -25,7 +25,7 @@ echo '<form name ="navigate" action="'.$action.'" method="post" class="theheader
             <input class="navigate" type="submit" name ="submit" value ="HOME"/>
             <input class="navigate" type="submit" name ="submit" value ="ABOUT"/>
             <input class="navigate" type="submit" id="galleryLink" name ="submit" value ="GALLERY"/>
-            <button class="navigate" type="submit" name ="submit" value ="MOTIFS">BROWSE MOTIFS</button>
+            <button class="navigate" type="submit" name ="submit" value ="LABS">LABS</button>
             <input class="navigate" type="submit" name ="submit" value ="CONTACT"/>
             '.$logBtn.'
         </div>

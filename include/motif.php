@@ -35,7 +35,7 @@
             <div class="searchBtn_1" onclick="$(this)
                         .next()
                         .click();">GO</div>
-            <input class="searchBtn_2" type="submit" name ="submit" value ="motifs"/>
+            <input class="searchBtn_2" type="submit" name ="submit" value ="labs"/>
         </div>
     </form>
 
