@@ -3,6 +3,8 @@
 
 	<head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo $basePath; ?>/digisig/include/lightbox/css/lightbox.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.1/js/lightbox-plus-jquery.min.js"></script>
 		<link rel="stylesheet" href="<?php echo $basePath; ?>/digisig/css/digisigSkin.css" />                
         <link type="text/css" href="/digisig/css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="Stylesheet">
@@ -34,7 +36,7 @@
                         bottom: 0rem;
                         right: 4rem;
                         font-size: 800%;
-                        content: "RTI Gallery";
+                        content: attr(title);
                         color: transparent;
                         z-index: -1;
                         text-shadow: 0 0 10px #ccc;
@@ -49,6 +51,9 @@
                         padding: .5rem;
                         margin-top: 5rem;
                         box-shadow: 1px 1px 10px rgba(0,0,0,.15);
+                    }
+                    [onclick] {
+                        cursor: pointer;
                     }
                 </style>
 	</head>
@@ -89,7 +94,6 @@ session_start();
     
 include "header.php"; 
 echo "<div class='content_wrap'>";
-include "include/page.php";
 
 //user login
 
@@ -189,8 +193,6 @@ include "include/page.php";
          * 3) Introduction text
          * 4) Basic Search bar
          */
-
-        
 
         // load the optional extra parts of the page depending on the header
 
@@ -296,29 +298,8 @@ include "include/page.php";
                 
                         </div>
                     </div>
-                    <script type="text/javascript" src="/digisig/js/jquery-ui.min.js"></script>
-                    <script type="text/javascript" src="/digisig/js/pep.min.js"></script>
-                    <script type="text/javascript" src="/digisig/spidergl/spidergl.js"></script>
-                    <script type="text/javascript" src="/digisig/spidergl/multires.js"></script>
                     <script type="text/javascript">
-                        var viewerCont = "viewerCont";
-                        function launchRTI() {
-                            let dir = "'.$val1_directory.'";
-                             var opts = {
-                                 linkNode: "footer",
-                                 linkNodeStyle: {},
-                                 toolbarNode: "toolbar",
-                                 toolbarStyle: {
-                                 	margin: ".5rem",
-                                 	cssFloat: "left",
-                                 	width: "2rem",
-                                 	height: "400px"
-                                 },
-                                 externalToolbar: true
-                             };
-                            createRtiViewer(viewerCont, "/digisig/images/webrti/" + dir, 900, 600, opts);
-                        }
-                        launchRTI();
+                        $(function(){launchRTI();});
                         function toggleFlip(el) {
                             let isFlipped = el.innerHTML.indexOf("original") > -1;
                             if (!isFlipped) {
@@ -330,7 +311,7 @@ include "include/page.php";
                             }
                         }
                     </script>
-                    <div class="galleron">';
+                    <div class="galleron" title="RTI Gallery">';
 
 		#Populate the RTI gallery
 		$queryrti2 = "SELECT * from gallery_rti";
@@ -1019,13 +1000,12 @@ include "include/page.php";
                 echo "</div>"; //close page wrap
                 break;
 
-            case 'advanced search' :
-                echo '<div class="pageWrap">';
-                {
-                    echo "Section under construction. Please check back regularly for updates";
-                }
-                echo "</div>"; //close page wrap
-                break;
+                case 'motifs':
+                    if (isset($path_info['call_parts'][1])) {
+                        $motifClass = ($path_info['call_parts'][1]);    
+                    }
+                    include "include/motif.php";
+                    break;
 
             case 'contact' :
                 echo '<div class="pageWrap">';
@@ -1081,13 +1061,24 @@ include "include/page.php";
                 </div>";
 
                 echo "</div>"; //close page wrap
-                echo "<div class='sources'>";
-                echo "<div class='sources_title'>
-                <h3>Contributing Repositories & Sources</h3>
-                <p><i>
+                echo "
+                    <div class='sources'>
+                        <h4>RTI Image Gallery</h4>
+                        <p>Interact with advanced seal imagery.</p>
+                        <div id='rtithumb' onclick='$(\"#galleryLink\").click()'></div>
+                        <div class='sources_title'>
+                        <h3>Contributing Repositories & Sources</h3>
+                        <p><i>
                             Search <b>$sealcount</b> seal records from the following sources:
-                        </i>
-                    </p>
+                            </i>
+                        </p>
+                        <script>
+                        $(function(){
+                            launchRTI('rtithumb',{
+                                toolbarStyle: { display: 'none' }
+                            },300,200);
+                            });
+                        </script>
                 </div>";
 				
 				// graph section -- needs development
@@ -1152,7 +1143,10 @@ include "include/page.php";
                     <div class="cardCountText">You have <span id="cardcount">0</span> cards in your folder.</div>
                     <a class='viewCardLink' onclick="$('.addedCardArea').show(); $('.toggleArrow').click();">View Cards</a>
                 </div>
-
+                <script type="text/javascript" src="/digisig/js/jquery-ui.min.js"></script>
+                <script type="text/javascript" src="/digisig/js/pep.min.js"></script>
+                <script type="text/javascript" src="/digisig/spidergl/spidergl.js"></script>
+                <script type="text/javascript" src="/digisig/spidergl/multires.js"></script>
 		<script>
             function toggleCardWidget($toggle){
                 if($toggle.attr("active") == "no"){
@@ -1339,7 +1333,28 @@ include "include/page.php";
                             }
                         }
 
+                        var viewerCont = "viewerCont";
+                        function launchRTI(elem,opt,cw,ch) {
+                            let container = elem || viewerCont;
+                            let width = cw || 900;
+                            let height = ch || 600;
+                            let dir = "'.$val1_directory.'";
+                             var opts = opt || {
+                                 linkNode: "footer",
+                                 linkNodeStyle: {},
+                                 toolbarNode: "toolbar",
+                                 toolbarStyle: {
+                                 	margin: ".5rem",
+                                 	cssFloat: "left",
+                                 	width: "2rem",
+                                 	height: "400px"
+                                 },
+                                 externalToolbar: true
+                             };
+                            createRtiViewer(container, "/digisig/images/webrti/" + dir, width, height, opts);
+                        }
                         
+                       
                         $(function(){
                             var url = window.location.href;
                             if(url.indexOf("/digisig/about")>-1 || url.indexOf("/digisig/contact")>-1){
