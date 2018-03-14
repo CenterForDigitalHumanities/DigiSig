@@ -1338,7 +1338,7 @@ echo "<div class='content_wrap'>";
                             let container = elem || viewerCont;
                             let width = cw || 900;
                             let height = ch || 600;
-                            let dir = "'.$val1_directory.'";
+                            let dir = "<?php echo $val1_directory; ?>";
                              var opts = opt || {
                                  linkNode: "footer",
                                  linkNodeStyle: {},
