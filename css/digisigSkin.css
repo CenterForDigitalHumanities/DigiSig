@@ -142,6 +142,9 @@ form[name="navigate"]{
     color: white;
     font-family: serif !important;
 }
+input[type="text"] {
+    color:#00485E;
+}
 
 /* This is the footer navigation */
 .footer{
